@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import {Tabs,NavBar, Icon,Flex} from 'antd-mobile';
+import {Link} from 'react-router-dom';
 
-export default class WorldList extends Component {
+export default class Market extends Component {
     render() {
         const tabs = [
             { title: 'world list1' },
@@ -11,9 +12,10 @@ export default class WorldList extends Component {
         return (
             <div>
                <NavBar               
-                mode="light"
-                icon={<Icon type="left" />}
                 style={{backgroundColor:'#66cccc',color:'white'}}>
+                   <Link to='./Words'>
+                      <Icon type={'left'} style={{position:'absolute',top:'10px',left:'4%',color:'white'}}/>
+                   </Link>
                   <span style={{backgroundColor:'#66cccc',color:'white'}} to='./Home1'>单词详情页</span>           
                 </NavBar>
                 <Tabs tabs={tabs} initialPage={0}>
