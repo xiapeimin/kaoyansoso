@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {SearchBar, NavBar, Icon ,Flex} from 'antd-mobile';
 
-export default class Home extends Component {
+export default class SearchInfo extends Component {
     render() {
         return (
             <div>
