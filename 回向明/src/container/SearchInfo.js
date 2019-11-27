@@ -7,8 +7,8 @@ export default class SearchInfo extends Component {
             <div>
                 <NavBar               
                 mode="light"
+                icon={<Icon type="left" />}
                 style={{backgroundColor:'#66cccc',color:'white'}}>
-                    <Icon type={'left'} style={{position:'absolute',top:'10px',left:'4%',color:'white'}}/>
                     <span style={{backgroundColor:'#66cccc',color:'white'}}>找资源</span>
                 </NavBar>
                 <SearchBar placeholder="这里啥都有"/>
@@ -17,11 +17,11 @@ export default class SearchInfo extends Component {
                         <Flex.Item style={{position:"absolute",width:'3vw',height:'3vw',top:'20%',
                         borderRadius:'50%',left:'1%',backgroundColor:'blue'}}></Flex.Item>
                     <img style={{position:"absolute",width:'14vw',height:'14vw',borderRadius:'50%',left:'5%'}} src={require('../images/music.jpg')}/>
-                    <Flex.Item style={{position:"absolute",left:'20%',top:'20%',fontSize:'4vw'}}>
+                    <Flex.Item style={{position:"absolute",left:'25%',top:'20%',fontSize:'4vw',fontWeight:'bold'}}>
                         音视频
                     </Flex.Item>
                     <Flex style={{position:"absolute",right:'5%',top:'20%'}}>
-                    <Icon type={'right'} style={{height:'5vw',width:'5vw'}}/>
+                    <Icon type={'right'} style={{height:'10vw',width:'10vw'}}/>
                     </Flex>
                     </Flex.Item>
             
@@ -29,11 +29,11 @@ export default class SearchInfo extends Component {
                         <Flex.Item style={{position:"absolute",width:'3vw',height:'3vw',top:'20%',
                         borderRadius:'50%',left:'1%',backgroundColor:'blue'}}></Flex.Item>
                     <img style={{position:"absolute",width:'14vw',height:'14vw',borderRadius:'50%',left:'5%'}} src={require('../images/pen.jpg')}/>
-                    <Flex.Item style={{position:"absolute",left:'20%',top:'20%',fontSize:'4vw'}}>
+                    <Flex.Item style={{position:"absolute",left:'25%',top:'20%',fontSize:'4vw',fontWeight:'bold'}}>
                         考研文本资料
                     </Flex.Item>
                     <Flex style={{position:"absolute",right:'5%',top:'20%'}}>
-                    <Icon type={'right'} style={{height:'5vw',width:'5vw'}}/>
+                    <Icon type={'right'} style={{height:'10vw',width:'10vw'}}/>
                     </Flex>
                     </Flex.Item>
                 
@@ -41,11 +41,11 @@ export default class SearchInfo extends Component {
                         <Flex.Item style={{position:"absolute",width:'3vw',height:'3vw',top:'20%',
                         borderRadius:'50%',left:'1%',backgroundColor:'blue'}}></Flex.Item>
                     <img style={{position:"absolute",width:'14vw',height:'14vw',borderRadius:'50%',left:'5%'}} src={require('../images/jingyan.jpg')}/>
-                    <Flex.Item style={{position:"absolute",left:'20%',top:'20%',fontSize:'4vw'}}>
+                    <Flex.Item style={{position:"absolute",left:'25%',top:'20%',fontSize:'4vw',fontWeight:'bold'}}>
                         经验分享
                     </Flex.Item>
                     <Flex style={{position:"absolute",right:'5%',top:'20%'}}>
-                    <Icon type={'right'} style={{height:'5vw',width:'5vw'}}/>
+                    <Icon type={'right'} style={{height:'10vw',width:'10vw'}}/>
                     </Flex>
                     </Flex.Item>
                 
