@@ -11,7 +11,7 @@ export default class Yantiku extends Component {
                     ><Link to='/Login'><div style={{height:'5vw',width:'5vw',marginLeft:'-32vw'}}>
                         <img  style={{height:'5vw',width:'5vw'}} src={require('../images/jiantou.png')}/></div></Link>
                         <span style={{color:'white',fontSize:'8vw',height:'10vw'}}>研题库</span></NavBar>
-                <input type='search' style={{height:'12vw',marginLeft:'3vw',width:'95vw',fontSize:'4VW' ,marginTop:'2.5vw',border:'1px solid gray'}} placeholder="小可爱想搜索哪一年的真题" maxLength={8} />
+                <input type='search' style={{height:'12vw',marginLeft:'3vw',width:'95vw',fontSize:'4VW' ,marginTop:'2.5vw',border:'2px'}} placeholder="小可爱想搜索哪一年的真题" maxLength={8} />
                 <div style={{height:'20vw',marginTop:'5vw',borderTop:'1px solid gray',borderBottom:'1px solid gray'}}>
                     <Link to='./tiKu'>
                     <div style={{marginLeft:'5vw',marginTop:'2.5vw'}}>

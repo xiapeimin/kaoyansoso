@@ -10,7 +10,7 @@ export default class Register extends Component {
                 style={{backgroundColor:'#66cccc',color:'white',height:'15vw'}}                             
                     ><Link to='/Login'><div style={{height:'5vw',width:'5vw',marginLeft:'-32vw'}}>
                         <img  style={{height:'5vw',width:'5vw'}} src={require('../images/jiantou.png')}/></div></Link>
-                        <span style={{color:'white',fontSize:'8vw',height:'10vw'}}>用户注册</span></NavBar>
+                        <span style={{color:'white',fontSize:'6vw',height:'10vw',marginTop:'3vw'}}>用户注册</span></NavBar>
 
             <ul>
                 <li><input className='login_input1' placeholder='昵称'/></li>
@@ -20,7 +20,7 @@ export default class Register extends Component {
                 <li><input className='login_input1' placeholder='确认密码'/></li>
             </ul>
             <div>
-            <img style={{width:'7.5vw',height:'7.5vw',marginTop:'9vw',marginLeft:'10vw'}} src={require('../images/agree.png')}/>
+            <input type='radio' style={{width:'7.5vw',height:'7.5vw',marginTop:'9vw',marginLeft:'10vw'}}/>
             <div style={{marginTop:'-6.25vw',marginLeft:'19vw'}} >
             <span style={{fontSize:'4vw'}}>我已阅读并同意《考研soso用户协议》</span></div>            
             </div>

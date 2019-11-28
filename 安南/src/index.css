@@ -60,4 +60,7 @@ ul,li{
   margin-top: 5vw;
   margin-left: 7.5vw;
   font-size: 4vw;
+  padding: 2px;
+  border-radius: 3vw;
+  border: 2px;
 }
