@@ -5,6 +5,7 @@ import Word from './Words'
 import WordList from './WordList'
 import Video from './Video'
 import Resource from './Resource'
+import Tools from './Tools'
 
 export default class AppHome extends Component {
     constructor(props) {
@@ -153,6 +154,32 @@ export default class AppHome extends Component {
                             }}
                         >
                             <Resource/>
+                        </TabBar.Item>
+                        <TabBar.Item
+                            icon={
+                            <div style={{
+                            width: '22px',
+                            height: '22px',
+                             }}
+                            />
+                            }
+                            selectedIcon={
+                            <div style={{
+                            width: '22px',
+                            height: '22px',
+                            }}
+                            />
+                            }
+                            title="研百科"
+                            key="my"
+                            selected={this.state.selectedTab === 'whiteTab'}
+                            onPress={() => {
+                            this.setState({
+                                selectedTab: 'whiteTab',
+                            });
+                            }}
+                        >
+                            <Tools/>
                         </TabBar.Item>
                         </TabBar>
                 </div>
