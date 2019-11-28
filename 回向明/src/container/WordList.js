@@ -10,7 +10,7 @@ export default class Market extends Component {
    constructor(){
       super();
       this.state = {
-          todo: ['about',
+          todo: ['about adv 关于',
           'abdomen n 腹，下腹',
           'abnormal adj 反常的',
           'absolute adj 绝对的',
@@ -20,7 +20,26 @@ export default class Market extends Component {
           'about adv 大约',
           'able adj 有才能的',
           'abolish v 废除',
-          'aboard adv 船上'
+          'aboard adv 船上',
+          'accessory n 同谋，从犯',
+          'appeal vi 呼吁',
+          'abolish vt. 废除',
+          'ability n.能力；能耐，本领',
+          'abuse vt.滥用；虐待 n.滥用',
+          'accept vt.vi.接受；同意',
+          'accord vt.使一致；给予',
+          'accustom vt.使习惯',
+          'acquire vt.取得；获得；学到',
+          'addition n.加，加法；附加物',
+          'adopt vt.收养；采用；采取',
+          'advice n.劝告；忠告；意见',
+          'affair n.事情，事件；事务',
+          'airtight adj  密封的',
+          'albuminn n 蛋白质',
+          'alignment n.队列',
+          'alton adj 次高音',
+          'amatorya adj 恋爱的',
+          'ambitn n 界限，范围，周围',
          ],
          todo1:[
             'black 黑色',
@@ -85,7 +104,7 @@ componentDidUpdate(){
                    <Link to='./Words'>
                       <Icon type={'left'} style={{position:'absolute',top:'10px',left:'4%',color:'white'}}/>
                    </Link>
-                  <span style={{backgroundColor:'#66cccc',color:'white'}} to='./Home1'>单词详情页</span>           
+                  <span style={{backgroundColor:'#66cccc',color:'white'}}>单词详情页</span>           
                 </NavBar>
                 
                 <Tabs tabs={tabs} initialPage={0}>

@@ -4,6 +4,7 @@ import SearchInfo from './SearchInfo'
 import Word from './Words'
 import WordList from './WordList'
 import Video from './Video'
+import Resource from './Resource'
 
 export default class AppHome extends Component {
     constructor(props) {
@@ -126,6 +127,32 @@ export default class AppHome extends Component {
                             }}
                         >
                             <Video/>
+                        </TabBar.Item>
+                        <TabBar.Item
+                            icon={
+                            <div style={{
+                            width: '22px',
+                            height: '22px',
+                             }}
+                            />
+                            }
+                            selectedIcon={
+                            <div style={{
+                            width: '22px',
+                            height: '22px',
+                            }}
+                            />
+                            }
+                            title="资源详情页"
+                            key="my"
+                            selected={this.state.selectedTab === 'blackTab'}
+                            onPress={() => {
+                            this.setState({
+                                selectedTab: 'blackTab',
+                            });
+                            }}
+                        >
+                            <Resource/>
                         </TabBar.Item>
                         </TabBar>
                 </div>
