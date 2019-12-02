@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import {Tabs,NavBar, Icon } from 'antd-mobile';
 import {Link} from 'react-router-dom';
-import Todoinput from './Todoinput';
-import Todoing from './Todoing';
-import Todoinput1 from './Todoinput1';
-import Todoing1 from './Todoing1'
+import Todoinput from './Wordlist/Todoinput';
+import Todoing from './Wordlist/Todoing';
+import Todoinput1 from './Wordlist/Todoinput1';
+import Todoing1 from './Wordlist/Todoing1'
 
 export default class Market extends Component {
    constructor(){
@@ -92,21 +92,21 @@ componentDidUpdate(){
    localStorage.setItem("todo",JSON.stringify(this.state.todo));
    localStorage.setItem("todo1",JSON.stringify(this.state.todo1));
 }
-    render() {
+    render() {   //input 宽度超出
         const tabs = [
-            { title: <p style={{position:'absolute',fontSize:'5vw',top:'0vw'}}>world list a</p> },
-            { title: <p style={{position:'absolute',fontSize:'5vw',top:'0vw'}}>world list b</p> },
+            { title: <p style={{fontSize:'5vw'}}>收藏单词</p> },
+            { title: <p style={{fontSize:'5vw'}}>默写单词</p> },
           ];
         return (
-            <div>
+            <div className='testbox'>
                <NavBar               
                 style={{backgroundColor:'#66cccc',color:'white'}}>
-                   <Link to='./Words'>
+                   <Link to='/Words'>
                       <Icon type={'left'} style={{position:'absolute',top:'10px',left:'4%',color:'white'}}/>
                    </Link>
-                  <span style={{backgroundColor:'#66cccc',color:'white'}}>单词详情页</span>           
+                  <span style={{backgroundColor:'#66cccc',color:'white'}}>我的单词</span>           
                 </NavBar>
-                
+                <div style={{height:'5vw'}}></div>
                 <Tabs tabs={tabs} initialPage={0}>
                 <div>
                     <Todoinput addTodo={this.addItem}/>

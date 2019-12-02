@@ -1,9 +1,9 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom';
-import {Tabs,NavBar, Icon ,Flex} from 'antd-mobile';
+import {Tabs,NavBar,Flex} from 'antd-mobile';
 
 
-export default class SearchInfo extends Component {
+export default class SearchInfo extends Component {  //链接有几个不对
     render() {
         const tabs = [
             { title: <p style={{position:'absolute',fontSize:'4vw',top:'0vw'}}>报名条件</p> },
@@ -15,35 +15,36 @@ export default class SearchInfo extends Component {
             { title: <p style={{position:'absolute',fontSize:'4vw',top:'0vw'}}>查分流程</p> },
           ];
         return (
-            <div>
-                <NavBar               
-                style={{backgroundColor:'#66cccc',color:'white'}}>
-                   <Link to='./searchinfo'>
-                      <Icon type={'left'} style={{position:'absolute',top:'10px',left:'4%',color:'white'}}/>
-                   </Link>
-                  <span style={{backgroundColor:'#66cccc',color:'white'}}>研百科</span>
+            <div className='testbox'>
+                <NavBar
+                style={{background:'#66cccc',color:'#fff'}} 
+                leftContent={<Link to={'/appTab'}><img src={require('../imgs/zjt.png')} /></Link>}
+                mode="light"
+                ><span style={{color:'#fff',fontSize:'21px'}}>研百科</span></NavBar>
 
-                </NavBar>
-                <Flex.Item style={{position:'relative',height:'10vw',width:'80%',top:'2vw',left:'10%',
-                borderBottom:'1px solid black'}}>
-                    <img style={{position:"absolute",width:'7vw',height:'7vw',borderRadius:'50%',left:'1vw',top:'2vw'}} src={require('../images/baike1.png')}/>
+                <div style={{background:'#fff',width:'100%'}}>
+                <div style={{width:'90%',height:'50px',marginTop:'3vw',marginLeft:'5%'}}>
+                <Flex.Item style={{position:'relative',height:'10vw',width:'100%',top:'2vw',
+                borderBottom:'1px solid #919493'}}>
+                    <img style={{position:"absolute",width:'7vw',height:'7vw',borderRadius:'50%',left:'1vw',top:'2vw'}} src={require('../imgs/baike1.png')}/>
                     <Flex.Item style={{position:"absolute",left:'10%',fontSize:'4vw',top:'25%',color:'black'}}>
                         猜你想
                     </Flex.Item>
                     </Flex.Item>
+                </div>
+                <div style={{height:'2vw'}}></div>
                     
-                    <div style={{position:'relative',top:'4vw',width:'80%',left:'10%',height:'50vw'}}>
+                    <div style={{width:'100%',background:'#fff',paddingBottom:'10vw'}}>
+                    <div style={{width:'90%',margin:'0 auto',background:'#fff'}}>
                     <Tabs tabs={tabs} initialPage={0} renderTabBar={props => <Tabs.DefaultTabBar {...props} page={4} />}>
-                        <div style={{position:'relative',top:'2vw',
-                        height:'50vw',border:'1px solid black',fontSize:'4vw'}}>
+                        <div style={{marginTop:'5vw',padding:'3vw',lineHeight:'1.5em',border:'1px solid #bbd1cb',fontSize:'4.5vw'}}>
                             报名参加考研的人员，必须符合以下基本要求：<br/>
                             (一)中华人民共和国公民。<br/>
                             (二)拥护中国共产党的领导，品德良好，遵纪守法。<br/>
                             (三)身体健康状况符合国家和考研招生单位规定的体检要求。<br/>
                             (四)考生学业水平必须符合条件<br/>
                         </div>
-                        <div style={{position:'relative',top:'2vw',
-                        height:'105vw',border:'1px solid black',fontSize:'4vw'}}>
+                        <div style={{marginTop:'5vw',padding:'3vw',lineHeight:'1.5em',border:'1px solid #bbd1cb',fontSize:'4.5vw'}}>
                             <p style={{fontWeight:'bold'}}>一.网上报名</p>
 满足一月统考在职研究生报名条件的人员需登录“中国研究生招生信息网”填写报名信息。一般每年的9月开始考研预报名，10月份开始考研正式报名。想要报名考研的人员需及时的关注官方信息。
 <br/>
@@ -53,8 +54,7 @@ export default class SearchInfo extends Component {
 <p style={{fontWeight:'bold'}}>三.准考证打印</p>
 参加全国统考在职研究生考试必须要携带考研准考证，所以一定要在考试前打印考研准考证。
                         </div>
-                        <div style={{position:'relative',top:'2vw',
-                        height:'375vw',border:'1px solid black',fontSize:'4vw'}}>
+                        <div style={{marginTop:'5vw',padding:'3vw',lineHeight:'1.5em',border:'1px solid #bbd1cb',fontSize:'4.5vw'}}>
                             <p style={{fontWeight:'bold'}}>一、考研预报名和正式报名</p>
 
 考研预报名主要针对应届生，一般在9月下旬开始，持续两三天左右。主要是为了让那些初次报考的应届生们熟悉流程，避免报考失误，如有错误，还可在正式报名中修正。同时，考研人数逐年增加，预报名也分流了每年10月份的正式报名。
@@ -93,12 +93,10 @@ export default class SearchInfo extends Component {
 <br/>
 (5)其它招生单位或报考点规定的相关材料。
                         </div>
-                        <div style={{position:'relative',top:'2vw',
-                        height:'35vw',border:'1px solid black',fontSize:'10vw',textAlign:'center'}}>
+                        <div style={{marginTop:'5vw',padding:'3vw',lineHeight:'1.5em',border:'1px solid #bbd1cb',fontSize:'4.5vw'}}>
                             <p style={{fontWeight:'bold'}}>12月23-24日</p>
                         </div>
-                        <div style={{position:'relative',top:'2vw',
-                        height:'290vw',border:'1px solid black',fontSize:'4vw'}}>
+                        <div style={{marginTop:'5vw',padding:'3vw',lineHeight:'1.5em',border:'1px solid #bbd1cb',fontSize:'4.5vw'}}>
                             考研初试面对的是一张试卷，考试时间是180分钟，那么在这3个小时的时间里面各个科目该如何安排时间和答题技巧呢？提前了解一下，才能够有备无患。
                             <br/>
                             <p style={{fontWeight:'bold'}}>1、政治</p>
@@ -124,8 +122,7 @@ export default class SearchInfo extends Component {
 选择题和填空题约60分钟，解答题约100分钟，预留20分钟检查和补做前面未做的题，以及作为机动和回旋余地。选择题和填空题每题一般花4~5分钟，如果一道题3分钟仍无思路则应跳过。解答题每题一般花11分钟左右，一道题如果4~5分钟仍一筹莫展，则应跳过，暂时放弃。
 
                         </div>
-                        <div style={{position:'relative',top:'2vw',
-                        height:'90vw',border:'1px solid black',fontSize:'4vw'}}>
+                        <div style={{marginTop:'5vw',padding:'3vw',lineHeight:'1.5em',border:'1px solid #bbd1cb',fontSize:'4.5vw'}}>
 考前注意事项<br/>
 
 1： 这一时期一定不要生病，身体好，精神好，才能把前期的功力发挥出来。要不然功归一篑。
@@ -139,8 +136,7 @@ export default class SearchInfo extends Component {
 5：每天给自己加油!睡前鼓励自己，实在学不进去的话，是正常现象，那就不学了，放松一下，去睡觉，去跑步，听音乐，唱歌。切记打游戏。
 <br/>
                         </div>
-                        <div style={{position:'relative',top:'2vw',
-                        height:'140vw',border:'1px solid black',fontSize:'4vw'}}>
+                        <div style={{marginTop:'5vw',padding:'3vw',lineHeight:'1.5em',border:'1px solid #bbd1cb',fontSize:'4.5vw'}}>
                             <p style={{fontWeight:'bold'}}>成绩查询方式</p>
 
 通常查询考研成绩有两种渠道：网查和电话<br/>
@@ -165,42 +161,38 @@ export default class SearchInfo extends Component {
                         </div>
                     </Tabs>
                     </div>
+                    </div>
 
-                    <Flex.Item style={{position:'relative',height:'10vw',width:'80%',top:'10vw',left:'10%',
-                borderBottom:'1px solid black'}}>
-                    <img style={{position:"absolute",width:'7vw',height:'7vw',borderRadius:'50%',left:'1vw',top:'2vw'}} src={require('../images/baike2.png')}/>
+                    <Flex.Item style={{position:'relative',height:'10vw',width:'90%',left:'5%',
+                borderBottom:'1px solid #919493',background:'#fff'}}>
+                    <img style={{position:"absolute",width:'7vw',height:'7vw',borderRadius:'50%',left:'1vw',top:'2vw'}} src={require('../imgs/baike2.png')}/>
                     <Flex.Item style={{position:"absolute",left:'10%',fontSize:'4vw',top:'25%',color:'black'}}>
                         工具箱
                     </Flex.Item>
                     </Flex.Item>
 
-                    <div style={{position:'relative',top:'13vw',width:'40%',left:'10%',
-                        height:'25vw',border:'1px solid black'}}>
-                            <a href='https://yz.chsi.com.cn/'>
-                             <img style={{position:"absolute",width:'15vw',height:'15vw',borderRadius:'50%',left:'12vw',top:'0vw'}} src={require('../images/baoming.png')}/>
-                             <div style={{position:'relative',fontSize:'4vw',top:'15vw',left:'11vw'}}>考研报名</div>
-                             </a>
+                    <div style={{width:'100%',background:'#fff',paddingTop:'10vw',paddingBottom:'5vw'}}>
+                        <div style={{width:'80%',height:'60vw',margin:'0 auto',border:'1px solid #919493',borderRadius:'2vw'}}>
+                            <a href='https://yz.chsi.com.cn/'><div style={{width:'49%',height:'49%',textAlign:'center',float:'left',borderBottom:'1px solid #919493',borderRight:'1px solid #919493'}}>
+                                <img src={require('../imgs/baoming.png')} style={{width:'40%',height:'50%',borderRadius:'5vw',marginTop:'5%'}} />
+                                <p style={{color:'#000'}}>考试报名</p>
+                            </div></a>
+                            <a href='https://yz.chsi.com.cn/zsgs/'><div style={{width:'50%',height:'49%',textAlign:'center',float:'left',borderBottom:'1px solid #919493'}}>
+                                <img src={require('../imgs/xinxi.png')} style={{width:'40%',height:'50%',borderRadius:'5vw',marginTop:'5%'}}/>
+                                <p style={{color:'#000'}}>招生信息</p>
+                            </div></a>
+                            <a href='https://yz.chsi.com.cn/'><div style={{width:'49%',height:'50%',textAlign:'center',float:'left',borderRight:'1px solid #919493'}}>
+                                <img src={require('../imgs/chaxun.png')} style={{width:'40%',height:'50%',borderRadius:'5vw',marginTop:'5%'}}/>
+                                <p style={{color:'#000'}}>成绩查询</p>
+                            </div></a>
+                            <a href='https://yz.chsi.com.cn/yzwb/'><div style={{width:'50%',height:'50%',textAlign:'center',float:'left'}}>
+                                <img src={require('../imgs/tiaoji.png')} style={{width:'40%',height:'50%',borderRadius:'5vw',marginTop:'5%'}}/>
+                                <p style={{color:'#000'}}>网上调剂</p>
+                            </div></a>
+                        </div>
+                    
                     </div>
-                    <div style={{position:'relative',width:'40%',left:'49.5%',top:'-12vw',
-                        height:'25vw',border:'1px solid black'}}>
-                            <a href='https://yz.chsi.com.cn/zsgs/'>
-                             <img style={{position:"absolute",width:'15vw',height:'15vw',borderRadius:'50%',left:'12vw',top:'0vw'}} src={require('../images/xinxi.png')}/>
-                             <div style={{position:'relative',fontSize:'4vw',top:'15vw',left:'11vw'}}>招生信息</div>
-                             </a>
-                    </div>
-                    <div style={{position:'relative',top:'-12vw',width:'40%',left:'10%',
-                        height:'25vw',border:'1px solid black'}}>
-                            <a href='https://yz.chsi.com.cn/'>
-                             <img style={{position:"absolute",width:'15vw',height:'15vw',borderRadius:'50%',left:'12vw',top:'1vw'}} src={require('../images/chaxun.png')}/>
-                             <div style={{position:'relative',fontSize:'4vw',top:'15vw',left:'11vw'}}>成绩查询</div>
-                             </a>
-                    </div>
-                    <div style={{position:'relative',width:'40%',left:'49.5%',top:'-37vw',
-                        height:'25vw',border:'1px solid black'}}>
-                            <a href='https://yz.chsi.com.cn/yzwb/'>
-                             <img style={{position:"absolute",width:'15vw',height:'15vw',borderRadius:'50%',left:'12vw',top:'1vw'}} src={require('../images/tiaoji.png')}/>
-                             <div style={{position:'relative',fontSize:'4vw',top:'15vw',left:'11vw'}}>网上调剂</div>
-                             </a>
+
                     </div>
             </div>
         )

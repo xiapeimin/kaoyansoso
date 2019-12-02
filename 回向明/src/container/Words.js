@@ -1,33 +1,33 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 import {Flex,NavBar, Icon } from 'antd-mobile';
-import '../index.css';
 
-export default class Words extends Component {
+export default class Words extends Component {  //有bug 页面布局混乱  
   render() {
     return (
-     <div>
-       <NavBar               
+     <div className='testbox'>
+       <NavBar
+                style={{background:'#66cccc',color:'#fff'}} 
+                leftContent={<Link to={'/appTab'}><img src={require('../imgs/zjt.png')} /></Link>}
                 mode="light"
-                icon={<Icon type="left" />}
-                style={{backgroundColor:'#66cccc',color:'white'}}>
-                  <span style={{backgroundColor:'#66cccc',color:'white'}} to='./Home1'>背单词</span>      
-                </NavBar>
+                ><span style={{color:'#fff',fontSize:'22px'}}>背单词</span></NavBar>
 
-                <Flex.Item style={{position:'relative',height:'20vw',width:'90%',left:'5%',top:'10vw'
+                <img src={require('../imgs/remword.jpg')} style={{display:'block',width:'100%',height:'50vw'}} />
+
+                <Flex.Item style={{position:'relative',height:'20vw',lineHeight:'20vw',width:'100%',
                     }}>
-                        <Flex.Item style={{position:'absolute',width:'100%',fontSize:'5vw',top:'40%',
+                        <Flex.Item style={{position:'absolute',width:'100%',fontSize:'5vw',
                         textAlign:'center',color:'black'
                     }}>
-                            开始你的背单词计划吧
-                        </Flex.Item>
+                       开始你的背单词计划吧        
+                    </Flex.Item>
                     </Flex.Item>
                          
-                    <Flex.Item style={{position:'relative',height:'20vw',width:'100%',top:'20vw'}}>
-                      <Link to='./wordlist'>
+                    <Flex.Item style={{position:'relative',height:'20vw',width:'100%'}}>
+                      <Link to='/wordlist'>
                         <Flex.Item style={{position:"absolute",width:'10px',height:'10px',top:'20%',
                         borderRadius:'50%',left:'1%',backgroundColor:'blue'}}></Flex.Item>
-                    <img style={{position:"absolute",width:'10vw',height:'10vw',borderRadius:'50%',left:'5%'}} src={require('../images/danci.jpg')}/>
+                    <img style={{position:"absolute",width:'10vw',height:'10vw',borderRadius:'50%',left:'5%'}} src={require('../imgs/danci.jpg')}/>
                     <Flex.Item style={{position:"absolute",left:'20%',top:'2vw',fontSize:'5vw',color:'black'}}>
                         我的收藏单词(可增删)
                     </Flex.Item>
@@ -37,11 +37,11 @@ export default class Words extends Component {
                     </Link>
                     </Flex.Item>                                    
 
-                    <Flex.Item style={{position:'relative',height:'20vw',width:'100%',top:'20vw'}}>
-                      <Link to='./wordlist1'>
+                    <Flex.Item style={{position:'relative',height:'20vw',width:'100%'}}>
+                      <Link to='/wordlist1/1'>
                         <Flex.Item style={{position:"absolute",width:'10px',height:'10px',top:'20%',
                         borderRadius:'50%',left:'1%',backgroundColor:'blue'}}></Flex.Item>
-                    <img style={{position:"absolute",width:'10vw',height:'10vw',borderRadius:'50%',left:'5%'}} src={require('../images/danci2.jpg')}/>
+                    <img style={{position:"absolute",width:'10vw',height:'10vw',borderRadius:'50%',left:'5%'}} src={require('../imgs/danci2.jpg')}/>
                     <Flex.Item style={{position:"absolute",left:'20%',top:'2vw',fontSize:'5vw',color:'black'}}>
                         易错单词5000
                     </Flex.Item>
@@ -51,11 +51,11 @@ export default class Words extends Component {
                     </Link>
                     </Flex.Item>
 
-                    <Flex.Item style={{position:'relative',height:'100px',width:'100%',top:'20vw'}}>
-                      <Link to='./wordlist2'>
+                    <Flex.Item style={{position:'relative',height:'20vw',width:'100%'}}>
+                      <Link to='/wordlist1/2'>
                         <Flex.Item style={{position:"absolute",width:'10px',height:'10px',top:'20%',
                         borderRadius:'50%',left:'1%',backgroundColor:'blue'}}></Flex.Item>
-                    <img style={{position:"absolute",width:'10vw',height:'10vw',borderRadius:'50%',left:'5%'}} src={require('../images/danci3.jpg')}/>
+                    <img style={{position:"absolute",width:'10vw',height:'10vw',borderRadius:'50%',left:'5%'}} src={require('../imgs/danci3.jpg')}/>
                     <Flex.Item style={{position:"absolute",left:'20%',top:'2vw',fontSize:'5vw',color:'black'}}>
                         易混单词5000
                     </Flex.Item>
@@ -64,12 +64,13 @@ export default class Words extends Component {
                     </Flex>
                     </Link>
                     </Flex.Item>
+                    
 
-                    <Flex.Item style={{position:'relative',height:'20vw',width:'100%',top:'20vw'}}>
-                      <Link to='./wordlist3'>
+                    <Flex.Item style={{position:'relative',height:'20vw',width:'100%'}}>
+                      <Link to='/wordlist1/3'>
                         <Flex.Item style={{position:"absolute",width:'10px',height:'10px',top:'20%',
                         borderRadius:'50%',left:'1%',backgroundColor:'blue'}}></Flex.Item>
-                    <img style={{position:"absolute",width:'10vw',height:'10vw',borderRadius:'50%',left:'5%'}} src={require('../images/danci4.jpg')}/>
+                    <img style={{position:"absolute",width:'10vw',height:'10vw',borderRadius:'50%',left:'5%'}} src={require('../imgs/danci4.jpg')}/>
                     <Flex.Item style={{position:"absolute",left:'20%',top:'2vw',fontSize:'5vw',color:'black'}}>
                         常考单词5000
                     </Flex.Item>
@@ -79,10 +80,11 @@ export default class Words extends Component {
                     </Link>
                     </Flex.Item>  
                 
-                <Flex.Item style={{position:'relative',height:'60px',width:'70%',top:'30vw',left:'10vw',
+                <Flex.Item style={{position:'relative',height:'60px',width:'70%',top:'5vw',left:'15%',
                 fontSize:'5vw',textAlign:'center'}}>
-                  相信对你来说都不是问题，攻破它，离胜利更进一步
-                </Flex.Item>              
+                  相信对你来说都不是问题，攻破它，离胜利更进一步哦...
+                </Flex.Item>   
+      
      </div> 
     );
   }

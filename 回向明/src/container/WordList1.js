@@ -1,11 +1,14 @@
 import React, { Component } from 'react'
-import {NavBar, Icon,Flex } from 'antd-mobile';
+import {NavBar,Flex } from 'antd-mobile';
 import {Link} from 'react-router-dom';
+import WordsCheck from './WordsCheck';
 
-export default class Market extends Component {
+export default class Market extends Component {  //要有下拉列表 单词列表切换功能 上级页面传参过来
    constructor(){
       super();
       this.state = {
+          id:1,
+          name:'单词清单列表',
           todo: ['amplificationn. 扩大；加强',
           'amputationn. 切断,切断手术',
           'anchorn.锚 vi.抛锚，停泊',
@@ -39,23 +42,43 @@ export default class Market extends Component {
          ]
       }
   }
+
+  componentDidMount(){
+      var id = this.props.match.params.id;
+      this.setState({
+          id:id
+      });
+      if(id == 1){
+          this.setState({
+              name:'易错单词'
+          });
+      }else if(id == 2){
+          this.setState({
+              name:'易混单词'
+          });
+      }else if(id == 3){
+          this.setState({
+              name:'常考单词'
+          });
+      }
+  }
     render() {
         return (
-            <div>
-                 <NavBar               
-                style={{backgroundColor:'#66cccc',color:'white'}}>
-                   <Link to='./Words'>
-                      <Icon type={'left'} style={{position:'absolute',top:'10px',left:'4%',color:'white'}}/>
-                   </Link>
-                  <span style={{backgroundColor:'#66cccc',color:'white'}} to='./Home1'>单词详情页</span>           
-                </NavBar>
+            <div className='testbox'>
+                 <NavBar
+                style={{background:'#67cd9e',color:'#fff'}} 
+                leftContent={<Link to={'/words'}><img src={require('../imgs/zjt.png')} /></Link>}
+                mode="light"
+                ><span style={{color:'#fff',fontSize:'21px'}}>{this.state.name}</span></NavBar>
+
+                <WordsCheck />
 
                 <div> 
                 {
                 this.state.todo.map(
                     (item)=>        
                 <Flex.Item style={{position:'relative',height:'80px',width:'100%',borderBottom:'1px solid black',
-                    fontSize:'20px'}} >
+                    fontSize:'20px',background:'#fff'}} >
                         <Flex.Item style={{position:'relative',top:'25px',textAlign:'center'}}
                         >{item}</Flex.Item>
                         </Flex.Item>
