@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 import {Flex,NavBar, Icon } from 'antd-mobile';
 
-export default class Words extends Component {  //有bug 页面布局混乱  
+export default class Words extends Component {  //有bug 页面布局混乱  //已修改布局
   render() {
     return (
      <div className='testbox'>

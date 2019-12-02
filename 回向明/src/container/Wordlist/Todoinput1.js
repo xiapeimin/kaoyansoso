@@ -23,7 +23,9 @@ export default class Todoinput1 extends Component {
             <div>              
                 <input name="n1" onChange={this.handleChange} 
                 value={this.state.n1} onKeyDown={(e)=>this.handleInput(e)} type="text"
-                style={{width:'100%',height:'15vw',marginTop:'3%',border:'none',borderBottom:'1px solid black',paddingLeft:'3%'}} placeholder='回车添加单词，点击即可删除'/>             
+                style={{width:'90%',height:'15vw',border:'none',left:'5%',position:'relative',
+                border:'1px solid black',paddingLeft:'3%'}} 
+                placeholder='回车添加单词，点击即可删除' />            
             </div>
         )
     }
