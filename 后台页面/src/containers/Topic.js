@@ -28,7 +28,7 @@ export default class Topic extends Component{
     render(){
         return (
             <div>
-            <table style={{marginTop:'20px'}} border="1">
+            <table border="1">
 
                 <tr>
                     <th style={{width:'220px',height:'62px'}}>序号</th>
@@ -38,46 +38,46 @@ export default class Topic extends Component{
                     <th style={{width:'220px',height:'62px'}}>操作</th>
                 </tr>
                 <tr  id='del1'>
-                <td style={{width:'220px',height:'62px'}}>1</td>
-                <td style={{width:'220px',height:'62px'}}>张三</td>
-                <td style={{width:'220px',height:'62px'}}>加油！</td>
-                <td style={{width:'220px',height:'62px'}}>一小时前</td>
-                <td style={{width:'220px',height:'62px'}}><span onClick={this.delete1}><button style={{backgroundColor:'red',color:'black'}}>删除</button></span></td>
+                <td style={{width:'220px',height:'62px',textAlign:'center'}}>1</td>
+                <td style={{width:'220px',height:'62px',textAlign:'center'}}>张三</td>
+                <td style={{width:'220px',height:'62px',textAlign:'center'}}>加油！</td>
+                <td style={{width:'220px',height:'62px',textAlign:'center'}}>一小时前</td>
+                <td style={{width:'220px',height:'62px',textAlign:'center'}}><span onClick={this.delete1}><button style={{backgroundColor:'red',color:'black'}}>删除</button></span></td>
                 </tr>
                 <tr  id='del2'>
-                <td style={{width:'220px',height:'62px'}}>2</td>
-                <td style={{width:'220px',height:'62px'}}>张三</td>
-                <td style={{width:'220px',height:'62px'}}>加油！</td>
-                <td style={{width:'220px',height:'62px'}}>一小时前</td>
-                <td style={{width:'220px',height:'62px'}}><span onClick={this.delete2}><button style={{backgroundColor:'red',color:'black'}}>删除</button></span></td>
+                <td style={{width:'220px',height:'62px',textAlign:'center'}}>2</td>
+                <td style={{width:'220px',height:'62px',textAlign:'center'}}>张三</td>
+                <td style={{width:'220px',height:'62px',textAlign:'center'}}>加油！</td>
+                <td style={{width:'220px',height:'62px',textAlign:'center'}}>一小时前</td>
+                <td style={{width:'220px',height:'62px',textAlign:'center'}}><span onClick={this.delete2}><button style={{backgroundColor:'red',color:'black'}}>删除</button></span></td>
                 </tr>
                 <tr  id='del3'>
-                <td style={{width:'220px',height:'62px'}}>3</td>
-                <td style={{width:'220px',height:'62px'}}>张三</td>
-                <td style={{width:'220px',height:'62px'}}>加油！</td>
-                <td style={{width:'220px',height:'62px'}}>一小时前</td>
-                <td style={{width:'220px',height:'62px'}}><span onClick={this.delete3}><button style={{backgroundColor:'red',color:'black'}}>删除</button></span></td>
+                <td style={{width:'220px',height:'62px',textAlign:'center'}}>3</td>
+                <td style={{width:'220px',height:'62px',textAlign:'center'}}>张三</td>
+                <td style={{width:'220px',height:'62px',textAlign:'center'}}>加油！</td>
+                <td style={{width:'220px',height:'62px',textAlign:'center'}}>一小时前</td>
+                <td style={{width:'220px',height:'62px',textAlign:'center'}}><span onClick={this.delete3}><button style={{backgroundColor:'red',color:'black'}}>删除</button></span></td>
                 </tr>
                 <tr  id='del4'>
-                <td style={{width:'220px',height:'62px'}}>4</td>
-                <td style={{width:'220px',height:'62px'}}>张三</td>
-                <td style={{width:'220px',height:'62px'}}>加油！</td>
-                <td style={{width:'220px',height:'62px'}}>一小时前</td>
-                <td style={{width:'220px',height:'62px'}}><span onClick={this.delete4}><button style={{backgroundColor:'red',color:'black'}}>删除</button></span></td>
+                <td style={{width:'220px',height:'62px',textAlign:'center'}}>4</td>
+                <td style={{width:'220px',height:'62px',textAlign:'center'}}>张三</td>
+                <td style={{width:'220px',height:'62px',textAlign:'center'}}>加油！</td>
+                <td style={{width:'220px',height:'62px',textAlign:'center'}}>一小时前</td>
+                <td style={{width:'220px',height:'62px',textAlign:'center'}}><span onClick={this.delete4}><button style={{backgroundColor:'red',color:'black'}}>删除</button></span></td>
                 </tr>
                 <tr  id='del5'>
-                <td style={{width:'220px',height:'62px'}}>5</td>
-                <td style={{width:'220px',height:'62px'}}>张三</td>
-                <td style={{width:'220px',height:'62px'}}>加油！</td>
-                <td style={{width:'220px',height:'62px'}}>一小时前</td>
-                <td style={{width:'220px',height:'62px'}}><span onClick={this.delete5}><button style={{backgroundColor:'red',color:'black'}}>删除</button></span></td>
+                <td style={{width:'220px',height:'62px',textAlign:'center'}}>5</td>
+                <td style={{width:'220px',height:'62px',textAlign:'center'}}>张三</td>
+                <td style={{width:'220px',height:'62px',textAlign:'center'}}>加油！</td>
+                <td style={{width:'220px',height:'62px',textAlign:'center'}}>一小时前</td>
+                <td style={{width:'220px',height:'62px',textAlign:'center'}}><span onClick={this.delete5}><button style={{backgroundColor:'red',color:'black'}}>删除</button></span></td>
                 </tr>
                 <tr  id='del6'>
-                <td style={{width:'220px',height:'62px'}}>6</td>
-                <td style={{width:'220px',height:'62px'}}>张三</td>
-                <td style={{width:'220px',height:'62px'}}>加油！</td>
-                <td style={{width:'220px',height:'62px'}}>一小时前</td>
-                <td style={{width:'220px',height:'62px'}}><span onClick={this.delete6}><button style={{backgroundColor:'red',color:'black'}}>删除</button></span></td>
+                <td style={{width:'220px',height:'62px',textAlign:'center'}}>6</td>
+                <td style={{width:'220px',height:'62px',textAlign:'center'}}>张三</td>
+                <td style={{width:'220px',height:'62px',textAlign:'center'}}>加油！</td>
+                <td style={{width:'220px',height:'62px',textAlign:'center'}}>一小时前</td>
+                <td style={{width:'220px',height:'62px',textAlign:'center'}}><span onClick={this.delete6}><button style={{backgroundColor:'red',color:'black'}}>删除</button></span></td>
                 </tr>
             </table>
 

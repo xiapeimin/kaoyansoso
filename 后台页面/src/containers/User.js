@@ -27,7 +27,7 @@ export default class User extends Component{
     render(){
         return (
             <div>
-            <table style={{marginTop:'20px'}} border="1">
+            <table border="1">
 
                 <tr>
                     <th style={{width:'220px',height:'50px'}}>头像</th>
@@ -37,46 +37,46 @@ export default class User extends Component{
                     <th style={{width:'220px',height:'50px'}}>操作</th>
                 </tr>
                 <tr  id='del1'>
-                <td style={{width:'220px',height:'50px'}}><img src={require('../images/loginusr.png')}></img></td>
-                <td style={{width:'220px',height:'50px'}}>张三</td>
-                <td style={{width:'220px',height:'50px'}}>15231198438</td>
-                <td style={{width:'220px',height:'50px'}}>1406571075@qq.com</td>
-                <td style={{width:'220px',height:'50px'}}><span onClick={this.delete1}><button style={{backgroundColor:'red',color:'black'}}>删除</button></span></td>
+                <td style={{width:'220px',height:'50px',textAlign:'center'}}><img src={require('../images/loginusr.png')}></img></td>
+                <td style={{width:'220px',height:'50px',textAlign:'center'}}>张三</td>
+                <td style={{width:'220px',height:'50px',textAlign:'center'}}>15231198438</td>
+                <td style={{width:'220px',height:'50px',textAlign:'center'}}>1406571075@qq.com</td>
+                <td style={{width:'220px',height:'50px',textAlign:'center'}}><span onClick={this.delete1}><button style={{backgroundColor:'red',color:'black'}}>删除</button></span></td>
                 </tr>
                 <tr  id='del2'>
-                <td style={{width:'220px',height:'50px'}}><img src={require('../images/loginusr.png')}></img></td>
-                <td style={{width:'220px',height:'50px'}}>张三</td>
-                <td style={{width:'220px',height:'50px'}}>15231198438</td>
-                <td style={{width:'220px',height:'50px'}}>1406571075@qq.com</td>
-                <td style={{width:'220px',height:'50px'}}><span onClick={this.delete2}><button style={{backgroundColor:'red',color:'black'}}>删除</button></span></td>
+                <td style={{width:'220px',height:'50px',textAlign:'center'}}><img src={require('../images/loginusr.png')}></img></td>
+                <td style={{width:'220px',height:'50px',textAlign:'center'}}>张三</td>
+                <td style={{width:'220px',height:'50px',textAlign:'center'}}>15231198438</td>
+                <td style={{width:'220px',height:'50px',textAlign:'center'}}>1406571075@qq.com</td>
+                <td style={{width:'220px',height:'50px',textAlign:'center'}}><span onClick={this.delete2}><button style={{backgroundColor:'red',color:'black'}}>删除</button></span></td>
                 </tr>
                 <tr  id='del3'>
-                <td style={{width:'220px',height:'50px'}}><img src={require('../images/loginusr.png')}></img></td>
-                <td style={{width:'220px',height:'50px'}}>张三</td>
-                <td style={{width:'220px',height:'50px'}}>15231198438</td>
-                <td style={{width:'220px',height:'50px'}}>1406571075@qq.com</td>
-                <td style={{width:'220px',height:'50px'}}><span onClick={this.delete3}><button style={{backgroundColor:'red',color:'black'}}>删除</button></span></td>
+                <td style={{width:'220px',height:'50px',textAlign:'center'}}><img src={require('../images/loginusr.png')}></img></td>
+                <td style={{width:'220px',height:'50px',textAlign:'center'}}>张三</td>
+                <td style={{width:'220px',height:'50px',textAlign:'center'}}>15231198438</td>
+                <td style={{width:'220px',height:'50px',textAlign:'center'}}>1406571075@qq.com</td>
+                <td style={{width:'220px',height:'50px',textAlign:'center'}}><span onClick={this.delete3}><button style={{backgroundColor:'red',color:'black'}}>删除</button></span></td>
                 </tr>
                 <tr  id='del4'>
-                <td style={{width:'220px',height:'50px'}}><img src={require('../images/loginusr.png')}></img></td>
-                <td style={{width:'220px',height:'50px'}}>张三</td>
-                <td style={{width:'220px',height:'50px'}}>15231198438</td>
-                <td style={{width:'220px',height:'50px'}}>1406571075@qq.com</td>
-                <td style={{width:'220px',height:'50px'}}><span onClick={this.delete4}><button style={{backgroundColor:'red',color:'black'}}>删除</button></span></td>
+                <td style={{width:'220px',height:'50px',textAlign:'center'}}><img src={require('../images/loginusr.png')}></img></td>
+                <td style={{width:'220px',height:'50px',textAlign:'center'}}>张三</td>
+                <td style={{width:'220px',height:'50px',textAlign:'center'}}>15231198438</td>
+                <td style={{width:'220px',height:'50px',textAlign:'center'}}>1406571075@qq.com</td>
+                <td style={{width:'220px',height:'50px',textAlign:'center'}}><span onClick={this.delete4}><button style={{backgroundColor:'red',color:'black'}}>删除</button></span></td>
                 </tr>
                 <tr  id='del5'>
-                <td style={{width:'220px',height:'50px'}}><img src={require('../images/loginusr.png')}></img></td>
-                <td style={{width:'220px',height:'50px'}}>张三</td>
-                <td style={{width:'220px',height:'50px'}}>15231198438</td>
-                <td style={{width:'220px',height:'50px'}}>1406571075@qq.com</td>
-                <td style={{width:'220px',height:'50px'}}><span onClick={this.delete5}><button style={{backgroundColor:'red',color:'black'}}>删除</button></span></td>
+                <td style={{width:'220px',height:'50px',textAlign:'center'}}><img src={require('../images/loginusr.png')}></img></td>
+                <td style={{width:'220px',height:'50px',textAlign:'center'}}>张三</td>
+                <td style={{width:'220px',height:'50px',textAlign:'center'}}>15231198438</td>
+                <td style={{width:'220px',height:'50px',textAlign:'center'}}>1406571075@qq.com</td>
+                <td style={{width:'220px',height:'50px',textAlign:'center'}}><span onClick={this.delete5}><button style={{backgroundColor:'red',color:'black'}}>删除</button></span></td>
                 </tr>
                 <tr  id='del6'>
-                <td style={{width:'220px',height:'50px'}}><img src={require('../images/loginusr.png')}></img></td>
-                <td style={{width:'220px',height:'50px'}}>张三</td>
-                <td style={{width:'220px',height:'50px'}}>15231198438</td>
-                <td style={{width:'220px',height:'50px'}}>1406571075@qq.com</td>
-                <td style={{width:'220px',height:'50px'}}><span onClick={this.delete6}><button style={{backgroundColor:'red',color:'black'}}>删除</button></span></td>
+                <td style={{width:'220px',height:'50px',textAlign:'center'}}><img src={require('../images/loginusr.png')}></img></td>
+                <td style={{width:'220px',height:'50px',textAlign:'center'}}>张三</td>
+                <td style={{width:'220px',height:'50px',textAlign:'center'}}>15231198438</td>
+                <td style={{width:'220px',height:'50px',textAlign:'center'}}>1406571075@qq.com</td>
+                <td style={{width:'220px',height:'50px',textAlign:'center'}}><span onClick={this.delete6}><button style={{backgroundColor:'red',color:'black'}}>删除</button></span></td>
                 </tr>
             </table>
             </div>       
