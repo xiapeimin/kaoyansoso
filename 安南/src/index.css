@@ -1,66 +1,507 @@
+/*home*/
+.daka{
+    width: 100%;
+    padding-left: 2.5%;
+    padding-right: 2.5%;
+    margin: 0 auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background: #fff;
+}
+.time{
+    font-size: 18px;   
+    height: 30px;
+    line-height: 30px;
+}
+.time span{
+    color: blue;
+}
+.dk{
+    height: 50px;
+}
+.dk1{
+    font-size: 20px;
+    float: left;
+}
+.dk1 span{
+    font-size: 35px;
+}
+.dk2{
+    float: right;
+    margin-right: 10px;
+    font-size: 17px;
+    height: 30px;
+    line-height: 30px;
+    margin-top: 10px;
+    border-radius: 5px;
+    background: #66cccc;
+}
+.ved{
+    width: 100%;
+    padding-left: 2.5%;
+    padding-right: 2.5%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background: #fff;
+}
+.ved1{
+    height: 50px;
+    line-height: 50px;
+    font-size: 17px;
+}
+.vimg1{
+    vertical-align: middle; 
+    height:65%;
+}
+.visible{
+    height: 100%; 
+    vertical-align: middle; 
+    width: 0; 
+    display: inline-block;
+}
+.ved video{
+    width: 100%;
+}
+.rem{
+    width: 100%;
+    padding-left: 2.5%;
+    padding-right: 2.5%;
+    margin-top: 10px;
+    background: #fff;
+}
+.bom{
+    width: 100%;
+    text-align: center;
+    height: 40px;
+    line-height: 40px;
+    color: rgb(170, 165, 165);
+}
+.pla{
+    height: 100px;
+    display: flex;
+    align-items: center;        /* 垂直方向 居中*/
+    /* justify-content: center;    水平方向 居中*/ 
+    border-bottom: 1px solid rgb(185, 184, 184);
+}
+.pla1{
+    width: 30%;
+    height: 80%;
+    vertical-align: middle; 
+    border-radius: 8px;
+}
+.pla2{
+    float: right;
+    width: 70%;
+    height: 80%; 
+    padding-left: 3%;
+    padding-right: 2%;
+}
+.title{
+    float: left;
+    width: 100%;
+    height: 80%;
+    line-height: 1.3em;
+    color: #323333;
+    font-weight: bold;
+    font-size: 18px;
+}
+.timev{
+    float: left;
+    width: 100%;
+    height: 20%;
+}
+.timev span{
+    font-size: 16px;
+}
+.timeimg1{ 
+    float: left;
+}
+.timeimg2{
+    float: right;
+    margin-right: 2%;
+}
+.spr1{
+    float: left;
+    margin-left: 2%;
+}
+.spr2{
+    float: right;
+}
+.tes{
+    border: none;
+    background: #fff;
+}
+.tes option{
+    font-size: 13px;
+}
+
+/*search*/
+
+.searchbox_xpm{
+    width: 100%;
+    height: 50px;
+    font-size: 21px;
+    color: rgb(75, 73, 73);
+    background: #fff;
+    border-bottom: 1px solid rgb(153, 151, 151);
+}
+.searchbox_xpm div{
+    float: left;
+    width: 20%;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+}
+.change_xpm{
+    border-bottom: 3px solid #1b9292;
+    color: #1b9292;
+}
+.old_xpm{
+    color: rgb(75, 73, 73);
+    border: none;
+}
+.show1{
+    width: 100%;
+    margin-top: 15px;   
+}
+.his{
+    width: 92%;
+    height: 30px;
+    margin: 0 auto;
+    font-size: 19px;
+    line-height: 30px;
+}
+.exp{
+    width: 92%;
+    margin: 0 auto;
+    margin-top: 15px;
+}
+.exp2{
+    width: 92%;
+    margin: 0 auto;
+    display: block;
+}
+.fir{
+    width: 92%;
+    height: 30px;
+    margin: 0 auto;
+    font-size: 19px;
+    line-height: 30px;
+    margin-bottom: 15px;
+}
+.rm{
+    float: left;
+    border-radius:5px;
+    background:#d7dddd;
+    font-size:18px;
+    margin-right:20px;
+    margin-bottom:20px;
+    height:30px;
+    line-height:30px;
+}
+.hid{
+    display: none;
+}
+.clear{
+    clear: both;
+}
+
+/*lunbo*/
+.zxtit{
+    padding-left: 2.5%;
+    padding-right: 2.5%;
+}
+.zxtit1{
+    height: 20px; 
+    line-height: 20px;
+    margin-bottom: 15px;
+}
+.zxtit1 img{
+    margin-right: 5px;
+    height: 65%;
+}
+.zxtit1 span{
+    margin-right: 20px;
+    color: rgb(146, 144, 144);
+}
+p{
+    font-size: 18px;
+    line-height: 1.8em;
+}
+.student span{
+    display: block;
+    line-height: 1.5em;
+}
+.carouselBox{
+    width: 100%;
+    height: 100%;
+    background: #fff;
+}
+.my-accordion .pad .am-accordion-content-box {
+    padding: 10px;
+}
+.student{
+    padding-bottom: 20px;
+    background: #fff;
+}
+.stu2{
+    display: none;
+}
+
+/*publishTopic*/
+.publicTpc{
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    padding-bottom: 20px;
+}
+.texta{
+    width: 85%;
+    height: 300px;
+    font-size: 15px;
+    margin-bottom: 20px;
+    border: 1px solid #66cccc;
+    border-radius: 5px;
+    padding: 5%;
+}
+.pubhead{
+    width: 95%;
+    height: 80px;
+    margin: 0 auto;
+}
+.pub1{
+    float: left;
+    height: 50px;
+    margin-top: 15px;
+}
+.pub2{
+    float: left;
+    height: 30px;
+    margin-top: 25px;
+    line-height: 30px;
+    margin-left: 15px;
+    font-size: 18px;
+}
+.butt{
+    width: 30%;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 5px;
+    background: #66cccc;
+    border: none;
+}
+
+
+/*********安南css*********/
 body {
-  margin: 0;
+    margin: 0;
+  }
+  ul,li{
+    padding:0;
+    margin:0;
+    list-style:none
+  }
+  
+  .background-pic{
+    background: url(imgs/login0.jpg) no-repeat center center;
+    background-size:cover;
+    background-attachment: fixed;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+  }
+  
+  .login_input{
+    width: 55vw;
+    height: 7.5vw;
+    border-bottom: 1px solid rgb(58, 179, 216);
+    border-top:none;
+    border-left: none;
+    border-right: none;
+    background: none;
+    margin-left:2vw ;
+    margin-top: -5vw;
+    font-size: 4vw;
+    padding-left: 5px;
+  }
+  
+  .login_btn{
+    width:64vw;
+    height: 9vw;
+    background-color: #3fcccb;
+    border: none;
+    border-radius: 2.5vw;
+    margin-left: 4vw;
+    font-size: 5vw;
+    display: block;
+    margin: 0 auto;
+    color: aliceblue;
+  }
+  
+  .login_btn1{
+    width:55vw;
+    height: 15vw;
+    background-color: #3fcccb;
+    margin-top: 12.5vw;
+    border: none;
+    border-radius: 2.5vw;
+    margin-left: 5vw;
+  }
+  
+  .login_input1{
+    width: 80%;
+    height: 9vw;
+    border: 1px solid gray;
+    margin-top: 5vw;
+    margin-bottom: 3vw;
+    font-size: 4vw;
+    padding: 2px;
+    border-radius: 1vw;
+    border: 2px;
+  }
+
+/*new*/
+.anlogo{
+    text-align: center;
 }
-ul,li{
-  padding:0;
-  margin:0;
-  list-style:none
+.anpwd{
+    padding-left: 18%;
+    height: 40px;
+}
+.anpwd div{
+    float: left;
+    height: 40px;
+    width: 10%;
+}
+.anpwd div img{
+    height: 100%;
+    width: 100%;
+}
+.anpwd p{
+    margin-left: 5px;
+    font-size: 16px;
+    color: #fff;
+    margin-top: 0px;
+    line-height: 40px;
+    float: left;
+}
+.zhuce{
+    width: 100%;
+    text-align: center;
+    margin: 0 auto;
+    position: absolute;
+    bottom: 5%;
+}
+.golo{
+    width: 100%;
+    height: 100%;
+    background: #ddd;
+    opacity: 0.4;
+    position: absolute;
+    float: left;
+    top:0;
+    left: 0;
+    display: none;
+}
+.gologin{
+    display: none;
+    text-align: center;
+    width: 70%;
+    height: 20%;
+    background: #fff;
+    margin: 0 auto;
+    top: 30%;
+    position: absolute;
+    float: left;
+    left: 15%;
+    border-radius: 10px;
+    border: 1px solid rgb(211, 211, 208);
+}
+.gologin p{
+    height: 40%;
+    font-size: 20px;
+    align-items:center; display: -webkit-flex;/*垂直居中 盒子高度不固定*/
+    justify-content:center; display: -webkit-flex;/*水平居中*/
+}
+.glin{
+    width: 100%;
+    height: 30%;
+    position: absolute;
+    bottom: 0;
+}
+.glin div{
+    width: 50%;
+    height: 100%;
+    border-top: 1px solid rgb(211, 211, 208);
+    float: left;
+    font-size: 18px;
+    align-items:center; display: -webkit-flex;/*垂直居中 盒子高度不固定*/
+    justify-content:center; display: -webkit-flex;/*水平居中*/
+}
+.showgolo{
+    display: block;
+}
+.testbox{
+    background: #fff;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+.testmore{
+    width: 97%;
+    height: 15vw;
+    font-size: 4.6vw;
+    padding-left: 3%;
+    background: #fff;
+    align-items:center; display: -webkit-flex;
+    border-bottom: 1px solid rgb(184, 179, 179);
+}
+.testmore img{
+    position: absolute;
+    float: right;
+    right: 3%;
+    margin-top: -3vw;
 }
 
-.background-pic{
-  background: url(images/login0.jpg) no-repeat center center;
-  background-size:cover;
-  background-attachment: fixed;
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  top:0;
-  left:0;
-  right:0;
-  bottom:0;
+
+
+/******/
+.picker-list .am-list-item .am-list-line .am-list-extra {
+    flex-basis: initial;
+  }
+  
+  .test {
+    position: relative;
+    border-bottom: 0;
+  }
+  
+  .test:after {
+    content: '';
+    position: absolute;
+    background-color: #ddd;
+    display: block;
+    z-index: 1;
+    top: auto;
+    right: auto;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1PX;
+    -webkit-transform-origin: 50% 100%;
+    -ms-transform-origin: 50% 100%;
+    transform-origin: 50% 100%;
+    -webkit-transform: scaleY(0.5);
+    -ms-transform: scaleY(0.5);
+    transform: scaleY(0.5);
+  }
+
+/*vplay*/
+.vpaychange{
+    background: #66cccc;
 }
 
-.login_input{
-  width: 55vw;
-  height: 7.5vw;
-  border-bottom: 1px solid hsla(140, 82%, 45%, 0.712);
-  border:none;
-  border-radius:8px;
-  margin-left:2vw ;
-  margin-top: -5vw;
-  font-size: 4vw;
-}
 
-.login_btn{
-  width:68vw;
-  height: 10vw;
-  background-color: #3fcccb;
-  margin-top: 5vw;
-  border: none;
-  border-radius: 2.5vw;
-  margin-left: 4vw;
-  font-size: 5vw;
-  color: aliceblue;
-}
-
-.login_btn1{
-  width:55vw;
-  height: 15vw;
-  background-color: #3fcccb;
-  margin-top: 12.5vw;
-  border: none;
-  border-radius: 2.5vw;
-  margin-left: 5vw;
-}
-
-.login_input1{
-  width: 85vw;
-  height: 9vw;
-  border: 1px solid gray;
-  margin-top: 5vw;
-  margin-left: 7.5vw;
-  font-size: 4vw;
-  padding: 2px;
-  border-radius: 3vw;
-  border: 2px;
-}
