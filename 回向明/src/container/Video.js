@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { NavBar} from 'antd-mobile';
 import {Link} from 'react-router-dom';
+import {Carousel,Accordion,List,SearchBar,Grid} from 'antd-mobile';
 import vedio0 from '../imgs/vedio0.mp4';
 import vedio1 from '../imgs/vedio1.mp4';
 import vedio2 from '../imgs/vedio2.mp4';
@@ -38,7 +39,7 @@ export default class Video extends Component{
                     }
                     {
                         this.state.data.map((item,index)=>(
-                            <Link to={'/vplay'}><div style={{width:'85%',margin:'0 auto',height:'60vw',paddingBottom:'10vw',borderRadius:'3vw',overflow:'hidden',textAlign:'center'}}>
+                            <Link to={'/vplay1'}><div style={{width:'85%',margin:'0 auto',height:'60vw',paddingBottom:'10vw',borderRadius:'3vw',overflow:'hidden',textAlign:'center'}}>
                                 <video width='100%' height='80%' controls='controls'>
                                     <source src={vedio1} type='video/mp4' />
                                     您的浏览器不支持Video
@@ -49,7 +50,7 @@ export default class Video extends Component{
                     }
                     {
                         this.state.data.map((item,index)=>(
-                            <Link to={'/vplay'}><div style={{width:'85%',margin:'0 auto',height:'60vw',paddingBottom:'10vw',borderRadius:'3vw',overflow:'hidden',textAlign:'center'}}>
+                            <Link to={'/vplay2'}><div style={{width:'85%',margin:'0 auto',height:'60vw',paddingBottom:'10vw',borderRadius:'3vw',overflow:'hidden',textAlign:'center'}}>
                                 <video width='100%' height='80%' controls='controls'>
                                     <source src={vedio2} type='video/mp4' />
                                     您的浏览器不支持Video
@@ -60,7 +61,7 @@ export default class Video extends Component{
                     }
                     {
                         this.state.data.map((item,index)=>(
-                            <Link to={'/vplay'}><div style={{width:'85%',margin:'0 auto',height:'60vw',paddingBottom:'10vw',borderRadius:'3vw',overflow:'hidden',textAlign:'center'}}>
+                            <Link to={'/vplay3'}><div style={{width:'85%',margin:'0 auto',height:'60vw',paddingBottom:'10vw',borderRadius:'3vw',overflow:'hidden',textAlign:'center'}}>
                                 <video width='100%' height='80%' controls='controls'>
                                     <source src={vedio3} type='video/mp4' />
                                     您的浏览器不支持Video
