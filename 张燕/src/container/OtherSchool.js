@@ -1,64 +1,48 @@
 import React, { Component } from 'react';
-import { NavBar,Icon,WhiteSpace,WingBlank,Tabs} from 'antd-mobile';
-import bjC from './images/bjCollege.jpg';
-import qhC from './images/qhC.jpg'
+import 'antd-mobile/dist/antd-mobile.css'; 
+import { NavBar,  WhiteSpace } from 'antd-mobile';
+import ListShop from './School/ListShop';
+import {Link} from 'react-router-dom';
 
-export default class q extends Component {
-    render() {
-        return (
+const city = ['城市','北京','上海','天津','重庆','江苏','浙江','安徽','辽宁','江西','山东','河北','山西','内蒙古','河南','湖北','湖南','广东','广西','海南','四川','贵州','云南','西藏','福建','吉林','黑龙江','陕西','甘肃','青海','宁夏','新疆'];
+
+export default class CheckSchool extends Component {
+    render(){
+        return(
             <div>
-                 <NavBar               
+                {/* 导航栏 */}
+                <NavBar
+                style={{background:'#21a3e0',color:'#fff'}} 
+                leftContent={<Link to={'/proCheck'}><img src={require('../imgs/zjt.png')} /></Link>}
                 mode="light"
-                icon={<Icon type="left" />}
-                style={{backgroundColor:'#66cccc',color:'white'}}>
-                    <span style={{backgroundColor:'#66cccc',color:'white'}}>xxx专业开设院校</span>
-                </NavBar>
-                <div style={{width:'100%',height:'6vw'}}>
-                <form style={{float:"left",width:'50%',height:'6vw'}}>
-                    <select style={{width:'100%',height:'6vw',borderRadius:'7px',fontSize:'4vw'}}>
-                        <option value="未选择">地区</option>
-                        <option value="beijing">北京</option>
-                        <option value="shanghai">上海</option>
-                        <option value="tianjin">天津</option>
-                        <option value="guangzhou">广州</option>
-                    </select>
-                </form>
-                <form style={{float:'left',width:'50%',height:'6vw'}}>
-                    <select style={{width:'100%',height:'6vw',borderRadius:'7px',fontSize:'4vw'}}>
-                        <option value="未选择">分数线</option>
-                        <option value="apple">200-300</option>
-                        <option value="banana">300-400</option>
-                        <option value="pear">200以下</option>
-                        <option value="orange">400以上</option>
-                    </select>
-                </form>
-            </div>
-                <div style={{ display: '-webkit-box', display: 'flex', padding: '15px 0',width:'100%'}}>
-                                <img style={{ height: '20vw',width:'40%' }} src={bjC} alt="" />
-                                <WingBlank>
-                                <div style={{ lineHeight:'6vw'}}>
-                                <div><h2 style={{fontSize:'3vw'}}>北京大学</h2></div>
-                                <div style={{fontSize:'2vw'}}>分数线：xxx</div>
-                                <WhiteSpace/>
-                                <div style={{width:'3vw',height:'2vw',backgroundColor:'#e8b1b1',textAlign:'center',lineHeight:'2vw',fontSize:'1.5vw'}}>
-                                    985
-                                </div>                  
-                                </div>
-                                </WingBlank>
-                </div>    
-                <div style={{ display: '-webkit-box', display: 'flex', padding: '15px 0',width:'100%'}}>
-                                <img style={{ height: '20vw',width:'40%' }} src={qhC} alt="" />
-                                <WingBlank>
-                                <div style={{ lineHeight:'6vw'}}>
-                                <div><h2 style={{fontSize:'3vw'}}>清华大学</h2></div>
-                                <div style={{fontSize:'2vw'}}>分数线：xxx</div>
-                                <WhiteSpace/>
-                                <div style={{width:'3vw',height:'2vw',backgroundColor:'#e8b1b1',textAlign:'center',lineHeight:'2vw',fontSize:'1.5vw'}}>
-                                    985
-                                </div>                  
-                                </div>
-                                </WingBlank>
-                </div>    
+                ><span style={{color:'#fff',fontSize:'22px'}}>其他开设院校</span></NavBar>
+
+                {/* 下拉菜单 */}
+                <form> 
+                  <WhiteSpace/>
+                  <select style={{width:'30%',height:'30px',marginLeft:'2%',color:'gray',border:'none'}}> 
+                    {
+                      city.map((item)=>(
+                         <option>{item}</option>
+                      ))
+                    } 
+                  </select> 
+                  <select  style={{width:'30%',height:'30px',marginLeft:'2%',color:'gray',border:'none'}}>
+                    <option>高校类型</option>
+                    <option>985</option>
+                    <option>211</option>
+                    <option>普通本科</option>
+                  </select>
+                  <select  style={{width:'30%',height:'30px',marginLeft:'2%',color:'gray',border:'none'}}>
+                    <option>分数范围</option>
+                    <option>300-400</option>
+                    <option>280-300</option>
+                  </select>
+                  </form> 
+
+                  {/* 长列表 */}
+                  <WhiteSpace/>
+                   <ListShop/>
             </div>
         )
     }
