@@ -24,9 +24,6 @@ import CheckSchool from './container/threeselect/CheckSchool';
 import CheckPro from './container/threeselect/CheckPro';
 import Professional from './container/threeselect/Professional';
 import Vplay from './container/Vplay';
-import Vplay1 from './container/Vplay1';
-import Vplay2 from './container/Vplay2';
-import Vplay3 from './container/Vplay3';
 import Note from './container/Note';
 import SchoolDetails from './container/SchoolDetails';
 import OtherSchool from './container/OtherSchool';
@@ -77,10 +74,7 @@ export default class App extends Component{
                             <Route path='/tools' component={Tools} />
                             <Route path='/wordlist' component={WordList} />
                             <Route path='/wordlist1/:id' component={WordList1} />
-                            <Route path='/vplay' component={Vplay} />
-                            <Route path='/vplay1' component={Vplay1} />
-                            <Route path='/vplay2' component={Vplay2} />
-                            <Route path='/vplay3' component={Vplay3} />
+                            <Route path='/vplay/:id' component={Vplay} />
                             <Route path='/searchInfo' component={SearchInfo} />
                             <Route path='/sear' component={Resource} />
                             <Route path='/register' component={Register}/>

@@ -28,7 +28,7 @@ export default class Video extends Component{
                 <div style={{width:'100%',background:'#fff',paddingTop:'10vw'}}>
                     {
                         this.state.data.map((item,index)=>(
-                            <Link to={'/vplay'}><div style={{width:'85%',margin:'0 auto',height:'60vw',paddingBottom:'10vw',borderRadius:'3vw',overflow:'hidden',textAlign:'center'}}>
+                            <Link to={'/vplay/1'}><div style={{width:'85%',margin:'0 auto',height:'60vw',paddingBottom:'10vw',borderRadius:'3vw',overflow:'hidden',textAlign:'center'}}>
                                 <video width='100%' height='80%' controls='controls'>
                                     <source src={vedio0} type='video/mp4' />
                                     您的浏览器不支持Video
@@ -39,7 +39,7 @@ export default class Video extends Component{
                     }
                     {
                         this.state.data.map((item,index)=>(
-                            <Link to={'/vplay1'}><div style={{width:'85%',margin:'0 auto',height:'60vw',paddingBottom:'10vw',borderRadius:'3vw',overflow:'hidden',textAlign:'center'}}>
+                            <Link to={'/vplay/2'}><div style={{width:'85%',margin:'0 auto',height:'60vw',paddingBottom:'10vw',borderRadius:'3vw',overflow:'hidden',textAlign:'center'}}>
                                 <video width='100%' height='80%' controls='controls'>
                                     <source src={vedio1} type='video/mp4' />
                                     您的浏览器不支持Video
@@ -50,7 +50,7 @@ export default class Video extends Component{
                     }
                     {
                         this.state.data.map((item,index)=>(
-                            <Link to={'/vplay2'}><div style={{width:'85%',margin:'0 auto',height:'60vw',paddingBottom:'10vw',borderRadius:'3vw',overflow:'hidden',textAlign:'center'}}>
+                            <Link to={'/vplay/3'}><div style={{width:'85%',margin:'0 auto',height:'60vw',paddingBottom:'10vw',borderRadius:'3vw',overflow:'hidden',textAlign:'center'}}>
                                 <video width='100%' height='80%' controls='controls'>
                                     <source src={vedio2} type='video/mp4' />
                                     您的浏览器不支持Video
@@ -61,7 +61,7 @@ export default class Video extends Component{
                     }
                     {
                         this.state.data.map((item,index)=>(
-                            <Link to={'/vplay3'}><div style={{width:'85%',margin:'0 auto',height:'60vw',paddingBottom:'10vw',borderRadius:'3vw',overflow:'hidden',textAlign:'center'}}>
+                            <Link to={'/vplay/4'}><div style={{width:'85%',margin:'0 auto',height:'60vw',paddingBottom:'10vw',borderRadius:'3vw',overflow:'hidden',textAlign:'center'}}>
                                 <video width='100%' height='80%' controls='controls'>
                                     <source src={vedio3} type='video/mp4' />
                                     您的浏览器不支持Video
