@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import {BrowserRouter as Router,Route,Link} from 'react-router-dom';
-import Introduce from './Introduce';
-import Important from './Important';
-import { NavBar,WhiteSpace,WingBlank,Tabs,Flex} from 'antd-mobile';
+import {BrowserRouter as Link} from 'react-router-dom';
+import { NavBar,WhiteSpace,WingBlank} from 'antd-mobile';
 import vedio0 from './images/vedio0.mp4';
 import vedio1 from '../imgs/vedio1.mp4';
 import vedio2 from '../imgs/vedio2.mp4';
@@ -127,7 +125,7 @@ export default class Vplay extends Component {
             <div>
                  <NavBar
                 style={{background:'#66cccc',color:'#fff'}} 
-                leftContent={<Link to={'/appTab'}><img src={require('../imgs/zjt.png')} /></Link>}
+                leftContent={<Link to={'/video'}><img src={require('../imgs/zjt.png')} /></Link>}
                 mode="light"
                 ><span style={{color:'#fff',fontSize:'22px'}}>课程</span></NavBar>
                 <div>{

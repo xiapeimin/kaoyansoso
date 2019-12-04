@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {Tabs,NavBar,Flex } from 'antd-mobile';
 import {Link} from 'react-router-dom';
 
-//把wordscheck删了，把wordlist1里加上标签页，这样也能切换单词列表
+//我把wordscheck删了，把wordlist1里加上标签页，这样也能切换单词列表（回向明）
 
 export default class Market extends Component {  //要有下拉列表 单词列表切换功能 上级页面传参过来
    constructor(){
