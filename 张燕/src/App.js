@@ -58,7 +58,7 @@ export default class App extends Component{
                             <Route path='/search' component={Search} />
                             <Route path='/questionbank' component={QuestionBank} />
                             <Route path='/otherSchool' component={OtherSchool} />
-                            <Route path='/proCheck' component={ProCheck} />
+                            <Route path='/professional/:index/proCheck/:index' component={ProCheck} />
                             <Route path='/test' component={Test} />
                             <Route path='/testList/:id' component={TestList} />                           
                             <Route path='/publishTopic' component={PublishTopic} />
@@ -80,6 +80,7 @@ export default class App extends Component{
                             <Route path='/register' component={Register}/>
                             <Route path='/carousel/:id' component={Carousel} />
                             <Route path='/remFire/:id' component={RemFire}/>
+
                         </Switch>
 
                     </div>

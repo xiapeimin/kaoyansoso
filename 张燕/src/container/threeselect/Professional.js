@@ -124,8 +124,8 @@ export default class Professional extends Component {
                   <div style={{width:'88vw',borderBottom:'2px solid #21a3e0',borderTop:'2px solid #21a3e0',paddingBottom:'2vw',paddingTop:'1vw',margin:'0 auto',fontSize:'4vw',textAlign:'center',marginTop:'1vh'}}>
                     
                       {
-                          this.state.data.map((item)=>(
-                            <Link to={'/proCheck'}><div>
+                          this.state.data.map((item,index)=>(
+                            <Link to={this.state.id+'/proCheck/'+index}><div>
                                <div style={{height:'7vh',width:'40vw',border:'1px solid #21a3e0',textAlign:'center',lineHeight:'7vh',float:'left',marginLeft:'2.2vw',borderRadius:'2vw',marginTop:'1vh'}}>{item}</div>
                             </div></Link>
                           ))

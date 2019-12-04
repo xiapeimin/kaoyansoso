@@ -11,23 +11,73 @@ export default class ProCheck extends Component {
         super(props);
         this.state = {
         mytext :[],
-        id:1
+        id:'',
+        index:'',
         }
      }         
      componentWillMount(){
+         var str=this.props.match.url;
+         var arr=str.split('/');
+        var arr1=arr[2];
+        var arr2=arr[4];
+         this.setState({
+             id:arr1,
+             index:arr2
+         })
+         var msg1=this.state.msg;
         fetch('http://zy.xpmwqhzygy.top/subject')
          .then((res)=>res.json())
         .then((res)=>{
             var data = JSON.parse(res);
-            this.setState({mytext:data.文学});    
+            if(arr1==1){
+                this.setState({mytext:data.哲学});
+            }
+            if(arr1==2){
+                this.setState({mytext:data.经济学});
+            }
+            if(arr1==3){
+                this.setState({mytext:data.法学});
+            }
+            if(arr1==4){
+                this.setState({mytext:data.教育学});
+            }
+            if(arr1==5){
+                this.setState({mytext:data.文学});
+            }
+            if(arr1==6){
+                this.setState({mytext:data.历史学});
+            }
+            if(arr1==7){
+                this.setState({mytext:data.理学});
+            }
+            if(arr1==8){
+                this.setState({mytext:data.工学});
+            }
+            if(arr1==9){
+                this.setState({mytext:data.农学});
+            }
+            if(arr1==10){
+                this.setState({mytext:data.医学});
+            }
+            if(arr1==11){
+                this.setState({mytext:data.军事学});
+            }
+            if(arr1==12){
+                this.setState({mytext:data.管理学});
+            }
+            if(arr1==13){
+                this.setState({mytext:data.艺术学});
+            }
+            
+               
         })
      }
     render() {
         return (
-            <div className='testbox'>
+            <div>
                <NavBar
                 style={{background:'#21a3e0',color:'#fff'}} 
-                leftContent={<Link to={'/professional/1'}><img src={require('../imgs/zjt.png')} /></Link>}
+                leftContent={<Link to={'/professional/'+this.state.id}><img src={require('../imgs/zjt.png')} /></Link>}
                 mode="light"
                 ><span style={{color:'#fff',fontSize:'22px'}}>专业详情</span></NavBar>
                 <WhiteSpace size='lg'/>
@@ -36,7 +86,7 @@ export default class ProCheck extends Component {
                     <h2>专业简介</h2>
                     {
                         this.state.mytext.map((item,index)=>(                       
-                            <p className={this.state.id == index ? 'talk' : 'untalk'}>{item.introduce}</p>
+                            <p className={this.state.index == index ? 'talk' : 'untalk'}>{item.introduce}</p>
                         ))
                     }
                 </div>

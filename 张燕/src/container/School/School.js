@@ -12,10 +12,21 @@ export default class School extends Component {
     // state = {
     //     value: '',
     //   };
+    constructor(){
+      super();
+      this.state={
+        value:'地区',
+        values:'asc'
+      }
+    }
     onChange = (key) => {
         console.log(key);
       }
+
+
     render() {
+      var value=this.state.value;
+      var values=this.state.values;
         return (
             <div>
                {/* 导航栏 */}
@@ -31,22 +42,22 @@ export default class School extends Component {
                   {/* 下拉菜单 */}
                   <form> 
                   <WhiteSpace/>
-                  <select style={{width:'42.5%',height:'30px',marginLeft:'5%',color:'gray',border:'1px solid #ddd'}}> 
+                  <select style={{width:'42.5%',height:'30px',marginLeft:'5%',color:'gray',border:'1px solid #ddd'}} onChange={(e) => {this.setState({value:e.target.value})}}> 
                     {
                       city.map((item)=>(
-                         <option>{item}</option>
+                         <option value={item}>{item}</option>
                       ))
                     } 
                   </select> 
-                  <select  style={{width:'42.5%',height:'30px',marginLeft:'5%',color:'gray',border:'1px solid #ddd'}}>
-                    <option>升序</option>
-                    <option>降序</option>
+                  <select  style={{width:'42.5%',height:'30px',marginLeft:'5%',color:'gray',border:'1px solid #ddd'}} onChange={(e) => {this.setState({values:e.target.value})}}>
+                    <option value='asc' >升序</option>
+                    <option value='desc'>降序</option>
                   </select>
                   </form> 
 
                   {/* 长列表 */}
                   <WhiteSpace/>
-                   <ListShop/>
+                  <ListShop value={`${value}`} values={`${values}`}/>
                   </div>
             </div>
         )

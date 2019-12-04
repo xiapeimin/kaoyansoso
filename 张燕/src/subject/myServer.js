@@ -17,7 +17,6 @@ app.get('/subject',(req,res)=>{
     fs.readFile(files,'utf-8',function(err,a){
         var c = JSON.stringify(a);
           res.send(c);
-          console.log(' sb ok');
       })
 })
 app.get('/schoolDetail',(req,res)=>{
@@ -25,7 +24,6 @@ app.get('/schoolDetail',(req,res)=>{
     fs.readFile(files,'utf-8',function(err,a){
         var c = JSON.stringify(a);
           res.send(c);
-          console.log('sc ok');
       })
 })
 
