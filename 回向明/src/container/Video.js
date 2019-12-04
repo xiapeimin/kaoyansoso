@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { NavBar} from 'antd-mobile';
 import {Link} from 'react-router-dom';
-import {Carousel,Accordion,List,SearchBar,Grid} from 'antd-mobile';
 import vedio0 from '../imgs/vedio0.mp4';
 import vedio1 from '../imgs/vedio1.mp4';
 import vedio2 from '../imgs/vedio2.mp4';

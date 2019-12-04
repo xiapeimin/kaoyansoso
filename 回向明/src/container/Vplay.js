@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import {BrowserRouter as Router,Route,Link} from 'react-router-dom';
-import Introduce from './Introduce';
-import Important from './Important';
-import { NavBar,WhiteSpace,WingBlank,Tabs,Flex} from 'antd-mobile';
+import {BrowserRouter as Link} from 'react-router-dom';
+import { NavBar,WhiteSpace,WingBlank} from 'antd-mobile';
 import vedio0 from './images/vedio0.mp4';
 import vedio1 from '../imgs/vedio1.mp4';
 import vedio2 from '../imgs/vedio2.mp4';
@@ -30,19 +28,19 @@ export default class Vplay extends Component {
         })
         if(this.state.id==1){
             this.setState({
-                text:'上知天文,下知地理的老梁为你解答是否该考研'
+                text:[<div style={{fontSize:'5vw'}}>上知天文,下知地理的老梁为你解答是否该考研</div>]
             })
         }else if(this.state.id==2){
             this.setState({
-                text:'张雪峰给你讲考研'
+                text:[<div style={{fontSize:'5vw'}}>张雪峰给你讲考研</div>]
             })
         }else if(this.state.id==3){
             this.setState({
-                text:'爆笑张雪峰'
+                text:[<div style={{fontSize:'5vw'}}>爆笑张雪峰</div>]
             })
         }else if(this.state.id==4){
             this.setState({
-                text:'张雪峰讲讲跨专业'
+                text:[<div style={{fontSize:'5vw'}}>张雪峰讲讲跨专业</div>]
             })
         }
     }
@@ -52,19 +50,19 @@ export default class Vplay extends Component {
         })
         if(this.state.id==1){
             this.setState({
-                text:'是考研还是就业'
+                text:[<div style={{fontSize:'5vw'}}>是考研还是就业</div>]
             })
         }else if(this.state.id==2){
             this.setState({
-                text:'张雪峰跟你说说考研的重要性'
+                text:[<div style={{fontSize:'5vw'}}>张雪峰跟你说说考研的重要性</div>]
             })
         }else if(this.state.id==3){
             this.setState({
-                text:'张雪峰爆笑集锦'
+                text:[<div style={{fontSize:'5vw'}}>张雪峰爆笑集锦</div>]
             })
         }else if(this.state.id==4){
             this.setState({
-                text:'跨专业考研，需要注意些什么'
+                text:[<div style={{fontSize:'5vw'}}>跨专业考研，需要注意些什么</div>]
             })
         }
     }
@@ -74,19 +72,19 @@ export default class Vplay extends Component {
         })
         if(this.state.id==1){
             this.setState({
-                text:'梁宏达，1972年2月20日出生在黑龙江省绥化市兰西县，毕业于黑龙江大学新闻专业。中国媒体评论人、出版人。'
+                text:[<div style={{fontSize:'5vw'}}>梁宏达，1972年2月20日出生在黑龙江省绥化市兰西县，毕业于黑龙江大学新闻专业。中国媒体评论人、出版人。</div>]
             })
         }else if(this.state.id==2){
             this.setState({
-                text:'张雪峰，1984年出生于齐齐哈尔，毕业于郑州大学。 研途考研VIP名师。'
+                text:[<div style={{fontSize:'5vw'}}>张雪峰，1984年出生于齐齐哈尔，毕业于郑州大学。 研途考研VIP名师。</div>]
             })
         }else if(this.state.id==3){
             this.setState({
-                text:'张雪峰，1984年出生于齐齐哈尔，毕业于郑州大学。 研途考研VIP名师。'
+                text:[<div style={{fontSize:'5vw'}}>张雪峰，1984年出生于齐齐哈尔，毕业于郑州大学。 研途考研VIP名师。</div>]
             })
         }else if(this.state.id==4){
             this.setState({
-                text:'张雪峰，1984年出生于齐齐哈尔，毕业于郑州大学。 研途考研VIP名师。'
+                text:[<div style={{fontSize:'5vw'}}>张雪峰，1984年出生于齐齐哈尔，毕业于郑州大学。 研途考研VIP名师。</div>]
             })
         }
     }
@@ -100,31 +98,31 @@ export default class Vplay extends Component {
             this.setState({
                 todo1:[vedio0],
                 todo2:['老梁观世界'],
-                text:'上知天文,下知地理的老梁为你解答是否该考研'
+                text:[<div style={{fontSize:'5vw'}}>上知天文,下知地理的老梁为你解答是否该考研</div>]
             });
         }else if(id == 2){
             this.setState({
                 todo1:[vedio1],
                 todo2:['张雪峰课堂'],
-                text:'张雪峰给你讲考研'
+                text:[<div style={{fontSize:'5vw'}}>张雪峰给你讲考研</div>]
             });
         }else if(id == 3){
             this.setState({
                 todo1:[vedio2],
                 todo2:['爆笑张雪峰'],
-                text:'爆笑张雪峰'
+                text:[<div style={{fontSize:'5vw'}}>爆笑张雪峰</div>]
             });
         }else if(id == 4){
             this.setState({
                 todo1:[vedio3],
                 todo2:['张雪峰讲讲跨专业'],
-                text:'张雪峰讲讲跨专业'
+                text:[<div style={{fontSize:'5vw'}}>张雪峰讲讲跨专业</div>]
             });
         }
     }
     render() {
         return (
-            <div>
+            <div className='testbox'>
                  <NavBar
                 style={{background:'#66cccc',color:'#fff'}} 
                 leftContent={<Link to={'/appTab'}><img src={require('../imgs/zjt.png')} /></Link>}
