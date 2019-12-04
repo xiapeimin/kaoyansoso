@@ -25,7 +25,7 @@ export default class SchoolDetails extends Component {
                 <NavBar
                 style={{background:'#66cccc',color:'#fff'}} 
                 rightContent={<img onClick={this.changgesrc} src={this.state.touchState ? imgsrc2 : imgsrc1} />}
-                leftContent={<Link to={'/appTab'}><img src={require('../imgs/zjt.png')} /></Link>}
+                leftContent={<Link to={'/appTab'}><img src={require('../imgs/zjt.png')}/></Link>}
                 mode="light"
                 ><span style={{color:'#fff',fontSize:'22px'}}>xxx大学</span></NavBar>
                 <img src={qinghua} style={{width:'100%',height:'40vw'}}/>

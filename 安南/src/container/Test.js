@@ -3,6 +3,12 @@ import {NavBar} from 'antd-mobile';
 import {Link} from 'react-router-dom';
 import imgsrc1 from '../imgs/yhsc.png';
 import imgsrc2 from '../imgs/yhsc2.png';
+import img2008yingyu from '../imgs/2008yingyu1.png'
+import img2015zhengzhi from '../imgs/2008zhengzhi.png'
+import img2018shuxue from '../imgs/2018shuxue.png'
+import img2016ruanjian from '../imgs/2016ruanjian.png'
+import imgfali from '../imgs/fali.png'
+import imggongzheng from '../imgs/gongzheng.png'
 
 export default class Test extends Component{
     constructor(){
@@ -10,6 +16,7 @@ export default class Test extends Component{
         this.state={
             id:1,
             flag:1,
+            todo1:[],
             touchState: false
         }
     }
@@ -24,6 +31,36 @@ export default class Test extends Component{
             id:id,
             flag:flag,
         })
+        if(flag == 1){
+            this.setState({
+                todo1:[img2008yingyu]
+            });
+        }
+        else if(flag == 2){
+            this.setState({
+                todo1:[img2015zhengzhi]
+            })
+        }
+        else if(flag == 3){
+            this.setState({
+                todo1:[img2018shuxue]
+            })
+        }
+        else if(flag == 4){
+            this.setState({
+                todo1:[img2016ruanjian]
+            })
+        }
+        else if(flag == 5){
+            this.setState({
+                todo1:[imgfali]
+            })
+        }
+        else if(flag == 6){
+            this.setState({
+                todo1:[imggongzheng]
+            })
+        }
     }
     
     render(){
@@ -37,6 +74,15 @@ export default class Test extends Component{
                 leftContent={<Link to={`/testList/${flag}`}><img src={require('../imgs/zjt.png')} /></Link>}
                 mode="light"
                 ><span style={{color:'#fff',fontSize:'22px'}}>历年真题</span></NavBar>
+
+<div>{
+                    this.state.todo1.map(
+                        (item)=><img src={item} height='700px' width='100%' controls='controls' object-fit='container'/>
+                        
+                
+                    )
+    }
+                </div>
 
             </div>       
         )

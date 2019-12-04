@@ -20,7 +20,7 @@ export default class Login extends Component {
             <div  class="background-pic">
                 <div  className='anlogo'>
                     {/* //修改了marginTop */}
-                    <img style={{width:'25vw',height:'25vw',marginTop:'15vw',borderRadius:'40vw'}} src={require('../imgs/login3.jpg')}/>
+                    <img style={{width:'25vw',height:'25vw',marginTop:'30vw',borderRadius:'40vw'}} src={require('../imgs/login3.jpg')}/>
                 </div>
                 <ul style={{marginTop:'10vw',textAlign:'center'}}>
                     <li style={{marginBottom:'2.5vw'}}><img style={{height:'7.5vw',width:'7.5vw',marginTop:'5vw',marginBottom:'-2.5vw',fontSize:'4vw'}} src={require('../imgs/user.png')}/><input type='text' className='login_input' placeholder='请输入手机号/邮箱'/></li>

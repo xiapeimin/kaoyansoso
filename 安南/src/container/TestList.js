@@ -71,8 +71,6 @@ export default class TestList extends Component {
                         </div>
                     ))
                 }
-          
-
             </div>
         )
     }

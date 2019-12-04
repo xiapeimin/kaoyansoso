@@ -12,6 +12,7 @@ import Register from './container/Register';
 import QuestionBank from './container/QuestionBank';
 import TestList from './container/TestList';
 import Test from './container/Test';
+import Page from './container/Page'
 import SearchInfo from './container/SearchInfo';
 import Resource from './container/Resource';
 import Words from './container/Words';
@@ -49,16 +50,17 @@ export default class App extends Component{
                             <Route path='/myschool' component={MySchool} />
                             <Route path='/mysave' component={MySave} />
                             <Route path='/help' component={Help} />
+                            <Route path='/page' component={Page} />
                             <Route path='/myset' component={MySet} />
                             <Route path='/publish' component={Publish} />
                             <Route path='/forgetpwd' component={Forgetpwd} />
                             <Route path='/findpwd' component={Findpwd} />
-                            <Route path='/createNote' component={CreateNote} />
-                            <Route path='/appTab' exact component={AppTab} />
+                            <Route path='/createNote' component={CreateNote} />                           
                             <Route path='/search' component={Search} />
                             <Route path='/questionbank' component={QuestionBank} />
                             <Route path='/otherSchool' component={OtherSchool} />
                             <Route path='/proCheck' component={ProCheck} />
+                            <Route path='/appTab'  exact component={AppTab}/>
                             <Route path='/test' component={Test} />
                             <Route path='/testList/:id' component={TestList} />                           
                             <Route path='/publishTopic' component={PublishTopic} />
