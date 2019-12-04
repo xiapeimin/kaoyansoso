@@ -1,37 +1,66 @@
 import React, { Component } from 'react'
-import { NavBar,Icon,WhiteSpace,WingBlank,List,InputItem} from 'antd-mobile';
+import { NavBar } from 'antd-mobile';
 import {Link} from 'react-router-dom'
 
 export default class Note extends Component {
-    addItem(e){
-        var p=prompt('笔记'); 
-        console.log(p);
-         var add=document.getElementById('add');
-         add.innerHTML+='<br/>'+"<div id='add1'>"+p
-         +"<button id='del' style='width:10%;height:10vw;float:right;font-size:5vw;'>X</button></div>";
-         var btn =document.getElementById('del');
-         btn.onclick=function(){
-            var add1=document.getElementById('add1');
-            add1.innerHTML=''
-         }
+    constructor(props) {
+        super(props);
+        this.state = {
+            data:['英语笔记','数学笔记','专业课笔记'],
+            notename:''
+        };
     }
+
+ 
     render() {
+        
         return (
-            <div>
-                <NavBar               
+            <div className='testbox'>
+                
+                <NavBar
+                style={{background:'#66cccc',color:'#fff'}} 
+                leftContent={<Link to={'/appTab'}><img src={require('../imgs/zjt.png')} /></Link>}
                 mode="light"
-                icon={<Icon type="left" />}
-                style={{backgroundColor:'#66cccc',color:'white',height:'6vw'}}>
-                    <span style={{backgroundColor:'#66cccc',color:'white',fontSize:'4vw'}}>笔记本</span>
-                </NavBar>
-                <div id='add' style={{width:'100%',fontSize:'5vw'}}></div>
-                <div style={{width:'100%',height:'10vw',position:'fixed',bottom:'0'}}>
-                    <div style={{width:'45%',height:'100%',backgroundColor:'#66cccc',float:'left',fontSize:'4vw',textAlign:'center',lineHeight:'10vw'}}>我的笔记</div>
-                    <div style={{width:'10%',height:'100%',borderRadius:'50%',border:'1px solid gray',fontSize:'5vw',float:'left',textAlign:'center',lineHeight:'9vw'}} onClick={this.addItem}>+</div>
-                    <div style={{width:'45%',height:'100%',backgroundColor:'#66cccc',float:'left',fontSize:'4vw',textAlign:'center',lineHeight:'10vw'}}>学长笔记</div>
+                ><span style={{color:'#fff',fontSize:'22px'}}>笔记本</span></NavBar>
+
+                <div style={{width:'95%',padding:'2.5%',background:'#fff'}}>
+                    <div style={{width:'100%',height:'12vw',borderBottom:'2px solid #66cccc',alignItems: 'center', display: '-webkit-flex',fontSize:'5vw'}}>
+                        <img src={require('../imgs/createnote.png')} style={{marginRight:'2vw',width:'10%'}}/>
+                        <Link to={'/createNote'}><span style={{color:'#000'}}>新建笔记本</span></Link>
+                    </div>
+
+                    <div style={{width:'95%',padding:'2.5%'}}>
+
+                        {
+                            this.state.data.map((item,index)=>(
+                                <Link to='/createNote'><div style={{float:'left',height:'40vw',width:'50%',alignItems: 'center', display: '-webkit-flex'}}>
+                                    <div style={{alignItems: 'center',display:'-webkit-flex',margin:'0 auto',width:'65%',paddingLeft:'5%',height:'80%',background:'#66cccc',borderRadius:'2vw',fontSize:'5vw',color:'#fff'}}>{item}</div>
+                                </div></Link>
+                            ))
+                        }
+
+                    </div>
+
                 </div>
+
+                {this.getData()}
                
             </div>
         )
+    }
+
+    getData = () => {
+        console.log(this.state.data);
+        var name = this.props.name;
+        console.log(name);
+        var data=this.state.data;
+        data[data.length] = name;
+        console.log(name);
+        if(data != this.state.data && name != undefined && name!=''){
+            this.setState({
+                data:data
+            });
+        }
+        console.log(this.state.data);
     }
 }
