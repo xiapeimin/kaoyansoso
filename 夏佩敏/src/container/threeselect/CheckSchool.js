@@ -8,12 +8,14 @@ const city = ['城市','北京','上海','天津','重庆','江苏','浙江','�
 
 export default class CheckSchool extends Component {
     render(){
+      var str = this.props.location.search;
+      var uid = str.split('=')[1];
         return(
             <div>
                 {/* 导航栏 */}
                 <NavBar
                 style={{background:'#06a170',color:'#fff'}} 
-                leftContent={<Link to={'/confirmSchool'}><img src={require('./zjt.png')} /></Link>}
+                leftContent={<Link to={`/confirmSchool?uid=${uid}`}><img src={require('./zjt.png')} /></Link>}
                 mode="light"
                 ><span style={{color:'#fff',fontSize:'22px'}}>院校推荐</span></NavBar>
 
@@ -42,7 +44,7 @@ export default class CheckSchool extends Component {
 
                   {/* 长列表 */}
                   <WhiteSpace/>
-                   <ListShop/>
+                   <ListShop uid={`${uid}`} />
             </div>
         )
     }

@@ -5,6 +5,8 @@ import {Tabs,NavBar,Flex} from 'antd-mobile';
 
 export default class SearchInfo extends Component {  //链接有几个不对
     render() {
+        var str = this.props.location.search;
+        var uid = str.split('=')[1];
         const tabs = [
             { title: <p style={{position:'absolute',fontSize:'4vw',top:'0vw'}}>报名条件</p> },
             { title: <p style={{position:'absolute',fontSize:'4vw',top:'0vw'}}>报名流程</p> },
@@ -18,7 +20,7 @@ export default class SearchInfo extends Component {  //链接有几个不对
             <div className='testbox'>
                 <NavBar
                 style={{background:'#66cccc',color:'#fff'}} 
-                leftContent={<Link to={'/appTab'}><img src={require('../imgs/zjt.png')} /></Link>}
+                leftContent={<Link to={`/appTab?uid=${uid}&type=home`}><img src={require('../imgs/zjt.png')} /></Link>}
                 mode="light"
                 ><span style={{color:'#fff',fontSize:'21px'}}>研百科</span></NavBar>
 

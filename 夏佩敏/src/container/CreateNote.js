@@ -14,12 +14,14 @@ export default class CreateNote extends Component{
     }
     
     render(){
+        var str = this.props.location.search;
+        var uid = str.split('=')[1];
         return (
             <div className='testbox'>
                 <NavBar
                 style={{background:'#66cccc',color:'#fff'}} 
                 rightContent={<span onClick={this.saveNote}>保存</span>}
-                leftContent={<Link to={'/note'}><img src={require('../imgs/zjt.png')} /></Link>}
+                leftContent={<Link to={`/note?uid=${uid}&typef=home`}><img src={require('../imgs/zjt.png')} /></Link>}
                 mode="light"
                 ><span style={{color:'#fff',fontSize:'22px'}}>笔记</span></NavBar>
 
@@ -30,7 +32,7 @@ export default class CreateNote extends Component{
                     </textarea>
                 </div>
 
-                <div style={{display:'none'}}><Note name={this.state.name} /></div>
+                {/**<div style={{display:'none'}}><Note name={this.state.name} /></div> */}
             </div>       
         )
     }

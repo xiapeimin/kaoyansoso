@@ -6,10 +6,25 @@ import help from '../imgs/help.png'
 import {Link} from 'react-router-dom';
 
 export default class AppHome extends Component {
+    constructor(){
+        super();
+        this.state = {
+            uid:0
+        }
+    }
+    componentDidMount(){
+        var str = window.location.hash;
+        var uid = str.split('=')[1];
+        console.log(uid);
+        this.setState({
+            uid:uid
+        });
+    }
     render() {
+        var uid = this.state.uid;
         return (
             <div className='testbox'>
-                 <Link to='/appTab'>
+                 <Link to={`/appTab?uid=${uid}&type=my`}>
                 <NavBar
                 style={{backgroundColor:'#DDDDDD'}}
                     mode="light"
