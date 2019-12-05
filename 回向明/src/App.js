@@ -74,7 +74,7 @@ export default class App extends Component{
                             <Route path='/tools' component={Tools} />
                             <Route path='/wordlist' component={WordList} />
                             <Route path='/wordlist1/:id' component={WordList1} />
-                            <Route path='/vplay' component={Vplay} />
+                            <Route path='/vplay/:id' component={Vplay} />
                             <Route path='/searchInfo' component={SearchInfo} />
                             <Route path='/sear' component={Resource} />
                             <Route path='/register' component={Register}/>
