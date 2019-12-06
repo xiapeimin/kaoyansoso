@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import 'antd-mobile/dist/antd-mobile.css'; 
 import { NavBar } from 'antd-mobile';
 import {Link} from 'react-router-dom';
+import img1 from '../imgs/1.jpg';
 
 export default class ConfirmSchool extends Component {
 
@@ -10,7 +11,7 @@ export default class ConfirmSchool extends Component {
         var uid = str.split('=')[1];
         return(
             <div style={{width:'100%',position:'absolute',top:'0',bottom:'0'}}>
-                <div style={{width:'100%',height:'100%',position:'absolute',top:'0',bottom:'0'}}><img src={require('../imgs/1.jpg')} style={{width:'100%',height:'100%'}} /></div>
+                <div style={{width:'100%',height:'100%',position:'absolute',top:'0',bottom:'0',background:`url(${img1}) no-repeat`,backgroundSize:'100% 100%'}}>{/**<img src={require('../imgs/1.jpg')} style={{width:'100%',height:'100%'}} /> */}</div>
                 <div style={{width:'100%',height:'100%',position:'absolute',top:'0',bottom:'0',background:'#dbdedd',opacity:'0.25'}}></div>
                 {/* 导航栏 */}
                 <div style={{width:'100%',position:'absolute',top:'0'}}><NavBar

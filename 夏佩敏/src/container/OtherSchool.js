@@ -36,7 +36,7 @@ export default class CheckSchool extends Component {
                 mode="light"
                 ><span style={{color:'#fff',fontSize:'22px'}}>其他开设院校</span></NavBar>
 
-                <div style={{backgroundColor:'white',width:'100%',height:'600px'}}>      
+                <div style={{width:'100%'}}>      
                   
                   {/* 下拉菜单 */}
                   <form> 

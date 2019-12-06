@@ -103,7 +103,7 @@ export default class SchoolDetails extends Component {
                 leftContent={<img src={require('../imgs/zjt.png')} onClick={this.goout} />}
                 mode="light"
                 ><span style={{color:'#fff',fontSize:'22px'}}>{this.state.id}</span></NavBar>
-                <img src={this.state.img} style={{width:'100%',height:'40vw'}}/>
+                <img src={this.state.img} style={{width:'100%',height:'55vw'}}/>
                 <WhiteSpace/>
                 <div style={{background:'#fff',padding:'3%',width:'94%'}}>
                     
@@ -115,7 +115,7 @@ export default class SchoolDetails extends Component {
                 </div>
                 
                 <div style={{width:'100%',textIndent:'2em'}}>
-                    <h2>学院介绍</h2>
+                    <h2>学校介绍</h2>
                     <p style={{textIndent:'2em',fontSize:'4vw'}}>
                     清华大学软件学院是2001年经国家教育部和国家计委联合发文批准成立的首批全国示范性软件学院之一，
                     隶属于清华大学信息科学与技术学院。以“教学立院、管理建院、学科兴院、科技强院”为办学理念，
