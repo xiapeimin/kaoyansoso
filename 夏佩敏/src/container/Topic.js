@@ -13,6 +13,7 @@ import zan1 from './images/zan1.jpg';
 import back from './images/back.jpg';
 import delete1 from './images/delete.jpg';
 
+var page = 0;
 const tabs = [
     { title: <Badge>热门动态</Badge> },
     { title: <Badge>我的动态</Badge> },
@@ -22,8 +23,7 @@ export default class HostTopic extends Component {   //评论弹框bug 用组件
         super();
         this.state = {
             flag:0,
-            uid:0,
-            page:0
+            uid:0
         }
     }
 
@@ -33,18 +33,18 @@ export default class HostTopic extends Component {   //评论弹框bug 用组件
             var uid = str.split('&')[0].split('=')[1];
             console.log(uid);
             this.setState({
-                uid:uid,
-                page:1
+                uid:uid
             });
+            page=1;
             console.log(str,'topicmu',uid);
             console.log('pppppppppppppppppppp',this.state.page);
         }else{
             var uid = str.split('=')[1];
             console.log(uid);
             this.setState({
-                uid:uid,
-                page:0
+                uid:uid
             });
+            page=0;
         }
         console.log(str,'topicmu',uid);
         
@@ -65,7 +65,6 @@ export default class HostTopic extends Component {   //评论弹框bug 用组件
     }
     render() {
         var uid = this.state.uid;
-        var page = this.state.page; //改变了值 没有附上去
         return (
             <div>
                 <NavBar style={{backgroundColor:'#66cccc',color:'white'}}

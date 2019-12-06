@@ -25,7 +25,14 @@ export default class ListShop extends React.Component {
     this.state = {
       dataSource,
       isLoading: true,
-      schooldata:[],
+      schooldata:[{
+        "img":"http://img03.sogoucdn.com/v2/thumb/retype_exclude_gif/ext/auto/q/80?appid=122&url=https%3A%2F%2Fimg01.sogoucdn.com%2Fapp%2Fa%2F100520093%2F22682a086365be9a-38bde84ba65aa1a3-ab565d913aa4f215d6629386dbb24582.jpg",
+        "des":"四川大学",
+        "row":"院校排名：11",
+        "city":"四川",
+        "one":"985",
+        "two":"211"
+    }],
       name:''
     };
   }

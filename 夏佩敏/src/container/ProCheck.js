@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {HashRouter as Router,Link,Route} from 'react-router-dom';
 import OtherSchool from './OtherSchool'
-import { NavBar,Icon,WhiteSpace,WingBlank } from 'antd-mobile';
+import { NavBar,Icon,WhiteSpace,WingBlank,TabBar } from 'antd-mobile';
 import Item from 'antd-mobile/lib/popover/Item';//
 
 export default class ProCheck extends Component {
@@ -85,15 +85,18 @@ export default class ProCheck extends Component {
         var uid = this.state.uid;
         
         return (
-            <div className='testbox'>
+            <div style={{background:'#76b9f8',position:'absolute',top:'0',bottom:'0'}}>
+                
                <NavBar
                 style={{background:'#21a3e0',color:'#fff'}} 
                 leftContent={<Link to={`/professional?uid=${uid}&id=${id}`}><img src={require('../imgs/zjt.png')} /></Link>}
                 mode="light"
                 ><span style={{color:'#fff',fontSize:'22px'}}>专业详情</span></NavBar>
+                <div style={{background:'#76b9f8'}}>
                 <WhiteSpace size='lg'/>
                 <WingBlank>
-                <div style={{padding:'3vw',width:'90%',margin:'0 auto',border:'1px solid #21a3e0',borderRadius:'10px',fontSize:'3vw',textIndent:'2em'}}>
+                
+                <div style={{background:'#fff',padding:'3vw',width:'90%',margin:'0 auto',border:'1px solid #21a3e0',borderRadius:'10px',fontSize:'3vw',textIndent:'2em'}}>
                     <h2>专业简介</h2>
                     {
                         this.state.mytext.map((item,index)=>(                       
@@ -104,7 +107,7 @@ export default class ProCheck extends Component {
                 </WingBlank>
                 <WhiteSpace size='lg'/>
                 <WingBlank>
-                <div style={{padding:'3vw',width:'90%',margin:'0 auto',border:'1px solid #21a3e0',borderRadius:'10px',fontSize:'3vw',textIndent:'2em'}}>
+                <div style={{background:'#fff',padding:'3vw',width:'90%',margin:'0 auto',border:'1px solid #21a3e0',borderRadius:'10px',fontSize:'3vw',textIndent:'2em'}}>
                     <h2>培养目标</h2>
                     {
                         this.state.mytext.map((item,index)=>(                       
@@ -115,7 +118,7 @@ export default class ProCheck extends Component {
                 </WingBlank>
                 <WhiteSpace size='lg'/>
                 <WingBlank>
-                <div style={{padding:'3vw',width:'90%',margin:'0 auto',border:'1px solid #21a3e0',borderRadius:'10px',fontSize:'3vw',textIndent:'2em'}}>
+                <div style={{background:'#fff',padding:'3vw',width:'90%',margin:'0 auto',border:'1px solid #21a3e0',borderRadius:'10px',fontSize:'3vw',textIndent:'2em'}}>
                     <h2>就业方向</h2>
                     {
                         this.state.mytext.map((item,index)=>(                       
@@ -137,9 +140,12 @@ export default class ProCheck extends Component {
 
                 </WingBlank>
                 <WhiteSpace/>
+
+                </div>
                         <Link to={`/otherSchool?id=${id}&index=${index}&uid=${uid}`}>
-                            <button style={{border:'none',width:'100%',height:'10vw',backgroundColor:'#21a3e0',fontSize:'3vw',color:'#fff'}}>查看其他开设院校</button>
+                            <button style={{position:'fixed',bottom:'0',border:'none',width:'100%',height:'10vw',backgroundColor:'#21a3e0',fontSize:'3vw',color:'#fff'}}>查看其他开设院校</button>
                         </Link>
+               <div style={{height:'10vw'}}></div>
             </div>
         )
     }

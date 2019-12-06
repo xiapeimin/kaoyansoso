@@ -64,7 +64,7 @@ export default class TestList extends Component {
         return (
             <div className='testbox'>
                  <NavBar
-                style={{background:'#e8ad89',color:'#fff'}} 
+                style={{background:'#66cccc',color:'#fff'}} 
                 leftContent={<Link to={`/questionBank?uid=${uid}`}><img src={require('../imgs/zjt.png')} /></Link>}
                 mode="light"
                 onLeftClick={() => console.log('onLeftClick')}

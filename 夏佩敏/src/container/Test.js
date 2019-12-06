@@ -37,8 +37,8 @@ export default class Test extends Component{
         return (
             <div>
                 <NavBar
-                style={{background:'#b17ccc',color:'#fff'}} 
-                rightContent={<img onClick={this.changgesrc} src={this.state.touchState ? imgsrc2 : imgsrc1} />}
+                style={{background:'#66cccc',color:'#fff'}} 
+                rightContent={<div><img onClick={this.changgesrc} src={this.state.touchState ? imgsrc2 : imgsrc1} /><img src={require('../imgs/xiazaitk.png')} style={{marginLeft:'3px'}} onClick={this.downLoad} /></div>}
                 leftContent={<Link to={`/testList?uid=${uid}&test=${flag}`}><img src={require('../imgs/zjt.png')} /></Link>}
                 mode="light"
                 ><span style={{color:'#fff',fontSize:'22px'}}>历年真题</span></NavBar>
@@ -52,6 +52,9 @@ export default class Test extends Component{
     changgesrc = () => {
         console.log('imglll');
         this.setState({ touchState: !this.state.touchState });
+    }
+    downLoad = () => {
+        console.log('下载');
     }
     
         

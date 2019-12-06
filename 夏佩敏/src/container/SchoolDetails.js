@@ -21,6 +21,7 @@ export default class SchoolDetails extends Component {
     constructor(){
         super();
         this.state={
+            narcolor:'#21a3e0',
             touchState: false,
             data:[],
             uid:0,
@@ -32,8 +33,8 @@ export default class SchoolDetails extends Component {
         }
     }
     componentDidMount(){
-        var str = window.location.hash;
-
+        var str = this.props.location.search;
+        console.log(str,'ssssssssssssss');
         if(str.indexOf('index')<0){
             var id = str.split('&')[0].split('=')[1];
             var uid = str.split('&')[1].split('=')[1];
@@ -41,7 +42,8 @@ export default class SchoolDetails extends Component {
             this.setState({
                 uid:uid,
                 flag:0,
-                id:id
+                id:id,  //id为学校名称
+                narcolor:'#06a170'
             });
             console.log(str,'topicmu',uid);
             console.log('pppppppppppppppppppp',this.state.page);
@@ -56,12 +58,13 @@ export default class SchoolDetails extends Component {
                 uid:uid,
                 index:index,
                 flag:1,
-                id:id
+                id:id,  //id为学校名称
+                narcolor:'#21a3e0'
             })
         }
         
         
-        
+        //通过id判断是哪个高校 检索高校详细信息
         fetch('http://zy.xpmwqhzygy.top/schoolDetail')
          .then((res)=>res.json())
         .then((res)=>{
@@ -95,11 +98,11 @@ export default class SchoolDetails extends Component {
         return (
             <div className="testbox">
                 <NavBar
-                style={{background:'#66cccc',color:'#fff'}} 
+                style={{background:this.state.narcolor,color:'#fff'}} 
                 rightContent={<img onClick={this.changgesrc} src={this.state.touchState ? imgsrc2 : imgsrc1} />}
                 leftContent={<img src={require('../imgs/zjt.png')} onClick={this.goout} />}
                 mode="light"
-                ><span style={{color:'#fff',fontSize:'22px'}}>北京大学</span></NavBar>
+                ><span style={{color:'#fff',fontSize:'22px'}}>{this.state.id}</span></NavBar>
                 <img src={this.state.img} style={{width:'100%',height:'40vw'}}/>
                 <WhiteSpace/>
                 <div style={{background:'#fff',padding:'3%',width:'94%'}}>
@@ -156,7 +159,7 @@ export default class SchoolDetails extends Component {
         var pid = this.state.pid;
         var index = this.state.index;
         if(this.state.flag != 1){
-            window.location.hash = `/appTab?uid=${uid}&type=school`;
+            window.location.hash = `/checkSchool?uid=${uid}`;
         }else{
             window.location.hash = `/otherSchool?id=${pid}&index=${index}&uid=${uid}`;
         }

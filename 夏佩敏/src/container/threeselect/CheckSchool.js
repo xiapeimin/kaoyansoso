@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import 'antd-mobile/dist/antd-mobile.css'; 
-import { NavBar,  WhiteSpace } from 'antd-mobile';
+import { NavBar,  WhiteSpace, SearchBar } from 'antd-mobile';
 import ListShop from '../School/ListShop';
 import {Link} from 'react-router-dom';
 
@@ -19,6 +19,8 @@ export default class CheckSchool extends Component {
                 mode="light"
                 ><span style={{color:'#fff',fontSize:'22px'}}>院校推荐</span></NavBar>
 
+                {/* 搜索框 */}
+               <Link to={`/search?uid=${uid}&type=school`}><SearchBar value={'河北师范大学'} placeholder="Search" cancelText={'搜索'} /></Link>
                 {/* 下拉菜单 */}
                 <form> 
                   <WhiteSpace/>

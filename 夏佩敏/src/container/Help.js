@@ -78,7 +78,7 @@ export default class AppHome extends Component {
                     </Accordion.Panel>
                     </Accordion>
                 </div>
-                <Link to='/publish'>
+                <Link to={`/publish?uid=${uid}`}>
                     <div style={{position:'absolute',bottom:'0',width:'100%',lineHeight:'12vw',height:'12vw',backgroundColor:'#66CCCC',color:'white',fontSize:'5vw',textAlign:'center'}}>发表反馈</div>
                 </Link>
             </div>

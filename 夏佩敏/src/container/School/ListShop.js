@@ -32,8 +32,7 @@ export default class ListShop extends React.Component {
         "city":"四川",
         "one":"985",
         "two":"211"
-    }
-],
+    }],
       name:''
     };
   }

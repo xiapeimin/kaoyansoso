@@ -67,9 +67,11 @@ export default class School extends Component {
                   </select>
                   </form> 
 
+                  <p>新增特色功能</p>
+
                   {/* 长列表 */}
                   <WhiteSpace/>
-                  <ListShop value={`${value}`} values={`${values}`} uid={`${uid}`} />
+                  {/*<ListShop value={`${value}`} values={`${values}`} uid={`${uid}`} /> */}
                   </div>
             </div>
         )
