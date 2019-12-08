@@ -79,6 +79,10 @@ const PlaceHolder = ({ className = '', ...restProps }) => (
 var data = new Date();
 var data2 = new Date('2019-12-21');
 
+var m = data.getMonth()+1;
+var d = data.getDate();
+var time=''+m+d;
+
 export default class Apphome extends Component{    
     constructor(props){
         super(props);
@@ -88,8 +92,8 @@ export default class Apphome extends Component{
             data: ['1', '2', '3'],
             imgHeight: 176,
             dkNum: 0,//后台数据 根据不同用户
-            dkText:'打卡',
-            dKflag:1,
+            dkText:'',
+            dKflag:0,
             days: parseInt((data2.getTime()-data.getTime()) / (24*60*60*1000))+1
         }
         console.log(this.props);
@@ -98,24 +102,56 @@ export default class Apphome extends Component{
     componentDidMount() {
         setTimeout(() => {
             this.setState({
-                data: ['1', '2', '3'],  //https://gs.sustech.edu.cn/boshi2020
+                data: ['1', '2', '3']
             });
         }, 100);
-        
+        var dkarr=[];
+        var uid;
         var str = window.location.hash;
         if(str.indexOf('&')>=0){
-            var uid = str.split('&')[0].split('=')[1];
+            uid = str.split('&')[0].split('=')[1];
             console.log(uid);
             this.setState({
                 uid:uid
             });
         }else{
-            var uid = str.split('=')[1];
+            uid = str.split('=')[1];
             console.log(uid);
             this.setState({
                 uid:uid
             });
         }
+        
+        if(uid!='undefined'){
+            console.log('ooooooo');
+            fetch(`http://xpm.xpmwqhzygy.top/daka/${uid}`,{
+            method: 'GET',
+            headers:{
+                'Accept':'application/json,text/plain,*/*'
+            }
+            })
+            .then((res)=>res.json())
+            .then((res)=>{
+                dkarr=res.data;
+                this.setState({
+                    dkNum:parseInt(res.data[0].num)
+                });
+                if(this.state.dkNum!=0 && dkarr[0].time==time){
+                    var num = this.state.dkNum;
+                    this.setState({
+                        dkText:'累计打卡：'+num+'天',
+                        dKflag:0
+                    });
+                }else{
+                    this.setState({
+                        dkText:'打卡',
+                        dKflag:1
+                    });
+                }             
+            });
+        }
+        
+        
         
     }
 
@@ -142,17 +178,33 @@ export default class Apphome extends Component{
         })
     }
     changeText = () => {
-        console.log('lllllll',this.state.dKflag);
-        if(this.state.dKflag === 1){
-            var num = this.state.dkNum+1;  //累计打卡次传后台
+        var uid = this.state.uid;
+        var num;
+        if(this.state.dKflag == 1){
+            num = this.state.dkNum+1;  //累计打卡次传后台
             this.setState({
                 dkText:'累计打卡：'+num+'天',
                 dkNum:num
+            });
+            const post = {
+                num:num,
+                time:time
+            }
+            fetch(`http://xpm.xpmwqhzygy.top/daka/${uid}`,{
+                method:"PUT",
+                headers:{'Content-Type': 'application/x-www-form-urlencoded'},
+                body:JSON.stringify(post)
             })
+            .then(res =>res.json())
+            .then(data =>{
+                console.log(data);
+            });
         }
         this.setState({
             dKflag:0
-        })
+        });
+        
+        
     }
 
     render() {

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import {Link} from 'react-router-dom'
 import {NavBar, Button} from 'antd-mobile';
 
+
 export default class Register extends Component {
     constructor(){
         super();
@@ -63,6 +64,8 @@ export default class Register extends Component {
             </div>
         )
     }
+ 
+
     inpName = (e) => {
         this.setState({
             username:e.target.value
@@ -98,8 +101,11 @@ export default class Register extends Component {
             username:this.state.username,
             phone:this.state.phone,
             email:this.state.email,
-            pwd:this.state.pwd
-        }
+            pwd:this.state.pwd,
+            num:0
+        };
+
+        //注册用户信息
         fetch(`http://xpm.xpmwqhzygy.top/register`,{
             // post提交
             method:"POST",
@@ -109,16 +115,43 @@ export default class Register extends Component {
         .then(res =>res.json())
         .then(data =>{
             console.log(data);
-        })
+        });
+
     }
     
 
     registerGo = () =>{
         if(this.state.rad == 1 && this.state.username!='' && this.state.phone!='' && this.state.email!='' && this.state.email!='' && this.state.pwd!='' && this.state.pwd2!='' && this.state.pwd==this.state.pwd2){
-            this.setState({
-                flag:1
+            fetch(`http://xpm.xpmwqhzygy.top/user`,{
+            method: 'GET'
+            })
+            .then((res)=>res.json())
+            .then((res)=>{
+                var data=res.data;
+                console.log(data,'llllllllllllll');
+                for(var i=0;i < data.length;i++){
+                    if(data[i].phone == this.state.phone || data[i].email == this.state.email){
+                        console.log('手机号或邮箱已经注册过！');
+                        this.setState({
+                            unname:'手机号或邮箱已经注册过！'
+                        })
+                        i = data.length;
+                    }else if(i == data.length-1 && data[i].phone != this.state.phone && data[i].email != this.state.email){
+                        this.onSubmit();
+                        this.setState({
+                            flag:1
+                        });
+                    }
+                }
+                if(data.length==0){
+                    this.onSubmit();
+                    this.setState({
+                        flag:1
+                    });
+                }
             });
-            this.onSubmit();
+            
+            
         }else if(this.state.username == '' || this.state.phone == '' || this.state.email == '' || this.state.pwd == '' || this.state.pwd2 == ''){
             this.setState({
                 uninput:1,
@@ -142,6 +175,7 @@ export default class Register extends Component {
             flag:0
         })
     }
+    
     checkRadio = () => {
         this.setState({
             rad:1
