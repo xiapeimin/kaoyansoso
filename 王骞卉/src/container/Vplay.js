@@ -4,6 +4,10 @@ import Introduce from './Introduce';
 import Important from './Important';
 import { NavBar,WhiteSpace,WingBlank,Tabs,Flex} from 'antd-mobile';
 import vedio0 from './images/vedio0.mp4';
+import vedio1 from '../imgs/vedio1.mp4';
+import vedio2 from '../imgs/vedio2.mp4';
+import vedio3 from '../imgs/vedio3.mp4';
+
 import good from './images/zan2.jpg';
 import zan1 from './images/zan1.jpg';
 import count from './images/count.jpg';
@@ -13,8 +17,58 @@ export default class Vplay extends Component {
         super();
         this.state={
             flag:1,
-            text:'本课程是为2020考研复试全程计划公开课'
+            text:'本课程是为2020考研复试全程计划公开课',
+            fflag:'',
+            flag2:0,
+            todo1:[], //...
+            todo2:[]
         }
+    }
+    componentDidMount(){
+        var str = this.props.location.search;
+        var uid = str.split('&')[0].split('=')[1];
+        var fflag = str.split('&')[1].split('=')[1];
+        var id = str.split('&')[2].split('=')[1];
+        this.setState({
+            uid:uid,
+            fflag:fflag
+        });
+        if(fflag=='home'){
+            this.setState({
+                flag2:0
+            })
+        }else{
+            this.setState({
+                flag2:1
+            })
+        }
+
+        if(id == 1){
+            this.setState({
+                todo1:[vedio0],
+                todo2:['老梁观世界'],
+                text:[<div style={{fontSize:'5vw'}}>上知天文,下知地理的老梁为你解答是否该考研</div>]
+            });
+        }else if(id == 2){
+            this.setState({
+                todo1:[vedio1],
+                todo2:['张雪峰课堂'],
+                text:[<div style={{fontSize:'5vw'}}>张雪峰给你讲考研</div>]
+            });
+        }else if(id == 3){
+            this.setState({
+                todo1:[vedio2],
+                todo2:['爆笑张雪峰'],
+                text:[<div style={{fontSize:'5vw'}}>爆笑张雪峰</div>]
+            });
+        }else if(id == 4){
+            this.setState({
+                todo1:[vedio3],
+                todo2:['张雪峰讲讲跨专业'],
+                text:[<div style={{fontSize:'5vw'}}>张雪峰讲讲跨专业</div>]
+            });
+        }
+
     }
     good(){
         var god=document.getElementById('good');
@@ -23,28 +77,89 @@ export default class Vplay extends Component {
     }
     changeColor = () => {
         this.setState({
-            flag:1,
-            text:'本课程是为2020考研复试全程计划公开课'
+            flag:1
         })
+        if(this.state.id==1){
+            this.setState({
+                text:[<div style={{fontSize:'5vw'}}>上知天文,下知地理的老梁为你解答是否该考研</div>]
+            })
+        }else if(this.state.id==2){
+            this.setState({
+                text:[<div style={{fontSize:'5vw'}}>张雪峰给你讲考研</div>]
+            })
+        }else if(this.state.id==3){
+            this.setState({
+                text:[<div style={{fontSize:'5vw'}}>爆笑张雪峰</div>]
+            })
+        }else if(this.state.id==4){
+            this.setState({
+                text:[<div style={{fontSize:'5vw'}}>张雪峰讲讲跨专业</div>]
+            })
+        }
+
     }
     changeColor2 = () => {
         this.setState({
-            flag:2,
-            text:'本课程要点...'
+            flag:2
         })
+        if(this.state.id==1){
+            this.setState({
+                text:[<div style={{fontSize:'5vw'}}>是考研还是就业</div>]
+            })
+        }else if(this.state.id==2){
+            this.setState({
+                text:[<div style={{fontSize:'5vw'}}>张雪峰跟你说说考研的重要性</div>]
+            })
+        }else if(this.state.id==3){
+            this.setState({
+                text:[<div style={{fontSize:'5vw'}}>张雪峰爆笑集锦</div>]
+            })
+        }else if(this.state.id==4){
+            this.setState({
+                text:[<div style={{fontSize:'5vw'}}>跨专业考研，需要注意些什么</div>]
+            })
+        }
     }
     changeColor3 = () => {
         this.setState({
-            flag:3,
-            text:'讲师：'
+            flag:3
         })
+        if(this.state.id==1){
+            this.setState({
+                text:[<div style={{fontSize:'5vw'}}>梁宏达，1972年2月20日出生在黑龙江省绥化市兰西县，毕业于黑龙江大学新闻专业。中国媒体评论人、出版人。</div>]
+            })
+        }else if(this.state.id==2){
+            this.setState({
+                text:[<div style={{fontSize:'5vw'}}>张雪峰，1984年出生于齐齐哈尔，毕业于郑州大学。 研途考研VIP名师。</div>]
+            })
+        }else if(this.state.id==3){
+            this.setState({
+                text:[<div style={{fontSize:'5vw'}}>张雪峰，1984年出生于齐齐哈尔，毕业于郑州大学。 研途考研VIP名师。</div>]
+            })
+        }else if(this.state.id==4){
+            this.setState({
+                text:[<div style={{fontSize:'5vw'}}>张雪峰，1984年出生于齐齐哈尔，毕业于郑州大学。 研途考研VIP名师。</div>]
+            })
+        }
+    }
+
+    //跳转
+    goout = () => {
+        var uid = this.state.uid;
+        if(this.state.flag2==0){
+            window.location.hash = `/appTab?uid=${uid}&type=home`
+        }else{
+            window.location.hash = `/video?uid=${uid}&flag=more`
+        }
     }
     render() {
+        
+
         return (
             <div>
                  <NavBar
                 style={{background:'#66cccc',color:'#fff'}} 
-                leftContent={<Link to={'/appTab'}><img src={require('../imgs/zjt.png')} /></Link>}
+                leftContent={<img src={require('../imgs/zjt.png')} onClick={this.goout} />}
                 mode="light"
                 ><span style={{color:'#fff',fontSize:'22px'}}>课程</span></NavBar>
                 <video height='100%' width='100%' controls='controls' object-fit='container'>

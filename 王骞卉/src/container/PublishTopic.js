@@ -7,16 +7,26 @@ export default class PublishTopic extends Component{  //左箭头返回有bug �
         super();
         this.state={
             flag:0,
-            id:0
+            id:0,
+            uid:0
         }
+    }
+    componentDidMount(){
+        var str = window.location.hash;
+        var uid = str.split('=')[1];
+        console.log(uid);
+        this.setState({
+            uid:uid
+        });
     }
     
     render(){
+        var uid = this.state.uid;
         return (
             <div className='publicTpc' style={{position:'absolute',top:'0',bottom:'0',background:'#fff'}}>
                 <NavBar
                 style={{background:'#66cccc',color:'#fff'}} 
-                leftContent={<Link to={'/appTab'}><img src={require('../imgs/zjt.png')} /></Link>}
+                leftContent={<Link to={`/appTab?uid=${uid}&type=topic`}><img src={require('../imgs/zjt.png')} /></Link>}
                 mode="light"
                 onLeftClick={() => console.log('onLeftClick')}
                 ><span style={{color:'#fff',fontSize:'22px'}}>发表动态</span></NavBar>

@@ -9,13 +9,17 @@ export default class RemFire extends Component{
             id:0,           
             title:'',
             view:'109',
-            time:'2019-11-21'
+            time:'2019-11-21',
+            uid:0
         }
     }
     componentDidMount(){
-        var id = this.props.match.params.id;
+        var str = this.props.location.search;
+        var uid = str.split('&')[0].split('=')[1];
+        var id = str.split('&')[1].split('=')[1];
         this.setState({
-            id:id
+            id:id,
+            uid
         })
         if(id == 1){
             this.setState({
@@ -41,11 +45,12 @@ export default class RemFire extends Component{
     }
     
     render(){
+        var uid = this.state.uid;
         return (
             <div className='carouselBox' style={{paddingBottom:'20px'}}>
                 <NavBar
                 style={{background:'#66cccc',color:'#fff'}} 
-                leftContent={<Link to={'/appTab'}><img src={require('../imgs/zjt.png')} /></Link>}
+                leftContent={<Link to={`/appTab?uid=${uid}&type=home`}><img src={require('../imgs/zjt.png')} /></Link>}
                 mode="light"
                 onLeftClick={() => console.log('onLeftClick')}
                 ><span style={{color:'#fff',fontSize:'22px'}}>推荐热点</span></NavBar>

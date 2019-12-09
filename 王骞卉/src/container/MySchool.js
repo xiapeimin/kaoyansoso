@@ -3,10 +3,25 @@ import xuexiao from '../imgs/xuexiao.jpg'
 import { NavBar, Icon, Tabs } from 'antd-mobile'
 import {Link} from 'react-router-dom';
 export default class AppHome extends Component {
+    constructor(){
+        super();
+        this.state = {
+            uid:0
+        }
+    }
+    componentDidMount(){
+        var str = window.location.hash;
+        var uid = str.split('=')[1];
+        console.log(uid);
+        this.setState({
+            uid:uid
+        });
+    }
     render() {
+        var uid = this.state.uid;
         return (
             <div>
-                <Link to='/appTab'>
+                <Link to={`/appTab?uid=${uid}&type=my`}>
                 <NavBar
                     style={{backgroundColor:'#66CCCC',color:'white',height:'50px'}}
                     
