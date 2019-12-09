@@ -19,6 +19,7 @@ export default class School extends Component {
         values:'asc'
       }
     }
+
     onChange = (key) => {
         console.log(key);
       }
@@ -27,6 +28,17 @@ export default class School extends Component {
     render() {
       var value=this.state.value;
       var values=this.state.values;
+      /***跳转参数解析代码 */
+      var uid = 0
+      var str = window.location.hash;
+      if(str.indexOf('&')>=0){
+          uid = str.split('&')[0].split('=')[1];
+      }else{
+          uid = str.split('=')[1];
+      }
+      console.log(str,'topicmu',uid);
+      /* 结束 */
+
         return (
             <div>
                {/* 导航栏 */}
@@ -35,12 +47,12 @@ export default class School extends Component {
                >院校资讯</NavBar>
 
                {/* 搜索框 */}
-               <Link to={'/search'}><SearchBar value={'河北师范大学'} placeholder="Search" cancelText={'搜索'} /></Link>
+               <Link to={`/search?uid=${uid}&type=school`}><SearchBar value={'河北师范大学'} placeholder="Search" cancelText={'搜索'} /></Link>
 
                   <div style={{backgroundColor:'white',width:'100%',height:'600px'}}>      
                   
                   {/* 下拉菜单 */}
-                  <form> 
+                  {/* <form> 
                   <WhiteSpace/>
                   <select style={{width:'42.5%',height:'30px',marginLeft:'5%',color:'gray',border:'1px solid #ddd'}} onChange={(e) => {this.setState({value:e.target.value})}}> 
                     {
@@ -53,11 +65,13 @@ export default class School extends Component {
                     <option value='asc' >升序</option>
                     <option value='desc'>降序</option>
                   </select>
-                  </form> 
+                  </form>  */}
+
+                  <p>新增特色功能</p>
 
                   {/* 长列表 */}
                   <WhiteSpace/>
-                  <ListShop value={`${value}`} values={`${values}`}/>
+                  {/*<ListShop value={`${value}`} values={`${values}`} uid={`${uid}`} /> */}
                   </div>
             </div>
         )

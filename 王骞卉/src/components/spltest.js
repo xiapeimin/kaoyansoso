@@ -12,17 +12,18 @@ export default class All extends Component{
    
     componentDidMount(){       
         
-        fetch(`http://xpm.xpmwqhzygy.top/json`,{
+        fetch(`http://xpm.xpmwqhzygy.top/uid`,{
             method: 'GET'
             })
         .then((res)=>res.json())
         .then((res)=>{
-            console.log(res.data[0].username);
+            console.log(res.data);
+            console.log(typeof(res.data));
             this.setState({
-                //text:res
+                data:res.data
             });          
         });
-        //console.log(this.state.text);
+        console.log(this.state.data);
         console.log('///////////////////');
 
     }
@@ -34,8 +35,8 @@ export default class All extends Component{
             <div>
                 <p>llllllllllllll</p>
                 {
-                    this.state.data.map((item)=>(                      
-                        <div>{item}</div>
+                   this.state.data.map((item,index)=>(                      
+                        <div>{item.username}</div>
                     ))
                 }
                 

@@ -4,11 +4,13 @@ import {Flex,NavBar, Icon } from 'antd-mobile';
 
 export default class Words extends Component {  //有bug 页面布局混乱  
   render() {
+    var str = this.props.location.search;
+    var uid = str.split('=')[1];
     return (
      <div className='testbox'>
        <NavBar
                 style={{background:'#66cccc',color:'#fff'}} 
-                leftContent={<Link to={'/appTab'}><img src={require('../imgs/zjt.png')} /></Link>}
+                leftContent={<Link to={`/appTab?uid=${uid}`}><img src={require('../imgs/zjt.png')} /></Link>}
                 mode="light"
                 ><span style={{color:'#fff',fontSize:'22px'}}>背单词</span></NavBar>
 
@@ -24,7 +26,7 @@ export default class Words extends Component {  //有bug 页面布局混乱
                     </Flex.Item>
                          
                     <Flex.Item style={{position:'relative',height:'20vw',width:'100%'}}>
-                    <Link to={'/wordlist'}>
+                    {/*<Link to={'/wordlist'}>*/}
                         <Flex.Item style={{position:"absolute",width:'10px',height:'10px',top:'20%',
                         borderRadius:'50%',left:'1%',backgroundColor:'blue'}}></Flex.Item>
                     <img style={{position:"absolute",width:'10vw',height:'10vw',borderRadius:'50%',left:'5%'}} src={require('../imgs/danci.jpg')}/>
@@ -34,11 +36,11 @@ export default class Words extends Component {  //有bug 页面布局混乱
                     <Flex style={{position:"absolute",right:'5%',top:'1vw'}}>
                     <Icon type={'right'} style={{height:'10vw',width:'10vw',color:'black'}}/>
                     </Flex>
-                    </Link>
+                    {/*</Link>*/}
                     </Flex.Item>                                    
 
                     <Flex.Item style={{position:'relative',height:'20vw',width:'100%'}}>
-                      <Link to='/wordlist1/1'>
+                      <Link to={`/wordlist1?uid=${uid}&wid=1`}>
                         <Flex.Item style={{position:"absolute",width:'10px',height:'10px',top:'20%',
                         borderRadius:'50%',left:'1%',backgroundColor:'blue'}}></Flex.Item>
                     <img style={{position:"absolute",width:'10vw',height:'10vw',borderRadius:'50%',left:'5%'}} src={require('../imgs/danci2.jpg')}/>
@@ -52,7 +54,7 @@ export default class Words extends Component {  //有bug 页面布局混乱
                     </Flex.Item>
 
                     <Flex.Item style={{position:'relative',height:'100px',width:'100%'}}>
-                      <Link to='/wordlist1/2'>
+                      <Link to={`/wordlist1?uid=${uid}&wid=2`}>
                         <Flex.Item style={{position:"absolute",width:'10px',height:'10px',top:'20%',
                         borderRadius:'50%',left:'1%',backgroundColor:'blue'}}></Flex.Item>
                     <img style={{position:"absolute",width:'10vw',height:'10vw',borderRadius:'50%',left:'5%'}} src={require('../imgs/danci3.jpg')}/>
@@ -67,7 +69,7 @@ export default class Words extends Component {  //有bug 页面布局混乱
                     
 
                     <Flex.Item style={{position:'relative',height:'20vw',width:'100%',top:'-5vw'}}>
-                      <Link to='/wordlist1/3'>
+                      <Link to={`/wordlist1?uid=${uid}&wid=3`}>
                         <Flex.Item style={{position:"absolute",width:'10px',height:'10px',top:'20%',
                         borderRadius:'50%',left:'1%',backgroundColor:'blue'}}></Flex.Item>
                     <img style={{position:"absolute",width:'10vw',height:'10vw',borderRadius:'50%',left:'5%'}} src={require('../imgs/danci4.jpg')}/>

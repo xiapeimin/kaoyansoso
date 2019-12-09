@@ -10,8 +10,35 @@ export default class AppTab extends React.Component {
     super(props);
     this.state = {
       flag:0,
-      selectedTab: 'blueTab'
+      selectedTab: 'blueTab',
+      type:'home'
     };
+  }
+
+  componentDidMount(){
+    var str = this.props.location.search;
+    if(str.indexOf('&') >= 0){
+      console.log(str.indexOf('&'));
+      var type = str.split('&')[1].split('=')[1];
+      console.log('typeeeeeee',type);
+      if(type=='my'){
+        this.setState({
+          selectedTab: 'yellowTab'
+        });
+      }else if(type=='home'){
+        this.setState({
+          selectedTab: 'blueTab'
+        });
+      }else if(type=='school'){
+        this.setState({
+          selectedTab: 'redTab'
+        });
+      }else if(type=='topic'){
+        this.setState({
+          selectedTab: 'greenTab'
+        });
+      }
+    }
   }
 
   render() {

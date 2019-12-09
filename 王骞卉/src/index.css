@@ -504,4 +504,11 @@ body {
     background: #66cccc;
 }
 
+/*张燕*/
+.talk{
+    display: block;
+}
+.untalk{
+    display: none;
+}
 
