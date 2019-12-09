@@ -173,7 +173,7 @@ export default class SearchInfo extends Component {  //链接有几个不对
 
                     <div style={{width:'100%',background:'#fff',paddingTop:'10vw',paddingBottom:'5vw'}}>
                         <div style={{width:'80%',height:'60vw',margin:'0 auto',border:'1px solid #919493',borderRadius:'2vw'}}>
-                            <a href='https://yz.chsi.com.cn/'><div style={{width:'49%',height:'49%',textAlign:'center',float:'left',borderBottom:'1px solid #919493',borderRight:'1px solid #919493'}}>
+                            <a href='https://yz.chsi.com.cn/yzwb/'><div style={{width:'49%',height:'49%',textAlign:'center',float:'left',borderBottom:'1px solid #919493',borderRight:'1px solid #919493'}}>
                                 <img src={require('../imgs/baoming.png')} style={{width:'40%',height:'50%',borderRadius:'5vw',marginTop:'5%'}} />
                                 <p style={{color:'#000'}}>考试报名</p>
                             </div></a>
@@ -181,11 +181,11 @@ export default class SearchInfo extends Component {  //链接有几个不对
                                 <img src={require('../imgs/xinxi.png')} style={{width:'40%',height:'50%',borderRadius:'5vw',marginTop:'5%'}}/>
                                 <p style={{color:'#000'}}>招生信息</p>
                             </div></a>
-                            <a href='https://yz.chsi.com.cn/'><div style={{width:'49%',height:'50%',textAlign:'center',float:'left',borderRight:'1px solid #919493'}}>
+                            <a href='http://www.chinakaoyan.com/chengji/'><div style={{width:'49%',height:'50%',textAlign:'center',float:'left',borderRight:'1px solid #919493'}}>
                                 <img src={require('../imgs/chaxun.png')} style={{width:'40%',height:'50%',borderRadius:'5vw',marginTop:'5%'}}/>
                                 <p style={{color:'#000'}}>成绩查询</p>
                             </div></a>
-                            <a href='https://yz.chsi.com.cn/yzwb/'><div style={{width:'50%',height:'50%',textAlign:'center',float:'left'}}>
+                            <a href='https://yz.chsi.com.cn/yztj/'><div style={{width:'50%',height:'50%',textAlign:'center',float:'left'}}>
                                 <img src={require('../imgs/tiaoji.png')} style={{width:'40%',height:'50%',borderRadius:'5vw',marginTop:'5%'}}/>
                                 <p style={{color:'#000'}}>网上调剂</p>
                             </div></a>

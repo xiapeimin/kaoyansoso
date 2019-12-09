@@ -125,8 +125,9 @@ export default class Vplay extends Component {
             <div className='testbox'>
                  <NavBar
                 style={{background:'#66cccc',color:'#fff'}} 
-                leftContent={<Link to={'/appTab'}><img src={require('../imgs/zjt.png')} /></Link>}
+                leftContent={<Link to={'/video'}><img src={require('../imgs/zjt.png')} /></Link>}
                 mode="light"
+                onLeftClick={() => console.log('onLeftClick')}
                 ><span style={{color:'#fff',fontSize:'22px'}}>课程</span></NavBar>
                 <div>{
                     this.state.todo1.map(

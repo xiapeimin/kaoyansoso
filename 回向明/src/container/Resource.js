@@ -1,10 +1,8 @@
 import React, {Component} from 'react'
-import {Link} from 'react-router-dom';
+import {BrowserRouter as Link} from 'react-router-dom';
 import {NavBar, Icon } from 'antd-mobile';
 import vedio0 from '../imgs/vedio0.mp4';
 import vedio1 from '../imgs/vedio1.mp4';
-import vedio2 from '../imgs/vedio2.mp4';
-import vedio3 from '../imgs/vedio3.mp4';
 
 export default class Resource extends Component {
     constructor(){
@@ -34,8 +32,8 @@ export default class Resource extends Component {
                    </Link>
                   <span style={{color:'white'}}>经验分享</span>           
                 </NavBar>
-                    
-                <div style={{fontSize:'5vw',backgroundImage:'../imgs/music.jpg',width:'80%',left:'10%',
+                <img style={{position:"absolute",width:'100%',height:'600vw',opacity:'0.5'}} src={require('../imgs/pen.jpg')}/>
+                <div style={{fontSize:'5vw',width:'80%',left:'10%',
                 position:'relative',textIndent:'2em',top:'5vw'}}>
                 本人本科是双非一本，19年考研很幸运能够一战上岸，顺利考取某211高校。
                 <br/>
@@ -106,6 +104,7 @@ export default class Resource extends Component {
                    </Link>
                   <span style={{color:'white'}}>考研文本资料</span>           
                 </NavBar>
+                <img style={{position:"absolute",width:'100%',height:'250vw',opacity:'0.3'}} src={require('../imgs/jingyan.jpg')}/>
                 <div style={{fontSize:'5vw',backgroundImage:'../imgs/music.jpg',width:'80%',left:'10%',
                 position:'relative',textIndent:'2em',top:'5vw'}}>
                 如何准备考研资料？2021跨考教育学研究生，现在开始复习，问考研的学姐学长们需要考的科目有哪些？去哪儿买旧教材？
@@ -154,6 +153,7 @@ export default class Resource extends Component {
                    </Link>
                   <span style={{color:'white'}}>音视频</span>           
                 </NavBar>
+                <img style={{position:"absolute",width:'100%',height:'180vw',opacity:'0.3'}} src={require('../imgs/music.jpg')}/>
                 <div style={{width:'100%',background:'#fff',paddingTop:'10vw'}}>
                     {
                         this.state.data.map((item,index)=>(
@@ -177,28 +177,77 @@ export default class Resource extends Component {
                             </div></Link>
                         ))
                     }
-                    {
-                        this.state.data.map((item,index)=>(
-                            <Link to={'/vplay/3'}><div style={{width:'85%',margin:'0 auto',height:'60vw',paddingBottom:'10vw',borderRadius:'3vw',overflow:'hidden',textAlign:'center'}}>
-                                <video width='100%' height='80%' controls='controls'>
-                                    <source src={vedio2} type='video/mp4' />
-                                    您的浏览器不支持Video
-                                </video>
-                                <div style={{width:'90%',height:'20%',paddingRight:'5%',paddingLeft:'5%',background:'#dbdedd',alignItems:'center',display: '-webkit-flex',fontSize:'4.5vw',color:'#000'}}>爆笑张雪峰老师视频,超长剪辑版,让你一次看个够</div>
-                            </div></Link>
-                        ))
-                    }
-                    {
-                        this.state.data.map((item,index)=>(
-                            <Link to={'/vplay/4'}><div style={{width:'85%',margin:'0 auto',height:'60vw',paddingBottom:'10vw',borderRadius:'3vw',overflow:'hidden',textAlign:'center'}}>
-                                <video width='100%' height='80%' controls='controls'>
-                                    <source src={vedio3} type='video/mp4' />
-                                    您的浏览器不支持Video
-                                </video>
-                                <div style={{width:'90%',height:'20%',paddingRight:'5%',paddingLeft:'5%',background:'#dbdedd',alignItems:'center',display: '-webkit-flex',fontSize:'4.5vw',color:'#000'}}>「张雪峰视频」2018考研 老师带你讲跨专业</div>
-                            </div></Link>
-                        ))
-                    }
+                </div>
+                    </div>
+                ]})
+        }else if(type=='laoliang'){
+            this.setState({
+                type:type,
+                todo:[
+            <div>
+                         <NavBar               
+                style={{backgroundColor:'#05a479',color:'white'}}>
+                   <Link to='/searchinfo'>
+                      <Icon type={'left'} style={{position:'absolute',top:'10px',left:'4%',color:'white'}}/>
+                   </Link>
+                  <span style={{color:'white'}}>老梁考研汇</span>           
+                </NavBar>
+                <img style={{position:"absolute",width:'100%',height:'300vw',opacity:'0.3'}} src={require('../imgs/laoliang.jpg')}/>
+                <div style={{fontSize:'5vw',backgroundImage:'../imgs/music.jpg',width:'80%',left:'10%',
+                position:'relative',textIndent:'2em',top:'5vw'}}>
+                其实你问考研有什么好处，改变大不大，这谁能回答？
+                <br/>
+                <div style={{textIndent:'2em'}}>得具体问题具体分析，我的理解是那些需要考研读博的，是这个行业你已经进入到了一个极为成熟的阶段，如果你不驾驭那么多的知识，你根本无法在这行业里自由自在地畅游。</div>
+                <div style={{textIndent:'2em'}}>
+                这个时候你要考研，比方说大学时候学理科的学生，数学系的，物理系的，他们这点本科的东西到科研单位什么都不是，这个时候就必须通过考研深造，然后才能进入更深层次的理论研究和实践，甚至有的工厂光是本科学历，都很难解决它高新技术研发问题，所以这个时候你需要考研。
+                </div>
+
+    <div style={{textIndent:'2em'}}>再比如说医生，医生光念本科的时间都比普通本科时间要长得多，因为它这个专业技术是高精尖的，而且医生这个行业发展已经很成熟了，可是对于一些方兴未艾的，刚刚兴起的新产业，你就千万别琢磨去考研。</div>
+    <div style={{textIndent:'2em'}}>有个朋友的孩子问我，说梁叔啊，我学新媒体的，想报考北大人大这边的专业，我说你算了吧，你问问北大人大那些老师知道什么是新媒体么？他们干过吗？就像我经常说一些专业老师，我说你们一天主持人都没干过，你教人当主持人算不算误人子弟？</div>
+
+    <div style={{textIndent:'2em'}}>
+    新媒体的发展在中国就是最近这几年的事，它什么时候形成的理论研究甚至能反过来理论指导实践？学校自己都从来没研究明白这事，它能带出这样的研究生乃至博士生吗？所以如果你从事这样的行业，实践性很强的，那一定要在工作中去学会这些东西。如果你的老师都从来没经历过你工作中经历的，你能信他么？
+    </div>
+    <div style={{textIndent:'2em'}}>
+    都说求名师访高友，他得给你有用的东西，这行里你求的人访的友他们自己什么东西都还没有呢，最后只能给你一纸文凭，那跟骗你文凭，骗你钱有区别吗？
+    </div>
+    <div style={{textIndent:'2em'}}>   
+所以成熟的行业需要高精尖的东西，考研是没问题的，但是方兴未艾的新产业就不要去了，在学校里耽误那些无用功也没必要。从小学初中高中大学算算自己念了多少年书？还回学校念？人生的光阴不要都泡到学校里，社会这所大学，对于我们每个人来说，同样用处很大。
+    </div>
+                </div>
+                    </div>
+                ]})
+        }else if(type=='xuefeng'){
+            this.setState({
+                type:type,
+                todo:[
+            <div>
+                         <NavBar               
+                style={{backgroundColor:'#05a479',color:'white'}}>
+                   <Link to='/searchinfo'>
+                      <Icon type={'left'} style={{position:'absolute',top:'10px',left:'4%',color:'white'}}/>
+                   </Link>
+                  <span style={{color:'white'}}>雪峰说考研</span>           
+                </NavBar>
+                <img style={{position:"absolute",width:'100%',height:'300vw',opacity:'0.3'}} src={require('../imgs/xuefeng.jpg')}/>
+                <div style={{fontSize:'5vw',backgroundImage:'../imgs/music.jpg',width:'80%',left:'10%',
+                position:'relative',textIndent:'2em',top:'5vw'}}>
+                张雪峰深情演讲：大学生为什么要努力考研看完之后默默努力
+                <br/>
+                <div style={{textIndent:'2em'}}>中国存在一个争论不休的话题，很多人都在争论，学历到底重不重要？很多在表面上说学历不重要的人，心底却在默默努力。这个世界什么最重要？当然是能力，可是怎么才能展示出你的能力呢？这就要通过学历去打通自己展示能力的道路。学历到底重不重要？在我们每个人心中自有定论。很多人在想的是自己的能力十分的优秀，但是为什么还要考研呢？今天小编给大家讲一下张雪峰的一些演讲。</div>
+                <div style={{textIndent:'2em'}}>
+                张雪峰因为自己幽默的演讲风格在网上大火，成为了一名教育界的网红。因为他的大火，一期综艺节目也请到了张雪峰。当时同时上节目的嘉宾问张雪峰考研真的十分的重要吗？张雪峰开始说出自己的想法，不过当时台上的很多嘉宾也是不同意这种说法，而且当时的辩论张雪峰遭到围攻。但是节目播出以后，张雪峰的观点得到了绝大数网友的支持。
+                </div>
+
+    <div style={{textIndent:'2em'}}>在节目上鲁豫问张雪峰你是因为自己做这个工作才说考研改变命运还是真的是相信考研改变命运。张雪峰连续说了几遍自己相信考研改变命运，并且说出了自己的理由。</div>
+    <div style={{textIndent:'2em'}}>张雪峰说鲁豫如果有兴趣的话可以去自己的家乡，那里有一个大学叫做齐齐哈尔大学。每年到了招聘季节的时候，可以去哪里看一看是什么样的企业子齐齐哈尔大学招聘，根本没有一个好单位。鲁豫再去看一看北京科技大学，是什么样的企业在招聘。从这两者之间可以看出学校的差距，学生之间学历的差距。张雪峰说世界上500强企业在招聘员工的时候都会告诉前来求职的人说他们不看重学历，但是他们不会去齐齐哈尔大学招聘。</div>
+
+    <div style={{textIndent:'2em'}}>
+    其实考研就是给很多没有名校学历的人一个提高自己起跑线的机会，他们通过考研能够站在更高的起点，拥有更多的选择机会。让我们在这个竞争惨烈的社会上拥有一个护身符的机会，张雪峰说到激情的时候，声音已经哽咽，一个东北大老爷们都为很多有能力但是没有学历的孩子感动悲哀。张雪峰不是唯学历论的拥护者，但是他知道没有学历的话，你的能力就没有展示的舞台。你没有舞台，就算你再有能力，也不会有机会表示出来。这就是学历的重要性，这也是学历只能起的那份作用。
+    </div>
+    <div style={{textIndent:'2em'}}>   
+    很多学生看到这里深有感触，其实中国每年考研的学生中有一部分人是因为出社会后碰到了钉子，然后想通过提高自己的学历让自己能够找到更好的工作。看到这里你应该去好好地学习了。
+    </div>
                 </div>
                     </div>
                 ]})
@@ -208,8 +257,7 @@ export default class Resource extends Component {
     render() {
         return (
             <div className='testbox'>
-               
-
+            
                 <div>
                     {
                         this.state.todo.map(
