@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
-import { NavBar, Tabs, Badge } from 'antd-mobile';
+import TopicList from './TopicList';
+import ShowList from './ShowList.js';
+import MyTopic from './MyTopic.js'
+import { NavBar, Tabs, Badge, WhiteSpace, WingBlank } from 'antd-mobile';
 import {Link} from 'react-router-dom';
 import tou1 from './images/tou1.jpg';
 import tou2 from './images/tou2.jpg';
@@ -10,264 +13,95 @@ import zan1 from './images/zan1.jpg';
 import back from './images/back.jpg';
 import delete1 from './images/delete.jpg';
 
+var page = 0;
 const tabs = [
     { title: <Badge>热门动态</Badge> },
     { title: <Badge>我的动态</Badge> },
   ];
 export default class HostTopic extends Component {   //评论弹框bug 用组件对话框 点击删除后有弹框 确认删除 点赞图片不对齐
-    write1(){
-        var pl=prompt('评论：');
-        var p=document.getElementById('ping');
-        if(pl!==null){
-            p.innerHTML+='<br/>'+pl;
+    constructor(){
+        super();
+        this.state = {
+            flag:0,
+            uid:0
         }
-       p.innerHTML=p.innerHTML;
     }
-    write3(){
-        var pl1=prompt('评论：');
-        var pp=document.getElementById('ping3');
-        if(pl1!==null){
-            pp.innerHTML+='<br/>'+pl1;
+
+    componentDidMount(){
+        var str = window.location.hash;
+        if(str.indexOf('&')>=0){
+            var uid = str.split('&')[0].split('=')[1];
+            console.log(uid);
+            this.setState({
+                uid:uid
+            });
+            page=1;
+            console.log(str,'topicmu',uid);
+            console.log('pppppppppppppppppppp',this.state.page);
+        }else{
+            var uid = str.split('=')[1];
+            console.log(uid);
+            this.setState({
+                uid:uid
+            });
+            page=0;
         }
-       pp.innerHTML=pp.innerHTML;
+        console.log(str,'topicmu',uid);
+        
     }
-    write2(){
-        var pl1=prompt('评论：');
-        var pp=document.getElementById('ping2');
-        if(pl1!==null){
-            pp.innerHTML+='<br/>'+pl1;
-        }
-       pp.innerHTML=pp.innerHTML;
-    }
-    write4(){
-        var pl1=prompt('评论：');
-        var pp=document.getElementById('ping4');
-        if(pl1!==null){
-            pp.innerHTML+='<br/>'+pl1;
-        }
-       pp.innerHTML=pp.innerHTML;
-    }
-    write5(){
-        var pl1=prompt('评论：');
-        var pp=document.getElementById('ping5');
-        if(pl1!==null){
-            pp.innerHTML+='<br/>'+pl1;
-        }
-       pp.innerHTML=pp.innerHTML;
-    }
-    write6(){
-        var pl1=prompt('评论：');
-        var pp=document.getElementById('ping6');
-        if(pl1!==null){
-            pp.innerHTML+='<br/>'+pl1;
-        }
-       pp.innerHTML=pp.innerHTML;
-    }
-    write7(){
-        var pl1=prompt('评论：');
-        var pp=document.getElementById('ping7');
-        if(pl1!==null){
-            pp.innerHTML+='<br/>'+pl1;
-        }
-       pp.innerHTML=pp.innerHTML;
-    }
-    process(){
-        console.log('process');
-        var p=prompt('发表动态：')
-        var pp=document.getElementById('dongtai');
-        if(p!==null){
-           pp.innerHTML+='<br/>'+"<div style='line-height:20px'><img style='width:30%;margin-right:10px;height:25vw;border-radius:50%;float:left' src='"+tou3+"'/>"
-           +"<p style='font-size:10px;width:70%'>学渣考研</p>"
-           +"<p>"+p+"</p>"
-           +"<p>1分钟前</p>"
-           +'</div>'
-        }
-       pp.innerHTML=pp.innerHTML;
-    }
-    delete1(){
-        console.log('p')
-        var del=document.getElementById('del1');
-        console.log(del);
-        del.innerHTML='';
-    }
-    delete2(){
-        console.log('p')
-        var del=document.getElementById('del2');
-        console.log(del);
-        del.innerHTML='';
-    }
-    delete3(){
-        console.log('p')
-        var del=document.getElementById('del3');
-        console.log(del);
-        del.innerHTML='';
-    }
+
+
     delete4(){
+        alert('是否要删除')
         console.log('p')
         var del=document.getElementById('del4');
         console.log(del);
         del.innerHTML='';
-    }
-    delete5(){
-        console.log('p')
-        var del=document.getElementById('del5');
-        console.log(del);
-        del.innerHTML='';
-    }
-    good(){
-        var god=document.getElementById('good');
-        console.log(god.src);
-        god.src=zan1
-    }
-    good1(){
-        var god=document.getElementById('good1');
-        console.log(god.src);
-        god.src=zan1
-    }
-    good2(){
-        var god=document.getElementById('good2');
-        console.log(god.src);
-        god.src=zan1
     }
     good3(){
         var god=document.getElementById('good3');
         console.log(god.src);
         god.src=zan1
     }
-    good4(){
-        var god=document.getElementById('good4');
-        console.log(god.src);
-        god.src=zan1
-    }
     render() {
+        var uid = this.state.uid;
         return (
-            <div style={{background:'#fff'}}>
-                 <NavBar
-                style={{background:'#66cccc',color:'#fff'}} 
-                mode="light"
-                ><span style={{color:'#fff',fontSize:'21px'}}>动态</span></NavBar>
-
-                <Tabs tabs={tabs}
-                    initialPage={0}
+            <div>
+                <NavBar style={{backgroundColor:'#66cccc',color:'white'}}
+                  mode="dark"
+               >动态</NavBar>
+               <div style={{backgroundColor:'white'}}>
+                 <Tabs tabs={tabs}
+                    initialPage={page}
                     style={{fontSize:'40vw'}}
                     >
-                    <div style={{width:'100%',padding:'5%'}}>
-                        <span style={{color:'gray',fontSize:'25px'}}> | </span>
-                        <span style={{fontSize:'5vw'}}>热门推荐</span>
-                        <div style={{ display: '-webkit-box', display: 'flex', padding: '15px 0',width:'100%' }}>
-                            <img style={{ height: '10vw', marginRight: '15px',borderRadius:'50%' }} src={tou1} alt="" />
-                            <div style={{ lineHeight: 2,width:'100%'}}>
-                            <div style={{ marginTop: '4vw', fontWeight: 'bold',fontSize:'3vw' }}>考研帮</div>
-                            <div style={{fontSize:'3vw',marginLeft:'-50px'}}>2021考研：考研之路</div>
-                            <div style={{width:'100%'}}>
-                            <span style={{fontSize:'3vw',color:'#66cccc',marginLeft:'-50px'}}>#2020年考研&nbsp;&nbsp;&nbsp;&nbsp; </span>
-                            <span style={{fontSize:'3vw'}}>&nbsp;&nbsp;2019-10-27 </span>
-                            <span style={{fontSize:'3vw',float:'right',marginRight:'4vw'}}>104</span>
-                                <img src={talk} style={{height:'5vw',width:'5vw',float:'right'}} onClick={this.write1}/>         
-                            </div>
-                            </div>
-                        </div>   
-                        <div id='ping'></div>
-                        <div style={{ display: '-webkit-box', display: 'flex', padding: '15px 0',width:'100%' }}>
-                            <img style={{ height: '10vw', marginRight: '15px',borderRadius:'50%' }} src={tou2} alt="" />
-                            <div style={{ lineHeight: 2,width:'100%'}}>
-                            <div style={{ marginTop: '4vw', fontWeight: 'bold',fontSize:'3vw' }}>考研帮</div>
-                            <div style={{fontSize:'3vw',marginLeft:'-50px'}}>2021考研：考研之路</div>
-                            <div style={{width:'100%'}}>
-                            <span style={{fontSize:'3vw',color:'#66cccc',marginLeft:'-50px'}}>#2020年考研&nbsp;&nbsp;&nbsp;&nbsp; </span>
-                            <span style={{fontSize:'3vw'}}>&nbsp;&nbsp;2019-10-27 </span>
-                            <span style={{fontSize:'3vw',float:'right',marginRight:'4vw'}}>104</span>
-                                <img src={talk} style={{height:'5vw',width:'5vw',float:'right'}} onClick={this.write2}/>         
-                            </div>
-                            </div>
-                        </div> 
-                        <div id='ping2'></div> 
-                        <span style={{color:'gray',fontSize:'25px'}}> | </span>
-                        <span style={{fontSize:'5vw'}}>分享驿站</span>
-                        <div id='del1' style={{ display: '-webkit-box', display: 'flex', padding: '15px 0',width:'100%',height:'100%'}}>
-                            <img style={{ marginRight: '15px',width:'30%',height:'70%',borderRadius:'50%'}} src={tou3} alt="" />
-                            <div style={{ lineHeight: 1 ,width:'70%'}}>
-                            <div style={{ marginBottom: '8px', fontWeight: 'bold',width:'100%',height:'35%',fontSize:'3vw'}}>学渣考研</div>
-                            <div style={{width:'100%',height:'35%',fontSize:'3vw'}}>热爱学习，无法自拔，不胖十斤，誓不罢休</div>
-                            <div style={{width:'100%',height:'30%'}}>
-                            <span style={{fontSize:'1.5vw'}}>两天前</span>
-                            <img src={delete1} style={{height:'3vw',width:'3vw',float:'right',marginRight:'10px',marginTop:'5px'}} onClick={this.delete1}/>
-                            <img src={talk} style={{height:'3vw',width:'3vw',float:'right',marginRight:'20px',marginTop:'6px'}} onClick={this.write3}/>
-                            <img id='good' src={good} style={{height:'4vw',width:'4vw',float:'right',marginRight:'20px'}} onClick={this.good}/>
-                            </div>
-                            </div>
-                        </div> 
-                        <div id='ping3'></div>
-                        <div id='del2' style={{ display: '-webkit-box', display: 'flex', padding: '15px 0',width:'100%',height:'100%'}}>
-                            <img style={{marginRight: '15px',width:'30%',height:'80%',borderRadius:'50%' }} src={tou1} alt="" />
-                            <div style={{ lineHeight: 1 ,width:'70%'}}>
-                            <div style={{ marginBottom: '8px', fontWeight: 'bold',width:'100%',height:'35%',fontSize:'3vw'}}>学渣考研</div>
-                            <div style={{width:'100%',height:'35%',fontSize:'3vw'}}>热爱学习，无法自拔，不胖十斤，誓不罢休</div>
-                            <div style={{width:'100%',height:'30%'}}>
-                            <span style={{fontSize:'1.5vw'}}>两天前</span>
-                            <img src={delete1} style={{height:'3vw',width:'3vw',float:'right',marginRight:'10px',marginTop:'5px'}} onClick={this.delete2}/>
-                            <img src={talk} style={{height:'3vw',width:'3',float:'right',marginRight:'20px',marginTop:'6px'}} onClick={this.write4}/>
-                            <img id='good1' src={good} style={{height:'4vw',width:'4vw',float:'right',marginRight:'20px'}} onClick={this.good1}/>
-                            </div>
-                            </div>
-                        </div> 
-                        <div id='ping4'></div>
-                        <div id='del3' style={{ display: '-webkit-box', display: 'flex', padding: '15px 0',width:'100%',height:'100%'}}>
-                            <img style={{ marginRight: '15px',width:'30%',height:'80%',borderRadius:'50%' }} src={tou2} alt="" />
-                            <div style={{ lineHeight: 1 ,width:'70%'}}>
-                            <div style={{ marginBottom: '8px', fontWeight: 'bold',width:'100%',height:'35%',fontSize:'3vw'}}>学渣考研</div>
-                            <div style={{width:'100%',height:'35%',fontSize:'3vw'}}>热爱学习，无法自拔，不胖十斤，誓不罢休</div>
-                            <div style={{width:'100%',height:'30%'}}>
-                            <span style={{fontSize:'1.5vw'}}>两天前</span>
-                            <img src={delete1} style={{height:'3vw',width:'3vw',float:'right',marginRight:'10px',marginTop:'5px'}} onClick={this.delete3}/>
-                            <img src={talk} style={{height:'3vw',width:'3vw',float:'right',marginRight:'20px',marginTop:'6px'}} onClick={this.write5}/>
-                            <img id='good2' src={good} style={{height:'4vw',width:'4vw',float:'right',marginRight:'20px'}} onClick={this.good2}/>
-                            </div>
-                            </div>
-                        </div> 
-                        <div id='ping5'></div>
-                    </div>                   
-                    <div>
+                <div>
+                    <WhiteSpace/> 
+                    <WingBlank>
+                    <span style={{fontSize:'4.5vw'}}>| 热门推荐</span>
+                    </WingBlank>
+                    <WhiteSpace/>
+                    <TopicList/>
+                    <WhiteSpace/> 
+                    <WingBlank>
+                    <span style={{fontSize:'4.5vw'}}>| 分享驿站</span>
+                    </WingBlank>
+                    <WhiteSpace/>
+                    <ShowList/>
+                </div>
+                <div>
                         <img src={back} style={{width:'100%'}}></img>
                         <img src={tou3} style={{height:'100px',width:'100px',marginRight:'10px',float:'right',position:'relative',marginTop:'-30px',borderRadius:'50px'}}></img>
                         <p style={{float:'right',marginTop:'75px',marginRight:'-90px'}}>学渣奋起之路</p>
-                        <Link to={'/publishTopic'}><div style={{float:'left',marginLeft:'5%',marginTop:'5%',width:'10vw',height:'10vw',borderRadius:'5vw',backgroundColor:' #66cccc',fontSize:'5vw',textAlign:'center',lineHeight:'10vw',color:'#fff'}}>+</div></Link>
-                        <div id='del4' style={{ display: '-webkit-box', display: 'flex', padding: '15px 0',width:'100%',height:'100%',padding:'5%'}}>
-                            <img style={{marginRight: '15px',width:'30%',height:'80%',borderRadius:'50%' }} src={tou3} alt="" />
-                            <div style={{ lineHeight: 1 ,width:'70%'}}>
-                            <div style={{ marginBottom: '8px', fontWeight: 'bold',width:'100%',height:'35%',fontSize:'3vw'}}>学渣考研</div>
-                            <div style={{width:'100%',height:'35%',fontSize:'3vw'}}>热爱学习，无法自拔，不胖十斤，誓不罢休</div>
-                            <div style={{width:'100%',height:'30%'}}>
-                            <span style={{fontSize:'1.5vw'}}>两天前</span>
-                            <img src={delete1} style={{height:'3vw',width:'3vw',float:'right',marginRight:'10px',marginTop:'5px'}} onClick={this.delete4}/>
-                            <img src={talk} style={{height:'3vw',width:'3vw',float:'right',marginRight:'20px',marginTop:'6px'}} onClick={this.write6}/>
-                            <img id='good3' src={good} style={{height:'4vw',width:'4vw',float:'right',marginRight:'20px'}} onClick={this.good3}/>
-                            </div>
-                            </div>
-                        </div> 
-                        <div id='ping6'></div>
-                        <div id='del5' style={{ display: '-webkit-box', display: 'flex', padding: '15px 0',width:'100%',height:'100%',padding:'5%'}}>
-                            <img style={{marginRight: '15px',width:'30%',height:'80%',borderRadius:'50%' }} src={tou3} alt="" />
-                            <div style={{ lineHeight: 1 ,width:'70%'}}>
-                            <div style={{ marginBottom: '8px', fontWeight: 'bold',width:'100%',height:'35%',fontSize:'3vw'}}>学渣考研</div>
-                            <div style={{width:'100%',height:'35%',fontSize:'3vw'}}>热爱学习，无法自拔，不胖十斤，誓不罢休</div>
-                            <div style={{width:'100%',height:'30%'}}>
-                            <span style={{fontSize:'1.5vw'}}>两天前</span>
-                            <img src={delete1} style={{height:'3vw',width:'3vw',float:'right',marginRight:'10px',marginTop:'5px'}} onClick={this.delete5}/>
-                            <img src={talk} style={{height:'3vw',width:'3vw',float:'right',marginRight:'20px',marginTop:'6px'}} onClick={this.write7}/>
-                            <img id='good4' src={good} style={{height:'4vw',width:'4vw',float:'right',marginRight:'20px'}} onClick={this.good4}/>
-                            </div>
-                            </div>
-                        </div> 
-                        <div id='ping7'></div>
-                        <div id='dongtai'></div>
-                        
-                    </div>
-                </Tabs>
-
-                <div style={{height:'50px'}}></div>
-            </div>
-
+                        <Link to={`/publishTopic?uid=${uid}`}><div style={{float:'left',marginLeft:'5%',marginTop:'5%',width:'10vw',height:'10vw',borderRadius:'5vw',backgroundColor:' #66cccc',fontSize:'5vw',textAlign:'center',lineHeight:'10vw',color:'#fff'}}>+</div></Link>
+                      
+                      <div style={{marginTop:'18vw'}}> <MyTopic/></div>
+                </div>
+                
+                </Tabs> 
+                </div>
+            </div> 
+               
         )
-    }
+}
 }

@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
-import {BrowserRouter as Link} from 'react-router-dom';
-import { NavBar,WhiteSpace,WingBlank} from 'antd-mobile';
+import {BrowserRouter as Router,Route,Link} from 'react-router-dom';
+import Introduce from './Introduce';
+import Important from './Important';
+import { NavBar,WhiteSpace,WingBlank,Tabs,Flex} from 'antd-mobile';
 import vedio0 from './images/vedio0.mp4';
 import vedio1 from '../imgs/vedio1.mp4';
 import vedio2 from '../imgs/vedio2.mp4';
 import vedio3 from '../imgs/vedio3.mp4';
+
 import good from './images/zan2.jpg';
 import zan1 from './images/zan1.jpg';
 import count from './images/count.jpg';
@@ -13,9 +16,59 @@ export default class Vplay extends Component {
     constructor(){
         super();
         this.state={
-            todo1:[],
+            // flag:1,
+            text:'',
+            fflag:'',
+            flag2:0,
+            todo1:[], //...
             todo2:[]
         }
+    }
+    componentDidMount(){
+        var str = this.props.location.search;
+        var uid = str.split('&')[0].split('=')[1];
+        var fflag = str.split('&')[1].split('=')[1];
+        var id = str.split('&')[2].split('=')[1];
+        this.setState({
+            uid:uid,
+            fflag:fflag
+        });
+        if(fflag=='home'){
+            this.setState({
+                flag2:0
+            })
+        }else{
+            this.setState({
+                flag2:1
+            })
+        }
+
+        if(id == 1){
+            this.setState({
+                todo1:[vedio0],
+                todo2:['老梁观世界'],
+                text:[<div style={{fontSize:'5vw'}}>上知天文,下知地理的老梁为你解答是否该考研</div>]
+            });
+        }else if(id == 2){
+            this.setState({
+                todo1:[vedio1],
+                todo2:['张雪峰课堂'],
+                text:[<div style={{fontSize:'5vw'}}>张雪峰给你讲考研</div>]
+            });
+        }else if(id == 3){
+            this.setState({
+                todo1:[vedio2],
+                todo2:['爆笑张雪峰'],
+                text:[<div style={{fontSize:'5vw'}}>爆笑张雪峰</div>]
+            });
+        }else if(id == 4){
+            this.setState({
+                todo1:[vedio3],
+                todo2:['张雪峰讲讲跨专业'],
+                text:[<div style={{fontSize:'5vw'}}>张雪峰讲讲跨专业</div>]
+            });
+        }
+
     }
     good(){
         var god=document.getElementById('good');
@@ -50,7 +103,7 @@ export default class Vplay extends Component {
         })
         if(this.state.id==1){
             this.setState({
-                text:[<div style={{fontSize:'5vw'}}>是考研还是就业</div>]
+                text:[<div style={{fontSize:'5vw'}}>'是考研还是就业'</div>]
             })
         }else if(this.state.id==2){
             this.setState({
@@ -89,45 +142,24 @@ export default class Vplay extends Component {
         }
     }
 
-    componentDidMount(){
-        var id = this.props.match.params.id;
-        this.setState({
-            id:id
-        });
-        if(id == 1){
-            this.setState({
-                todo1:[vedio0],
-                todo2:['老梁观世界'],
-                text:[<div style={{fontSize:'5vw'}}>上知天文,下知地理的老梁为你解答是否该考研</div>]
-            });
-        }else if(id == 2){
-            this.setState({
-                todo1:[vedio1],
-                todo2:['张雪峰课堂'],
-                text:[<div style={{fontSize:'5vw'}}>张雪峰给你讲考研</div>]
-            });
-        }else if(id == 3){
-            this.setState({
-                todo1:[vedio2],
-                todo2:['爆笑张雪峰'],
-                text:[<div style={{fontSize:'5vw'}}>爆笑张雪峰</div>]
-            });
-        }else if(id == 4){
-            this.setState({
-                todo1:[vedio3],
-                todo2:['张雪峰讲讲跨专业'],
-                text:[<div style={{fontSize:'5vw'}}>张雪峰讲讲跨专业</div>]
-            });
+    //跳转
+    goout = () => {
+        var uid = this.state.uid;
+        if(this.state.flag2==0){
+            window.location.hash = `/appTab?uid=${uid}&type=home`
+        }else{
+            window.location.hash = `/video?uid=${uid}&flag=more`
         }
     }
     render() {
+        
+
         return (
-            <div className='testbox'>
+            <div>
                  <NavBar
                 style={{background:'#66cccc',color:'#fff'}} 
-                leftContent={<Link to={'/video'}><img src={require('../imgs/zjt.png')} /></Link>}
+                leftContent={<img src={require('../imgs/zjt.png')} onClick={this.goout} />}
                 mode="light"
-                onLeftClick={() => console.log('onLeftClick')}
                 ><span style={{color:'#fff',fontSize:'22px'}}>课程</span></NavBar>
                 <div>{
                     this.state.todo1.map(
@@ -159,8 +191,8 @@ export default class Vplay extends Component {
                         </div>
                     </div> 
                     <div className='clear'></div>
-                    
                     <div style={{padding:'5%'}}>{this.state.text}</div>
+                
              </div>
         )
     }

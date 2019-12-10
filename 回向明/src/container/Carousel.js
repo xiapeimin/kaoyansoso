@@ -7,6 +7,7 @@ export default class Carousel extends Component{
     constructor(){
         super();
         this.state={
+            uid:0,
             id:0,           
             title:'',
             view:'',
@@ -26,10 +27,13 @@ export default class Carousel extends Component{
         }
     }
     componentDidMount(){
-        var id = this.props.match.params.id;
+        var str = this.props.location.search;
+        var id = str.split('&')[0].split('=')[1];
+        var uid = str.split('&')[1].split('=')[1];
         console.log(id);
         this.setState({
-            id:id
+            id:id,
+            uid:uid
         });
         if(id == 1){
             this.setState({
@@ -73,11 +77,12 @@ export default class Carousel extends Component{
     }
     
     render(){
+        var uid = this.state.uid;
         return (
             <div className='carouselBox'>
                 <NavBar
                 style={{background:'#66cccc',color:'#fff'}} 
-                leftContent={<Link to={'/appTab'}><img src={require('../imgs/zjt.png')} /></Link>}
+                leftContent={<Link to={`/appTab?uid=${uid}&type=home`}><img src={require('../imgs/zjt.png')} /></Link>}
                 mode="light"
                 onLeftClick={() => console.log('onLeftClick')}
                 ><span style={{color:'#fff',fontSize:'22px'}}>资讯</span></NavBar>

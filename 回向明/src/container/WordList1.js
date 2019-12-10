@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 import {Tabs,NavBar,Flex } from 'antd-mobile';
 import {Link} from 'react-router-dom';
 
-//我把wordscheck删了，把wordlist1里加上标签页，这样也能切换单词列表（回向明）
+//把wordscheck删了，把wordlist1里加上标签页，这样也能切换单词列表
 
 export default class Market extends Component {  //要有下拉列表 单词列表切换功能 上级页面传参过来
    constructor(){
       super();
       this.state = {
+          uid:0,
           id:1,
           name:'单词清单列表',
           todo1: ['amplificationn. 扩大；加强',
@@ -322,9 +323,12 @@ export default class Market extends Component {  //要有下拉列表 单词列�
   }
 
   componentDidMount(){
-      var id = this.props.match.params.id;
+      var str = this.props.location.search;
+      var uid = str.split('&')[0].split('=')[1]; 
+      var id = str.split('&')[1].split('=')[1];
       this.setState({
-          id:id
+          id:id,
+          uid:uid
       });
       if(id == 1){
           this.setState({
@@ -461,6 +465,7 @@ export default class Market extends Component {  //要有下拉列表 单词列�
       }
   }
     render() {
+        var uid = this.state.uid;
         const tabs = [
             { title: <p style={{fontSize:'4vw'}}>Wordlist1</p> },
             { title: <p style={{fontSize:'4vw'}}>Wordlist2</p> },
@@ -477,7 +482,7 @@ export default class Market extends Component {  //要有下拉列表 单词列�
             <div className='testbox'>
                  <NavBar
                 style={{background:'#67cd9e',color:'#fff'}} 
-                leftContent={<Link to={'/words'}><img src={require('../imgs/zjt.png')} /></Link>}
+                leftContent={<Link to={`/words?uid=${uid}`}><img src={require('../imgs/zjt.png')} /></Link>}
                 mode="light"
                 ><span style={{color:'#fff',fontSize:'21px'}}>{this.state.name}</span></NavBar>
 

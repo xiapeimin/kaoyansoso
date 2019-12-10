@@ -299,7 +299,9 @@ export default class ListShop extends React.Component {
 
   render() {
     var uid = this.props.uid; //携带参数跳转 区别用户
-    console.log(this.props.value);
+    var pid = this.props.id;
+    var idx = this.props.index;
+
     const separator = (sectionID, rowID) => (
       <div
         key={`${sectionID}-${rowID}`}
@@ -318,7 +320,7 @@ export default class ListShop extends React.Component {
       }
       const obj = this.state.schooldata[index--];
       return (
-        <Link to={`/schoolDetails?id=${obj.des}&uid=${uid}`}><div key={rowID} style={{ padding: '0 15px' }}>
+        <Link to={`/schoolDetails?id=${obj.des}&uid=${uid}&pid=${pid}&index=${idx}`}><div key={rowID} style={{ padding: '0 15px' }}>
           <div
             style={{
               lineHeight: '50px',

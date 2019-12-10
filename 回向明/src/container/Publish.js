@@ -9,12 +9,15 @@ function showToast() {
 }
 
 export default class AppHome extends Component {
+    
     render() {
+        var str = this.props.location.search;
+        var uid = str.split('=')[1];
         return (
             <div>
-                <Link to='/help'>
+                <Link to={`/help?uid=${uid}`}>
                 <NavBar
-                style={{backgroundColor:'#FFC8B4'}}
+                style={{backgroundColor:'#FF8888'}}
                     icon={<Icon type="left" style={{color:'white'}}/>}
                     onLeftClick={() => console.log('onLeftClick')}
                 >我要反馈</NavBar>

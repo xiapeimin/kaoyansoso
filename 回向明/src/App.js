@@ -36,7 +36,9 @@ import Publish from './container/Publish';
 import Forgetpwd from './container/Forgetpwd';
 import Findpwd from './container/Findpwd';
 import CreateNote from './container/CreateNote';
+import ChangeNote from './container/ChangeNote';
 
+import Sql from './components/spltest';
 
 export default class App extends Component{
     render(){
@@ -45,7 +47,9 @@ export default class App extends Component{
                 <Router>
                     <div>
                         <Switch>
+                            <Route path='/sql' component={Sql} />
                             <Route path='/' exact component={Login} />
+                            <Route path='/changeNote' component={ChangeNote} />
                             <Route path='/myschool' component={MySchool} />
                             <Route path='/mysave' component={MySave} />
                             <Route path='/help' component={Help} />
@@ -60,7 +64,7 @@ export default class App extends Component{
                             <Route path='/otherSchool' component={OtherSchool} />
                             <Route path='/proCheck' component={ProCheck} />
                             <Route path='/test' component={Test} />
-                            <Route path='/testList/:id' component={TestList} />                           
+                            <Route path='/testList' component={TestList} />                           
                             <Route path='/publishTopic' component={PublishTopic} />
                             <Route path='/myPlan' component={MyPlan} />
                             <Route path='/words' component={Words} />
@@ -69,17 +73,17 @@ export default class App extends Component{
                             <Route path='/schoolDetails' component={SchoolDetails} />
                             <Route path='/note' component={Note} />
                             <Route path='/checkSchool' component={CheckSchool} />
-                            <Route path='/professional/:id' component={Professional} />
+                            <Route path='/professional' component={Professional} />
                             <Route path='/checkPro' component={CheckPro} />
                             <Route path='/tools' component={Tools} />
                             <Route path='/wordlist' component={WordList} />
-                            <Route path='/wordlist1/:id' component={WordList1} />
-                            <Route path='/vplay/:id' component={Vplay} />
+                            <Route path='/wordlist1' component={WordList1} />
+                            <Route path='/vplay' component={Vplay} />
                             <Route path='/searchInfo' component={SearchInfo} />
                             <Route path='/sear' component={Resource} />
                             <Route path='/register' component={Register}/>
-                            <Route path='/carousel/:id' component={Carousel} />
-                            <Route path='/remFire/:id' component={RemFire}/>
+                            <Route path='/carousel' component={Carousel} />
+                            <Route path='/remFire' component={RemFire}/>
                         </Switch>
 
                     </div>

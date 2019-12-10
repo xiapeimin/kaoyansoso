@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {BrowserRouter as Link} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import {NavBar, Icon } from 'antd-mobile';
 import vedio0 from '../imgs/vedio0.mp4';
 import vedio1 from '../imgs/vedio1.mp4';
@@ -9,6 +9,7 @@ export default class Resource extends Component {
         super();
         this.state={
             type:'',
+            uid:0,
             todo:[],
             data:[1], //data里面放视频路径 name为视频标题  后台获取
             name:[]
@@ -17,9 +18,13 @@ export default class Resource extends Component {
 
     componentDidMount(){
         var str = this.props.location.search; //使用url解析参数
-        var type = str.split('=')[1];
+        var uid = str.split('&')[0].split('=')[1];
+        var type = str.split('&')[1].split('=')[1];
         console.log(type);
-
+        this.setState({
+            type:type,
+            uid:uid
+        })
         if(type=='share'){
             this.setState({
                 type:type,
@@ -32,7 +37,7 @@ export default class Resource extends Component {
                    </Link>
                   <span style={{color:'white'}}>经验分享</span>           
                 </NavBar>
-                <img style={{position:"absolute",width:'100%',height:'600vw',opacity:'0.5'}} src={require('../imgs/pen.jpg')}/>
+                <img style={{position:"absolute",width:'100%',height:'600vw',opacity:'0.2'}} src={require('../imgs/pen.jpg')}/>
                 <div style={{fontSize:'5vw',width:'80%',left:'10%',
                 position:'relative',textIndent:'2em',top:'5vw'}}>
                 本人本科是双非一本，19年考研很幸运能够一战上岸，顺利考取某211高校。
@@ -104,7 +109,7 @@ export default class Resource extends Component {
                    </Link>
                   <span style={{color:'white'}}>考研文本资料</span>           
                 </NavBar>
-                <img style={{position:"absolute",width:'100%',height:'250vw',opacity:'0.3'}} src={require('../imgs/jingyan.jpg')}/>
+                <img style={{position:"absolute",width:'100%',height:'250vw',opacity:'0.2'}} src={require('../imgs/jingyan.jpg')}/>
                 <div style={{fontSize:'5vw',backgroundImage:'../imgs/music.jpg',width:'80%',left:'10%',
                 position:'relative',textIndent:'2em',top:'5vw'}}>
                 如何准备考研资料？2021跨考教育学研究生，现在开始复习，问考研的学姐学长们需要考的科目有哪些？去哪儿买旧教材？
@@ -153,7 +158,7 @@ export default class Resource extends Component {
                    </Link>
                   <span style={{color:'white'}}>音视频</span>           
                 </NavBar>
-                <img style={{position:"absolute",width:'100%',height:'180vw',opacity:'0.3'}} src={require('../imgs/music.jpg')}/>
+                <img style={{position:"absolute",width:'100%',height:'180vw',opacity:'0.2'}} src={require('../imgs/music.jpg')}/>
                 <div style={{width:'100%',background:'#fff',paddingTop:'10vw'}}>
                     {
                         this.state.data.map((item,index)=>(
@@ -192,7 +197,7 @@ export default class Resource extends Component {
                    </Link>
                   <span style={{color:'white'}}>老梁考研汇</span>           
                 </NavBar>
-                <img style={{position:"absolute",width:'100%',height:'300vw',opacity:'0.3'}} src={require('../imgs/laoliang.jpg')}/>
+                <img style={{position:"absolute",width:'100%',height:'300vw',opacity:'0.2'}} src={require('../imgs/laoliang.jpg')}/>
                 <div style={{fontSize:'5vw',backgroundImage:'../imgs/music.jpg',width:'80%',left:'10%',
                 position:'relative',textIndent:'2em',top:'5vw'}}>
                 其实你问考研有什么好处，改变大不大，这谁能回答？
@@ -229,7 +234,7 @@ export default class Resource extends Component {
                    </Link>
                   <span style={{color:'white'}}>雪峰说考研</span>           
                 </NavBar>
-                <img style={{position:"absolute",width:'100%',height:'300vw',opacity:'0.3'}} src={require('../imgs/xuefeng.jpg')}/>
+                <img style={{position:"absolute",width:'100%',height:'300vw',opacity:'0.2'}} src={require('../imgs/xuefeng.jpg')}/>
                 <div style={{fontSize:'5vw',backgroundImage:'../imgs/music.jpg',width:'80%',left:'10%',
                 position:'relative',textIndent:'2em',top:'5vw'}}>
                 张雪峰深情演讲：大学生为什么要努力考研看完之后默默努力
@@ -255,9 +260,9 @@ export default class Resource extends Component {
     }
 
     render() {
+        var uid = this.state.uid;
         return (
             <div className='testbox'>
-            
                 <div>
                     {
                         this.state.todo.map(
