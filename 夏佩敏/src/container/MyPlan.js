@@ -7,19 +7,21 @@ export default class MyPlan extends Component{
     constructor(){
         super();
         this.state = {
-            uid:0
+            //uid:0
         }
     }
     componentDidMount(){
-        var str = window.location.hash;
-        var uid = str.split('=')[1];
-        console.log(uid);
-        this.setState({
-            uid:uid
-        });
+        // var str = window.location.hash;
+        // var uid = str.split('=')[1];
+        // console.log(uid);
+        // this.setState({
+        //     uid:uid
+        // });
     }
     render(){
-        var uid = this.state.uid;
+        var str = window.location.hash;
+        var uid = str.split('=')[1];
+        console.log(uid);    
         return (
             <div>
                 <NavBar
@@ -28,7 +30,7 @@ export default class MyPlan extends Component{
                 mode="light"
                 ><span style={{color:'#fff',fontSize:'21px'}}>我的计划</span></NavBar>
                 <div style={{height:'10px'}}></div>
-                <Todolist />
+                <Todolist uid={`${uid}`} />
             </div>       
         )
     }
