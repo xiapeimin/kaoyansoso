@@ -123,7 +123,7 @@ export default class Resource extends Component {
                    </Link>
                   <span style={{color:'white'}}>考研文本资料</span>           
                 </NavBar>
-                <img style={{position:"absolute",width:'100%',height:'250vw',opacity:'0.2'}} src={require('../imgs/jingyan.jpg')}/>
+                <img style={{position:"absolute",width:'100%',height:'450vw',opacity:'0.2'}} src={require('../imgs/jingyan.jpg')}/>
                 <div style={{fontSize:'6vw',backgroundImage:'../imgs/music.jpg',width:'90%',left:'5%',
                 position:'relative',textIndent:'2em',top:'5vw'}}>
                 
@@ -136,34 +136,38 @@ export default class Resource extends Component {
                         <span>{this.state.view}</span>
                     </div>
                 <div style={{textIndent:'2em'}}>2021跨考教育学研究生，现在开始复习，问考研的学姐学长们需要考的科目有哪些？去哪儿买旧教材？</div> 
+                <br/>
                 <div style={{textIndent:'2em'}}>你要考的科目，除了政治还有英语这种公共课。如果要知道自己考的专业课科目，你要先确定好自己的专业院校，然后再去该院校的研究生院网上找到你专业的参考书目。</div>
+                <br/>
                 <div style={{textIndent:'2em'}}>
                 这样才能确定你要考的科目有哪些！
 
 所以关于如何准备考研资料？不要一味的只会问学长学姐经验，自己也要多去查查信息。
 
                 </div>
+                <br/>
 
                 买旧教材的渠道有：
-    <br/><br/>
+    <br/>
     <div style={{textIndent:'2em'}}>1.如何准备考研资料——某鱼：出书的人比较多，但是一定要小心！一定要书收到了再确认付款，不要用微信支付宝去付款，得走闲鱼。我舍友在闲鱼买书就被骗了。</div>
-    <div style={{textIndent:'2em'}}>2.如何准备考研资料——微博：这上面出的学长学姐也比较多，你可以直接在考研的话题/超话里面找。</div>
-    
-    你现在跨考21，最需要的就是把专业课和公共课的基础补上去。
+    <br/>
+    <div style={{textIndent:'2em'}}>2.如何准备考研资料——微博：这上面出的学长学姐也比较多，你可以直接在考研的话题/超话里面找。 你现在跨考21，最需要的就是把专业课和公共课的基础补上去。</div>
+    <br/>
     <div style={{textIndent:'2em'}}>
     专业课由于我不是教育学的，所以也不太知道教育学需要复习哪些书。但我是文科专业，所以我觉得复习思路应该都差不多。
-
+    <br/>
 1.先把基础的书，过一遍，整理个框架。对教育学的大概知识框架，有一个了解。
-
+<br/>
 2.知识点一定要用自己的话去复述！这样你才能去理解那些比较拗口的理论。
-
+<br/>
 3.英语大三上学期开始，可以先记考研词汇。真题其实不用太着急，先把词汇过一遍，对之后的真题练习很有帮助！
-
+<br/>
 因为大三上学期还是要上课的，所以词汇可以在早上、下午没课的时候去图书馆、自习室背~
-
+<br/>
 给自己规定时间、任务量：比如2小时背1个单元单词
-
-背单词可以用闪过英语《考研词汇闪过》，书中把考研大纲词汇按重要程度分成了必考词、基础词、偶考词、超纲词。你刚开始可以把书先过一遍，本来考研词汇就是需要每天都背诵，这样才不会遗忘。
+<br/>
+<br/>
+<div style={{textIndent:'2em'}}>背单词可以用闪过英语《考研词汇闪过》，书中把考研大纲词汇按重要程度分成了必考词、基础词、偶考词、超纲词。你刚开始可以把书先过一遍，本来考研词汇就是需要每天都背诵，这样才不会遗忘。</div>
     </div>
                 </div>
                     </div>
@@ -219,7 +223,7 @@ export default class Resource extends Component {
                    </Link>
                   <span style={{color:'white'}}>老梁考研汇</span>           
                 </NavBar>
-                <img style={{position:"absolute",width:'100%',height:'300vw',opacity:'0.2'}} src={require('../imgs/laoliang.jpg')}/>
+                <img style={{position:"absolute",width:'100%',height:'450vw',opacity:'0.2'}} src={require('../imgs/laoliang.jpg')}/>
                 <div style={{fontSize:'6vw',backgroundImage:'../imgs/music.jpg',width:'90%',left:'5%',
                 position:'relative',textIndent:'2em',top:'5vw'}}>
                     <div style={{fontWeight:'bold',fontSize:'8vw'}}>其实你问考研有什么好处，改变大不大，这谁能回答？</div>
@@ -230,21 +234,25 @@ export default class Resource extends Component {
                         <img src={require('../imgs/view.png')}/>
                         <span>{this.state.view}</span>
                     </div>
-                
                 <div style={{textIndent:'2em'}}>得具体问题具体分析，我的理解是那些需要考研读博的，是这个行业你已经进入到了一个极为成熟的阶段，如果你不驾驭那么多的知识，你根本无法在这行业里自由自在地畅游。</div>
+                <br/>
                 <div style={{textIndent:'2em'}}>
                 这个时候你要考研，比方说大学时候学理科的学生，数学系的，物理系的，他们这点本科的东西到科研单位什么都不是，这个时候就必须通过考研深造，然后才能进入更深层次的理论研究和实践，甚至有的工厂光是本科学历，都很难解决它高新技术研发问题，所以这个时候你需要考研。
                 </div>
+                <br/>
 
     <div style={{textIndent:'2em'}}>再比如说医生，医生光念本科的时间都比普通本科时间要长得多，因为它这个专业技术是高精尖的，而且医生这个行业发展已经很成熟了，可是对于一些方兴未艾的，刚刚兴起的新产业，你就千万别琢磨去考研。</div>
+    <br/>
     <div style={{textIndent:'2em'}}>有个朋友的孩子问我，说梁叔啊，我学新媒体的，想报考北大人大这边的专业，我说你算了吧，你问问北大人大那些老师知道什么是新媒体么？他们干过吗？就像我经常说一些专业老师，我说你们一天主持人都没干过，你教人当主持人算不算误人子弟？</div>
-
+    <br/>
     <div style={{textIndent:'2em'}}>
     新媒体的发展在中国就是最近这几年的事，它什么时候形成的理论研究甚至能反过来理论指导实践？学校自己都从来没研究明白这事，它能带出这样的研究生乃至博士生吗？所以如果你从事这样的行业，实践性很强的，那一定要在工作中去学会这些东西。如果你的老师都从来没经历过你工作中经历的，你能信他么？
     </div>
+    <br/>
     <div style={{textIndent:'2em'}}>
     都说求名师访高友，他得给你有用的东西，这行里你求的人访的友他们自己什么东西都还没有呢，最后只能给你一纸文凭，那跟骗你文凭，骗你钱有区别吗？
     </div>
+    <br/>
     <div style={{textIndent:'2em'}}>   
 所以成熟的行业需要高精尖的东西，考研是没问题的，但是方兴未艾的新产业就不要去了，在学校里耽误那些无用功也没必要。从小学初中高中大学算算自己念了多少年书？还回学校念？人生的光阴不要都泡到学校里，社会这所大学，对于我们每个人来说，同样用处很大。
     </div>
@@ -263,7 +271,7 @@ export default class Resource extends Component {
                    </Link>
                   <span style={{color:'white'}}>雪峰说考研</span>           
                 </NavBar>
-                <img style={{position:"absolute",width:'100%',height:'300vw',opacity:'0.2'}} src={require('../imgs/xuefeng.jpg')}/>
+                <img style={{position:"absolute",width:'100%',height:'500vw',opacity:'0.2'}} src={require('../imgs/xuefeng.jpg')}/>
                 <div style={{fontSize:'6vw',backgroundImage:'../imgs/music.jpg',width:'90%',left:'5%',
                 position:'relative',textIndent:'2em',top:'5vw'}}>
                 <div style={{fontWeight:'bold',fontSize:'8vw'}}>张雪峰深情演讲：大学生为什么要努力考研看完之后默默努力</div>
