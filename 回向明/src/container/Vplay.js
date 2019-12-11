@@ -16,12 +16,84 @@ export default class Vplay extends Component {
     constructor(){
         super();
         this.state={
-            // flag:1,
+            flag:1,
             text:'',
             fflag:'',
             flag2:0,
-            todo1:[], //...
-            todo2:[]
+            todo1:[], 
+            todo2:[],
+            id:0
+        }
+    }
+    good(){
+        var god=document.getElementById('good');
+        console.log(god.src);
+        god.src=zan1
+    }
+    changeColor = () => {
+        this.setState({
+            flag:1
+        })
+        if(this.state.id==1){
+            this.setState({
+                text:[<div style={{fontSize:'5vw'}}>上知天文,下知地理的老梁为你解答是否该考研</div>]
+            })
+        }else if(this.state.id==2){
+            this.setState({
+                text:[<div style={{fontSize:'5vw'}}>张雪峰给你讲考研</div>]
+            })
+        }else if(this.state.id==3){
+            this.setState({
+                text:[<div style={{fontSize:'5vw'}}>爆笑张雪峰</div>]
+            })
+        }else if(this.state.id==4){
+            this.setState({
+                text:[<div style={{fontSize:'5vw'}}>张雪峰讲讲跨专业</div>]
+            })
+        }
+    }
+    changeColor2 = () => {
+        this.setState({
+            flag:2
+        })
+        if(this.state.id==1){
+            this.setState({
+                text:[<div style={{fontSize:'5vw'}}>很多人迷茫是考研还是就业，那么今天老梁来跟你说一说</div>]
+            })
+        }else if(this.state.id==2){
+            this.setState({
+                text:[<div style={{fontSize:'5vw'}}>张雪峰告诉你考研的重要性</div>]
+            })
+        }else if(this.state.id==3){
+            this.setState({
+                text:[<div style={{fontSize:'5vw'}}>张雪峰爆笑集锦</div>]
+            })
+        }else if(this.state.id==4){
+            this.setState({
+                text:[<div style={{fontSize:'5vw'}}>跨专业考研，需要注意些什么</div>]
+            })
+        }
+    }
+    changeColor3 = () => {
+        this.setState({
+            flag:3
+        })
+        if(this.state.id==1){
+            this.setState({
+                text:[<div style={{fontSize:'5vw'}}>梁宏达，1972年2月20日出生在黑龙江省绥化市兰西县，毕业于黑龙江大学新闻专业。中国媒体评论人、出版人。</div>]
+            })
+        }else if(this.state.id==2){
+            this.setState({
+                text:[<div style={{fontSize:'5vw'}}>张雪峰，1984年出生于齐齐哈尔，毕业于郑州大学。 研途考研VIP名师。</div>]
+            })
+        }else if(this.state.id==3){
+            this.setState({
+                text:[<div style={{fontSize:'5vw'}}>张雪峰，1984年出生于齐齐哈尔，毕业于郑州大学。 研途考研VIP名师。</div>]
+            })
+        }else if(this.state.id==4){
+            this.setState({
+                text:[<div style={{fontSize:'5vw'}}>张雪峰，1984年出生于齐齐哈尔，毕业于郑州大学。 研途考研VIP名师。</div>]
+            })
         }
     }
     componentDidMount(){
@@ -30,6 +102,7 @@ export default class Vplay extends Component {
         var fflag = str.split('&')[1].split('=')[1];
         var id = str.split('&')[2].split('=')[1];
         this.setState({
+            id:id,
             uid:uid,
             fflag:fflag
         });
@@ -70,77 +143,7 @@ export default class Vplay extends Component {
         }
 
     }
-    good(){
-        var god=document.getElementById('good');
-        console.log(god.src);
-        god.src=zan1
-    }
-    changeColor = () => {
-        this.setState({
-            flag:1
-        })
-        if(this.state.id==1){
-            this.setState({
-                text:[<div style={{fontSize:'5vw'}}>上知天文,下知地理的老梁为你解答是否该考研</div>]
-            })
-        }else if(this.state.id==2){
-            this.setState({
-                text:[<div style={{fontSize:'5vw'}}>张雪峰给你讲考研</div>]
-            })
-        }else if(this.state.id==3){
-            this.setState({
-                text:[<div style={{fontSize:'5vw'}}>爆笑张雪峰</div>]
-            })
-        }else if(this.state.id==4){
-            this.setState({
-                text:[<div style={{fontSize:'5vw'}}>张雪峰讲讲跨专业</div>]
-            })
-        }
-    }
-    changeColor2 = () => {
-        this.setState({
-            flag:2
-        })
-        if(this.state.id==1){
-            this.setState({
-                text:[<div style={{fontSize:'5vw'}}>'是考研还是就业'</div>]
-            })
-        }else if(this.state.id==2){
-            this.setState({
-                text:[<div style={{fontSize:'5vw'}}>张雪峰跟你说说考研的重要性</div>]
-            })
-        }else if(this.state.id==3){
-            this.setState({
-                text:[<div style={{fontSize:'5vw'}}>张雪峰爆笑集锦</div>]
-            })
-        }else if(this.state.id==4){
-            this.setState({
-                text:[<div style={{fontSize:'5vw'}}>跨专业考研，需要注意些什么</div>]
-            })
-        }
-    }
-    changeColor3 = () => {
-        this.setState({
-            flag:3
-        })
-        if(this.state.id==1){
-            this.setState({
-                text:[<div style={{fontSize:'5vw'}}>梁宏达，1972年2月20日出生在黑龙江省绥化市兰西县，毕业于黑龙江大学新闻专业。中国媒体评论人、出版人。</div>]
-            })
-        }else if(this.state.id==2){
-            this.setState({
-                text:[<div style={{fontSize:'5vw'}}>张雪峰，1984年出生于齐齐哈尔，毕业于郑州大学。 研途考研VIP名师。</div>]
-            })
-        }else if(this.state.id==3){
-            this.setState({
-                text:[<div style={{fontSize:'5vw'}}>张雪峰，1984年出生于齐齐哈尔，毕业于郑州大学。 研途考研VIP名师。</div>]
-            })
-        }else if(this.state.id==4){
-            this.setState({
-                text:[<div style={{fontSize:'5vw'}}>张雪峰，1984年出生于齐齐哈尔，毕业于郑州大学。 研途考研VIP名师。</div>]
-            })
-        }
-    }
+   
 
     //跳转
     goout = () => {
