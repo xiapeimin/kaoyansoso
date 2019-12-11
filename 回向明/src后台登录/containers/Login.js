@@ -7,8 +7,8 @@ export default class Login extends Component{
         this.state = {
             touchState: false,
             data:[],
-            uid:'',
-            pwd:'',
+            id:'',
+            passwd:'',
             linksrc:'',
             storage:window.localStorage,
             flag:0
@@ -31,8 +31,8 @@ export default class Login extends Component{
         var jsonObj=JSON.parse(json);
         console.log(jsonObj);
         this.setState({
-            uid:jsonObj[0],
-            pwd:jsonObj[1]
+            id:jsonObj[0],
+            passwd:jsonObj[1]
         });
     }
     render(){
@@ -45,11 +45,11 @@ export default class Login extends Component{
                     
                     <div className='user_xpm'>
                         <div>用户名：</div> 
-                        <input type='text' value={this.state.uid} onChange={this.getuid} /> 
+                        <input type='text' value={this.state.id} onChange={this.getid} /> 
                     </div>
                     <div className='user_xpm'>
                         <div>密码：</div>
-                        <input type='password' value={this.state.pwd} onChange={this.getpwd}/>                      
+                        <input type='password' value={this.state.passwd} onChange={this.getpwd}/>                      
                     </div>
 
                     <div className='dl_xpm' onClick={this.goHome} style={{color:'#fff'}}>登录</div>
@@ -59,14 +59,14 @@ export default class Login extends Component{
             </div>       
         )
     }
-    getuid = (e) => {
+    getid = (e) => {
         this.setState({
-            uid:e.target.value
+            id:e.target.value
         })
     }
     getpwd = (e) => {
         this.setState({
-            pwd:e.target.value
+            passwd:e.target.value
         })
         
     }
@@ -75,9 +75,9 @@ export default class Login extends Component{
         var storage = this.state.storage;
         var json=storage.getItem("appsoso"); 
         var jsonObj=JSON.parse(json);
-        if(this.state.uid != '' && this.state.pwd != ''){
-            console.log(this.state.uid,this.state.pwd);
-            fetch(`http://xpm.xpmwqhzygy.top/user`,{
+        if(this.state.id != '' && this.state.passwd != ''){
+            console.log(this.state.id,this.state.passwd);
+            fetch(`https://xiangming.yflzy.cn/admin`,{
             method: 'GET'
             })
             .then((res)=>res.json())
@@ -91,12 +91,12 @@ export default class Login extends Component{
                 var data=this.state.data;
                 console.log(data,'llllllllllllll');
                 for(var i=0;i < data.length;i++){
-                    if((data[i].phone == this.state.uid || data[i].email == this.state.uid) && data[i].pwd == this.state.pwd){
-                        window.location.hash=`/home?uid=${data[i].uid}`;
-                        console.log('用户id',data[i].uid);
+                    if((data[i].phone == this.state.id || data[i].email == this.state.id) && data[i].passwd == this.state.passwd){
+                        window.location.hash=`/home?id=${data[i].id}`;
+                        console.log('用户id',data[i].id);
                         i = data.length;
                         console.log(i);
-                    }else if(i == data.length-1 && ((data[i].phone != this.state.uid || data[i].email != this.state.uid) || data[i].pwd != this.state.pwd)){
+                    }else if(i == data.length-1 && ((data[i].phone != this.state.id || data[i].email != this.state.id) || data[i].passwd != this.state.passwd)){
                         console.log('用户名或密码错误');
                         this.setState({
                             flag:1
