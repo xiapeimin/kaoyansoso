@@ -12,7 +12,12 @@ export default class Resource extends Component {
             uid:0,
             todo:[],
             data:[1], //data里面放视频路径 name为视频标题  后台获取
-            name:[]
+            name:[],
+            id:0,           
+            title:'',
+            view:'109',
+            time:'2019-11-21',
+            uid:0
         }
     }
 
@@ -38,18 +43,27 @@ export default class Resource extends Component {
                   <span style={{color:'white'}}>经验分享</span>           
                 </NavBar>
                 <img style={{position:"absolute",width:'100%',height:'600vw',opacity:'0.2'}} src={require('../imgs/pen.jpg')}/>
-                <div style={{fontSize:'5vw',width:'80%',left:'10%',
+                <div style={{fontSize:'6vw',width:'90%',left:'5%',
                 position:'relative',textIndent:'2em',top:'5vw'}}>
-                本人本科是双非一本，19年考研很幸运能够一战上岸，顺利考取某211高校。
+                    <div style={{fontWeight:'bold',fontSize:'8vw'}}>考研经验分享</div>
                 <br/>
+                <div className='zxtit1'>
+                        <img src={require('../imgs/time.png')}/>
+                        <span>{this.state.time}</span>
+                        <img src={require('../imgs/view.png')}/>
+                        <span>{this.state.view}</span>
+                    </div>
+                本人本科是双非一本，19年考研很幸运能够一战上岸，顺利考取某211高校。
+                <br/><br/>
                 <div style={{textIndent:'2em'}}>很荣幸有机会分享我的考研经历，考虑到每个人的情况不尽相同，所以接下来我分享的经验都是仅供大家参考，
                 切不可生搬硬套，我只能保证下面这些话都是我的切身感受、亲身经历。</div>
+                <br/>
                 <div style={{textIndent:'2em'}}>
                 众所周知，考研是场持久战。我从大三下学期开学3月份开始真正进入准备考研的学习状态到前不久3月底被正式录取，
                 历时整整一年。这一年中绝大部分时间是在枯燥的学习和无尽的自我怀疑中度过的，这是最考验毅力的一年，也是最容易成功的一年，
                 前提是有科学合理的学习方法和坚定的信念。我简单说说我的学习经历。
                 </div>
-    
+                <br/>
     3月初至6月底：
     <br/>
     <div style={{textIndent:'2em'}}>这是打基础的四个月，切不可白白浪费。</div>
@@ -84,7 +98,7 @@ export default class Resource extends Component {
     这两个月我认为是我专业课的成型期，每天保证足够的背诵记忆时间，确保知识点不遗漏。</div>
     
     11月初至考试前夕：
-    <br/>
+    <br/><br/>
     <div style={{textIndent:'2em'}}>数学进入最后的冲刺阶段，回头看真题中的错题，将最近5年的真题再做两遍，把握出题规律，可以选择性的放弃一些太难的题，保证能得的分一分不丢。有时间做一做汤老师的最后八套卷，有助于对重点知识点的复习把握；还有李林老师的终极预测四套卷也很有价值;在学不进去的时候可以就看就看一些考研名师的微博或者微信公众号，他们都会讲解一些重要的知识点或者多年未考的知识点，有一定的价值;
     
     政治此阶段要开始背诵主观题了，要整题整题的背，强烈推荐肖秀荣老师的最后八套卷和四套卷，四套卷最最重要，宁可其他的都不背，也要把四套卷的大题熟记于心;
@@ -110,10 +124,18 @@ export default class Resource extends Component {
                   <span style={{color:'white'}}>考研文本资料</span>           
                 </NavBar>
                 <img style={{position:"absolute",width:'100%',height:'250vw',opacity:'0.2'}} src={require('../imgs/jingyan.jpg')}/>
-                <div style={{fontSize:'5vw',backgroundImage:'../imgs/music.jpg',width:'80%',left:'10%',
+                <div style={{fontSize:'6vw',backgroundImage:'../imgs/music.jpg',width:'90%',left:'5%',
                 position:'relative',textIndent:'2em',top:'5vw'}}>
-                如何准备考研资料？2021跨考教育学研究生，现在开始复习，问考研的学姐学长们需要考的科目有哪些？去哪儿买旧教材？
+                
+                <div style={{fontWeight:'bold',fontSize:'8vw'}}>如何准备考研资料？</div>
                 <br/>
+                <div className='zxtit1'>
+                        <img src={require('../imgs/time.png')}/>
+                        <span>{this.state.time}</span>
+                        <img src={require('../imgs/view.png')}/>
+                        <span>{this.state.view}</span>
+                    </div>
+                <div style={{textIndent:'2em'}}>2021跨考教育学研究生，现在开始复习，问考研的学姐学长们需要考的科目有哪些？去哪儿买旧教材？</div> 
                 <div style={{textIndent:'2em'}}>你要考的科目，除了政治还有英语这种公共课。如果要知道自己考的专业课科目，你要先确定好自己的专业院校，然后再去该院校的研究生院网上找到你专业的参考书目。</div>
                 <div style={{textIndent:'2em'}}>
                 这样才能确定你要考的科目有哪些！
@@ -123,7 +145,7 @@ export default class Resource extends Component {
                 </div>
 
                 买旧教材的渠道有：
-    <br/>
+    <br/><br/>
     <div style={{textIndent:'2em'}}>1.如何准备考研资料——某鱼：出书的人比较多，但是一定要小心！一定要书收到了再确认付款，不要用微信支付宝去付款，得走闲鱼。我舍友在闲鱼买书就被骗了。</div>
     <div style={{textIndent:'2em'}}>2.如何准备考研资料——微博：这上面出的学长学姐也比较多，你可以直接在考研的话题/超话里面找。</div>
     
@@ -198,10 +220,17 @@ export default class Resource extends Component {
                   <span style={{color:'white'}}>老梁考研汇</span>           
                 </NavBar>
                 <img style={{position:"absolute",width:'100%',height:'300vw',opacity:'0.2'}} src={require('../imgs/laoliang.jpg')}/>
-                <div style={{fontSize:'5vw',backgroundImage:'../imgs/music.jpg',width:'80%',left:'10%',
+                <div style={{fontSize:'6vw',backgroundImage:'../imgs/music.jpg',width:'90%',left:'5%',
                 position:'relative',textIndent:'2em',top:'5vw'}}>
-                其实你问考研有什么好处，改变大不大，这谁能回答？
+                    <div style={{fontWeight:'bold',fontSize:'8vw'}}>其实你问考研有什么好处，改变大不大，这谁能回答？</div>
                 <br/>
+                <div className='zxtit1'>
+                        <img src={require('../imgs/time.png')}/>
+                        <span>{this.state.time}</span>
+                        <img src={require('../imgs/view.png')}/>
+                        <span>{this.state.view}</span>
+                    </div>
+                
                 <div style={{textIndent:'2em'}}>得具体问题具体分析，我的理解是那些需要考研读博的，是这个行业你已经进入到了一个极为成熟的阶段，如果你不驾驭那么多的知识，你根本无法在这行业里自由自在地畅游。</div>
                 <div style={{textIndent:'2em'}}>
                 这个时候你要考研，比方说大学时候学理科的学生，数学系的，物理系的，他们这点本科的东西到科研单位什么都不是，这个时候就必须通过考研深造，然后才能进入更深层次的理论研究和实践，甚至有的工厂光是本科学历，都很难解决它高新技术研发问题，所以这个时候你需要考研。
@@ -235,10 +264,16 @@ export default class Resource extends Component {
                   <span style={{color:'white'}}>雪峰说考研</span>           
                 </NavBar>
                 <img style={{position:"absolute",width:'100%',height:'300vw',opacity:'0.2'}} src={require('../imgs/xuefeng.jpg')}/>
-                <div style={{fontSize:'5vw',backgroundImage:'../imgs/music.jpg',width:'80%',left:'10%',
+                <div style={{fontSize:'6vw',backgroundImage:'../imgs/music.jpg',width:'90%',left:'5%',
                 position:'relative',textIndent:'2em',top:'5vw'}}>
-                张雪峰深情演讲：大学生为什么要努力考研看完之后默默努力
+                <div style={{fontWeight:'bold',fontSize:'8vw'}}>张雪峰深情演讲：大学生为什么要努力考研看完之后默默努力</div>
                 <br/>
+                <div className='zxtit1'>
+                        <img src={require('../imgs/time.png')}/>
+                        <span>{this.state.time}</span>
+                        <img src={require('../imgs/view.png')}/>
+                        <span>{this.state.view}</span>
+                    </div>
                 <div style={{textIndent:'2em'}}>中国存在一个争论不休的话题，很多人都在争论，学历到底重不重要？很多在表面上说学历不重要的人，心底却在默默努力。这个世界什么最重要？当然是能力，可是怎么才能展示出你的能力呢？这就要通过学历去打通自己展示能力的道路。学历到底重不重要？在我们每个人心中自有定论。很多人在想的是自己的能力十分的优秀，但是为什么还要考研呢？今天小编给大家讲一下张雪峰的一些演讲。</div>
                 <div style={{textIndent:'2em'}}>
                 张雪峰因为自己幽默的演讲风格在网上大火，成为了一名教育界的网红。因为他的大火，一期综艺节目也请到了张雪峰。当时同时上节目的嘉宾问张雪峰考研真的十分的重要吗？张雪峰开始说出自己的想法，不过当时台上的很多嘉宾也是不同意这种说法，而且当时的辩论张雪峰遭到围攻。但是节目播出以后，张雪峰的观点得到了绝大数网友的支持。
