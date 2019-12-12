@@ -19,10 +19,10 @@
 }
 .lobox_xpm{
     position: absolute;
-    width: 20%;
-    height: 28%;
-    top: 30%;
-    left: 37%;
+    width: 30%;
+    height: 41%;
+    top: 25%;
+    left: 32%;
     background: #fff;
     padding-left: 3%;
     padding-right: 3%;
@@ -35,7 +35,7 @@
     width: 30%;
     height: 10%;
     position: absolute;
-    top: 20%;
+    top: 15%;
     left: 35%;
     font-size: 28px;
     color: #fff;
@@ -45,12 +45,14 @@
     width: 15%;
 }
 .user_xpm{
-    padding: 1%;
-    height: 15%;
+    padding-left: 5%;
+    padding-right: 5%;
+    height: 10%;
     margin-bottom: 6%;
 }
 .user_xpm div{
-    width: 22%;
+    width: 20%;
+    margin-left: 10%;
     height: 100%;
     float: left;
     display: flex;
@@ -58,7 +60,7 @@
     align-items: center;        /* 垂直方向 居中*/
 }
 .user_xpm input{
-    width: 76%;
+    width: 60%;
     height: 100%;
     border: none;
     padding-left: 2%;
@@ -69,7 +71,7 @@
     margin-left: 35%;
     background: rgb(98, 169, 228);
     border-radius: 5px;
-    height: 20%;
+    height: 10%;
     color: #fff;
     display: flex;
     align-items: center;        /* 垂直方向 居中*/
