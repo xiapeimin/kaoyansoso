@@ -17,7 +17,7 @@ export default class User extends Component{
         }
     }
     componentDidMount(){
-        fetch(`http://xpm.xpmwqhzygy.top/user`,{
+        fetch(`https://xiangming.yflzy.cn/admin`,{
             method: 'GET'
             })
             .then((res)=>res.json())
@@ -57,20 +57,20 @@ export default class User extends Component{
             <table border="1">
 
                 <tr>
-                    <th style={{width:'220px',height:'50px'}}>头像</th>
-                    <th style={{width:'220px',height:'50px'}}>用户名</th>
+                    <th style={{width:'220px',height:'50px'}}>管理员姓名</th>
                     <th style={{width:'220px',height:'50px'}}>手机号</th>
                     <th style={{width:'220px',height:'50px'}}>邮箱</th>
+                    <th style={{width:'220px',height:'50px'}}>职位</th>
                     <th style={{width:'220px',height:'50px'}}>操作</th>
                 </tr>
 
                 {
                     this.state.data.map((item,index)=>(
                         <tr>
-                            <td style={{width:'220px',height:'50px',textAlign:'center'}}><img src={require('../images/loginusr.png')} /></td>
-                            <td style={{width:'220px',height:'50px',textAlign:'center'}}>用户名</td>
-                            <td style={{width:'220px',height:'50px',textAlign:'center'}} id={`p${index}`}>{item.phone}</td>
-                            <td style={{width:'220px',height:'50px',textAlign:'center'}}>{item.email}</td>
+                            <td style={{width:'220px',height:'50px',textAlign:'center'}}>{item.managername}</td>
+                            <td style={{width:'220px',height:'50px',textAlign:'center'}}>{item.phone}</td>
+                            <td style={{width:'220px',height:'50px',textAlign:'center'}} id={`p${index}`}>{item.email}</td>
+                            <td style={{width:'220px',height:'50px',textAlign:'center'}}>开发</td>
                             <td style={{width:'220px',height:'50px',textAlign:'center'}}><span onClick={this.delete}><button id={`del${index}`} style={{backgroundColor:'red',color:'black'}}>删除</button></span></td>
                         </tr>
                     ))
