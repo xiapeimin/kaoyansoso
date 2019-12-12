@@ -10,33 +10,41 @@ export default class Test extends Component{
         this.state={
             id:1,
             flag:1,
-            touchState: false
+            touchState: false,
+            uid:0
         }
     }
-    componentDidMount(){  //跳转方法不好 用search 或者 context传值
+    componentDidMount(){  
         var str = this.props.location.search;
         var arr = str.split('&');
         var arr1 = arr[0];
         var arr2 = arr[1];
+        var arr3 = arr[2];
         var id = arr1.split('=')[1];
         var flag = arr2.split('=')[1];
+        var uid = arr3.split('=')[1];
         this.setState({
             id:id,
             flag:flag,
+            uid:uid
         })
     }
     
     render(){
         var flag = this.state.flag;
         var id = this.state.id;
+        var uid = this.state.uid;
         return (
             <div>
                 <NavBar
-                style={{background:'#b17ccc',color:'#fff'}} 
-                rightContent={<img onClick={this.changgesrc} src={this.state.touchState ? imgsrc2 : imgsrc1} />}
-                leftContent={<Link to={`/testList/${flag}`}><img src={require('../imgs/zjt.png')} /></Link>}
+                style={{background:'#66cccc',color:'#fff'}} 
+                rightContent={<div><img onClick={this.changgesrc} src={this.state.touchState ? imgsrc2 : imgsrc1} /><img src={require('../imgs/xiazaitk.png')} style={{marginLeft:'3px'}} onClick={this.downLoad} /></div>}
+                leftContent={<Link to={`/testList?uid=${uid}&test=${flag}`}><img src={require('../imgs/zjt.png')} /></Link>}
                 mode="light"
                 ><span style={{color:'#fff',fontSize:'22px'}}>历年真题</span></NavBar>
+
+                <img src={require('../imgs/tikuxxx.png')} style={{width:'100%'}} />
+                <img src={require('../imgs/tikuxxx2.png')} style={{width:'100%'}} />
 
             </div>       
         )
@@ -44,6 +52,9 @@ export default class Test extends Component{
     changgesrc = () => {
         console.log('imglll');
         this.setState({ touchState: !this.state.touchState });
+    }
+    downLoad = () => {
+        console.log('下载');
     }
     
         

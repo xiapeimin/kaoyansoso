@@ -4,18 +4,20 @@ import {SearchBar, NavBar, Icon ,Flex} from 'antd-mobile';
 
 export default class SearchInfo extends Component {
     render() {
+        var str = this.props.location.search;
+        var uid = str.split('=')[1];
         return (
             <div className='testbox'>
                 <NavBar
                 style={{background:'#66cccc',color:'#fff'}} 
-                leftContent={<Link to={'/appTab'}><img src={require('../imgs/zjt.png')} /></Link>}
+                leftContent={<Link to={`/appTab?uid=${uid}&type=home`}><img src={require('../imgs/zjt.png')} /></Link>}
                 mode="light"
                 ><span style={{color:'#fff',fontSize:'22px'}}>找资源</span></NavBar>
                 
-                <Link to={'/search'}><SearchBar value={'这里啥都有~'} placeholder="Search" cancelText={'搜索'} /></Link>
+                <Link to={`/search?uid=${uid}`}><SearchBar value={'这里啥都有~'} placeholder="Search" cancelText={'搜索'} /></Link>
                 
                     <Flex.Item style={{position:'relative',height:'20vw',width:'100%',top:'10vw'}}>
-                        <Link to='/sear/?type=mus'>
+                        <Link to={`/sear/?uid=${uid}&type=mus`}>
                         <Flex.Item style={{position:"absolute",width:'3vw',height:'3vw',top:'20%',
                         borderRadius:'50%',left:'1%',backgroundColor:'blue'}}></Flex.Item>
                     <img style={{position:"absolute",width:'14vw',height:'14vw',borderRadius:'50%',left:'5%'}} src={require('../imgs/music.jpg')}/>
@@ -30,7 +32,7 @@ export default class SearchInfo extends Component {
                     </Flex.Item>
             
                     <Flex.Item style={{position:'relative',height:'20vw',width:'100%',top:'15vw'}}>
-                    <Link to='/sear/?type=text'>
+                    <Link to={`/sear/?uid=${uid}&type=text`}>
                         <Flex.Item style={{position:"absolute",width:'3vw',height:'3vw',top:'20%',
                         borderRadius:'50%',left:'1%',backgroundColor:'blue'}}></Flex.Item>
                     <img style={{position:"absolute",width:'14vw',height:'14vw',borderRadius:'50%',left:'5%'}} src={require('../imgs/pen.jpg')}/>
@@ -44,7 +46,7 @@ export default class SearchInfo extends Component {
                     </Flex.Item>
                 
                     <Flex.Item style={{position:'relative',height:'20vw',width:'100%',top:'20vw'}}>
-                    <Link to='/sear/?type=share'>
+                    <Link to={`/sear/?uid=${uid}&type=share`}>
                         <Flex.Item style={{position:"absolute",width:'3vw',height:'3vw',top:'20%',
                         borderRadius:'50%',left:'1%',backgroundColor:'blue'}}></Flex.Item>
                     <img style={{position:"absolute",width:'14vw',height:'14vw',borderRadius:'50%',left:'5%'}} src={require('../imgs/jingyan.jpg')}/>
