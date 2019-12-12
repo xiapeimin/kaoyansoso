@@ -1,29 +1,56 @@
 import React,{Component} from 'react';
+
+
 export default class User extends Component{
-    delete1(){
-        var del=document.getElementById('del1');
-        del.innerHTML='';
+    constructor(){
+        super();
+        this.state={
+            username:'',
+            phone:'',
+            email:'',
+            head:'',
+            data:[{
+                username:'',
+                phone:'',
+                email:''
+            }]
+        }
     }
-    delete2(){
-        var del=document.getElementById('del2');
-        del.innerHTML='';
+    componentDidMount(){
+        fetch(`http://xpm.xpmwqhzygy.top/user`,{
+            method: 'GET'
+            })
+            .then((res)=>res.json())
+            .then((res)=>{
+                console.log(res.data);
+                this.setState({
+                    data:res.data
+                });    
+            });
     }
-    delete3(){
-        var del=document.getElementById('del3');
+
+
+    delete = (e) => {
+        console.log('删除',e.target.id);
+        var id = e.target.id.slice(3);
+        var pid = 'p'+id;
+        var phone = document.getElementById(pid).innerHTML;
+        //后台数据库删除      
+        /*
+        fetch(`http://xpm.xpmwqhzygy.top/deluser/${phone}`,{
+                method:"DELETE",
+                headers:{'Content-Type': 'application/x-www-form-urlencoded'}
+            })
+            .then(res =>res.json())
+            .then(data =>{
+                console.log(data);
+            });*/
+
+        var del = document.getElementById(e.target.id).parentElement.parentElement.parentElement;
         del.innerHTML='';
+        
     }
-    delete4(){
-        var del=document.getElementById('del4');
-        del.innerHTML='';
-    }
-    delete5(){
-        var del=document.getElementById('del5');
-        del.innerHTML='';
-    }
-    delete6(){
-        var del=document.getElementById('del6');
-        del.innerHTML='';
-    }
+ 
     render(){
         return (
             <div>
@@ -36,48 +63,20 @@ export default class User extends Component{
                     <th style={{width:'220px',height:'50px'}}>邮箱</th>
                     <th style={{width:'220px',height:'50px'}}>操作</th>
                 </tr>
-                <tr  id='del1'>
-                <td style={{width:'220px',height:'50px',textAlign:'center'}}><img src={require('../images/loginusr.png')}></img></td>
-                <td style={{width:'220px',height:'50px',textAlign:'center'}}>张三</td>
-                <td style={{width:'220px',height:'50px',textAlign:'center'}}>15231198438</td>
-                <td style={{width:'220px',height:'50px',textAlign:'center'}}>1406571075@qq.com</td>
-                <td style={{width:'220px',height:'50px',textAlign:'center'}}><span onClick={this.delete1}><button style={{backgroundColor:'red',color:'black'}}>删除</button></span></td>
-                </tr>
-                <tr  id='del2'>
-                <td style={{width:'220px',height:'50px',textAlign:'center'}}><img src={require('../images/loginusr.png')}></img></td>
-                <td style={{width:'220px',height:'50px',textAlign:'center'}}>张三</td>
-                <td style={{width:'220px',height:'50px',textAlign:'center'}}>15231198438</td>
-                <td style={{width:'220px',height:'50px',textAlign:'center'}}>1406571075@qq.com</td>
-                <td style={{width:'220px',height:'50px',textAlign:'center'}}><span onClick={this.delete2}><button style={{backgroundColor:'red',color:'black'}}>删除</button></span></td>
-                </tr>
-                <tr  id='del3'>
-                <td style={{width:'220px',height:'50px',textAlign:'center'}}><img src={require('../images/loginusr.png')}></img></td>
-                <td style={{width:'220px',height:'50px',textAlign:'center'}}>张三</td>
-                <td style={{width:'220px',height:'50px',textAlign:'center'}}>15231198438</td>
-                <td style={{width:'220px',height:'50px',textAlign:'center'}}>1406571075@qq.com</td>
-                <td style={{width:'220px',height:'50px',textAlign:'center'}}><span onClick={this.delete3}><button style={{backgroundColor:'red',color:'black'}}>删除</button></span></td>
-                </tr>
-                <tr  id='del4'>
-                <td style={{width:'220px',height:'50px',textAlign:'center'}}><img src={require('../images/loginusr.png')}></img></td>
-                <td style={{width:'220px',height:'50px',textAlign:'center'}}>张三</td>
-                <td style={{width:'220px',height:'50px',textAlign:'center'}}>15231198438</td>
-                <td style={{width:'220px',height:'50px',textAlign:'center'}}>1406571075@qq.com</td>
-                <td style={{width:'220px',height:'50px',textAlign:'center'}}><span onClick={this.delete4}><button style={{backgroundColor:'red',color:'black'}}>删除</button></span></td>
-                </tr>
-                <tr  id='del5'>
-                <td style={{width:'220px',height:'50px',textAlign:'center'}}><img src={require('../images/loginusr.png')}></img></td>
-                <td style={{width:'220px',height:'50px',textAlign:'center'}}>张三</td>
-                <td style={{width:'220px',height:'50px',textAlign:'center'}}>15231198438</td>
-                <td style={{width:'220px',height:'50px',textAlign:'center'}}>1406571075@qq.com</td>
-                <td style={{width:'220px',height:'50px',textAlign:'center'}}><span onClick={this.delete5}><button style={{backgroundColor:'red',color:'black'}}>删除</button></span></td>
-                </tr>
-                <tr  id='del6'>
-                <td style={{width:'220px',height:'50px',textAlign:'center'}}><img src={require('../images/loginusr.png')}></img></td>
-                <td style={{width:'220px',height:'50px',textAlign:'center'}}>张三</td>
-                <td style={{width:'220px',height:'50px',textAlign:'center'}}>15231198438</td>
-                <td style={{width:'220px',height:'50px',textAlign:'center'}}>1406571075@qq.com</td>
-                <td style={{width:'220px',height:'50px',textAlign:'center'}}><span onClick={this.delete6}><button style={{backgroundColor:'red',color:'black'}}>删除</button></span></td>
-                </tr>
+
+                {
+                    this.state.data.map((item,index)=>(
+                        <tr>
+                            <td style={{width:'220px',height:'50px',textAlign:'center'}}><img src={require('../images/loginusr.png')} /></td>
+                            <td style={{width:'220px',height:'50px',textAlign:'center'}}>用户名</td>
+                            <td style={{width:'220px',height:'50px',textAlign:'center'}} id={`p${index}`}>{item.phone}</td>
+                            <td style={{width:'220px',height:'50px',textAlign:'center'}}>{item.email}</td>
+                            <td style={{width:'220px',height:'50px',textAlign:'center'}}><span onClick={this.delete}><button id={`del${index}`} style={{backgroundColor:'red',color:'black'}}>删除</button></span></td>
+                        </tr>
+                    ))
+                }
+                
+                
             </table>
             </div>       
         )

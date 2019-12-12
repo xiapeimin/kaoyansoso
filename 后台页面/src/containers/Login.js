@@ -98,7 +98,7 @@ export default class Login extends Component{
                         console.log(data,'llllllllllllll');
                         for(var i=0;i < data.length;i++){
                             if((data[i].phone == this.state.id || data[i].email == this.state.id) && data[i].passwd == this.state.passwd){
-                                window.location.hash=`/home?id=${data[i].id}`;
+                                window.location.hash=`/home?uid=${data[i].id}`;
                                 console.log('用户id',data[i].id);
                                 i = data.length;
                                 console.log(i);
