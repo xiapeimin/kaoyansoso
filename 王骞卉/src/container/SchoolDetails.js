@@ -29,7 +29,8 @@ export default class SchoolDetails extends Component {
             id:'',
             index:0,
             flag:0,
-            img:bj
+            img:[],
+            school:[]
         }
     }
     componentDidMount(){
@@ -67,34 +68,37 @@ export default class SchoolDetails extends Component {
         //通过id判断是哪个高校 检索高校详细信息
         fetch('http://zy.xpmwqhzygy.top/schoolDetail')
          .then((res)=>res.json())
-        .then((res)=>{
+         .then((res)=>{
             var data = JSON.parse(res);
             this.setState({
-                data:data.all
+                data:data.all,
+                img:data.img
             });  
-            if(this.state.id=='北京大学'){
-                this.setState({
-                    img:bj
-                })
-               
-            } 
-            if(this.state.id=='清华大学'){
-                this.setState({
-                    img:img3
-                })
-            }
-            if(this.state.id=='中国人民大学'){
-                this.setState({
-                    img:img1
-                })
-            }
-
         })
-        
-      }
+
+        fetch(`http://wqh.xpmwqhzygy.top/love/${uid}`,{
+            method: 'GET'
+            })
+            .then((res)=>res.json())
+            .then((res)=>{
+                console.log(res.data);
+                console.log(typeof(res.data));
+                this.setState({
+                    school:res.data
+                });
+                for(var i = 0;i<res.data.length;i++){
+                    if(id==res.data[i].schoolname){
+                        this.setState({
+                            touchState:true
+                        })
+                    }
+                }
+
+            })
+    }
 
     render() {
-        console.log(this.state.id);
+        console.log(this.state.school);
         return (
             <div className="testbox">
                 <NavBar
@@ -103,7 +107,11 @@ export default class SchoolDetails extends Component {
                 leftContent={<img src={require('../imgs/zjt.png')} onClick={this.goout} />}
                 mode="light"
                 ><span style={{color:'#fff',fontSize:'22px'}}>{this.state.id}</span></NavBar>
-                <img src={this.state.img} style={{width:'100%',height:'55vw'}}/>
+               {
+                        this.state.img.map((item,index)=>(                       
+                            <img className={this.state.id == item.des ? 'talk' : 'untalk'} src={item.img} style={{width:'100%',height:'40vw'}}/>
+                        ))
+                    }
                 <WhiteSpace/>
                 <div style={{background:'#fff',padding:'3%',width:'94%'}}>
                     
@@ -116,10 +124,11 @@ export default class SchoolDetails extends Component {
                 
                 <div style={{width:'100%',textIndent:'2em'}}>
                     <h2>学校介绍</h2>
-                    <p style={{textIndent:'2em',fontSize:'4vw'}}>
-                    清华大学软件学院是2001年经国家教育部和国家计委联合发文批准成立的首批全国示范性软件学院之一，
-                    隶属于清华大学信息科学与技术学院。以“教学立院、管理建院、学科兴院、科技强院”为办学理念，
-                    遵循“练中学、练中闯、练中创”的实践教学思想，追求并践行精品教育。
+                    <p>{
+                        this.state.data.map((item,index)=>(                       
+                            <p className={this.state.id == item.name ? 'talk' : 'untalk'}>{item.introduce}</p>
+                        ))
+                    }
                     </p>
                 </div>
                 <Tabs tabs={tabs}
@@ -151,8 +160,40 @@ export default class SchoolDetails extends Component {
         )
     }
     changgesrc = () => {
+        var pid = this.state.uid+this.state.id;
+        const post ={
+            uid:this.state.uid,
+            schoolname:this.state.id,
+            pid:this.state.uid+this.state.id
+        }
+    if(!this.state.touchState){
+        fetch(`http://wqh.xpmwqhzygy.top/focus`,{
+            // post提交
+            method:"POST",
+            headers:{'Content-Type': 'application/x-www-form-urlencoded'},
+            body:JSON.stringify(post)//把提交的内容转字符串
+        })
+        .then(res =>res.json())
+        .then(data =>{
+            console.log(data);
+        })
+    }
+    else{
+        fetch(`http://wqh.xpmwqhzygy.top/cancel/${pid}`,{
+            // post提交
+            method:"DELETE",
+            headers:{'Content-Type': 'application/x-www-form-urlencoded'},
+            body:JSON.stringify(post)//把提交的内容转字符串
+        })
+        .then(res =>res.json())
+        .then(data =>{
+            console.log(data);
+        })
+    }
+        
         console.log('imglll');
         this.setState({ touchState: !this.state.touchState });
+
     }
     goout = () => {
         var uid = this.state.uid;

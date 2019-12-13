@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import 'antd-mobile/dist/antd-mobile.css'; 
 import { NavBar,  WhiteSpace, SearchBar } from 'antd-mobile';
-import ListShop2 from '../School/ListShop2';
+import ListShop from '../School/ListShop';
 import {Link} from 'react-router-dom';
 
-const city = ['城市','北京','上海','天津','重庆','江苏','浙江','安徽','辽宁','江西','山东','河北','山西','内蒙古','河南','湖北','湖南','广东','广西','海南','四川','贵州','云南','西藏','福建','吉林','黑龙江','陕西','甘肃','青海','宁夏','新疆',''];
+const city = ['城市','北京','上海','天津','重庆','江苏','浙江','安徽','辽宁','江西','山东','河北','山西','内蒙古','河南','湖北','湖南','广东','广西','海南','四川','贵州','云南','西藏','福建','吉林','黑龙江','陕西','甘肃','青海','宁夏','新疆','',''];
 
 export default class CheckSchool extends Component {
 
@@ -12,7 +12,7 @@ export default class CheckSchool extends Component {
     super();
     this.state={
       value:'地区',
-      values:'asc',
+      values:'desc',
       value3:'three'
     }
   }
@@ -44,21 +44,21 @@ export default class CheckSchool extends Component {
                       ))
                     } 
                   </select> 
-                  <select  style={{width:'30%',height:'30px',marginLeft:'2%',color:'gray',border:'none'}} onChange={(e) => {this.setState({value3:e.target.value3})}}>
+                  <select  style={{width:'30%',height:'30px',marginLeft:'2%',color:'gray',border:'none'}} onChange={(e) => {this.setState({value3:e.target.value})}}>
                     <option value='three'>高校类型</option>
-                    <option value='one'>985</option>
-                    <option value='two'>211</option>
+                    <option value='985'>985</option>
+                    <option value='211'>211</option>
                     <option value='common'>普通本科</option>
                   </select>
                   <select  style={{width:'30%',height:'30px',marginLeft:'2%',color:'gray',border:'none'}} onChange={(e) => {this.setState({values:e.target.value})}}>
-                    <option value='asc' >升序</option>
-                    <option value='desc'>降序</option>
+                    <option value='desc' >升序</option>
+                    <option value='asc'>降序</option>
                   </select>
                   </form> 
 
                   {/* 长列表 */}
                   <WhiteSpace/>
-                   <ListShop2 uid={`${uid}`} value={`${value}`} values={`${values}`} value3={`${value3}`}/>
+                   <ListShop uid={`${uid}`} value={`${value}`} values={`${values}`} value3={`${value3}`}/>
             </div>
         )
     }
