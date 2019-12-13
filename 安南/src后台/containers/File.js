@@ -35,15 +35,15 @@ export default class AppNear extends Component{
             var pid = 'p'+id;
             var name = document.getElementById(pid).innerHTML;
             //后台数据库删除      
-            /*
-            fetch(`http://xpm.xpmwqhzygy.top/deluser/${name}`,{
+            
+            fetch(`https://annan.yflzy.cn/deluser/${name}`,{
                     method:"DELETE",
                     headers:{'Content-Type': 'application/x-www-form-urlencoded'}
                 })
                 .then(res =>res.json())
                 .then(data =>{
                     console.log(data);
-                });*/
+                });
     
             var del = document.getElementById(e.target.id).parentElement.parentElement.parentElement;
             del.innerHTML='';
@@ -65,7 +65,7 @@ export default class AppNear extends Component{
                     {
                         this.state.data.map((item,index)=>(
                             <tr>
-                                <td style={{width:'220px',height:'50px',textAlign:'center'}}>{item.id}</td>
+                                <td style={{width:'220px',height:'50px',textAlign:'center'}} >{item.id}</td>
                                 <td style={{width:'220px',height:'50px',textAlign:'center'}} id={`p${index}`}>{item.name}</td>
                                 <td style={{width:'220px',height:'50px',textAlign:'center'}}>{item.type}</td>
                                 <td style={{width:'220px',height:'50px',textAlign:'center'}}><span onClick={this.delete}><button id={`del${index}`} style={{backgroundColor:'red',color:'black'}}>删除</button></span></td>
