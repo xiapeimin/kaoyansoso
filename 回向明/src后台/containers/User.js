@@ -1,6 +1,5 @@
 import React,{Component} from 'react';
 
-
 export default class User extends Component{
     constructor(){
         super();
@@ -36,18 +35,18 @@ export default class User extends Component{
         var pid = 'p'+id;
         var phone = document.getElementById(pid).innerHTML;
         //后台数据库删除      
-        /*
-        fetch(`http://xpm.xpmwqhzygy.top/deluser/${phone}`,{
-                method:"DELETE",
-                headers:{'Content-Type': 'application/x-www-form-urlencoded'}
-            })
-            .then(res =>res.json())
-            .then(data =>{
-                console.log(data);
-            });*/
+        
+        // fetch(`http://xpm.xpmwqhzygy.top/deluser/${phone}`,{
+        //         method:"DELETE",
+        //         headers:{'Content-Type': 'application/x-www-form-urlencoded'}
+        //     })
+        //     .then(res =>res.json())
+        //     .then(data =>{
+        //         console.log(data);
+        //     });
 
-        var del = document.getElementById(e.target.id).parentElement.parentElement.parentElement;
-        del.innerHTML='';
+        // var del = document.getElementById(e.target.id).parentElement.parentElement.parentElement;
+        // del.innerHTML='';
         
     }
  
