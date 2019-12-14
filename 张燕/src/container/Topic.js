@@ -306,7 +306,7 @@ export default class HostTopic extends Component {   //评论弹框bug 用组件
                 <NavBar style={{backgroundColor:'#66cccc',color:'white'}}
                   mode="dark"
                >动态</NavBar>
-               <div style={{backgroundColor:'white'}}>
+               <div>
                  <Tabs tabs={tabs}
                     initialPage={page}
                     style={{fontSize:'40vw'}}
@@ -314,24 +314,24 @@ export default class HostTopic extends Component {   //评论弹框bug 用组件
                 <div>
                     <WingBlank>
                     <WhiteSpace/>
-                    <div style={{height:'150vh'}}> 
+                    <div> 
                                 {   this.state.all.map((item,index)=>( 
-                                            <div className={index}  style={{ width:'100%',height:'15vh'}}>
+                                            <div className={index}  style={{ width:'100%',marginBottom:'1vh',height:'15vh',backgroundColor:'white'}}>
                                                 <div style={{width:'20%',float:'left'}}>  
-                                                <img className={`tx${item.uid}`}  style={{ height: '10vh',width:'10vh',borderRadius:'50%',float:'left',marginRight:'2vh'}} src={headimg} alt="" />                 
+                                                    <img className={`tx${item.uid}`}  style={{ height: '9vh',marginTop:'2vh',width:'9vh',borderRadius:'50%',float:'left',marginRight:'2vh'}} src={headimg} alt="" />                 
                                                 </div>
                                                 <div style={{width:'80%',lineHeight:1.5,float:'left'}}>
-                                                <div style={{width:'60%',float:'left'}}>
+                                                <div style={{width:'60%',float:'left',marginTop:'2vh'}}>
                                                     <span style={{float:'left'}}>{item.username}</span><br/>
                                                     <span style={{float:'left'}}>{item.topic}</span><br/>
                                                     <span style={{float:'left'}}>{item.time}</span>
                                                 </div>
-                                                <div style={{width:'40%',float:'left',marginTop:'30px'}}>
+                                                <div style={{width:'40%',float:'left',marginTop:'6vh'}}>
                                                     <img  id={`all${index}`} src={item.good ? zan1 : good} style={{width:'4.5vh',height:'4.5vh',marginRight:'2vh'}} onClick={this.goodall}/>     
                                                     <img id={`a${index}`} src={talk} style={{width:'4vh',height:'4vh',marginRight:'2vh'}} onClick={this.alltalk}/>
                                                </div>    
                                                 </div>
-                                               <div id={`als${index}`}>{item.talk}</div>
+                                               <div id={`als${index}`} style={{marginLeft:'9vh'}}>{item.talk}</div>
                                                 <div className='untalk' id={`al${index}`} style={{height:'30px',width:'95%',marginLeft:'4vw',float:'left'}}>  
                                                     <input id={`an${index}`} onChange={this.changeValue} type='text' placeholder='评论' style={{width:'70%',height:'30px',float:'left'}}/>
                                                     <button id={`ain${index}`} style={{width:'20%',color:'white',marginTop:'-3px',height:'32px',backgroundColor:'#66cccc',border:'none'}} onClick={this.allItem}>完成</button>
@@ -347,7 +347,7 @@ export default class HostTopic extends Component {   //评论弹框bug 用组件
                         <img src={this.state.pre==0?headimg:`${headimg2}`} style={{height:'100px',width:'100px',marginRight:'10px',float:'right',position:'relative',marginTop:'-30px',borderRadius:'50px'}}></img>
                         <p style={{float:'right',marginTop:'75px',marginRight:'-80px'}}>{this.state.username}</p>
                         <Link to={`/publishTopic?uid=${uid}`}><div style={{float:'left',marginLeft:'5%',marginTop:'5%',width:'10vw',height:'10vw',borderRadius:'5vw',backgroundColor:' #66cccc',fontSize:'5vw',textAlign:'center',lineHeight:'10vw',color:'#fff'}}>+</div></Link>
-                      <div style={{marginTop:'32vw',height:'15vh'}}> 
+                      <div style={{marginTop:'32vw'}}> 
                       <div className={this.state.flag == 1 ? 'talk' : 'untalk'} style={{backgroundColor:'gray',opacity:'0.5',position:'relative',height:'20vh'}}>
                             <p style={{textAlign:'center',lineHeight:'15vh',fontWeight:'bold'}}>确认删除？</p>
                             <div className='glin'>
@@ -355,10 +355,11 @@ export default class HostTopic extends Component {   //评论弹框bug 用组件
                                 <div onClick={this.del} style={{fontWeight:'bold'}}>删除</div>
                             </div>
                         </div>
+                        <WingBlank>
                                 {   this.state.data.map((item,index)=>( 
                                             <div className={`l${index}`} style={{ width:'100%',height:'15vh',marginBottom:'3vh'}}>
                                                 <div style={{width:'20%',float:'left'}}>  
-                                                <img style={{ height: '10vh',width:'10vh',borderRadius:'50%',float:'left',marginRight:'2vh'}} src={this.state.pre==0?headimg:`${headimg2}`} alt="" />                 
+                                                <img style={{ height: '9vh',width:'9vh',borderRadius:'50%',float:'left',marginRight:'2vh'}} src={this.state.pre==0?headimg:`${headimg2}`} alt="" />                 
                                                 </div>
                                                 <div style={{width:'80%',lineHeight:1.5,float:'left'}}>
                                                 <div style={{width:'60%',float:'left'}}>
@@ -367,9 +368,8 @@ export default class HostTopic extends Component {   //评论弹框bug 用组件
                                                     <span style={{float:'left'}}>{item.time}</span>
                                                 </div>
                                                 <div style={{width:'40%',float:'left',marginTop:'30px'}}>
-                                                    <img  src={item.good ? zan1 : good} style={{width:'4.5vh',height:'4.5vh',marginRight:'2vh'}} id={`img${index}`} onClick={this.good}/>     
-                                    
-                                                    <img id={`p${index}`} src={talk} style={{width:'4vh',height:'4vh',marginRight:'2vh'}} onClick={this.unlogin}/>
+                                                    <img  src={item.good ? zan1 : good} style={{width:'4.5vh',height:'4.5vh',marginRight:'1vh'}} id={`img${index}`} onClick={this.good}/>                                         
+                                                    <img id={`p${index}`} src={talk} style={{width:'4vh',height:'4vh',marginRight:'1vh'}} onClick={this.unlogin}/>
                                                     <img id={`del${index}`} src={delete1} style={{width:'4vh',height:'4vh'}} onClick={this.delItem}/> 
                                                </div>    
                                                 </div>
@@ -381,6 +381,7 @@ export default class HostTopic extends Component {   //评论弹框bug 用组件
                                             </div>                    
                                         ))
                                 }
+                         </WingBlank>
                      </div>
                 </div>
                 
