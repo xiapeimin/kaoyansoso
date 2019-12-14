@@ -17,7 +17,7 @@ export default class School extends Component {
     constructor(){
       super();
       this.state={
-        data:[{schoolname:'北京大学'},{schoolname:'清华大学'},{schoolname:'中国人民大学'}],
+        data:[{schoolname:'北京大学'}],
         flag:1,
         id:1,
         schooldata:[{
@@ -45,16 +45,15 @@ export default class School extends Component {
             })
             .then((res)=>res.json())
             .then((res)=>{
-               if(this.state.id==1){
-                this.setState({
-                  data:res.data
-                })
-              }
-              if(this.state.id==2){
-                this.setState({
-                  data:[]
-                })
-              }
+                if(res.data.length!==0){
+                  console.log('11');
+                  this.setState({
+                    data:res.data
+                  })
+                }
+                
+              
+
     })
      
     fetch('http://wqh.xpmwqhzygy.top/whole')
@@ -92,10 +91,12 @@ export default class School extends Component {
             .then((res)=>res.json())
             .then((res)=>{
                if(this.state.id==1){
+                 if(res.data.length!==0){
                 this.setState({
                   data:res.data
                 })
-              }
+              }}
+                 
     })
      
     fetch('http://wqh.xpmwqhzygy.top/whole')
@@ -114,19 +115,38 @@ export default class School extends Component {
   }
 
   changeColor2 = () => {
-    var add = [];
     this.setState({
         flag:2,
         id:2,
         data:[]
-    }) 
+    })
+    var uid = 0;
+    var str = window.location.hash;
+    var add = [];
+      if(str.indexOf('&')>=0){
+          uid = str.split('&')[0].split('=')[1];
+      }else{
+          uid = str.split('=')[1];
+      }
+    fetch(`http://xpm.xpmwqhzygy.top/user/${uid}`,{
+            method: 'GET'
+            })
+            .then((res)=>res.json())
+            .then((res)=>{
+               if(res.data.length!==0){
+                this.setState({
+                  data:res.data
+                })
+              }
+    })
+
     fetch('http://wqh.xpmwqhzygy.top/whole')
          .then((res)=>res.json())
          .then((res)=>{
               var c = JSON.parse(res);
               for(var i=0;i<this.state.data.length;i++){
                 for(var j=0;j<c.whole.length;j++){
-                  if(this.state.data[i].schoolname==c.whole[j].des){
+                  if(this.state.data[i].school==c.whole[j].des){
                       add[i]=c.whole[j]
                   }
                 }
@@ -144,7 +164,7 @@ export default class School extends Component {
       }else{
           uid = str.split('=')[1];
       }
-      // console.log(str,'topicmu',uid);
+      console.log(this.state.data);
       /* 结束 */
 
         return (
