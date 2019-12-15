@@ -11,6 +11,7 @@ import good from './images/zan2.jpg';
 import talk from './images/talk.jpg';
 import zan1 from './images/zan1.jpg';
 import back from './images/back.jpg';
+import headimg from '../imgs/usrhead.png'
 import delete1 from './images/delete.jpg';
 
 var page = 0;
@@ -23,7 +24,20 @@ export default class HostTopic extends Component {   //评论弹框bug 用组件
         super();
         this.state = {
             flag:0,
-            uid:0
+            uid:0,
+            username:'',
+            data:[],
+            isLoading: true,
+            touchState:false,
+            good:false,
+            delete1:false,
+            pid:1,
+            all:[],
+            pinglun:'',
+            fflag:0,
+            del1:'',
+            pre:0,
+            headimg2:''
         }
     }
 
@@ -47,55 +61,328 @@ export default class HostTopic extends Component {   //评论弹框bug 用组件
             page=0;
         }
         console.log(str,'topicmu',uid);
-        
+       fetch(`http://xpm.xpmwqhzygy.top/user/${uid}`,{
+            method: 'GET',        
+            headers:{
+                'Accept':'application/json,text/plain,*/*'
+            }
+            })
+            .then((res)=>res.json())
+            .then((res)=>{
+                console.log(res.data);
+                console.log(res.data[0]);
+                console.log(typeof(res.data));
+                this.setState({
+                    username:res.data[0].username
+                });  
+            });
+            fetch(`http://zy.xpmwqhzygy.top/topic/${uid}`,{
+                method: 'GET'
+              })
+              .then((res)=>res.json())
+              .then((res)=>{
+                  console.log(res.data);
+                  console.log(typeof(res.data));
+                  this.setState({
+                      data:res.data
+                  });
+              });
+              fetch(`http://zy.xpmwqhzygy.top/all`,{
+                method: 'GET'
+              })
+              .then((res)=>res.json())
+              .then((res)=>{
+                  console.log(res.data);
+                  console.log(typeof(res.data));
+                  this.setState({
+                      all:res.data
+                  });
+              })
+              fetch(`http://xpm.xpmwqhzygy.top/headlist`,{
+                  method:'GET'
+              })
+              .then((res)=>res.json())
+              .then((res)=>{
+                  var data=res.data;
+                  for(var i=0;i<data.length;i++){
+                      if(uid==data[i].uid){
+                          this.setState({
+                              headimg2:`http://xpm.xpmwqhzygy.top/head/${uid}`,
+                              pre:1
+                          });
+                          i=data.length;
+                      }else if(i==data.length-1&&uid!=data[i].uid){
+                        this.setState({
+                            pre:0
+                        })
+                      }
+                  }
+              });
+              fetch(`http://xpm.xpmwqhzygy.top/headlist`,{
+                method: 'GET'
+                })
+                .then((res)=>res.json())
+                .then((res)=>{
+                    console.log(res.data);
+                    var data = res.data;
+                    console.log(data);
+                    for(var i=0;i<data.length;i++){                
+                        var mid = document.getElementsByClassName('tx'+data[i].uid);
+                        console.log(mid)
+                        if(mid.length==0){
+                            console.log(mid)
+                        }else{
+                            for(var j=0;j<mid.length;j++){
+                                mid[j].src = `http://xpm.xpmwqhzygy.top/head/${data[i].uid}`;
+                            }
+                           
+                        }
+                      
+                        
+                    }
+                    
+                });
     }
 
-
-    delete4(){
-        alert('是否要删除')
-        console.log('p')
-        var del=document.getElementById('del4');
-        console.log(del);
-        del.innerHTML='';
-    }
-    good3(){
-        var god=document.getElementById('good3');
-        console.log(god.src);
-        god.src=zan1
-    }
+    delItem=(e)=>{
+       var del1=e.target.id.slice(3);
+       console.log(del1);
+        this.setState({
+            flag:1,
+            delidx:del1
+        })
+      }
+      del=()=>{
+          var index=this.state.delidx;
+         var idx=document.getElementsByClassName('l'+index);
+        console.log(idx);
+        idx[0].innerHTML='';
+        this.setState({
+            flag:0
+        })
+        var pri=this.state.uid+this.state.data[index].topic;
+        fetch(`http://zy.xpmwqhzygy.top/del/${pri}`,{
+            method:"DELETE",
+            headers:{'Content-Type': 'application/x-www-form-urlencoded'},
+        })
+        .then(res =>res.json())
+        .then(data =>{
+             console.log(data);
+        })
+      }
+      quxiao=()=>{
+          this.setState({
+              flag:0
+          })
+      }
+      good=(e)=>{       
+       var index = e.target.id.slice(3);
+       var imgs = document.getElementById(e.target.id); 
+       if(this.state.fflag==0){
+            imgs.src=zan1;
+            this.setState({
+                fflag:1
+            })
+       }else if(this.state.fflag == 1){
+        imgs.src=good;
+        this.setState({
+            fflag:0
+        })
+       }
+       var pri=this.state.uid+this.state.data[index].topic;
+       console.log(pri);
+        const post ={
+            good:!this.state.good,
+        }
+        fetch(`http://zy.xpmwqhzygy.top/something/${pri}`,{
+            method:"PUT",
+            headers:{'Content-Type': 'application/x-www-form-urlencoded'},
+             body:JSON.stringify(post)
+        })
+        .then(res =>res.json())
+        .then(data =>{
+             console.log(data);
+        })
+        this.setState({
+            good:!this.state.good
+        })
+      }
+      goodall=(e)=>{       
+        var index = e.target.id.slice(3);
+        var imgs = document.getElementById(e.target.id); 
+        if(this.state.fflag==0){
+             imgs.src=zan1;
+             this.setState({
+                 fflag:1
+             })
+        }else if(this.state.fflag == 1){
+         imgs.src=good;
+         this.setState({
+             fflag:0
+         })
+        }
+        var uid=this.state.all[index].uid;
+        var pri=uid+this.state.all[index].topic;
+        console.log(pri);
+         const post ={
+             good:!this.state.good,
+         }
+         fetch(`http://zy.xpmwqhzygy.top/something/${pri}`,{
+             method:"PUT",
+             headers:{'Content-Type': 'application/x-www-form-urlencoded'},
+              body:JSON.stringify(post)
+         })
+         .then(res =>res.json())
+         .then(data =>{
+              console.log(data);
+         })
+         this.setState({
+             good:!this.state.good
+         })
+       }
+      unlogin=(e)=>{
+        var index=e.target.id.slice(1);
+        var div1=document.getElementById('pl'+index);
+        div1.className='talk';
+        console.log(div1.className);
+      }
+      addItem=(e)=>{
+        var index=e.target.id.slice(3);
+        var inp=document.getElementById('in'+index);
+        var value=inp.value;
+        var input=document.getElementById('pls'+index);
+        input.innerHTML+=value;
+        var div1=document.getElementById('pl'+index);
+        div1.className='untalk';
+        const post ={
+            talk:input.innerHTML
+        }
+        var uid=this.state.all[index].uid;
+        var pri=uid+this.state.all[index].topic;
+        fetch(`http://zy.xpmwqhzygy.top/talk/${pri}`,{
+            method:"PUT",
+            headers:{'Content-Type': 'application/x-www-form-urlencoded'},
+             body:JSON.stringify(post)
+        })
+        .then(res =>res.json())
+        .then(data =>{
+             console.log(data);
+        })
+      }
+      alltalk=(e)=>{
+        var index=e.target.id.slice(1);
+        var div1=document.getElementById('al'+index);
+        div1.className='talk';
+        console.log(div1.className);
+      }
+      allItem=(e)=>{
+        var index=e.target.id.slice(3);
+        var inp=document.getElementById('an'+index);
+        var value=inp.value;
+        var input=document.getElementById('als'+index);
+        input.innerHTML+=value;
+        var div1=document.getElementById('al'+index);
+        div1.className='untalk';
+        const post ={
+            talk:input.innerHTML
+        }
+        var uid=this.state.all[index].uid;
+        var pri=uid+this.state.all[index].topic;
+        fetch(`http://zy.xpmwqhzygy.top/talk/${pri}`,{
+            method:"PUT",
+            headers:{'Content-Type': 'application/x-www-form-urlencoded'},
+             body:JSON.stringify(post)
+        })
+        .then(res =>res.json())
+        .then(data =>{
+             console.log(data);
+        })
+      }
     render() {
         var uid = this.state.uid;
+        var headimg2=this.state.headimg2;
         return (
             <div>
                 <NavBar style={{backgroundColor:'#66cccc',color:'white'}}
                   mode="dark"
                >动态</NavBar>
-               <div style={{backgroundColor:'white'}}>
+               <div>
                  <Tabs tabs={tabs}
                     initialPage={page}
                     style={{fontSize:'40vw'}}
                     >
                 <div>
-                    <WhiteSpace/> 
                     <WingBlank>
-                    <span style={{fontSize:'4.5vw'}}>| 热门推荐</span>
-                    </WingBlank>
                     <WhiteSpace/>
-                    <TopicList/>
-                    <WhiteSpace/> 
-                    <WingBlank>
-                    <span style={{fontSize:'4.5vw'}}>| 分享驿站</span>
-                    </WingBlank>
-                    <WhiteSpace/>
-                    <ShowList/>
+                    <div> 
+                                {   this.state.all.map((item,index)=>( 
+                                            <div className={index}  style={{ width:'100%',marginBottom:'1vh',height:'15vh',backgroundColor:'white'}}>
+                                                <div style={{width:'20%',float:'left'}}>  
+                                                    <img className={`tx${item.uid}`}  style={{ height: '9vh',marginTop:'2vh',width:'9vh',borderRadius:'50%',float:'left',marginRight:'2vh'}} src={headimg} alt="" />                 
+                                                </div>
+                                                <div style={{width:'80%',lineHeight:1.5,float:'left'}}>
+                                                <div style={{width:'60%',float:'left',marginTop:'2vh'}}>
+                                                    <span style={{float:'left'}}>{item.username}</span><br/>
+                                                    <span style={{float:'left'}}>{item.topic}</span><br/>
+                                                    <span style={{float:'left'}}>{item.time}</span>
+                                                </div>
+                                                <div style={{width:'40%',float:'left',marginTop:'6vh'}}>
+                                                    <img  id={`all${index}`} src={item.good ? zan1 : good} style={{width:'4.5vh',height:'4.5vh',marginRight:'2vh'}} onClick={this.goodall}/>     
+                                                    <img id={`a${index}`} src={talk} style={{width:'4vh',height:'4vh',marginRight:'2vh'}} onClick={this.alltalk}/>
+                                               </div>    
+                                                </div>
+                                               <div id={`als${index}`} style={{marginLeft:'9vh'}}>{item.talk}</div>
+                                                <div className='untalk' id={`al${index}`} style={{height:'30px',width:'95%',marginLeft:'4vw',float:'left'}}>  
+                                                    <input id={`an${index}`} onChange={this.changeValue} type='text' placeholder='评论' style={{width:'70%',height:'30px',float:'left'}}/>
+                                                    <button id={`ain${index}`} style={{width:'20%',color:'white',marginTop:'-3px',height:'32px',backgroundColor:'#66cccc',border:'none'}} onClick={this.allItem}>完成</button>
+                                                </div>
+                                            </div>                    
+                                        ))
+                                }
+                     </div>
+                     </WingBlank>
                 </div>
                 <div>
                         <img src={back} style={{width:'100%'}}></img>
-                        <img src={tou3} style={{height:'100px',width:'100px',marginRight:'10px',float:'right',position:'relative',marginTop:'-30px',borderRadius:'50px'}}></img>
-                        <p style={{float:'right',marginTop:'75px',marginRight:'-90px'}}>学渣奋起之路</p>
+                        <img src={this.state.pre==0?headimg:`${headimg2}`} style={{height:'100px',width:'100px',marginRight:'10px',float:'right',position:'relative',marginTop:'-30px',borderRadius:'50px'}}></img>
+                        <p style={{float:'right',marginTop:'75px',marginRight:'-80px'}}>{this.state.username}</p>
                         <Link to={`/publishTopic?uid=${uid}`}><div style={{float:'left',marginLeft:'5%',marginTop:'5%',width:'10vw',height:'10vw',borderRadius:'5vw',backgroundColor:' #66cccc',fontSize:'5vw',textAlign:'center',lineHeight:'10vw',color:'#fff'}}>+</div></Link>
-                      
-                      <div style={{marginTop:'18vw'}}> <MyTopic/></div>
+                      <div style={{marginTop:'32vw'}}> 
+                      <div className={this.state.flag == 1 ? 'talk' : 'untalk'} style={{backgroundColor:'gray',opacity:'0.5',position:'relative',height:'20vh'}}>
+                            <p style={{textAlign:'center',lineHeight:'15vh',fontWeight:'bold'}}>确认删除？</p>
+                            <div className='glin'>
+                                <div style={{borderRight:'1px solid rgb(211, 211, 208)',width:'49%',fontWeight:'bold'}} onClick={this.quxiao}>取消</div>
+                                <div onClick={this.del} style={{fontWeight:'bold'}}>删除</div>
+                            </div>
+                        </div>
+                        <WingBlank>
+                                {   this.state.data.map((item,index)=>( 
+                                            <div className={`l${index}`} style={{ width:'100%',height:'15vh',marginBottom:'3vh'}}>
+                                                <div style={{width:'20%',float:'left'}}>  
+                                                <img style={{ height: '9vh',width:'9vh',borderRadius:'50%',float:'left',marginRight:'2vh'}} src={this.state.pre==0?headimg:`${headimg2}`} alt="" />                 
+                                                </div>
+                                                <div style={{width:'80%',lineHeight:1.5,float:'left'}}>
+                                                <div style={{width:'60%',float:'left'}}>
+                                                    <span style={{float:'left'}}>{this.state.username}</span><br/>
+                                                    <span style={{float:'left'}}>{item.topic}</span><br/>
+                                                    <span style={{float:'left'}}>{item.time}</span>
+                                                </div>
+                                                <div style={{width:'40%',float:'left',marginTop:'30px'}}>
+                                                    <img  src={item.good ? zan1 : good} style={{width:'4.5vh',height:'4.5vh',marginRight:'1vh'}} id={`img${index}`} onClick={this.good}/>                                         
+                                                    <img id={`p${index}`} src={talk} style={{width:'4vh',height:'4vh',marginRight:'1vh'}} onClick={this.unlogin}/>
+                                                    <img id={`del${index}`} src={delete1} style={{width:'4vh',height:'4vh'}} onClick={this.delItem}/> 
+                                               </div>    
+                                                </div>
+                                                <div id={`pls${index}`}>{item.talk}</div>
+                                                <div className='untalk' id={`pl${index}`} style={{height:'30px',width:'95%',marginLeft:'4vw',float:'left'}}>  
+                                                    <input id={`in${index}`} onChange={this.changeValue} type='text' placeholder='评论' style={{width:'70%',height:'30px',float:'left'}}/>
+                                                    <button id={`fin${index}`} style={{width:'20%',color:'white',marginTop:'-3px',height:'32px',backgroundColor:'#66cccc',border:'none'}} onClick={this.addItem}>完成</button>
+                                                </div>
+                                            </div>                    
+                                        ))
+                                }
+                         </WingBlank>
+                     </div>
                 </div>
                 
                 </Tabs> 
