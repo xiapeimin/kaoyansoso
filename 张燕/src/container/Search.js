@@ -8,12 +8,26 @@ export default class Search extends Component{
         super();
         this.state = {
             flag:0,
-            flag2:0
+            flag2:0,
+            uid:0,
+            type:'home'
         }
     }
 
     componentDidMount(){
         this.autoFocusInst.focus();
+
+        var str = window.location.hash;
+        if(str.indexOf('&')>=0){
+            var uid = str.split('&')[0].split('=')[1];
+            var type = str.split('&')[1].split('=')[1];
+            console.log(uid);
+            this.setState({
+                uid:uid,
+                type:type
+            });
+        }
+        
     }
     
     render(){

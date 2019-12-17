@@ -192,9 +192,11 @@ good=(name)=>{
               <div style={{ marginBottom: '8px', fontWeight: 'bold',width:'100%',float:'left' }}>{obj.des}</div>
               <div style={{width:'100%',float:'left' }}><span style={{ fontSize: '14px', color: 'black',float:'left' }}>{obj.row}</span><div style={{color:'black',marginLeft:'10px',float:'left'}}>{obj.city}</div></div>
                 <div style={{width:'100%',float:'left' }}>
-                    <span style={{color:'green'}}>{obj.one}</span> 
+                    <div style={{width:'60%',float:'left' }}><span style={{color:'green'}}>{obj.one}</span> </div>
+                    <div style={{width:'40%',float:'left' }}>
                     <img src={obj.two} style={{height:'20px',width:'20px',float:"right",marginTop:'1px'}} onClick={()=>this.unlogin(obj.id)}/>
                     <img id={obj.name} src={obj.three} style={{height:'25px',width:'25px',float:"right",marginTop:'-3px',marginRight:'15px'}} onClick={()=>this.good(obj.name)}/>
+                </div>
                 </div>
             </div>
           </div>

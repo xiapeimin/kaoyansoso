@@ -75,13 +75,11 @@ export default class Test extends Component{
                 mode="light"
                 ><span style={{color:'#fff',fontSize:'22px'}}>历年真题</span></NavBar>
 
-<div>{
+               <div>{
                     this.state.todo1.map(
-                        (item)=><img src={item} height='700px' width='100%' controls='controls' object-fit='container'/>
-                        
-                
+                        (item)=><img src={item} height='700px' width='100%' controls='controls' object-fit='container'/>                                       
                     )
-    }
+               }
                 </div>
 
             </div>       

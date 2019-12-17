@@ -19,6 +19,7 @@ export default class School extends Component {
         values:'asc'
       }
     }
+
     onChange = (key) => {
         console.log(key);
       }
@@ -27,6 +28,17 @@ export default class School extends Component {
     render() {
       var value=this.state.value;
       var values=this.state.values;
+      /***跳转参数解析代码 */
+      var uid = 0
+      var str = window.location.hash;
+      if(str.indexOf('&')>=0){
+          uid = str.split('&')[0].split('=')[1];
+      }else{
+          uid = str.split('=')[1];
+      }
+      console.log(str,'topicmu',uid);
+      /* 结束 */
+
         return (
             <div>
                {/* 导航栏 */}
@@ -35,7 +47,7 @@ export default class School extends Component {
                >院校资讯</NavBar>
 
                {/* 搜索框 */}
-               <Link to={'/search'}><SearchBar value={'河北师范大学'} placeholder="Search" cancelText={'搜索'} /></Link>
+               <Link to={`/search?uid=${uid}&type=school`}><SearchBar value={'河北师范大学'} placeholder="Search" cancelText={'搜索'} /></Link>
 
                   <div style={{backgroundColor:'white',width:'100%',height:'600px'}}>      
                   
@@ -55,9 +67,11 @@ export default class School extends Component {
                   </select>
                   </form> 
 
+                  <p>新增特色功能</p>
+
                   {/* 长列表 */}
                   <WhiteSpace/>
-                  <ListShop value={`${value}`} values={`${values}`}/>
+                  {/*<ListShop value={`${value}`} values={`${values}`} uid={`${uid}`} /> */}
                   </div>
             </div>
         )

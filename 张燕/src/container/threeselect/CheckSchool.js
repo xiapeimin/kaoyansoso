@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import 'antd-mobile/dist/antd-mobile.css'; 
-import { NavBar,  WhiteSpace } from 'antd-mobile';
+import { NavBar,  WhiteSpace, SearchBar } from 'antd-mobile';
 import ListShop from '../School/ListShop';
 import {Link} from 'react-router-dom';
 
@@ -8,15 +8,19 @@ const city = ['城市','北京','上海','天津','重庆','江苏','浙江','�
 
 export default class CheckSchool extends Component {
     render(){
+      var str = this.props.location.search;
+      var uid = str.split('=')[1];
         return(
             <div>
                 {/* 导航栏 */}
                 <NavBar
                 style={{background:'#06a170',color:'#fff'}} 
-                leftContent={<Link to={'/confirmSchool'}><img src={require('./zjt.png')} /></Link>}
+                leftContent={<Link to={`/confirmSchool?uid=${uid}`}><img src={require('./zjt.png')} /></Link>}
                 mode="light"
                 ><span style={{color:'#fff',fontSize:'22px'}}>院校推荐</span></NavBar>
 
+                {/* 搜索框 */}
+               <Link to={`/search?uid=${uid}&type=school`}><SearchBar value={'河北师范大学'} placeholder="Search" cancelText={'搜索'} /></Link>
                 {/* 下拉菜单 */}
                 <form> 
                   <WhiteSpace/>
@@ -42,7 +46,7 @@ export default class CheckSchool extends Component {
 
                   {/* 长列表 */}
                   <WhiteSpace/>
-                   <ListShop/>
+                   <ListShop uid={`${uid}`} />
             </div>
         )
     }
