@@ -48,6 +48,9 @@ export default class AppHome extends Component {
                         headflag=1;
                     }
                 }
+                if(data.length==0){
+                    headflag=1;
+                }
             });
 
             fetch(`http://xpm.xpmwqhzygy.top/user/${uid}`,{

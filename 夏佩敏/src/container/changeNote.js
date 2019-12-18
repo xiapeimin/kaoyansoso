@@ -2,6 +2,7 @@ import React,{Component} from 'react';
 import {NavBar} from 'antd-mobile';
 import {Link} from 'react-router-dom';
 
+import cnote from '../imgs/cnoteimg.png';
 export default class ChangeNote extends Component{
     constructor(){
         super();
@@ -43,7 +44,7 @@ export default class ChangeNote extends Component{
         var uid = this.state.uid;
         var text = this.state.text;
         return (
-            <div className='testbox'>
+            <div className='testbox' style={{background:`url(${cnote}) no-repeat`,backgroundSize:'100% 100%'}}>
                 <NavBar
                 style={{background:'#66cccc',color:'#fff'}} 
                 rightContent={<div><span onClick={this.delnote} style={{color:'red',marginRight:'7px'}}>删除</span><span onClick={this.saveNote}>保存</span></div>}
@@ -51,9 +52,9 @@ export default class ChangeNote extends Component{
                 mode="light"
                 ><span style={{color:'#fff',fontSize:'22px'}}>{this.state.notename}</span></NavBar>
 
-                <div style={{width:'95%',padding:'2.5%',background:'#fff'}}>
+                <div style={{width:'85%',paddingTop:'4%',paddingRight:'8%',paddingLeft:'7%'}}>
                     
-                    <textarea value={this.state.text} onChange={this.changeText} style={{width:'96%',marginTop:'2vw',height:'160vw',padding:'2%',border:'none',fontSize:'20px'}}>
+                    <textarea value={this.state.text} onChange={this.changeText} style={{width:'98%',paddingTop:'2%',lineHeight:'10vw',height:'160vw',paddingRight:'1%',border:'none',paddingLeft:'1%',fontSize:'20px',background:'none'}}>
                         
                     </textarea>
                 </div>

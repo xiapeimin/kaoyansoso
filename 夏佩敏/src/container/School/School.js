@@ -9,11 +9,13 @@ import Item from 'antd-mobile/lib/popover/Item';
 import { thisExpression } from '@babel/types';
 import school1 from '../../imgs/school2.jpg';
 
+var fflag=0;
+var obj = new Object();
 export default class School extends Component {
     constructor(){
       super();
       this.state={
-        data:[{schoolname:'北京大学'},{schoolname:'清华大学'},{schoolname:'武汉大学'},{schoolname:'中南大学'}],
+        data:[],
         flag:1,
         id:1,
         text:'推荐关注',
@@ -24,11 +26,33 @@ export default class School extends Component {
           "city":"北京",
           "one":"985",
           "two":"211"
+      },{
+        "img":"http://pic.baike.soso.com/ugc/baikepic2/0/ori-20190525162808-1665237614_jpg_1010_758_290613.jpg/800",
+        "des":"清华大学",
+        "row":"院校排名：2",
+        "city":"北京",
+        "one":"985",
+        "two":"211"
+    },{
+      "img":"http://pic.baike.soso.com/ugc/baikepic2/0/ori-20190525162808-1665237614_jpg_1010_758_290613.jpg/800",
+      "des":"武汉大学",
+      "row":"院校排名：3",
+      "city":"武汉",
+      "one":"985",
+      "two":"211"
+  },{
+          "img":"http://pic.baike.soso.com/ugc/baikepic2/0/ori-20190525162808-1665237614_jpg_1010_758_290613.jpg/800",
+          "des":"中南大学",
+          "row":"院校排名：17",
+          "city":"长沙",
+          "one":"985",
+          "two":"211"
       }]
       }
     }
 
     componentDidMount(){
+      var myschool='';
       var uid = 0
       var str = window.location.hash;
       var add = [];
@@ -37,6 +61,66 @@ export default class School extends Component {
       }else{
           uid = str.split('=')[1];
       }
+
+      fetch(`http://xpm.xpmwqhzygy.top/user/${uid}`,{
+            method: 'GET',        
+            headers:{
+                'Accept':'application/json,text/plain,*/*'
+            }
+            })
+            .then((res)=>res.json())
+            .then((res)=>{
+                console.log(res.data[0].school);
+                if(res.data.length!=0){
+                  myschool=res.data[0].school;
+                  fflag=1; 
+                }
+            
+      console.log(myschool,'mmmmmmmm')
+
+      fetch(`http://xpm.xpmwqhzygy.top/ufocus/${uid}`,{
+            method: 'GET'
+            })
+            .then((res)=>res.json())
+            .then((res)=>{
+                console.log(res.data);
+                var sdata = res.data;
+                if(sdata.length!=0){
+                  this.setState({
+                    data:res.data,
+                    text:'关注院校'
+                  });
+
+                }else if(sdata.length==0){
+                  this.setState({
+                    data:[{name:'北京大学'},{name:'清华大学'},{name:'武汉大学'},{name:'中南大学'}],
+                    text:'推荐关注'
+                  });
+                }
+
+                fetch('http://wqh.xpmwqhzygy.top/whole')
+                .then((res)=>res.json())
+                .then((res)=>{
+              var c = JSON.parse(res);
+              for(var i=0;i<this.state.data.length;i++){
+                for(var j=0;j<c.whole.length;j++){
+                  if(this.state.data[i].name==c.whole[j].des){
+                      add[i]=c.whole[j]
+                  }
+                  if(myschool==c.whole[j].des){
+                    obj=c.whole[j]
+                  }
+                }
+              }
+              this.setState({schooldata:add});
+            });
+          });
+        });
+        }
+                
+            
+
+      /*
       fetch(`http://wqh.xpmwqhzygy.top/love/${uid}`,{
             method: 'GET'
             })
@@ -48,22 +132,9 @@ export default class School extends Component {
                     text:'关注院校'
                   }) 
                 }
-    })
+    })*/
      
-    fetch('http://wqh.xpmwqhzygy.top/whole')
-         .then((res)=>res.json())
-         .then((res)=>{
-              var c = JSON.parse(res);
-              for(var i=0;i<this.state.data.length;i++){
-                for(var j=0;j<c.whole.length;j++){
-                  if(this.state.data[i].schoolname==c.whole[j].des){
-                      add[i]=c.whole[j]
-                  }
-                }
-              }
-              this.setState({schooldata:add});
-          });
-        }
+    
 
   // componentDidUpdate(prevProps,prevState){
   //     var uid = 0
@@ -186,6 +257,8 @@ export default class School extends Component {
 
     render() {
       /***跳转参数解析代码 */
+      console.log(fflag,obj);
+      var row;
       var uid = 0
       var str = window.location.hash;
       if(str.indexOf('&')>=0){
@@ -194,6 +267,7 @@ export default class School extends Component {
           uid = str.split('=')[1];
       }
       console.log(this.state.data);
+      
       /* 结束 */
 
         return (
@@ -206,15 +280,15 @@ export default class School extends Component {
                 ><span style={{color:'#fff',fontSize:'22px'}} className={this.state.flag == 1 ? 'vpaychange' : ''}>院校资讯</span></NavBar>
 
                 
-                <h2 style={{marginLeft:'5%'}}>| 中南大学</h2>
+                <h2 style={{marginLeft:'5%'}}>| {fflag==0 ? '中南大学' : obj.des}</h2>
                 <div style={{position:'relative'}}>
-                <div style={{width:'100%',textAlign:'center',marginBottom:'5vw'}}><img style={{width:'90%',height:'24vh',borderRadius:'10px'}} src={school1}/></div>
+                <div style={{width:'100%',textAlign:'center',marginBottom:'5vw'}}><img style={{width:'90%',height:'24vh',borderRadius:'10px'}} src={fflag==0 ? school1 : obj.img}/></div>
                 <div style={{marginLeft:'5%'}}>
                     <button style={{backgroundColor:'#e8b1b1',marginLeft:'5px',borderRadius:'7px',padding:'3px'}}>985</button>
                     <button style={{backgroundColor:'#a7e4f1',marginLeft:'5px',borderRadius:'7px',padding:'3px'}}>211</button>
                     <button style={{backgroundColor:'#b9a2eb',marginLeft:'5px',borderRadius:'7px',padding:'3px'}}>综合类</button>
                 </div>
-                <div style={{position:'absolute',right:'5%',width:'100px',fontSize:'15px',height:'35px',lineHeight:'35px',textAlign:'center',borderRadius:'0 8px 0 8px',top:'0',background:'#3bc0bb',color:'#fff'}}>综合排名17</div>
+                <div style={{position:'absolute',right:'5%',width:'100px',fontSize:'15px',height:'35px',lineHeight:'35px',textAlign:'center',borderRadius:'0 8px 0 8px',top:'0',background:'#3bc0bb',color:'#fff'}}>{fflag==0 ? '院校排名：17' : obj.row}</div>
                 </div>
                 
                 <div>

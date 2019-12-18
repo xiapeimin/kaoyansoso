@@ -14,7 +14,7 @@ export default class PublishTopic extends Component{  //左箭头返回有bug �
             talk:'',
             delete1:false,
             topic:'',
-            username:'',
+            username:'用户名',
             pre:0,
             headimg2:''
         }
@@ -92,13 +92,13 @@ export default class PublishTopic extends Component{  //左箭头返回有bug �
                 <div style={{height:'10px',background:'#d7dddd',opacity:'0.7'}}></div>
               
                 <div className='pubhead'>
-                    <div className='pub1'><img src={this.state.pre==0?headimg:`${headimg2}`} style={{width:'7vh'}}/></div>
-                    <div className='pub2'>学渣考研</div>
+                    <div className='pub1'><img src={this.state.pre==0?headimg:`${headimg2}`} style={{width:'58px',height:'60px',borderRadius:'29px'}}/></div>
+                    <div className='pub2'>{this.state.username}</div>
                 </div>
                            
-                <form style={{textAlign:'center'}}>
-                    <textarea className='texta' cols="3" rows="3" onChange={this.changeValue}>分享新鲜事...</textarea>
-                    <div className='butt' onClick={this.pubTopic} style={{margin:'0 auto'}}>发表</div>
+                <form style={{textAlign:'center',marginTop:'15px'}}>
+                    <textarea className='texta' cols="3" rows="3" placeholder='分享新鲜事...' onChange={this.changeValue}></textarea>
+                    <div className='butt' onClick={this.pubTopic} style={{margin:'0 auto',fontSize:'18px',color:'#fff'}}>发 表</div>
                 </form>
 
                 <div className={this.state.id == 1 ? 'showgolo golo' : 'golo'}>
@@ -107,7 +107,7 @@ export default class PublishTopic extends Component{  //左箭头返回有bug �
             <div className={this.state.id == 1 ? 'showgolo gologin' : 'gologin'}>
                 <p>发表成功！</p>
                 <div className='glin'>
-                    <Link to={`/appTab?uid=${uid}&type=topic`}><div style={{width:'100%'}} onClick={this.quxiao}>确定</div></Link>
+                    <div style={{width:'100%'}} onClick={this.quxiao}>确定</div>
                 </div>
             </div>
 
@@ -150,16 +150,14 @@ export default class PublishTopic extends Component{  //左箭头返回有bug �
     quxiao = () => {
         this.setState({
             id:0
-        })
+        });
     }
     changeValue=(e)=>{
         console.log(e.target.value);
         var value=e.target.value;
-        var arr=value.split('...');
-        var str=arr[1];
-        console.log(str);
+        
         this.setState({
-            data:str,
+            data:value,
         })
     }
     

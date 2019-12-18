@@ -2,6 +2,8 @@ import React,{Component} from 'react';
 import {NavBar} from 'antd-mobile';
 import {Link} from 'react-router-dom';
 
+import cnote from '../imgs/cnoteimg.png';
+
 export default class CreateNote extends Component{
     constructor(){
         super();
@@ -24,7 +26,7 @@ export default class CreateNote extends Component{
         var uid = this.state.uid;
         
         return (
-            <div className='testbox'>
+            <div className='testbox' style={{background:`url(${cnote}) no-repeat`,backgroundSize:'100% 100%'}}>
                 <NavBar
                 style={{background:'#66cccc',color:'#fff'}} 
                 rightContent={<span onClick={this.saveNote}>保存</span>}
@@ -32,9 +34,9 @@ export default class CreateNote extends Component{
                 mode="light"
                 ><span style={{color:'#fff',fontSize:'22px'}}>笔记</span></NavBar>
 
-                <div style={{width:'95%',padding:'2.5%',background:'#fff'}}>
-                    <input type='text' onChange={this.changeTitle} placeholder='笔记名称' style={{width:'97%',paddingLeft:'3%',border:'1px solid #66cccc',height:'12vw',fontSize:'20px'}} />
-                    <textarea placeholder='请输入：' onChange={this.changeText} style={{width:'96%',marginTop:'2vw',height:'160vw',padding:'2%',border:'1px solid #66cccc',fontSize:'20px'}}>
+                <div style={{width:'85%',paddingTop:'4%',paddingRight:'8%',paddingLeft:'7%'}}>
+                    <input type='text' onChange={this.changeTitle} placeholder='笔记名称' style={{width:'98%',paddingLeft:'1%',paddingLeft:'1%',border:'none',borderBottom:'2px solid #66cccc',height:'11vw',fontSize:'20px',background:'none'}} />
+                    <textarea placeholder='请输入：' onChange={this.changeText} style={{width:'98%',lineHeight:'10vw',height:'160vw',marginTop:'-1vw',paddingRight:'1%',border:'none',paddingLeft:'1%',fontSize:'20px',background:'none'}}>
                         
                     </textarea>
                 </div>

@@ -2,6 +2,7 @@ import { ListView } from 'antd-mobile';
 import React from 'react';
 import { ObjectUnsubscribedError } from 'rxjs';
 import {Link} from 'react-router-dom';
+import school1 from '../../imgs/school2.jpg';
 
 const NUM_ROWS = 11;
 let pageIndex = 0;
@@ -2205,7 +2206,7 @@ export default class ListShop extends React.Component {
     return(
       <div>
         {
-          this.state.schooldata.map((Item)=>(
+          this.state.schooldata.map((Item,Index)=>(
             <Link to={`/schoolDetails?id=${Item.des||'四川大学'}&uid=${uid}`}><div style={{ padding: '0 15px',backgroundColor:'white'}}>
            <div
              style={{
@@ -2216,7 +2217,7 @@ export default class ListShop extends React.Component {
              }}
            ></div>
            <div style={{ display: '-webkit-box', display: 'flex', padding: '15px 0' }}>
-             <img style={{ height: '64px', marginRight: '15px',width:'80px' }} src={Item.img} alt="" />
+             <img style={{ height: '64px', marginRight: '15px',width:'80px' }} src={Item.img} alt="" onError={()=>this.error(Index)} id={Index} />
              <div style={{ lineHeight: 1.5 }}>
                <div style={{ marginBottom: '8px', fontWeight: 'bold' }}>{Item.des}</div>
               <div><span style={{ fontSize: '14px', color: 'black',float:'left' }}>{Item.row}</span><div style={{color:'green',marginLeft:'10px',float:'left'}}>{Item.city}</div></div>
@@ -2231,4 +2232,10 @@ export default class ListShop extends React.Component {
       </div>
     )
   }
+  error=(Index)=>{
+    var a1 = document.getElementById(Index);
+    a1.src=school1;
+    console.log(a1.src)
+  }
+
 }

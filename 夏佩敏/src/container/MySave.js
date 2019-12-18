@@ -34,6 +34,7 @@ export default class AppHome extends Component {
     }
     render() {
         var uid = this.state.uid;
+        var tdata = this.state.data.reverse();
         return (
             <div style={{width:'100%',position:'absolute',top:'0',bottom:'0',background:'#fff'}}>
                 <Link to={`/appTab?uid=${uid}&type=my`}>
@@ -46,7 +47,7 @@ export default class AppHome extends Component {
                 
                 <div style={{background:'#fff'}}>
                 {
-                    this.state.data.map((item,index)=>(
+                    tdata.map((item,index)=>(
                         <div className='testmore'>
                             <span>{item.name}</span>
                             <Link to={`/test/?index=${item.id}&flag=${item.flag}&uid=${uid}&save=yes`}><img src={require('../imgs/testright.png')}/></Link>
