@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
 import {Link} from 'react-router-dom';
 import {NavBar} from 'antd-mobile';
-
+import headimg from '../imgs/usrhead.png'
 export default class PublishTopic extends Component{  //左箭头返回有bug 要回到我的动态
     constructor(){
         super();
@@ -14,7 +14,9 @@ export default class PublishTopic extends Component{  //左箭头返回有bug �
             talk:'',
             delete1:false,
             topic:'',
-            username:''
+            username:'',
+            pre:0,
+            headimg2:''
         }
     }
     componentDidMount(){
@@ -48,6 +50,26 @@ export default class PublishTopic extends Component{  //左箭头返回有bug �
                     username:res.data[0].username
                 });  
             });
+            fetch(`http://xpm.xpmwqhzygy.top/headlist`,{
+                method:'GET'
+            })
+            .then((res)=>res.json())
+            .then((res)=>{
+                var data=res.data;
+                for(var i=0;i<data.length;i++){
+                    if(uid==data[i].uid){
+                        this.setState({
+                            headimg2:`http://xpm.xpmwqhzygy.top/head/${uid}`,
+                            pre:1
+                        });
+                        i=data.length;
+                    }else if(i==data.length-1&&uid!=data[i].uid){
+                      this.setState({
+                          pre:0
+                      })
+                    }
+                }
+            });
         var str = window.location.hash;
         var uid = str.split('=')[1];
         console.log(uid);
@@ -58,6 +80,7 @@ export default class PublishTopic extends Component{  //左箭头返回有bug �
     
     render(){
         var uid = this.state.uid;
+        var headimg2=this.state.headimg2;
         return (
             <div className='publicTpc' style={{position:'absolute',top:'0',bottom:'0',background:'#fff'}}>
                 <NavBar
@@ -69,7 +92,7 @@ export default class PublishTopic extends Component{  //左箭头返回有bug �
                 <div style={{height:'10px',background:'#d7dddd',opacity:'0.7'}}></div>
               
                 <div className='pubhead'>
-                    <div className='pub1'><img src={require('../imgs/usrhead.png')} /></div>
+                    <div className='pub1'><img src={this.state.pre==0?headimg:`${headimg2}`} style={{width:'7vh'}}/></div>
                     <div className='pub2'>学渣考研</div>
                 </div>
                            

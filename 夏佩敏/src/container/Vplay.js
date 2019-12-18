@@ -17,63 +17,22 @@ export default class Vplay extends Component {
         super();
         this.state={
             flag:1,
-            text:'本课程是为2020考研复试全程计划公开课',
+            text:'',
             fflag:'',
             flag2:0,
-            todo1:[], //...
-            todo2:[]
+            todo1:[], 
+            todo2:[],
+            id:0,
+            goodnum:0
         }
     }
-    componentDidMount(){
-        var str = this.props.location.search;
-        var uid = str.split('&')[0].split('=')[1];
-        var fflag = str.split('&')[1].split('=')[1];
-        var id = str.split('&')[2].split('=')[1];
-        this.setState({
-            uid:uid,
-            fflag:fflag
-        });
-        if(fflag=='home'){
-            this.setState({
-                flag2:0
-            })
-        }else{
-            this.setState({
-                flag2:1
-            })
-        }
-
-        if(id == 1){
-            this.setState({
-                todo1:[vedio0],
-                todo2:['老梁观世界'],
-                text:[<div style={{fontSize:'5vw'}}>上知天文,下知地理的老梁为你解答是否该考研</div>]
-            });
-        }else if(id == 2){
-            this.setState({
-                todo1:[vedio1],
-                todo2:['张雪峰课堂'],
-                text:[<div style={{fontSize:'5vw'}}>张雪峰给你讲考研</div>]
-            });
-        }else if(id == 3){
-            this.setState({
-                todo1:[vedio2],
-                todo2:['爆笑张雪峰'],
-                text:[<div style={{fontSize:'5vw'}}>爆笑张雪峰</div>]
-            });
-        }else if(id == 4){
-            this.setState({
-                todo1:[vedio3],
-                todo2:['张雪峰讲讲跨专业'],
-                text:[<div style={{fontSize:'5vw'}}>张雪峰讲讲跨专业</div>]
-            });
-        }
-
-    }
-    good(){
+    good = () => {
         var god=document.getElementById('good');
         console.log(god.src);
-        god.src=zan1
+        god.src=zan1;
+        this.setState({
+            goodnum:1
+        })
     }
     changeColor = () => {
         this.setState({
@@ -96,7 +55,6 @@ export default class Vplay extends Component {
                 text:[<div style={{fontSize:'5vw'}}>张雪峰讲讲跨专业</div>]
             })
         }
-
     }
     changeColor2 = () => {
         this.setState({
@@ -104,11 +62,11 @@ export default class Vplay extends Component {
         })
         if(this.state.id==1){
             this.setState({
-                text:[<div style={{fontSize:'5vw'}}>是考研还是就业</div>]
+                text:[<div style={{fontSize:'5vw'}}>很多人迷茫是考研还是就业，那么今天老梁来跟你说一说</div>]
             })
         }else if(this.state.id==2){
             this.setState({
-                text:[<div style={{fontSize:'5vw'}}>张雪峰跟你说说考研的重要性</div>]
+                text:[<div style={{fontSize:'5vw'}}>张雪峰告诉你考研的重要性</div>]
             })
         }else if(this.state.id==3){
             this.setState({
@@ -142,39 +100,102 @@ export default class Vplay extends Component {
             })
         }
     }
+    componentDidMount(){
+        var str = this.props.location.search;
+        var uid = str.split('&')[0].split('=')[1];
+        var fflag = str.split('&')[1].split('=')[1];
+        var id = str.split('&')[2].split('=')[1];
+        this.setState({
+            id:id,
+            uid:uid,
+            fflag:fflag
+        });
+        if(fflag=='home'){
+            this.setState({
+                flag2:0
+            })
+        }else if(fflag == 'more'){
+            this.setState({
+                flag2:1
+            })
+        }else if(fflag == 'search'){
+            this.setState({
+                flag2:2
+            })
+        }
+
+        if(id == 1){
+            this.setState({
+                todo1:[vedio0],
+                todo2:['老梁观世界'],
+                text:[<div style={{fontSize:'5vw'}}>上知天文,下知地理的老梁为你解答是否该考研</div>]
+            });
+        }else if(id == 2){
+            this.setState({
+                todo1:[vedio1],
+                todo2:['张雪峰课堂'],
+                text:[<div style={{fontSize:'5vw'}}>张雪峰给你讲考研</div>]
+            });
+        }else if(id == 3){
+            this.setState({
+                todo1:[vedio2],
+                todo2:['爆笑张雪峰'],
+                text:[<div style={{fontSize:'5vw'}}>爆笑张雪峰</div>]
+            });
+        }else if(id == 4){
+            this.setState({
+                todo1:[vedio3],
+                todo2:['张雪峰讲讲跨专业'],
+                text:[<div style={{fontSize:'5vw'}}>张雪峰讲讲跨专业</div>]
+            });
+        }
+
+    }
+   
 
     //跳转
     goout = () => {
         var uid = this.state.uid;
         if(this.state.flag2==0){
             window.location.hash = `/appTab?uid=${uid}&type=home`
-        }else{
+        }else if(this.state.flag2==1){
             window.location.hash = `/video?uid=${uid}&flag=more`
+        }else if(this.state.flag2==2){
+            window.location.hash = `/search?uid=${uid}&type=home`
         }
     }
     render() {
         
 
         return (
-            <div>
+            <div style={{background:'#fff',position:'absolute',top:'0',bottom:'0',width:'100%'}}>
                  <NavBar
                 style={{background:'#66cccc',color:'#fff'}} 
                 leftContent={<img src={require('../imgs/zjt.png')} onClick={this.goout} />}
                 mode="light"
                 ><span style={{color:'#fff',fontSize:'22px'}}>课程</span></NavBar>
-                <video height='100%' width='100%' controls='controls' object-fit='container'>
-                        <source src={vedio0} type='video/mp4'/>
-                        <source src={vedio0} type='video/ogg'/>
+                <div>{
+                    this.state.todo1.map(
+                        (item)=><video height='100%' width='100%' controls='controls' object-fit='container'>
+                        <source src={item} type='video/mp4'/>
                         您的浏览器不支持Video
                 </video>
+                    )
+    }
+                </div>
                 <WhiteSpace/>
                 <WingBlank>
-                <img id='good' src={good} style={{height:'5vw',width:'5vw'}} onClick={this.good}/><span style={{fontSize:'5vw',marginLeft:'1vw'}}>0</span>
+                <img id='good' src={good} style={{height:'5vw',width:'5vw'}} onClick={this.good}/><span style={{fontSize:'5vw',marginLeft:'1vw'}}>{this.state.goodnum}</span>
                 <img src={count} style={{height:'4vw',width:'5vw',marginLeft:'5vw'}}/><span style={{fontSize:'5vw',marginLeft:'1vw'}}>10</span>
                 </WingBlank>
                 <WhiteSpace/>
-                <h2 style={{textIndent:'2em'}}>【2020考研】 复试全程计划公开课</h2>
-               
+                <div>
+                    {
+                        this.state.todo2.map(
+                        (item)=><h2 style={{textIndent:'2em'}}>{item}</h2>
+                        )
+                    }
+                </div> 
                    <div style={{width:'100%',background:'red'}}>
                         <div className='btn'style={{width:'100%'}}>
                             <div id='btn' style={{textAlign:'center',width:'33%',height:'8vw',lineHeight:'8vw',fontSize:'5vw',color:'black',float:'left'}} onClick={this.changeColor} className={this.state.flag == 1 ? 'vpaychange' : ''}>课程介绍</div>

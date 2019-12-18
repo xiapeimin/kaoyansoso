@@ -38,9 +38,6 @@ export default class ListShop extends React.Component {
   }
 
   componentDidMount() {
-    var value = this.props.value;
-    var values=this.props.values;
-    var value3=this.props.value3;
 
     setTimeout(() => {
       this.rData = genData();
@@ -56,7 +53,7 @@ export default class ListShop extends React.Component {
         this.setState({schooldata:c.all});
     });
 
-    console.log(this.props.uid);
+    // console.log(this.props.uid);
   }
   
   componentDidUpdate(prevProps,prevState){
@@ -64,9 +61,8 @@ export default class ListShop extends React.Component {
       let value=this.props.value;
       let values=this.props.values;
       let value3=this.props.value3;
-      console.log(prevProps.value);
-      console.log(value);
-      console.log(value3);
+      // console.log(value);
+      // console.log(value3);
       fetch('http://wqh.xpmwqhzygy.top/school')
     .then((res)=>res.json())
     .then((res)=>{
@@ -292,19 +288,21 @@ export default class ListShop extends React.Component {
     }
     console.log('reach end', event);
     this.setState({ isLoading: true });
-    setTimeout(() => {
-      this.rData = { ...this.rData, ...genData(++pageIndex) };
-      this.setState({
-        dataSource: this.state.dataSource.cloneWithRows(this.rData),
-        isLoading: false,
-      });
-    }, 1000);
+    // setTimeout(() => {
+    //   this.rData = { ...this.rData, ...genData(++pageIndex) };
+    //   this.setState({
+    //     dataSource: this.state.dataSource.cloneWithRows(this.rData),
+    //     isLoading: false,
+    //   });
+    // }, 1000);
   }
 
   render() {
     var uid = this.props.uid; //携带参数跳转 区别用户
     var pid = this.props.id;
     var idx = this.props.index;
+    let value3 = this.props.value3;
+    console.log(value3);
 
     const separator = (sectionID, rowID) => (
       <div
@@ -317,6 +315,15 @@ export default class ListShop extends React.Component {
         }}
       />
     );
+    var s = [];
+    for(var i = 0;i<this.state.schooldata.length;i++){
+      var j = 0;
+      if(value3=='common'&&this.state.schooldata[i].one==''&&this.state.schooldata[i].two==''){
+        s[j++]=this.state.schooldata[i];
+        console.log(s);
+    }
+    }
+
     let index = this.state.schooldata.length - 1||1;
     const row = (rowData, sectionID, rowID) => {
       if (index < 0) {
@@ -356,12 +363,12 @@ export default class ListShop extends React.Component {
         renderRow={row}
         renderSeparator={separator}
         className="am-list"
-        pageSize={1}
+        pageSize={4}
         useBodyScroll
         onScroll={() => { console.log('scroll'); }}
         scrollRenderAheadDistance={500}
-        onEndReached={this.onEndReached}
-        onEndReachedThreshold={10}
+        // onEndReached={this.onEndReached} 
+        // onEndReachedThreshold={10}
       />
       
     );

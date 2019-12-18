@@ -70,7 +70,6 @@ export default class SchoolDetails extends Component {
       }
 
     render() {
-        console.log(this.state.id);
         return (
             <div className="testbox">
                 <NavBar
@@ -84,9 +83,9 @@ export default class SchoolDetails extends Component {
                             <div>                     
                                 <img className={this.state.id == item.des ? 'talk' : 'untalk'} src={item.img} style={{width:'100%',height:'40vw'}}/>
                                 <div className={this.state.id == item.des ? 'talk' : 'untalk'} style={{marginTop:'3vh'}}>
-                                    <span style={{backgroundColor:'#e8b1b1',marginLeft:'5px',borderRadius:'7px',padding:'3px'}}>{item.one}</span>
-                                    <span style={{backgroundColor:'#a7e4f1',marginLeft:'5px',borderRadius:'7px',padding:'3px'}}>{item.two}</span>
-                                    <span style={{backgroundColor:'#3bc0bb',marginLeft:'5px',borderRadius:'7px',padding:'3px'}}>{item.row}</span>
+                                    <button style={{backgroundColor:'#e8b1b1',marginLeft:'5px',borderRadius:'7px',padding:'3px'}}>{item.one}</button>
+                                    <button style={{backgroundColor:'#a7e4f1',marginLeft:'5px',borderRadius:'7px',padding:'3px'}}>{item.two}</button>
+                                    <button style={{backgroundColor:'#3bc0bb',marginLeft:'5px',borderRadius:'7px',padding:'3px'}}>{item.row}</button>
                                 </div>
                             </div>
                             ))
@@ -109,25 +108,30 @@ export default class SchoolDetails extends Component {
                 </div>
                 <Tabs tabs={tabs}
                     initialPage={0}
-                    onChange={(tab, index) => { console.log('onChange', index, tab); }}
-                    onTabClick={(tab, index) => { console.log('onTabClick', index, tab); }}
                     >
                     <div style={{ textIndent:'2em',fontSize:'3vw',display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#fff'}}>
                     <p>{
                         this.state.data.map((item,index)=>(                       
-                            <p className={this.state.id == item.name ? 'talk' : 'untalk'}>{item.introduce}</p>
+                            <p className={this.state.id == item.name ? 'talk' : 'untalk'}>{item.jianzhang}</p>
                         ))
                     }
                     </p>
                     </div>
-                    <div style={{ fontSize:'3vw',display: 'flex', alignItems: 'center', justifyContent: 'center', height: '15vw', backgroundColor: '#fff' }}>
-                        软件工程<br/>
-                        环境学院<br/>
-                        艺术学院<br/>
-                        法学院<br/>
+                    <div style={{ textIndent:'2em',fontSize:'3vw',display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#fff'}}>
+                    {
+                        this.state.data.map((item,index)=>(                       
+                            <p className={this.state.id == item.name ? 'talk' : 'untalk'}>{item.zssub}</p>
+                        ))
+                    }
+                    
                     </div>
-                    <div style={{fontSize:'3vw', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '15vw', backgroundColor: '#fff' }}>
-                        复试时间
+                    <div style={{ textIndent:'2em',fontSize:'3vw',display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#fff'}}>
+                    {
+                        this.state.data.map((item,index)=>(                       
+                            <p className={this.state.id == item.name ? 'talk' : 'untalk'}>{item.testmsg}</p>
+                        ))
+                    }
+                    
                     </div>
                     </Tabs>
                     </div>

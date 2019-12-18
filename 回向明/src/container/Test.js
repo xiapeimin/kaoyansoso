@@ -11,7 +11,8 @@ export default class Test extends Component{
             id:1,
             flag:1,
             touchState: false,
-            uid:0
+            uid:0,
+            a:[]
         }
     }
     componentDidMount(){  
@@ -28,6 +29,27 @@ export default class Test extends Component{
             flag:flag,
             uid:uid
         })
+
+        fetch(`https://xiangming.yflzy.cn/love/${id}`,{
+            method: 'GET'
+            })
+            .then((res)=>res.json())
+            .then((res)=>{
+                console.log(res.data);
+                console.log(typeof(res.data));
+                this.setState({
+                    a:res.data
+                });
+                for(var i = 0;i<res.data.length;i++){
+                    console.log(res.data)
+                    if(this.state.id==res.data[i].id){
+                        this.setState({
+                            touchState:true
+                        })
+                    }
+                }
+
+            })
     }
     
     render(){
@@ -50,8 +72,41 @@ export default class Test extends Component{
         )
     }
     changgesrc = () => {
+        var pid = this.state.uid+this.state.id+this.state.flag;
+        const post ={
+            uid:this.state.uid,
+            id:this.state.id,
+            flag:this.state.flag,
+            pid:this.state.uid+this.state.id+this.state.flag
+        }
+    if(!this.state.touchState){
+        fetch(`https://xiangming.yflzy.cn/focus`,{
+            // post提交
+            method:"POST",
+            headers:{'Content-Type': 'application/x-www-form-urlencoded'},
+            body:JSON.stringify(post)//把提交的内容转字符串
+        })
+        .then(res =>res.json())
+        .then(data =>{
+            console.log(data);
+        })
+    }
+    else{
+        fetch(`https://xiangming.yflzy.cn/cancel/${pid}`,{
+            // post提交
+            method:"DELETE",
+            headers:{'Content-Type': 'application/x-www-form-urlencoded'},
+            body:JSON.stringify(post)//把提交的内容转字符串
+        })
+        .then(res =>res.json())
+        .then(data =>{
+            console.log(data);
+        })
+    }
+        
         console.log('imglll');
         this.setState({ touchState: !this.state.touchState });
+
     }
     downLoad = () => {
         console.log('下载');
