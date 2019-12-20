@@ -212,6 +212,10 @@ export default class Search extends Component{
                         all=[];
                         school2=[];
                         i=allschool.length;
+                    }else if(i == allschool.length-1 && e!=allschool[i].des){
+                        this.setState({
+                            fflag:0
+                        });
                     }
                 }
                 if(this.state.fflag != 1){
@@ -1517,6 +1521,10 @@ export default class Search extends Component{
                     all=[];
                     school2=[];
                     i=allschool.length;
+                }else if(i == allschool.length-1 && e!=allschool[i].des){
+                    this.setState({
+                        fflag:0
+                    });
                 }
             }
             if(this.state.fflag != 1){

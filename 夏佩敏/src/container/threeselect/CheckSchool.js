@@ -37,21 +37,21 @@ export default class CheckSchool extends Component {
                 {/* 下拉菜单 */}
                 <form> 
                   <WhiteSpace/>
-                  <select style={{width:'30%',height:'30px',marginLeft:'2%',color:'gray',border:'none'}} onChange={(e) => {this.setState({value:e.target.value})}}> 
+                  <select style={{width:'30%',height:'30px',background:'#fff',border:'none',marginLeft:'2%',color:'#000'}} onChange={(e) => {this.setState({value:e.target.value})}}> 
                     {
                       city.map((item)=>(
                          <option value={item}>{item}</option>
                       ))
                     } 
                   </select> 
-                  <select  style={{width:'30%',height:'30px',marginLeft:'2%',color:'gray',border:'none'}} onChange={(e) => {this.setState({value3:e.target.value})}}>
+                  <select  style={{width:'30%',height:'30px',marginLeft:'2%',background:'#fff',color:'#000',border:'none'}} onChange={(e) => {this.setState({value3:e.target.value})}}>
                     <option value='three'>高校类型</option>
                     <option value='985'>985</option>
                     <option value='211'>211</option>
                     <option value='common'>普通本科</option>
                   </select>
-                  <select  style={{width:'30%',height:'30px',marginLeft:'2%',color:'gray',border:'none'}} onChange={(e) => {this.setState({values:e.target.value})}}>
-                    <option value='desc' >升序</option>
+                  <select  style={{width:'30%',height:'30px',marginLeft:'2%',color:'#000',background:'#fff',border:'none'}} onChange={(e) => {this.setState({values:e.target.value})}}>
+                    <option value='desc'>升序</option>
                     <option value='asc'>降序</option>
                   </select>
                   </form> 

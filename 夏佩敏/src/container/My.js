@@ -188,7 +188,7 @@ export default class My extends Component {
                     <div style={{width:'100%',height:'16vw',fontSize:'6vw',lineHeight:'16vw',marginBottom:'1vw'}}>
                         <img src={wenjian} alt="" style={{width:'12%',height:'90%',float:'left'}}/>
                         <span style={{width:'67%',paddingLeft:'4%',float:'left'}}>我的笔记</span>
-                        <Link to={`/note?uid=${uid}`}><img src={jiantou} alt="" style={{width:'15%',height:'100%',float:'right'}}/></Link>
+                        <Link to={`/note?uid=${uid}&typef=my`}><img src={jiantou} alt="" style={{width:'15%',height:'100%',float:'right'}}/></Link>
                     </div>
 
                     <div style={{width:'100%',height:'16vw',fontSize:'6vw',lineHeight:'16vw',marginBottom:'1vw'}}>
@@ -198,7 +198,9 @@ export default class My extends Component {
                     </div>
             
                 </div>
-        
+
+            
+    
                 
             </div>
         )

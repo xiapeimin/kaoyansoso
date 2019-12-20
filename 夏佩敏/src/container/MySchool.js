@@ -83,11 +83,11 @@ export default class AppHome extends Component {
                             <img className={this.state.school == item.des ? 'talk' : 'untalk'} src={item.img} style={{width:'90%',margin:'20px',marginTop:'0',paddingTop:'20px',height:'250px'}}/>
                         ))
                     }
-                     <p style={{width:'90%',marginLeft:'20px',fontSize:'17px'}}>学校介绍</p>
-                    <p style={{width:'90%',margin:'20px',marginBottom:'0',paddingBottom:'20px',fontSize:'15px',color:'#AAAAAA'}}>
+                     <p style={{width:'90%',marginLeft:'20px',fontSize:'17px'}}>学校资讯</p>
+                    <p style={{width:'90%',margin:'20px',marginBottom:'0',paddingBottom:'20px',fontSize:'15px',color:'#726e6e'}}>
                     {
                         this.state.data.map((item,index)=>(                       
-                            <p className={this.state.school == item.name ? 'talk' : 'untalk'} style={{fontSize:'17px',color:'#AAAAAA'}}>{item.introduce}</p>
+                            <p className={this.state.school == item.name ? 'talk' : 'untalk'} style={{fontSize:'16px',color:'#726e6e'}}>{item.introduce}</p>
                         ))
                     }
                     </p>

@@ -41,14 +41,14 @@ export default class CheckSchool extends Component {
                   {/* 下拉菜单 */}
                   <form> 
                   <WhiteSpace/>
-                  <select style={{width:'42.5%',height:'30px',marginLeft:'5%',color:'gray',border:'1px solid #ddd'}} onChange={(e) => {this.setState({value:e.target.value})}}> 
+                  <select style={{width:'42.5%',height:'30px',marginLeft:'5%',color:'#000',background:'#fff',border:'none'}} onChange={(e) => {this.setState({value:e.target.value})}}> 
                     {
                       city.map((item)=>(
                          <option value={item}>{item}</option>
                       ))
                     } 
                   </select> 
-                  <select  style={{width:'42.5%',height:'30px',marginLeft:'5%',color:'gray',border:'1px solid #ddd'}} onChange={(e) => {this.setState({values:e.target.value})}}>
+                  <select  style={{width:'42.5%',height:'30px',marginLeft:'5%',color:'#000',background:'#fff',border:'none'}} onChange={(e) => {this.setState({values:e.target.value})}}>
                     <option value='asc' >升序</option>
                     <option value='desc'>降序</option>
                   </select>

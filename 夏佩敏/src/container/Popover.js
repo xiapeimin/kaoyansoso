@@ -16,6 +16,16 @@ const colors = [
     label:
     (<div>
       <span
+        style={{ ...colorStyle, backgroundColor: '#fadbea' }}
+      />
+      <span>粉色</span>
+    </div>),
+    value: '#fadbea',
+  },
+  {
+    label:
+    (<div>
+      <span
         style={{ ...colorStyle, backgroundColor: '#ffffff' }}
       />
       <span>白色</span>
@@ -41,16 +51,6 @@ const colors = [
       <span>天蓝</span>
     </div>),
     value: '#bbe2e9',
-  },
-  {
-    label:
-    (<div>
-      <span
-        style={{ ...colorStyle, backgroundColor: '#fadbea' }}
-      />
-      <span>粉色</span>
-    </div>),
-    value: '#fadbea',
   },
   {
     label:
@@ -84,7 +84,7 @@ class Test extends React.Component {   //根据选择 切换单词列表
           cols={1}
           onChange={this.onChangeColor}
         >
-         <div style={{background:`url(${cll}) no-repeat`,backgroundSize:'100% 100%',width:'20px',height:'20px'}}></div>
+         <span>背景</span>
         </Picker>
               
      

@@ -38,6 +38,7 @@ import Findpwd from './container/Findpwd';
 import CreateNote from './container/CreateNote';
 import ChangeNote from './container/ChangeNote';
 import Pwdchange from './container/Pwdchange';
+import Contact from './container/Contact';
 
 import Sql from './components/spltest';
 
@@ -50,6 +51,7 @@ export default class App extends Component{
                         <Switch>
                             <Route path='/sql' component={Sql} />
                             <Route path='/' exact component={Login} />
+                            <Route path='/contact' component={Contact} />
                             <Route path='/pwdchange' component={Pwdchange} />
                             <Route path='/changeNote' component={ChangeNote} />
                             <Route path='/myschool' component={MySchool} />

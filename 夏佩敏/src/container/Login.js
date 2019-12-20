@@ -52,15 +52,15 @@ export default class Login extends Component {
                     
                 </ul>
                 
-                <div className='anpwd'>
+                <div className='anpwd'  style={{marginLeft:'-5px'}}>
                     <div><img src={this.state.touchState ? off : on} onClick={this.touchStart.bind(this)}/></div>
-                    <p>记住密码</p>
+                    <p style={{color:'#4d4e4f'}}>记住密码</p>
                 </div>
-                <button onClick={this.goHome} type='submit' className='login_btn' style={{background:'#09cdd9'}}>登录</button>
+                <button onClick={this.goHome} type='submit' className='login_btn' style={{background:'#7bc1de'}}>登 录</button>
                 <Link to='/forgetpwd'><p style={{color:'#047c84',textAlign:'center',fontSize:'4vw'}}>忘记密码？</p></Link>
                 <div className='zhuce'>
                     <p style={{color:'#047c84',textAlign:'center',fontSize:'4vw'}}>还没有账号？</p>
-                    <Link to='/register'><button className='login_btn' style={{background:'#77cfc2',opacity:'0.7'}}>注册</button></Link>
+                    <Link to='/register'><button className='login_btn' style={{background:'#8d9fb8',opacity:'0.8'}}>注 册</button></Link>
                 </div>
 
                 <div style={{display:this.state.flag==0 ? 'none' : 'block',position:'absolute',top:'40%',width:'50%',left:'25%',background:'#fff',height:'8vw',lineHeight:'8vw',textAlign:'center'}}>用户名或密码错误！</div>
@@ -69,7 +69,7 @@ export default class Login extends Component {
         )
     }
 
-    getuid = (e) => {
+    getuid = (e) => {  //#09cdd9   background:'#77cfc2',opacity:'0.7'  90c8e0
         this.setState({
             uid:e.target.value
         })

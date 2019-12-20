@@ -17,7 +17,10 @@ import delete1 from './images/delete.jpg';
 var page = 0;
 var headflag2=0;
 var ttext=[];
+var ttext2=[];
 var talks=[];
+var talks2=[];
+
 const tabs = [
     { title: <Badge>热门动态</Badge> },
     { title: <Badge>我的动态</Badge> },
@@ -115,9 +118,42 @@ export default class HostTopic extends Component {   //评论弹框bug 用组件
               .then((res)=>{
                   console.log(res.data);
                   console.log(typeof(res.data));
+                  var tt2 = [];
+                  var txt2='';
+                  var arr2 = new Array();
                   this.setState({
                       data:res.data
                   });
+
+                  for(var i=0;i<res.data.length;i++){
+                    ttext2[i]='';
+                    txt2=res.data[i].talk.slice(0,res.data[i].talk.length-1);
+                    tt2[i]=txt2;
+                    //console.log(tt[i]);
+                    talks2[i]=tt2[i].split('#');
+                    
+                }
+                for(var j=0;j<talks2.length;j++){
+                    if(talks2[j]==''){
+                        var obj2 = new Object();
+                        obj2.name='';
+                        obj2.talk='';
+                        talks2[j][0]=obj2;
+                    }else{
+                        for(var z=0;z<talks2[j].length;z++){
+                          arr2[z]=[];
+                          console.log(talks2[j][z],'zzzzzzzzz');
+                          arr2[z].name=talks2[j][z].split('&')[0];
+                          arr2[z].talk=talks2[j][z].split('&')[1];
+                          talks2[j][z]=arr2[z];
+                    
+                        }
+          
+                    }
+                    //console.log(talks[j]);
+                }
+                
+
               });
               fetch(`http://zy.xpmwqhzygy.top/all`,{
                 method: 'GET'
@@ -127,17 +163,43 @@ export default class HostTopic extends Component {   //评论弹框bug 用组件
                   console.log(res.data);
                   console.log(typeof(res.data));
                   var tt = [];
+                  var txt='';
+                  var arr = new Array();
                   this.setState({
                       all:res.data                     
                   });
                   for(var i=0;i<res.data.length;i++){
                       ttext[i]='';
-                      tt[i]=res.data[i].talk;
-                      console.log(tt[i]);
-                      talks[i]=tt[i].split(this.state.username);
+                      txt=res.data[i].talk.slice(0,res.data[i].talk.length-1);
+                      tt[i]=txt;
+                      //console.log(tt[i]);
+                      talks[i]=tt[i].split('#');
                       //talks[i][0]=this.state.username;
-                      console.log(talks[i],typeof(talks[i]))
+                      //console.log(talks[i],typeof(talks[i]))
                   }
+                  for(var j=0;j<talks.length;j++){
+                      if(talks[j]==''){
+                          var obj = new Object();
+                          obj.name='';
+                          obj.talk='';
+                          talks[j][0]=obj;
+                      }else{
+                          for(var z=0;z<talks[j].length;z++){
+                            arr[z]=[];
+                            console.log(talks[j][z],'zzzzzzzzz');
+                            arr[z].name=talks[j][z].split('&')[0];
+                            arr[z].talk=talks[j][z].split('&')[1];
+                            talks[j][z]=arr[z];
+                            //console.log(obj);
+                            // console.log(talks[j][z]);
+                            // console.log(talks[j]);
+                          }
+            
+                      }
+                      console.log(talks[j]);
+                  }
+                  
+
                   
               });
 
@@ -293,15 +355,19 @@ export default class HostTopic extends Component {   //评论弹框bug 用组件
         console.log(div1.className);
       }
       addItem=(e)=>{
+        var username = this.state.username;
         var index=e.target.id.slice(3);
         var inp=document.getElementById('in'+index);
-        var value=inp.value;
+        var value=username+':'+'&' +' '+inp.value+'#';
+        ttext2[index]+=value;
+
         var input=document.getElementById('pls'+index);
-        input.innerHTML+=value;
+
+        input.innerHTML+='<span style="color:blue">'+username+': '+'</span>'+'<span>'+inp.value+'</span>'+'<br/>';
         var div1=document.getElementById('pl'+index);
         div1.className='untalk';
         const post ={
-            talk:input.innerHTML
+            talk:ttext2[index]
         }
         var uid=this.state.all[index].uid;
         var pri=uid+this.state.all[index].topic;
@@ -325,13 +391,15 @@ export default class HostTopic extends Component {   //评论弹框bug 用组件
         var username = this.state.username;
         var index=e.target.id.slice(3);
         var inp=document.getElementById('an'+index);
-        var value=username+inp.value;
+        var value=username+':'+'&' +' '+inp.value+'#';
 
         ttext[index]+=value;
 
+        console.log(ttext[index],'eeeeeeee');
+
         var input=document.getElementById('als'+index);
         
-        input.innerHTML+='<span style="color:blue">'+username+':'+'</span>'+'<span>'+inp.value+'</span>'+'<br/>';
+        input.innerHTML+='<span style="color:blue">'+username+': '+'</span>'+'<span>'+inp.value+'</span>'+'<br/>';
         var div1=document.getElementById('al'+index);
         div1.className='untalk';
         const post ={
@@ -423,7 +491,21 @@ export default class HostTopic extends Component {   //评论弹框bug 用组件
         var headimg2=this.state.headimg2;
         var bjnow = this.state.bjnow;
         var rdata = this.state.data.reverse();
-        console.log(talks,'ttttttttttt')
+        console.log(talks,'ttttttttttt');
+        var imgs=[];
+        var imgs2=[];
+        var imgsall=[];
+        var imgsall2=[];
+        for(var i=0;i<this.state.all.length;i++){
+            imgsall[i]=this.state.all[i].imgsrc;
+            imgsall2[i]=this.state.all[i].srcimg;
+        }
+        for(var i=0;i<rdata.length;i++){
+            imgs[i]=rdata[i].imgsrc;
+            imgs2[i]=rdata[i].srcimg;
+        }
+
+        console.log(rdata);
         return (
             <div>
                 <NavBar style={{backgroundColor:'#66cccc',color:'white'}}
@@ -450,7 +532,10 @@ export default class HostTopic extends Component {   //评论弹框bug 用组件
                                                     <div style={{height:'8px'}}></div>
                                                     <span style={{fontSize:'15px',color:'grey'}}>{item.time}</span>
                                                     <div style={{height:'5px'}}></div>
-                                                    <span style={{fontSize:'16px'}}>{item.topic}</span>        
+                                                    <span style={{fontSize:'16px'}}>{item.topic}</span>
+                                                    <div style={{clear:'both',height:'10px'}}></div>
+                                                    <img src={`http://zy.xpmwqhzygy.top/timg/${item.pri}`} style={{width:'100px',float:'left',height:'100px',display:imgsall[index]==null ? 'none' :'block'}} /> 
+                                                    <img src={`http://zy.xpmwqhzygy.top/tsrc/${item.pri}`} style={{width:'100px',float:'left',height:'100px',display:imgsall2[index]==null ? 'none' :'block'}} />         
                                                 </div>
                                                 </div>
 
@@ -463,7 +548,17 @@ export default class HostTopic extends Component {   //评论弹框bug 用组件
                                                     <button id={`ain${index}`} style={{width:'20%',color:'white',height:'30px',backgroundColor:'#66cccc',border:'none'}} onClick={this.allItem}>完成</button>
                                                 </div>
                                                <div id={`als${index}`} style={{width:'100%',float:'left',fontSize:'17px',paddingTop:'10px',borderTop:'1px solid #ddd'}}>{talks.map((item2,index2)=>(
-                                                   <div>{/**<span style={{color:'blue'}}>{item.username} : </span> */}<span> {item2[index2+1]}</span></div>
+                                                   <div className={index==index2?'talk':'untalk'}>{
+
+                                                       talks[index2].map((item3,index3)=>(
+                                                           <div>
+                                                                <span style={{color:'blue'}}>{item3.name}</span>
+                                                                <span>{item3.talk}</span>
+                                                               
+                                                            </div>
+                                                           
+                                                       ))
+                                                   }</div>
                                                ))}</div>
                                                 
                                                 <div style={{clear:'both'}}></div>
@@ -494,6 +589,7 @@ export default class HostTopic extends Component {   //评论弹框bug 用组件
 
                         
                                 {   rdata.map((item,index)=>( 
+
                                             <div className={`l${index}`} style={{ width:'100%',padding:'3%',background:'#fff',overflow:'hidden'}}>
                                                 <div>
                                                 <div style={{width:'20%',float:'left'}}>  
@@ -506,11 +602,15 @@ export default class HostTopic extends Component {   //评论弹框bug 用组件
                                                     <span style={{fontSize:'15px',color:'grey'}}>{item.time}</span>
                                                     <div style={{height:'5px'}}></div>
                                                     <span style={{fontSize:'16px'}}>{item.topic}</span>
-                                                    
+                                                    <br />
+                                                    <div style={{clear:'both',height:'10px'}}></div>
+                                                    <img src={`http://zy.xpmwqhzygy.top/timg/${item.pri}`} style={{width:'100px',float:'left',height:'100px',display:imgs[index]==null ? 'none' :'block'}} />
+                                                    <img src={`http://zy.xpmwqhzygy.top/tsrc/${item.pri}`} style={{width:'100px',float:'left',height:'100px',display:imgs2[index]==null ? 'none' :'block'}} />  
                                                 </div>
                                                 </div>
+                                                
 
-                                                <div style={{width:'100%',float:'left',textAlign:'right',paddingTop:'3px',paddingBottom:'2px',borderBottom:'1px solid #ddd'}}>
+                                                <div style={{width:'100%',float:'left',textAlign:'right',paddingTop:'3px',paddingBottom:'2px',borderBottom:'1px solid #ddd',marginBottom:'8px'}}>
                                                     <img  src={item.good ? zan1 : good} style={{width:'4.5vh',height:'4.5vh',marginRight:'1vh'}} id={`img${index}`} onClick={this.good}/>                                         
                                                     <img id={`p${index}`} src={talk} style={{width:'4vh',height:'4vh',marginRight:'1vh'}} onClick={this.unlogin}/>
                                                     <img id={`del${index}`} src={delete1} style={{width:'4vh',height:'4vh'}} onClick={this.delItem}/> 
@@ -521,12 +621,25 @@ export default class HostTopic extends Component {   //评论弹框bug 用组件
                                                     <button id={`fin${index}`} style={{width:'20%',color:'white',height:'30px',backgroundColor:'#66cccc',border:'none'}} onClick={this.addItem}>完成</button>
                                                 </div>
                                                 
-                                                <div id={`pls${index}`}>{item.talk}</div>
+                                                <div id={`pls${index}`}>{talks2.map((item2,index2)=>(
+                                                   <div className={index==index2?'talk':'untalk'}>{
+
+                                                       talks2[index2].map((item3,index3)=>(
+                                                           <div style={{fontSize:'17px'}}>
+                                                                <span style={{color:'blue'}}>{item3.name}</span>
+                                                                <span>{item3.talk}</span>
+                                                               
+                                                            </div>
+                                                           
+                                                       ))
+                                                   }</div>
+                                               ))}</div>
                                                 
                                                 <div style={{clear:'both'}}></div>
                                             </div>                    
                                         ))
                                 }
+                                
                        
                      </div>
                 </div>

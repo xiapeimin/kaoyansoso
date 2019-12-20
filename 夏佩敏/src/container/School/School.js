@@ -15,7 +15,9 @@ export default class School extends Component {
     constructor(){
       super();
       this.state={
+        img:[],
         data:[],
+        idd:'',
         flag:1,
         id:1,
         text:'推荐关注',
@@ -61,6 +63,14 @@ export default class School extends Component {
       }else{
           uid = str.split('=')[1];
       }
+      fetch('http://zy.xpmwqhzygy.top/schoolDetail')
+         .then((res)=>res.json())
+         .then((res)=>{
+            var ddata = JSON.parse(res);
+            this.setState({
+                img:ddata.img
+            });  
+        });
 
       fetch(`http://xpm.xpmwqhzygy.top/user/${uid}`,{
             method: 'GET',        
@@ -70,13 +80,26 @@ export default class School extends Component {
             })
             .then((res)=>res.json())
             .then((res)=>{
-                console.log(res.data[0].school);
+                console.log(res.data);
                 if(res.data.length!=0){
                   myschool=res.data[0].school;
                   fflag=1; 
+                }else if(res.data.length==0){
+                  fflag=0;
+                }
+                if(res.data[0].school==''){
+                  fflag=0;
+                  this.setState({
+                    idd:'中南大学'
+                  });
+                }else if(res.data[0].school!=''){
+                  fflag=1;
+                  this.setState({
+                    idd:res.data[0].school
+                  });
                 }
             
-      console.log(myschool,'mmmmmmmm')
+      //console.log(myschool,'mmmmmmmm')
 
       fetch(`http://xpm.xpmwqhzygy.top/ufocus/${uid}`,{
             method: 'GET'
@@ -267,6 +290,7 @@ export default class School extends Component {
           uid = str.split('=')[1];
       }
       console.log(this.state.data);
+      console.log(fflag,'lll')
       
       /* 结束 */
 
@@ -283,11 +307,26 @@ export default class School extends Component {
                 <h2 style={{marginLeft:'5%'}}>| {fflag==0 ? '中南大学' : obj.des}</h2>
                 <div style={{position:'relative'}}>
                 <div style={{width:'100%',textAlign:'center',marginBottom:'5vw'}}><img style={{width:'90%',height:'24vh',borderRadius:'10px'}} src={fflag==0 ? school1 : obj.img}/></div>
-                <div style={{marginLeft:'5%'}}>
+                {/* <div style={{marginLeft:'5%'}}>
                     <button style={{backgroundColor:'#e8b1b1',marginLeft:'5px',borderRadius:'7px',padding:'3px'}}>985</button>
                     <button style={{backgroundColor:'#a7e4f1',marginLeft:'5px',borderRadius:'7px',padding:'3px'}}>211</button>
                     <button style={{backgroundColor:'#b9a2eb',marginLeft:'5px',borderRadius:'7px',padding:'3px'}}>综合类</button>
-                </div>
+                </div> */}
+
+{
+                        this.state.img.map((item,index)=>(  
+                            <div>                     
+                               
+                                <div className={this.state.idd == item.des ? 'talk' : 'untalk'} style={{marginTop:'3vh',paddingLeft:'4%'}}>                                   
+                                    <button style={{float:'left',backgroundColor:'#e8b1b1',marginLeft:'5px',borderRadius:'7px',padding:'3px',display:item.one==='' ? 'none' : 'block'}}>{item.one}</button>
+                                    <button style={{float:'left',backgroundColor:'#a7e4f1',marginLeft:'5px',borderRadius:'7px',padding:'3px',display:item.two==='' ? 'none' : 'block'}}>{item.two}</button>
+                                    <button style={{float:'left',backgroundColor:'#b9a2eb',marginLeft:'5px',borderRadius:'7px',padding:'3px'}}>{item.logo}</button>
+                                </div>
+                            </div>
+                            ))
+                    }
+                    <div style={{clear:'both'}}></div>
+                
                 <div style={{position:'absolute',right:'5%',width:'100px',fontSize:'15px',height:'35px',lineHeight:'35px',textAlign:'center',borderRadius:'0 8px 0 8px',top:'0',background:'#3bc0bb',color:'#fff'}}>{fflag==0 ? '院校排名：17' : obj.row}</div>
                 </div>
                 

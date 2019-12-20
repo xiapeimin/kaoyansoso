@@ -2,6 +2,8 @@ import React,{Component} from 'react';
 import {NavBar} from 'antd-mobile';
 import {Link} from 'react-router-dom';
 
+import Share from './Share';
+
 export default class RemFire extends Component{
     constructor(){
         super();
@@ -70,7 +72,8 @@ export default class RemFire extends Component{
         return (
             <div className='carouselBox' style={{paddingBottom:'20px'}}>
                 <NavBar
-                style={{background:'#66cccc',color:'#fff'}} 
+                style={{background:'#66cccc',color:'#fff',overflow:'hidden'}} 
+                rightContent={<Share />}
                 leftContent={<img src={require('../imgs/zjt.png')} onClick={this.goout} />}
                 mode="light"
                 onLeftClick={() => console.log('onLeftClick')}

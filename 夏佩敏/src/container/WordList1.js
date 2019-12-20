@@ -481,7 +481,7 @@ export default class Market extends Component {  //要有下拉列表 单词列�
         return (
             <div className='testbox'>
                  <NavBar
-                style={{background:'#67cd9e',color:'#fff'}} 
+                style={{background:'#66cccc',color:'#fff'}} 
                 leftContent={<Link to={`/words?uid=${uid}`}><img src={require('../imgs/zjt.png')} /></Link>}
                 mode="light"
                 ><span style={{color:'#fff',fontSize:'21px'}}>{this.state.name}</span></NavBar>
