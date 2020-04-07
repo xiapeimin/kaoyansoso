@@ -31,18 +31,18 @@ export default class Pwdchange extends Component{
     render(){
         var uid = this.state.uid;
         return (
-            <div>
+            <div style={{background:'#fff',width:'100%',top:'0',bottom:'0',position:'absolute'}}>
                 <NavBar
-                style={{background:'#fff',color:'#000',marginBottom:'10vw'}} 
-                leftContent={<Link to={`/myset?uid=${uid}`}><img src={require('../imgs/zjt2.png')} /></Link>}
+                style={{background:'#66cccc',marginBottom:'10vw'}} 
+                leftContent={<Link to={`/myset?uid=${uid}`}><img src={require('../imgs/zjt.png')} /></Link>}
                 mode="light"
-                ><span style={{fontSize:'22px'}}>修改密码</span></NavBar>
+                ><span style={{color:'#fff',fontSize:'22px'}}>修改密码</span></NavBar>
                 
 
                 <ul style={{textAlign:'center'}}>
-                    <li><input style={{paddingLeft:'5%'}} type='password' className='login_input1' placeholder='输入原密码' onChange={this.oldpwd} /></li>
-                    <li><input style={{paddingLeft:'5%'}} type='password' className='login_input1' placeholder='设置新密码' onChange={this.setpwd1} /></li>
-                    <li><input style={{paddingLeft:'5%'}} type='password' className='login_input1' placeholder='确认密码' onChange={this.setpwd2} /></li>
+                    <li><input style={{paddingLeft:'5%',border:'1px solid #66cccc'}} type='password' className='login_input1' placeholder='输入原密码' onChange={this.oldpwd} /></li>
+                    <li><input style={{paddingLeft:'5%',border:'1px solid #66cccc'}} type='password' className='login_input1' placeholder='设置新密码' onChange={this.setpwd1} /></li>
+                    <li><input style={{paddingLeft:'5%',border:'1px solid #66cccc'}} type='password' className='login_input1' placeholder='确认密码' onChange={this.setpwd2} /></li>
                 </ul>
 
                 <div onClick={this.changepwd} style={{width:'40%',height:'12vw',marginLeft:'30%',marginTop:'10vw',background:'#66cccc',borderRadius:'2vw',textAlign:'center',color:'#fff',lineHeight:'12vw',fontSize:'4.5vw'}}>提交</div>

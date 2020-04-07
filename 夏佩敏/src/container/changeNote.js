@@ -1,23 +1,44 @@
 import React,{Component} from 'react';
-import {NavBar} from 'antd-mobile';
 import {Link} from 'react-router-dom';
+import { Popover, NavBar, Icon } from 'antd-mobile';
 
+import cnote from '../imgs/cnoteimg.png';
+import Check from './Popover';
+
+var fg='';
+
+const Item = Popover.Item;
+
+const myImg = src => <img src={require(`../imgs/${src}.png`)} className="am-icon am-icon-xs" alt="" />;
 export default class ChangeNote extends Component{
-    constructor(){
-        super();
-        this.state = {
-            title:'',
-            text:'',
-            uid:0,
-            nid:'',
-            notename:'',
-            flag:0
-        }
-    }
+    state = {
+        visible: false,
+        selected: '',
+        title:'',
+        text:'',
+        uid:0,
+        nid:'',
+        notename:'',
+        flag:0,
+        cll:'#fadbea'
+    };
+    // constructor(){
+    //     super();
+    //     this.state = {
+    //         title:'',
+    //         text:'',
+    //         uid:0,
+    //         nid:'',
+    //         notename:'',
+    //         flag:0,
+    //         cll:'#fff'
+    //     }
+    // }
     componentDidMount(){
         var str = this.props.location.search;    
         var uid = str.split('&')[0].split('=')[1];
         var notename = str.split('&')[1].split('=')[1];
+        fg = str.split('&')[2].split('=')[1];
         var nid = uid+notename;
         this.setState({
             uid:uid,
@@ -38,22 +59,85 @@ export default class ChangeNote extends Component{
             });
 
     }
+
+    
+      onSelect = (opt) => {
+        // console.log(opt.props.value);
+        this.setState({
+          visible: false,
+          selected: opt.props.value,
+        });
+      };
+      handleVisibleChange = (visible) => {
+        this.setState({
+          visible,
+        });
+      };
+
+      getChildrenMsg = (result, inputValue) => {
+        //console.log(cll);
+        console.log(inputValue,'uuuuuu');
+        //cll=inputValue[0];
+        //console.log(cll);
+        this.setState({
+            cll:inputValue[0]
+        });
+    }
     
     render(){
         var uid = this.state.uid;
         var text = this.state.text;
+        console.log(this.state.cll);
+        var cll = this.state.cll;
         return (
-            <div className='testbox'>
-                <NavBar
-                style={{background:'#66cccc',color:'#fff'}} 
+            <div className='testbox' style={{background:cll}}>
+                {/* <NavBar
+                style={{background:'#fff',color:'#000'}} 
                 rightContent={<div><span onClick={this.delnote} style={{color:'red',marginRight:'7px'}}>删除</span><span onClick={this.saveNote}>保存</span></div>}
-                leftContent={<Link to={`/note?uid=${uid}&typef=home`}><img src={require('../imgs/zjt.png')} /></Link>}
+                leftContent={<Link to={`/note?uid=${uid}&typef=${fg}`}><img src={require('../imgs/zjt2.png')} /></Link>}
                 mode="light"
-                ><span style={{color:'#fff',fontSize:'22px'}}>{this.state.notename}</span></NavBar>
+                ><span style={{color:'#000',fontSize:'22px'}}>{this.state.notename}</span></NavBar> */}
 
-                <div style={{width:'95%',padding:'2.5%',background:'#fff'}}>
+<NavBar
+                style={{background:'#fff',color:'#000'}} 
+                rightContent={
+                    <Popover mask
+                      overlayClassName="fortest"
+                      overlayStyle={{ color: 'currentColor' }}
+                      visible={this.state.visible}
+                      overlay={[
+                        (<Item key="4" value="scan" icon={myImg('baocun')} data-seed="logId"><span onClick={this.saveNote}>保存</span></Item>),
+                        (<Item key="5" value="special" icon={myImg('schu')} style={{ whiteSpace: 'nowrap' }}><span onClick={this.delnote}>删除</span></Item>),
+                        (<Item key="6" value="button ct" icon={myImg('cll')}>
+                          <span style={{ marginRight: 5 }}><div style={{marginTop:'15px'}}><Check parent={this}/></div></span>
+                        </Item>),
+                      ]}
+                      align={{
+                        overflow: { adjustY: 0, adjustX: 0 },
+                        offset: [-10, 0],
+                      }}
+                      onVisibleChange={this.handleVisibleChange}
+                      onSelect={this.onSelect}
+                    >
+                      <div style={{
+                        height: '100%',
+                        padding: '0 15px',
+                        marginRight: '-15px',
+                        display: 'flex',
+                        alignItems: 'center',
+                      }}
+                      >
+                        <Icon type="ellipsis" />
+                      </div>
+                    </Popover>
+                  }
+                leftContent={<Link to={`/note?uid=${uid}&typef=${fg}`}><img src={require('../imgs/zjt2.png')} /></Link>}
+                mode="light"
+                ><span style={{color:'#000',fontSize:'22px'}}>{this.state.notename}</span></NavBar>
+
+                <div style={{width:'85%',paddingTop:'4%',paddingRight:'8%',paddingLeft:'7%'}}>
                     
-                    <textarea value={this.state.text} onChange={this.changeText} style={{width:'96%',marginTop:'2vw',height:'160vw',padding:'2%',border:'none',fontSize:'20px'}}>
+                    <textarea value={this.state.text} onChange={this.changeText} style={{width:'98%',paddingTop:'2%',lineHeight:'10vw',height:'160vw',paddingRight:'1%',border:'none',paddingLeft:'1%',fontSize:'20px',background:'none'}}>
                         
                     </textarea>
                 </div>

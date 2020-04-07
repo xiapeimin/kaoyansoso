@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import {Link} from 'react-router-dom';
 import touxiang from '../imgs/头像.jpg'
-import yanxiao from '../imgs/研校.png'
-import jihua from '../imgs/计划.png'
-import shoucang from '../imgs/收藏.png'
-import wenjian from '../imgs/文件.png'
+import yanxiao from '../imgs/yanxiao.png'
+import jihua from '../imgs/jihua.png'
+import shoucang from '../imgs/shoucang.png'
+import wenjian from '../imgs/wenjian.png'
 import shezhi from '../imgs/设置.png'
-import bangzhu from '../imgs/帮助.png'
+import bangzhu from '../imgs/bangzhu.png'
 import jiantou from '../imgs/箭头.png'
 import beijing from '../imgs/yh.jpg'
 import headimg from '../imgs/usrhead.png';
@@ -168,37 +168,39 @@ export default class My extends Component {
                 <div style={{height:'2vw',background:'#dedada',opacity:'0.8'}}></div>
                 <div style={{background:'#fff',padding:'5%',width:'100%'}}>
                     <div style={{width:'100%',height:'16vw',fontSize:'6vw',lineHeight:'16vw',marginBottom:'1vw'}}>
-                        <img src={yanxiao} alt="" style={{width:'15%',height:'100%',float:'left'}}/>
-                        <span style={{width:'70%',float:'left'}}>我的研校</span>
+                        <img src={yanxiao} alt="" style={{width:'12%',height:'90%',float:'left'}}/>
+                        <span style={{width:'67%',paddingLeft:'4%',float:'left'}}>我的研校</span>
                         <Link to={`/myschool?uid=${uid}`}><img src={jiantou} alt="" style={{width:'15%',height:'100%',float:'right'}}/></Link>
                     </div>
                     
                     <div style={{width:'100%',height:'16vw',fontSize:'6vw',lineHeight:'16vw',marginBottom:'1vw'}}>
-                        <img src={jihua} alt="" style={{width:'15%',height:'100%',float:'left'}}/>
-                        <span style={{width:'70%',float:'left'}}>我的计划</span>
+                        <img src={jihua} alt="" style={{width:'12%',height:'90%',float:'left'}}/>
+                        <span style={{width:'67%',paddingLeft:'4%',float:'left'}}>我的计划</span>
                         <Link to={`/myPlan?uid=${uid}`}><img src={jiantou} alt="" style={{width:'15%',height:'100%',float:'right'}}/></Link>
                     </div>
 
                     <div style={{width:'100%',height:'16vw',fontSize:'6vw',lineHeight:'16vw',marginBottom:'1vw'}}>
-                        <img src={shoucang} alt="" style={{width:'15%',height:'100%',float:'left'}}/>
-                        <span style={{width:'70%',float:'left'}}>我的收藏</span>
+                        <img src={shoucang} alt="" style={{width:'12%',height:'90%',float:'left'}}/>
+                        <span style={{width:'67%',paddingLeft:'4%',float:'left'}}>我的收藏</span>
                         <Link to={`/mysave?uid=${uid}`}><img src={jiantou} alt="" style={{width:'15%',height:'100%',float:'right'}}/></Link>
                     </div>
 
                     <div style={{width:'100%',height:'16vw',fontSize:'6vw',lineHeight:'16vw',marginBottom:'1vw'}}>
-                        <img src={wenjian} alt="" style={{width:'15%',height:'100%',float:'left'}}/>
-                        <span style={{width:'70%',float:'left'}}>我的笔记</span>
-                        <Link to={`/note?uid=${uid}`}><img src={jiantou} alt="" style={{width:'15%',height:'100%',float:'right'}}/></Link>
+                        <img src={wenjian} alt="" style={{width:'12%',height:'90%',float:'left'}}/>
+                        <span style={{width:'67%',paddingLeft:'4%',float:'left'}}>我的笔记</span>
+                        <Link to={`/note?uid=${uid}&typef=my`}><img src={jiantou} alt="" style={{width:'15%',height:'100%',float:'right'}}/></Link>
                     </div>
 
                     <div style={{width:'100%',height:'16vw',fontSize:'6vw',lineHeight:'16vw',marginBottom:'1vw'}}>
-                        <img src={bangzhu} alt="" style={{width:'15%',height:'100%',float:'left'}}/>
-                        <span style={{width:'70%',float:'left'}}>帮助与反馈</span>
+                        <img src={bangzhu} alt="" style={{width:'12%',height:'90%',float:'left'}}/>
+                        <span style={{width:'67%',paddingLeft:'4%',float:'left'}}>帮助与反馈</span>
                         <Link to={`/help?uid=${uid}`}><img src={jiantou} alt="" style={{width:'15%',height:'100%',float:'right'}}/></Link>
                     </div>
             
                 </div>
-        
+
+            
+    
                 
             </div>
         )

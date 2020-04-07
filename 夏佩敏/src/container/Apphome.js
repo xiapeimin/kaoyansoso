@@ -5,7 +5,7 @@ import vedio2 from '../imgs/vedio2.mp4';
 
 var u=0;
 const gridArr = [
-    '定高校','研题库','找资源','背单词','笔记本','研百科'
+    '信息库','研题库','找资源','背单词','笔记本','研百科'
 ];
 const griddata = gridArr.map((_val, i) => ({
     icon: require(`../imgs/grid${i}.png`),

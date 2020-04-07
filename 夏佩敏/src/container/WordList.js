@@ -10,6 +10,7 @@ export default class Market extends Component {
    constructor(){
       super();
       this.state = {
+          uid:1,
           todo: ['about adv 关于',
           'abdomen n 腹，下腹',
           'abnormal adj 反常的',
@@ -75,6 +76,11 @@ export default class Market extends Component {
 }
 //存储到本地
 componentDidMount(){
+    var str = this.props.location.search;
+    var uid = str.split('=')[1];
+    this.setState({
+        uid:uid
+    });
    var todo = JSON.parse(localStorage.getItem('todo'));
    var todo1 = JSON.parse(localStorage.getItem('todo1'));
    if(todo){
@@ -93,6 +99,7 @@ componentDidUpdate(){
    localStorage.setItem("todo1",JSON.stringify(this.state.todo1));
 }
     render() {   //input 宽度超出
+        var uid = this.state.uid;
         const tabs = [
             { title: <p style={{fontSize:'5vw'}}>收藏单词</p> },
             { title: <p style={{fontSize:'5vw'}}>默写单词</p> },
@@ -101,7 +108,7 @@ componentDidUpdate(){
             <div className='testbox'>
                <NavBar               
                 style={{backgroundColor:'#66cccc',color:'white'}}>
-                   <Link to='/Words'>
+                   <Link to={`/words?uid=${uid}`}>
                       <Icon type={'left'} style={{position:'absolute',top:'10px',left:'4%',color:'white'}}/>
                    </Link>
                   <span style={{backgroundColor:'#66cccc',color:'white'}}>我的单词</span>           

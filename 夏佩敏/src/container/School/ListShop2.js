@@ -288,13 +288,13 @@ export default class ListShop extends React.Component {
     }
     console.log('reach end', event);
     this.setState({ isLoading: true });
-    // setTimeout(() => {
-    //   this.rData = { ...this.rData, ...genData(++pageIndex) };
-    //   this.setState({
-    //     dataSource: this.state.dataSource.cloneWithRows(this.rData),
-    //     isLoading: false,
-    //   });
-    // }, 1000);
+    setTimeout(() => {
+      this.rData = { ...this.rData, ...genData(++pageIndex) };
+      this.setState({
+        dataSource: this.state.dataSource.cloneWithRows(this.rData),
+        isLoading: false,
+      });
+    }, 1000);
   }
 
   render() {
@@ -358,7 +358,7 @@ export default class ListShop extends React.Component {
         dataSource={this.state.dataSource}
         renderHeader={() => <span>为您推荐</span>}
         renderFooter={() => (<div style={{ padding: 30, textAlign: 'center' }}>
-          {this.state.isLoading ? 'Loading...' : 'Loaded'}
+          {this.state.isLoading ? '正在加载...' : '没有更多了...'}
         </div>)}
         renderRow={row}
         renderSeparator={separator}
@@ -367,8 +367,8 @@ export default class ListShop extends React.Component {
         useBodyScroll
         onScroll={() => { console.log('scroll'); }}
         scrollRenderAheadDistance={500}
-        // onEndReached={this.onEndReached} 
-        // onEndReachedThreshold={10}
+        onEndReached={this.onEndReached} 
+        onEndReachedThreshold={10}
       />
       
     );

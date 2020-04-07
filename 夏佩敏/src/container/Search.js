@@ -212,6 +212,10 @@ export default class Search extends Component{
                         all=[];
                         school2=[];
                         i=allschool.length;
+                    }else if(i == allschool.length-1 && e!=allschool[i].des){
+                        this.setState({
+                            fflag:0
+                        });
                     }
                 }
                 if(this.state.fflag != 1){
@@ -1289,7 +1293,7 @@ export default class Search extends Component{
                                 <div style={{ display: '-webkit-box', display: 'flex', padding: '15px 0' }}>
                                     <img style={{ height: '80px', marginRight: '15px',width:'100px' }} src={item.img} alt="" />
                                     <div style={{ lineHeight: 1.5 }}>
-                                        <div style={{ marginBottom: '8px', fontWeight: 'bold',fontSize:'4.5vw',color:'#000' }}>{item.des}</div>
+                                        <div style={{ marginBottom: '8px', fontWeight: 'bold',fontSize:'4.5vw' }}>{item.des}</div>
                                         <div><span style={{ fontSize: '14px', color: 'black',float:'left' }}>{item.row}</span><div style={{color:'green',marginLeft:'10px',float:'left'}}>{item.city}</div></div>
                                         <div><span style={{color:'blue'}}>{item.one}</span><span style={{color:'purple',marginLeft:'10px'}}>{item.two}</span></div>
                                     </div>
@@ -1318,7 +1322,7 @@ export default class Search extends Component{
                                 <div style={{ display: '-webkit-box', display: 'flex', padding: '15px 0' }}>
                                     <img style={{ height: '80px', marginRight: '15px',width:'100px' }} src={item.img} alt="" />
                                     <div style={{ lineHeight: 1.5 }}>
-                                        <div style={{ marginBottom: '8px', fontWeight: 'bold',fontSize:'4.5vw',color:'#000' }}>{item.name}</div>
+                                        <div style={{ marginBottom: '8px', fontWeight: 'bold',fontSize:'4.5vw' }}>{item.name}</div>
                                         <div><span style={{ fontSize: '14px', color: 'black',float:'left' }}>{item.text}</span></div>
                                     </div>
                                 </div>
@@ -1332,7 +1336,7 @@ export default class Search extends Component{
                                 <div style={{ display: '-webkit-box', display: 'flex', padding: '15px 0' }}>
                                     <img style={{ height: '80px', marginRight: '15px',width:'100px' }} src={item.img} alt="" />
                                     <div style={{ lineHeight: 1.5 }}>
-                                        <div style={{ marginBottom: '8px', fontWeight: 'bold',fontSize:'4.5vw',color:'#000' }}>{item.name}</div>
+                                        <div style={{ marginBottom: '8px', fontWeight: 'bold',fontSize:'4.5vw' }}>{item.name}</div>
                                         <div><span style={{ fontSize: '14px', color: 'black',float:'left' }}>{item.text}</span></div>
                                     </div>
                                 </div>
@@ -1353,7 +1357,7 @@ export default class Search extends Component{
                                 <div style={{ display: '-webkit-box', display: 'flex', padding: '15px 0' }}>
                                     <img style={{ height: '80px', marginRight: '15px',width:'100px' }} src={item.img} alt="" />
                                     <div style={{ lineHeight: 1.5 }}>
-                                        <div style={{ marginBottom: '8px', fontWeight: 'bold',fontSize:'4.5vw',color:'#000' }}>{item.des}</div>
+                                        <div style={{ marginBottom: '8px', fontWeight: 'bold',fontSize:'4.5vw' }}>{item.des}</div>
                                         <div><span style={{ fontSize: '14px', color: 'black',float:'left' }}>{item.row}</span><div style={{color:'green',marginLeft:'10px',float:'left'}}>{item.city}</div></div>
                                         <div><span style={{color:'blue'}}>{item.one}</span><span style={{color:'purple',marginLeft:'10px'}}>{item.two}</span></div>
                                     </div>
@@ -1377,7 +1381,7 @@ export default class Search extends Component{
                                 <div style={{ display: '-webkit-box', display: 'flex', padding: '15px 0' }}>
                                     <img style={{ height: '80px', marginRight: '15px',width:'100px' }} src={item.img} alt="" />
                                     <div style={{ lineHeight: 1.5 }}>
-                                        <div style={{ marginBottom: '8px', fontWeight: 'bold',fontSize:'4.5vw',color:'#000' }}>{item.name}</div>
+                                        <div style={{ marginBottom: '8px', fontWeight: 'bold',fontSize:'4.5vw' }}>{item.name}</div>
                                         <div><span style={{ fontSize: '14px', color: 'black',float:'left' }}>{item.text}</span></div>
                                     </div>
                                 </div>
@@ -1399,7 +1403,7 @@ export default class Search extends Component{
                                 <div style={{ display: '-webkit-box', display: 'flex', padding: '15px 0' }}>
                                     <img style={{ height: '80px', marginRight: '15px',width:'100px' }} src={item.img} alt="" />
                                     <div style={{ lineHeight: 1.5 }}>
-                                        <div style={{ marginBottom: '8px', fontWeight: 'bold',fontSize:'4.5vw',color:'#000' }}>{item.name}</div>
+                                        <div style={{ marginBottom: '8px', fontWeight: 'bold',fontSize:'4.5vw' }}>{item.name}</div>
                                         <div><span style={{ fontSize: '14px', color: 'black',float:'left' }}>{item.text}</span></div>
                                     </div>
                                 </div>
@@ -1422,7 +1426,7 @@ export default class Search extends Component{
                                 <div style={{ display: '-webkit-box', display: 'flex', padding: '15px 0' }}>
                                     <img style={{ height: '80px', marginRight: '15px',width:'100px' }} src={item.img} alt="" />
                                     <div style={{ lineHeight: 1.5 }}>
-                                        <div style={{ marginBottom: '8px', fontWeight: 'bold',fontSize:'4.5vw',color:'#000' }}>{item.name}</div>
+                                        <div style={{ marginBottom: '8px', fontWeight: 'bold',fontSize:'4.5vw' }}>{item.name}</div>
                                         <div><span style={{ fontSize: '14px', color: 'black',float:'left' }}>{item.text}</span></div>
                                     </div>
                                 </div>
@@ -1517,6 +1521,10 @@ export default class Search extends Component{
                     all=[];
                     school2=[];
                     i=allschool.length;
+                }else if(i == allschool.length-1 && e!=allschool[i].des){
+                    this.setState({
+                        fflag:0
+                    });
                 }
             }
             if(this.state.fflag != 1){
