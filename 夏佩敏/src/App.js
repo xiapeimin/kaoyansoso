@@ -42,6 +42,12 @@ import Contact from './container/Contact';
 
 import Sql from './components/spltest';
 
+/**启动页 */
+import Start from './com_xpm/start/Start';
+/**机器人聊天 */
+import Robot from './com_xpm/robot/Contact';
+import Tuling from './com_xpm/robot/Tuling';
+
 export default class App extends Component{
     render(){
         return (
@@ -50,8 +56,18 @@ export default class App extends Component{
                     <div>
                         <Switch>
                             <Route path='/sql' component={Sql} />
-                            <Route path='/' exact component={Login} />
-                            <Route path='/contact' component={Contact} />
+                            
+                            {/**添加启动 引导组件 */}
+                            <Route path='/' exact component={Start} />
+                            <Route path='/login' exact component={Login} />
+                            {/**end */}
+
+                            {/**<Route path='/contact' component={Contact} /> */}
+                            {/**机器人 */}
+                            <Route path='/contact' component={Robot} />
+                            <Route path='/tuling' component={Tuling} />
+                            {/**end */}
+
                             <Route path='/pwdchange' component={Pwdchange} />
                             <Route path='/changeNote' component={ChangeNote} />
                             <Route path='/myschool' component={MySchool} />
