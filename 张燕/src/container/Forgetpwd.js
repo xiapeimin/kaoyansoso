@@ -11,7 +11,8 @@ export default class Forgetpwd extends Component{
             pass:'',
             text:'获取验证码',
             pwd:'',
-            unpwd:0
+            unpwd:0,
+            cflag:1
         }
     }
     render(){
@@ -25,7 +26,7 @@ export default class Forgetpwd extends Component{
 
                 <ul style={{textAlign:'center'}}>
                     <li><input style={{paddingLeft:'5%'}} type='tel' className='login_input1' placeholder='请输入邮箱' onChange={this.getemail} /></li>                
-                    <li><input style={{paddingLeft:'5%',width:'55%'}} type='text' className='login_input1' placeholder='输入邮箱验证码' onChange={this.inppass} /><span style={{color:'blue',marginRight:'5%',width:'20%',height:'5vw',marginTop:'7vw',float:'right'}} onClick={this.getpass}>{this.state.text}</span></li>
+                    <li><input style={{paddingLeft:'5%',width:'55%'}} type='text' className='login_input1' placeholder='输入邮箱验证码' onChange={this.inppass} /><span style={{color:'blue',marginRight:'5%',fontSize:'3.8vw',width:'20%',height:'5vw',marginTop:'7vw',float:'right'}} onClick={this.state.cflag==0 ? this.noclick : this.getpass}>{this.state.text}</span></li>
                 </ul>
 
                 <div onClick={this.getnext} style={{width:'40%',height:'12vw',marginLeft:'30%',marginTop:'10vw',background:'#66cccc',borderRadius:'2vw',textAlign:'center',color:'#fff',lineHeight:'12vw',fontSize:'4.5vw'}}>下一步</div>
@@ -33,6 +34,9 @@ export default class Forgetpwd extends Component{
                 <p style={{color:'red',width:'100%',textAlign:'center',display:this.state.unpwd==0 ? 'none' : 'block'}}>{this.state.text2}</p>
             </div>       
         )
+    }
+    noclick = () => {
+        console.log('不可点击！');
     }
     getemail = (e) => {
         var email = e.target.value;
@@ -93,14 +97,17 @@ export default class Forgetpwd extends Component{
                     var t = 60;
                     var tid = setInterval(()=>{
                         this.setState({
-                            text:t+'秒后重试'
+                            text:t+'秒后重试',
+                            cflag:0
                         });
+                        console.log(this.state.cflag);
                         t = t-1;
                         if(t<0){
                             clearInterval(tid);
                             this.setState({
                                 text:'获取验证码',
-                                pwd:'***'
+                                pwd:'***',
+                                cflag:1
                             });
                         }
                     },1000);

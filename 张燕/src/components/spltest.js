@@ -1,29 +1,34 @@
 import React, {Component} from 'react';
 import {HashRouter as Router,Route,Link,Switch} from 'react-router-dom';
 
+import Test from '../container/WordsCheck';
+import Popover from '../container/Popover';
+import Share from '../container/Share';
+
 export default class All extends Component{
     constructor(props){
         super(props);
         this.state = {
-            data: [],
-            text:''
+            //data: [],
+            text:'',
+            imgsrc:''
         }
     }
    
     componentDidMount(){       
         
-        fetch(`http://xpm.xpmwqhzygy.top/uid`,{
+        fetch(`http://xpm.xpmwqhzygy.top/captcha`,{
             method: 'GET'
             })
         .then((res)=>res.json())
         .then((res)=>{
-            console.log(res.data);
-            console.log(typeof(res.data));
+            console.log(res);
+            console.log(typeof(res));
             this.setState({
-                data:res.data
+                imgsrc:res
             });          
         });
-        console.log(this.state.data);
+        //console.log(this.state.data);
         console.log('///////////////////');
 
     }
@@ -34,15 +39,22 @@ export default class All extends Component{
             
             <div>
                 <p>llllllllllllll</p>
-                {
-                   this.state.data.map((item,index)=>(                      
-                        <div>{item.username}</div>
-                    ))
-                }
+             
+                <Share />
+                <select>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                </select>
                 
+                <img src="http://xpm.xpmwqhzygy.top/captcha" alt="captcha" onClick={this.editCaptcha} />
               
             </div>
         )
+    }
+    editCaptcha = (e) => {
+        console.log(e.target.src);
+        e.target.src="http://xpm.xpmwqhzygy.top/captcha?="+Math.random();
     }
 
 }
