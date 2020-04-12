@@ -48,6 +48,9 @@ export default class AppHome extends Component {
                         headflag=1;
                     }
                 }
+                if(data.length==0){
+                    headflag=1;
+                }
             });
 
             fetch(`http://xpm.xpmwqhzygy.top/user/${uid}`,{
@@ -65,6 +68,21 @@ export default class AppHome extends Component {
                         school:res.data[0].school,
                         profession:res.data[0].profess
                     });  
+                    if(this.state.xuanyan==''){
+                        this.setState({
+                            xuanyan:'未填写'
+                        });
+                    }
+                    if(this.state.school==''){
+                        this.setState({
+                            school:'未填写'
+                        });
+                    }
+                    if(this.state.profession==''){
+                        this.setState({
+                            profession:'未填写'
+                        });
+                    }
                 });
     }
     getfile = (e) => {

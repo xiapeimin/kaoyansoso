@@ -1,11 +1,11 @@
 import React,{Component} from 'react';
 import {Link} from 'react-router-dom';
 import {Carousel,Accordion,List,SearchBar,Grid} from 'antd-mobile';
-import vedio0 from '../imgs/vedio0.mp4';
+import vedio2 from '../imgs/vedio2.mp4';
 
 var u=0;
 const gridArr = [
-    '定高校','研题库','找资源','背单词','笔记本','研百科'
+    '信息库','研题库','找资源','背单词','笔记本','研百科'
 ];
 const griddata = gridArr.map((_val, i) => ({
     icon: require(`../imgs/grid${i}.png`),
@@ -79,6 +79,10 @@ const PlaceHolder = ({ className = '', ...restProps }) => (
 var data = new Date();
 var data2 = new Date('2019-12-21');
 
+var m = data.getMonth()+1;
+var d = data.getDate();
+var time=''+m+d;
+
 export default class Apphome extends Component{    
     constructor(props){
         super(props);
@@ -88,8 +92,8 @@ export default class Apphome extends Component{
             data: ['1', '2', '3'],
             imgHeight: 176,
             dkNum: 0,//后台数据 根据不同用户
-            dkText:'打卡',
-            dKflag:1,
+            dkText:'',
+            dKflag:0,
             days: parseInt((data2.getTime()-data.getTime()) / (24*60*60*1000))+1
         }
         console.log(this.props);
@@ -98,24 +102,56 @@ export default class Apphome extends Component{
     componentDidMount() {
         setTimeout(() => {
             this.setState({
-                data: ['1', '2', '3'],  //https://gs.sustech.edu.cn/boshi2020
+                data: ['1', '2', '3']
             });
         }, 100);
-        
+        var dkarr=[];
+        var uid;
         var str = window.location.hash;
         if(str.indexOf('&')>=0){
-            var uid = str.split('&')[0].split('=')[1];
+            uid = str.split('&')[0].split('=')[1];
             console.log(uid);
             this.setState({
                 uid:uid
             });
         }else{
-            var uid = str.split('=')[1];
+            uid = str.split('=')[1];
             console.log(uid);
             this.setState({
                 uid:uid
             });
         }
+        
+        if(uid!='undefined'){
+            console.log('ooooooo');
+            fetch(`http://xpm.xpmwqhzygy.top/daka/${uid}`,{
+            method: 'GET',
+            headers:{
+                'Accept':'application/json,text/plain,*/*'
+            }
+            })
+            .then((res)=>res.json())
+            .then((res)=>{
+                dkarr=res.data;
+                this.setState({
+                    dkNum:parseInt(res.data[0].num)
+                });
+                if(this.state.dkNum!=0 && dkarr[0].time==time){
+                    var num = this.state.dkNum;
+                    this.setState({
+                        dkText:'累计打卡：'+num+'天',
+                        dKflag:0
+                    });
+                }else{
+                    this.setState({
+                        dkText:'打卡',
+                        dKflag:1
+                    });
+                }             
+            });
+        }
+        
+        
         
     }
 
@@ -142,17 +178,33 @@ export default class Apphome extends Component{
         })
     }
     changeText = () => {
-        console.log('lllllll',this.state.dKflag);
-        if(this.state.dKflag === 1){
-            var num = this.state.dkNum+1;  //累计打卡次传后台
+        var uid = this.state.uid;
+        var num;
+        if(this.state.dKflag == 1){
+            num = this.state.dkNum+1;  //累计打卡次传后台
             this.setState({
                 dkText:'累计打卡：'+num+'天',
                 dkNum:num
+            });
+            const post = {
+                num:num,
+                time:time
+            }
+            fetch(`http://xpm.xpmwqhzygy.top/daka/${uid}`,{
+                method:"PUT",
+                headers:{'Content-Type': 'application/x-www-form-urlencoded'},
+                body:JSON.stringify(post)
             })
+            .then(res =>res.json())
+            .then(data =>{
+                console.log(data);
+            });
         }
         this.setState({
             dKflag:0
-        })
+        });
+        
+        
     }
 
     render() {
@@ -161,7 +213,7 @@ export default class Apphome extends Component{
         return (
             <div>     
                           
-                <Link to={`/search?uid=${uid}&type=home`}><SearchBar placeholder="Search" maxLength={8} /></Link>
+                <Link to={`/search?uid=${uid}&type=home&his=yes`}><SearchBar placeholder="Search" maxLength={8} /></Link>
 
                 <Carousel
                     autoplay
@@ -209,11 +261,11 @@ export default class Apphome extends Component{
                         <Link to={`/video?uid=${uid}&flag=more`}><span style={{float:'right',color:'#000'}}>更多 >></span></Link>
                     </div>
                     <video height='175px' controls='controls'>
-                        <source src={vedio0} type='video/mp4' />
-                        <source src={vedio0} type='video/ogg' />
+                        <source src={vedio2} type='video/mp4' />
+                        <source src={vedio2} type='video/ogg' />
                         您的浏览器不支持Video
                     </video>
-                    <Link to={`/vplay?uid=${uid}&flag=home&id=1`}><div onClick={this.onc}>
+                    <Link to={`/vplay?uid=${uid}&flag=home&id=3`}><div onClick={this.onc}>
                         <Accordion accordion openAnimation={{}} className="acc">
                             <Accordion.Panel header={this.state.value} className="pad">
                                 <List className='accList'><List.Item>值不值</List.Item></List>

@@ -143,7 +143,7 @@ export default class ProCheck extends Component {
 
                 </div>
                         <Link to={`/otherSchool?id=${id}&index=${index}&uid=${uid}`}>
-                            <button style={{position:'fixed',bottom:'0',border:'none',width:'100%',height:'10vw',backgroundColor:'#21a3e0',fontSize:'3vw',color:'#fff'}}>查看其他开设院校</button>
+                            <button style={{position:'fixed',bottom:'0',border:'none',width:'100%',height:'10vw',backgroundColor:'#21a3e0',fontSize:'20px',color:'#fff'}}>查看其他开设院校</button>
                         </Link>
                <div style={{width:'90%',margin:'0 auto',height:'10vw'}}></div>
             </div>
