@@ -5,17 +5,18 @@ import {Link} from 'react-router-dom';
 import imgsrc1 from '../imgs/yhsc.png';
 import imgsrc2 from '../imgs/yhsc2.png';
 
+import school1 from '../imgs/school2.jpg';
+
 import bj from './images/bjCollege.jpg';
 import img1 from './images/bj3.jpg';
 import img2 from './images/bj5.jpg';
 import img3 from './images/qinghua.jpg';
 
+
 const tabs = [
-    { title: '招生简章'},
-    { title:'招生专业'},
-    { title:'报录比'},
-    {title:'分数线'},
-    {title:'复试信息'}
+    { title: <span style={{fontSize:'5vw'}}>招生简章</span>},
+    { title:<span style={{fontSize:'5vw'}}>招生专业</span>},
+    {title:<span style={{fontSize:'5vw'}}>复试信息</span>}
   ];
 export default class SchoolDetails extends Component {
     constructor(){
@@ -29,13 +30,35 @@ export default class SchoolDetails extends Component {
             id:'',
             index:0,
             flag:0,
-            img:bj
+            img:[],
+            school:[],
+            jz:[]
         }
     }
     componentDidMount(){
         var str = this.props.location.search;
         console.log(str,'ssssssssssssss');
-        if(str.indexOf('index')<0){
+        if(str.indexOf('search')>=0){
+            var id = str.split('&')[0].split('=')[1];
+            var uid = str.split('&')[1].split('=')[1];
+            console.log(uid);
+            this.setState({
+                uid:uid,
+                flag:3,
+                id:id,  //id为学校名称
+                narcolor:'#66cccc'
+            });
+        }else if(str.indexOf('type')>=0){
+            var id = str.split('&')[0].split('=')[1];
+            var uid = str.split('&')[1].split('=')[1];
+            console.log(uid);
+            this.setState({
+                uid:uid,
+                flag:2,
+                id:id,  //id为学校名称
+                narcolor:'#66cccc'
+            });
+        }else if(str.indexOf('index')<0){
             var id = str.split('&')[0].split('=')[1];
             var uid = str.split('&')[1].split('=')[1];
             console.log(uid);
@@ -67,34 +90,43 @@ export default class SchoolDetails extends Component {
         //通过id判断是哪个高校 检索高校详细信息
         fetch('http://zy.xpmwqhzygy.top/schoolDetail')
          .then((res)=>res.json())
-        .then((res)=>{
+         .then((res)=>{
             var data = JSON.parse(res);
             this.setState({
-                data:data.all
+                data:data.all,
+                img:data.img,
+                jz:data.jz
             });  
-            if(this.state.id=='北京大学'){
-                this.setState({
-                    img:bj
-                })
-               
-            } 
-            if(this.state.id=='清华大学'){
-                this.setState({
-                    img:img3
-                })
-            }
-            if(this.state.id=='中国人民大学'){
-                this.setState({
-                    img:img1
-                })
-            }
-
         })
-        
+
+        var sid = uid+id;
+        console.log(sid);
+        fetch(`http://xpm.xpmwqhzygy.top/saveschool/${sid}`,{
+            method: 'GET'
+            })
+            .then((res)=>res.json())
+            .then((res)=>{
+                console.log(res.data,'查询成功');
+                if(res.data.length==0){
+                    this.setState({
+                        touchState:false
+                    });
+                }else if(res.data.length != 0){
+                    this.setState({
+                        touchState:true
+                    });
+                }
+            });
+    }
+
+    error=(index)=>{
+        var a1 = document.getElementById(index);
+        a1.src=school1;
+        console.log(a1.src)
       }
 
     render() {
-        console.log(this.state.id);
+        //console.log(this.state.school);
         return (
             <div className="testbox">
                 <NavBar
@@ -103,47 +135,71 @@ export default class SchoolDetails extends Component {
                 leftContent={<img src={require('../imgs/zjt.png')} onClick={this.goout} />}
                 mode="light"
                 ><span style={{color:'#fff',fontSize:'22px'}}>{this.state.id}</span></NavBar>
-                <img src={this.state.img} style={{width:'100%',height:'55vw'}}/>
+                {
+                        this.state.img.map((item,index)=>(  
+                            <div>                     
+                                <img className={this.state.id == item.des ? 'talk' : 'untalk'} src={item.img} style={{width:'100%',height:'50vw'}} onError={()=>this.error(index)} id={index}/>
+                                <div className={this.state.id == item.des ? 'talk' : 'untalk'} style={{marginTop:'3vh',paddingLeft:'3%'}}>
+                                    
+                                    
+                                    <button style={{float:'left',backgroundColor:'#e8b1b1',marginLeft:'5px',borderRadius:'7px',padding:'3px',display:item.one==='' ? 'none' : 'block'}}>{item.one}</button>
+                                    <button style={{float:'left',backgroundColor:'#a7e4f1',marginLeft:'5px',borderRadius:'7px',padding:'3px',display:item.two==='' ? 'none' : 'block'}}>{item.two}</button>
+                                    <button style={{float:'left',backgroundColor:'#b9a2eb',marginLeft:'5px',borderRadius:'7px',padding:'3px'}}>{item.logo}</button>
+                                    <button style={{float:'left',backgroundColor:'#3bc0bb',marginLeft:'5px',borderRadius:'7px',padding:'3px'}}>{item.row}</button>
+                                </div>
+                            </div>
+                            ))
+                    }
+
                 <WhiteSpace/>
-                <div style={{background:'#fff',padding:'3%',width:'94%'}}>
+               
+                <div style={{background:'#fff',padding:'3%',width:'94%',marginTop:'15px'}}>
                     
+               {/**
                 <div>
                     <button style={{backgroundColor:'#e8b1b1',marginLeft:'5px',borderRadius:'7px',padding:'3px'}}>985</button>
                     <button style={{backgroundColor:'#a7e4f1',marginLeft:'5px',borderRadius:'7px',padding:'3px'}}>211</button>
                     <button style={{backgroundColor:'#b9a2eb',marginLeft:'5px',borderRadius:'7px',padding:'3px'}}>综合类</button>
                     <button style={{backgroundColor:'#3bc0bb',marginLeft:'5px',borderRadius:'7px',padding:'3px'}}>排名</button>
                 </div>
+             */}
+               
                 
                 <div style={{width:'100%',textIndent:'2em'}}>
                     <h2>学校介绍</h2>
-                    <p style={{textIndent:'2em',fontSize:'4vw'}}>
-                    清华大学软件学院是2001年经国家教育部和国家计委联合发文批准成立的首批全国示范性软件学院之一，
-                    隶属于清华大学信息科学与技术学院。以“教学立院、管理建院、学科兴院、科技强院”为办学理念，
-                    遵循“练中学、练中闯、练中创”的实践教学思想，追求并践行精品教育。
+                    <p>{
+                        this.state.data.map((item,index)=>(                       
+                            <p className={this.state.id == item.name ? 'talk' : 'untalk'}>{item.introduce}</p>
+                        ))
+                    }
                     </p>
                 </div>
                 <Tabs tabs={tabs}
                     initialPage={0}
-                    onChange={(tab, index) => { console.log('onChange', index, tab); }}
-                    onTabClick={(tab, index) => { console.log('onTabClick', index, tab); }}
                     >
-                    <div style={{ textIndent:'2em',fontSize:'3vw',display: 'flex', alignItems: 'center', justifyContent: 'center', height: '15vw', backgroundColor: '#fff'}}>
-                    信息产业是21世纪的朝阳产业，也是21世纪我国国民经济的支柱产业。信息产业需要计算机科学与技术、信息系统与信息管理、数学基础与理论等各方面的专业人才和复合人才。中国人民大学信息学院正是培养信息领域高素质专业人才的基地。
+                    <div style={{ textIndent:'2em',display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#fff'}}>
+                    <p>{
+                        this.state.jz.map((item,index)=>(                       
+                            <p className={this.state.id == item.name ? 'talk' : 'untalk'} style={{fontSize:'4vw'}}>{item.jianzhang}</p>
+                        ))
+                    }
+                    </p>
                     </div>
-                    <div style={{ fontSize:'3vw',display: 'flex', alignItems: 'center', justifyContent: 'center', height: '15vw', backgroundColor: '#fff' }}>
-                        软件工程<br/>
-                        环境学院<br/>
-                        艺术学院<br/>
-                        法学院<br/>
+                    <div style={{ textIndent:'2em',fontSize:'3vw',display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#fff'}}>
+                    {
+                        this.state.data.map((item,index)=>(                       
+                            <p className={this.state.id == item.name ? 'talk' : 'untalk'} style={{fontSize:'4vw'}}>{item.zssub}</p>
+                        ))
+                    }
+                    
                     </div>
-                    <div style={{fontSize:'3vw', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '15vw', backgroundColor: '#fff' }}>
-                        10：1
-                    </div>
-                    <div style={{fontSize:'3vw', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '15vw', backgroundColor: '#fff' }}>
-                        400
-                    </div>
-                    <div style={{fontSize:'3vw', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '15vw', backgroundColor: '#fff' }}>
-                        复试时间
+                    <div style={{ textIndent:'2em',fontSize:'3vw',display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#fff'}}>
+                    {
+                        this.state.data.map((item,index)=>(                       
+                            <p className={this.state.id == item.name ? 'talk' : 'untalk'} style={{fontSize:'4vw'}}>{item.testmsg}</p>
+                        ))
+                    }
+                    
                     </div>
                     </Tabs>
                     </div>
@@ -151,17 +207,53 @@ export default class SchoolDetails extends Component {
         )
     }
     changgesrc = () => {
+        var sc = !this.state.touchState;
+        var sid = this.state.uid+this.state.id;
+        const post ={
+            uid:this.state.uid,
+            name:this.state.id,
+            sid:sid
+        };
+        if(sc==true){
+            console.log('关注');
+            fetch(`http://xpm.xpmwqhzygy.top/saveschool`,{
+            // post提交
+            method:"POST",
+            headers:{'Content-Type': 'application/x-www-form-urlencoded'},
+            body:JSON.stringify(post)//把提交的内容转字符串
+        })
+        .then(res =>res.json())
+        .then(data =>{
+            console.log(data);
+        });
+        }else if(sc==false){
+            console.log('取消关注');
+            fetch(`http://xpm.xpmwqhzygy.top/saveschool/${sid}`,{
+                method:"DELETE",
+                headers:{'Content-Type': 'application/x-www-form-urlencoded'}
+            })
+            .then(res =>res.json())
+            .then(data =>{
+                console.log(data);
+            });
+        }
+        
         console.log('imglll');
         this.setState({ touchState: !this.state.touchState });
+
     }
     goout = () => {
         var uid = this.state.uid;
         var pid = this.state.pid;
         var index = this.state.index;
-        if(this.state.flag != 1){
+        if(this.state.flag == 0){
             window.location.hash = `/checkSchool?uid=${uid}`;
-        }else{
+        }else  if(this.state.flag == 1){
             window.location.hash = `/otherSchool?id=${pid}&index=${index}&uid=${uid}`;
+        }else if(this.state.flag == 2){
+            window.location.hash = `/appTab?uid=${uid}&type=school`;
+        }else if(this.state.flag == 3){
+            window.location.hash = `/search?uid=${uid}&type=home`;
         }
     }
 }

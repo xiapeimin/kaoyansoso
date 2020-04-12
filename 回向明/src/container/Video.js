@@ -49,7 +49,7 @@ export default class Video extends Component{
                                     <source src={vedio0} type='video/mp4' />
                                     您的浏览器不支持Video
                                 </video>
-                                <div style={{width:'90%',height:'20%',paddingRight:'5%',paddingLeft:'5%',background:'#dbdedd',alignItems:'center',display: '-webkit-flex',fontSize:'4.5vw',color:'#000'}}>老梁观世界：3分钟告诉迷茫的你，考研...</div>
+                                <div style={{width:'90%',height:'20%',paddingRight:'5%',paddingLeft:'5%',background:'#dbdedd',alignItems:'center',display: '-webkit-flex',fontSize:'4.5vw',color:'#000'}}>老梁观世界：3分钟告诉迷茫的你...</div>
                             </div></Link>
                         ))
                     }
@@ -60,7 +60,7 @@ export default class Video extends Component{
                                     <source src={vedio1} type='video/mp4' />
                                     您的浏览器不支持Video
                                 </video>
-                                <div style={{width:'90%',height:'20%',paddingRight:'5%',paddingLeft:'5%',background:'#dbdedd',alignItems:'center',display: '-webkit-flex',fontSize:'4.5vw',color:'#000'}}>怎样问才能难倒神嘴张雪峰老师 第一期</div>
+                                <div style={{width:'90%',height:'20%',paddingRight:'5%',paddingLeft:'5%',background:'#dbdedd',alignItems:'center',display: '-webkit-flex',fontSize:'4.5vw',color:'#000'}}>教你怎样问才能难倒神嘴张雪峰老师...</div>
                             </div></Link>
                         ))
                     }
@@ -71,7 +71,7 @@ export default class Video extends Component{
                                     <source src={vedio2} type='video/mp4' />
                                     您的浏览器不支持Video
                                 </video>
-                                <div style={{width:'90%',height:'20%',paddingRight:'5%',paddingLeft:'5%',background:'#dbdedd',alignItems:'center',display: '-webkit-flex',fontSize:'4.5vw',color:'#000'}}>爆笑张雪峰老师视频,超长剪辑版,让你一次看个够</div>
+                                <div style={{width:'90%',height:'20%',paddingRight:'5%',paddingLeft:'5%',background:'#dbdedd',alignItems:'center',display: '-webkit-flex',fontSize:'4.5vw',color:'#000'}}>超长剪辑版:爆笑张雪峰老师视频...</div>
                             </div></Link>
                         ))
                     }
@@ -82,7 +82,7 @@ export default class Video extends Component{
                                     <source src={vedio3} type='video/mp4' />
                                     您的浏览器不支持Video
                                 </video>
-                                <div style={{width:'90%',height:'20%',paddingRight:'5%',paddingLeft:'5%',background:'#dbdedd',alignItems:'center',display: '-webkit-flex',fontSize:'4.5vw',color:'#000'}}>「张雪峰视频」2018考研 老师带你讲跨专业</div>
+                                <div style={{width:'90%',height:'20%',paddingRight:'5%',paddingLeft:'5%',background:'#dbdedd',alignItems:'center',display: '-webkit-flex',fontSize:'4.5vw',color:'#000'}}>2018考研：张雪峰老师带你讲跨专...</div>
                             </div></Link>
                         ))
                     }

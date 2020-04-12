@@ -1,11 +1,11 @@
 import React,{Component} from 'react';
 import {Link} from 'react-router-dom';
 import {Carousel,Accordion,List,SearchBar,Grid} from 'antd-mobile';
-import vedio0 from '../imgs/vedio0.mp4';
+import vedio2 from '../imgs/vedio2.mp4';
 
 var u=0;
 const gridArr = [
-    '定高校','研题库','找资源','背单词','笔记本','研百科'
+    '信息库','研题库','找资源','背单词','笔记本','研百科'
 ];
 const griddata = gridArr.map((_val, i) => ({
     icon: require(`../imgs/grid${i}.png`),
@@ -213,7 +213,7 @@ export default class Apphome extends Component{
         return (
             <div>     
                           
-                <Link to={`/search?uid=${uid}&type=home`}><SearchBar placeholder="Search" maxLength={8} /></Link>
+                <Link to={`/search?uid=${uid}&type=home&his=yes`}><SearchBar placeholder="Search" maxLength={8} /></Link>
 
                 <Carousel
                     autoplay
@@ -261,11 +261,11 @@ export default class Apphome extends Component{
                         <Link to={`/video?uid=${uid}&flag=more`}><span style={{float:'right',color:'#000'}}>更多 >></span></Link>
                     </div>
                     <video height='175px' controls='controls'>
-                        <source src={vedio0} type='video/mp4' />
-                        <source src={vedio0} type='video/ogg' />
+                        <source src={vedio2} type='video/mp4' />
+                        <source src={vedio2} type='video/ogg' />
                         您的浏览器不支持Video
                     </video>
-                    <Link to={`/vplay?uid=${uid}&flag=home&id=1`}><div onClick={this.onc}>
+                    <Link to={`/vplay?uid=${uid}&flag=home&id=3`}><div onClick={this.onc}>
                         <Accordion accordion openAnimation={{}} className="acc">
                             <Accordion.Panel header={this.state.value} className="pad">
                                 <List className='accList'><List.Item>值不值</List.Item></List>
