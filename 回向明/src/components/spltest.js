@@ -1,6 +1,10 @@
 import React, {Component} from 'react';
 import {HashRouter as Router,Route,Link,Switch} from 'react-router-dom';
 
+import Test from '../container/WordsCheck';
+import Popover from '../container/Popover';
+import Share from '../container/Share';
+
 export default class All extends Component{
     constructor(props){
         super(props);
@@ -35,6 +39,13 @@ export default class All extends Component{
             
             <div>
                 <p>llllllllllllll</p>
+             
+                <Share />
+                <select>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                </select>
                 
                 <img src="http://xpm.xpmwqhzygy.top/captcha" alt="captcha" onClick={this.editCaptcha} />
               

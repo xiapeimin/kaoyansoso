@@ -2,6 +2,10 @@ import React, { Component } from 'react'
 import {Link} from 'react-router-dom'
 import {NavBar, Button} from 'antd-mobile';
 
+var data = new Date();
+var m = data.getMonth()+1;
+var d = data.getDate();
+var time=''+m+d;
 
 export default class Register extends Component {
     constructor(){
@@ -112,7 +116,8 @@ export default class Register extends Component {
             phone:this.state.phone,
             email:this.state.email,
             pwd:this.state.pwd,
-            num:0
+            num:0,
+            time:time
         };
 
         //注册用户信息

@@ -15,19 +15,20 @@ export default class Todoup extends Component {
         const {item} = this.props;
         return (
             <div style={{
-              border: '1px solid #848080',
+              
               width: '85%',
               height: '40px',
               marginBottom:'5px',
               borderRadius:'5px',
               lineHeight:'40px',
-              fontSize:'25px',
+              fontSize:'23px',
               paddingLeft:'10px',
               marginLeft:'7.5%'
             }}>
               <input style={{
                 width:'20px',
-                height:'20px'
+                height:'20px',
+                marginRight:'10px'
               }} type="checkbox" value="" onClick={this.tranfDown} checked={this.state.checked}/>{item} 
               <button style={{
                 float:"right",

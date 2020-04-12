@@ -131,13 +131,14 @@ export default class Professional extends Component {
         var id = this.state.id;//用id来区别专业分类
         var uid = this.state.uid;
         return(
-            <div style={{width:'100vw',height:'130vh',backgroundColor:'white'}}>
+            <div style={{width:'100vw',height:'130vh'}} className='setimg_xpm'>
                 {/* 导航栏 */}
                 <NavBar
                 style={{background:'#21a3e0',color:'#fff',marginBottom:'15vw'}} 
                 leftContent={<Link to={`/checkPro?uid=${uid}`}><img src={require('./zjt.png')} /></Link>}
                 mode="light"
                 ><span style={{color:'#fff',fontSize:'22px'}}>{this.state.proname}</span></NavBar>
+
                 
                   {/* 宫格 */}
                   <div style={{width:'88vw',borderBottom:'2px solid #21a3e0',borderTop:'2px solid #21a3e0',paddingBottom:'2vw',paddingTop:'1vw',margin:'0 auto',fontSize:'4vw',textAlign:'center',marginTop:'1vh'}}>
@@ -150,8 +151,11 @@ export default class Professional extends Component {
                           ))
                       }
                       <div className='clear'></div>
+
+
                     
                   </div>
+                  
                   
             </div>
         )

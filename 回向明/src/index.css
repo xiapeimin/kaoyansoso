@@ -303,7 +303,7 @@ body {
   }
   
   .background-pic{
-    background: url(imgs/login0.jpg) no-repeat center center;
+    background: url(imgs/llogin.jpg) no-repeat center center;
     background-size:cover;
     background-attachment: fixed;
     width: 100%;
@@ -510,5 +510,30 @@ body {
 }
 .untalk{
     display: none;
+}
+.zybj{
+    background: url(imgs/pro.jpg) no-repeat center center;
+    background-size:cover;
+    background-attachment: fixed;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+}
+
+.setimg_xpm{
+    background: url(imgs/pro2.jpg) no-repeat center center;
+    background-size:cover;
+    background-attachment: fixed;
+    width: 100%;
+    height: 100%;
+    
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
 }
 

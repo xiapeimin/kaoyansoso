@@ -16,7 +16,7 @@ export default class QuestionBank extends Component {
                 mode="light"
                 onLeftClick={() => console.log('onLeftClick')}
                 ><span style={{color:'#fff',fontSize:'22px'}}>研题库</span></NavBar>
-                <Link to={`/search?uid=${uid}`}><SearchBar value={'小可爱搜索一下想要的真题吧'} placeholder="Search" cancelText={'搜索'} /></Link>
+                <Link to={`/search?uid=${uid}&type=test&his=yes`}><SearchBar value={'小可爱搜索一下想要的真题吧'} placeholder="Search" cancelText={'搜索'} /></Link>
                 <div style={{height:'20vw',marginTop:'5vw',borderTop:'1px solid gray',borderBottom:'1px solid gray'}}>
                     <Link to={`/TestList?uid=${uid}&test=1`}>
                     <div style={{marginLeft:'5vw',marginTop:'2.5vw'}}>
