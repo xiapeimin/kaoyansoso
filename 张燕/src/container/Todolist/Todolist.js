@@ -3,7 +3,7 @@ import Todoinput from './Todoinput';
 import Todoup from './Todoup';
 import Tododown from './Tododown';
 
-
+var usertd='';
 export default class TodoList extends Component {
     constructor(props) {
       super(props);
@@ -20,16 +20,20 @@ export default class TodoList extends Component {
       this.delItemUp = this.delItemUp.bind(this);
       this.delItemDown = this.delItemDown.bind(this);
       //设置本地存储键值对
+      var uid = this.props.uid;
+      usertd='todouser'+uid;  
+      
       var storage = this.state.storage; 
-      if(storage.getItem("todo") == null){
+      if(storage.getItem(usertd) == null){
         var todo= [];
         var d=JSON.stringify(todo); 
-        storage.setItem("todo",d);
+        storage.setItem(usertd,d);
       }
 
     }
 
     render() {
+      console.log(usertd);
       return (
         <div style={{background:'#f4f0f0',paddingBottom:'20px'}}>
           {        
@@ -88,7 +92,7 @@ export default class TodoList extends Component {
       });
         
       var storage = this.state.storage;
-      var json=storage.getItem("todo"); 
+      var json=storage.getItem(usertd); 
       var jsonObj=JSON.parse(json);
       jsonObj[index].done = true;
       var fnobj = new Object();
@@ -97,7 +101,7 @@ export default class TodoList extends Component {
       jsonObj.push(fnobj);
        
       var d=JSON.stringify(jsonObj);   
-      storage.setItem("todo",d);         
+      storage.setItem(usertd,d);         
     }
     //下面切换到上面
     handleTranfUp(index){
@@ -117,7 +121,7 @@ export default class TodoList extends Component {
       });
 
       var storage = this.state.storage;
-      var json=storage.getItem("todo"); 
+      var json=storage.getItem(usertd); 
       var jsonObj=JSON.parse(json);
 
       jsonObj[index+this.state.list.length].done = false;
@@ -127,7 +131,7 @@ export default class TodoList extends Component {
       jsonObj.splice(this.state.list.length, 0, lobj);
        
       var d=JSON.stringify(jsonObj); 
-      storage.setItem("todo",d);          
+      storage.setItem(usertd,d);          
     }
     //"现在进行"列表 删除功能
     delItemUp(index){
@@ -140,12 +144,12 @@ export default class TodoList extends Component {
       });
 
       var storage = this.state.storage;
-      var json=storage.getItem("todo"); 
+      var json=storage.getItem(usertd); 
       var jsonObj=JSON.parse(json);  
       jsonObj.splice(index,1);
 
       var d=JSON.stringify(jsonObj);   
-      storage.setItem("todo",d);         
+      storage.setItem(usertd,d);         
     }
     //"已经完成"列表 删除功能
     delItemDown(index){
@@ -158,18 +162,18 @@ export default class TodoList extends Component {
       });
 
       var storage = this.state.storage;
-      var json=storage.getItem("todo"); 
+      var json=storage.getItem(usertd); 
       var jsonObj=JSON.parse(json);
       jsonObj.splice(index+this.state.list.length,1);
        
       var d=JSON.stringify(jsonObj); 
-      storage.setItem("todo",d);  
+      storage.setItem(usertd,d);  
     }
 
     //父组件向子组件取值
     getChildrenMsg = (result, inputValue) => {
       var storage = this.state.storage;
-      var json=storage.getItem("todo"); 
+      var json=storage.getItem(usertd); 
       var jsonObj=JSON.parse(json);
       var list = [...this.state.list]; 
       var fnslist = [...this.state.fnslist];
@@ -200,7 +204,7 @@ export default class TodoList extends Component {
       obj.done = false;
       jsonObj.unshift(obj); 
       var d=JSON.stringify(jsonObj);//将JSON对象转换成为字符串
-      storage.setItem("todo",d);  
+      storage.setItem(usertd,d);  
     }
 
     //本地存储 
@@ -208,7 +212,7 @@ export default class TodoList extends Component {
       var storage = this.state.storage;       
       var list = this.state.list;
       var fnslist = this.state.fnslist;
-      var json=storage.getItem("todo");      
+      var json=storage.getItem(usertd);      
       var jsonObj=JSON.parse(json);
       var l = 0;
       var f = 0;      

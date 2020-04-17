@@ -96,7 +96,7 @@ export default class SearchInfo extends Component {  //链接有几个不对
 (5)其它招生单位或报考点规定的相关材料。
                         </div>
                         <div style={{marginTop:'5vw',padding:'3vw',lineHeight:'1.5em',border:'1px solid #bbd1cb',fontSize:'4.5vw'}}>
-                            <p style={{fontWeight:'bold'}}>12月23-24日</p>
+                            <p style={{fontWeight:'bold'}}>12月21-22日</p>
                         </div>
                         <div style={{marginTop:'5vw',padding:'3vw',lineHeight:'1.5em',border:'1px solid #bbd1cb',fontSize:'4.5vw'}}>
                             考研初试面对的是一张试卷，考试时间是180分钟，那么在这3个小时的时间里面各个科目该如何安排时间和答题技巧呢？提前了解一下，才能够有备无患。
@@ -175,19 +175,19 @@ export default class SearchInfo extends Component {  //链接有几个不对
 
                     <div style={{width:'100%',background:'#fff',paddingTop:'10vw',paddingBottom:'5vw'}}>
                         <div style={{width:'80%',height:'60vw',margin:'0 auto',border:'1px solid #919493',borderRadius:'2vw'}}>
-                            <a href='https://yz.chsi.com.cn/'><div style={{width:'49%',height:'49%',textAlign:'center',float:'left',borderBottom:'1px solid #919493',borderRight:'1px solid #919493'}}>
+                            <a href='https://yz.chsi.com.cn/yzwb/'><div style={{width:'49%',height:'49%',textAlign:'center',float:'left',borderBottom:'1px solid #919493',borderRight:'1px solid #919493'}}>
                                 <img src={require('../imgs/baoming.png')} style={{width:'40%',height:'50%',borderRadius:'5vw',marginTop:'5%'}} />
                                 <p style={{color:'#000'}}>考试报名</p>
                             </div></a>
-                            <a href='https://yz.chsi.com.cn/zsgs/'><div style={{width:'50%',height:'49%',textAlign:'center',float:'left',borderBottom:'1px solid #919493'}}>
+                            <a href='https://yz.chsi.com.cn/wap/'><div style={{width:'50%',height:'49%',textAlign:'center',float:'left',borderBottom:'1px solid #919493'}}>
                                 <img src={require('../imgs/xinxi.png')} style={{width:'40%',height:'50%',borderRadius:'5vw',marginTop:'5%'}}/>
                                 <p style={{color:'#000'}}>招生信息</p>
                             </div></a>
-                            <a href='https://yz.chsi.com.cn/'><div style={{width:'49%',height:'50%',textAlign:'center',float:'left',borderRight:'1px solid #919493'}}>
+                            <a href='https://yz.chsi.com.cn/apply/cjcx/'><div style={{width:'49%',height:'50%',textAlign:'center',float:'left',borderRight:'1px solid #919493'}}>
                                 <img src={require('../imgs/chaxun.png')} style={{width:'40%',height:'50%',borderRadius:'5vw',marginTop:'5%'}}/>
                                 <p style={{color:'#000'}}>成绩查询</p>
                             </div></a>
-                            <a href='https://yz.chsi.com.cn/yzwb/'><div style={{width:'50%',height:'50%',textAlign:'center',float:'left'}}>
+                            <a href='https://yz.chsi.com.cn/yztj/'><div style={{width:'50%',height:'50%',textAlign:'center',float:'left'}}>
                                 <img src={require('../imgs/tiaoji.png')} style={{width:'40%',height:'50%',borderRadius:'5vw',marginTop:'5%'}}/>
                                 <p style={{color:'#000'}}>网上调剂</p>
                             </div></a>

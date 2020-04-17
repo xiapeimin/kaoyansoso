@@ -48,6 +48,9 @@ export default class AppHome extends Component {
                         headflag=1;
                     }
                 }
+                if(data.length==0){
+                    headflag=1;
+                }
             });
 
             fetch(`http://xpm.xpmwqhzygy.top/user/${uid}`,{
@@ -65,6 +68,21 @@ export default class AppHome extends Component {
                         school:res.data[0].school,
                         profession:res.data[0].profess
                     });  
+                    if(this.state.xuanyan==''){
+                        this.setState({
+                            xuanyan:'未填写'
+                        });
+                    }
+                    if(this.state.school==''){
+                        this.setState({
+                            school:'未填写'
+                        });
+                    }
+                    if(this.state.profession==''){
+                        this.setState({
+                            profession:'未填写'
+                        });
+                    }
                 });
     }
     getfile = (e) => {
@@ -174,7 +192,7 @@ export default class AppHome extends Component {
                     <p>确认退出？</p>
                     <div className='glin'>
                         <div style={{borderRight:'1px solid rgb(211, 211, 208)',width:'49%'}} onClick={this.quxiao}>取消</div>
-                        <div><Link to='/' style={{color:'#000'}}>退出</Link></div>
+                        <div onClick={this.setoutLogin}><Link to='/' style={{color:'#000'}}>退出</Link></div>
                     </div>
                 </div>
 
@@ -182,6 +200,15 @@ export default class AppHome extends Component {
             </div>
         )
     }
+
+    /**退出登录 设置退出标志0407 */
+    setoutLogin = () => {
+        console.log('退出登录');
+        var storage = window.localStorage;
+        storage.removeItem('setisLogin');
+    }
+    /**end */
+
     putMessage = () => {
         var uid = this.state.uid;
         console.log(this.state.name,this.state.xuanyan,this.state.school,this.state.profession);
@@ -226,12 +253,12 @@ export default class AppHome extends Component {
     unlogin = () => {
         this.setState({
             flag:1
-        })
+        });
     }
     quxiao = () => {
         this.setState({
             flag:0
-        })
+        });
     }
     
 }
