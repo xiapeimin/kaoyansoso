@@ -3,6 +3,8 @@ import React from 'react';
 import { ObjectUnsubscribedError } from 'rxjs';
 import {Link} from 'react-router-dom';
 import school1 from '../../imgs/school2.jpg';
+import { Spin } from 'antd';
+import 'antd/dist/antd.css';
 
 const NUM_ROWS = 11;
 let pageIndex = 0;
@@ -26,14 +28,16 @@ export default class ListShop extends React.Component {
     this.state = {
       dataSource,
       isLoading: true,
+      loading:true,
       schooldata:[{
-        "img":"http://img03.sogoucdn.com/v2/thumb/retype_exclude_gif/ext/auto/q/80?appid=122&url=https%3A%2F%2Fimg01.sogoucdn.com%2Fapp%2Fa%2F100520093%2F22682a086365be9a-38bde84ba65aa1a3-ab565d913aa4f215d6629386dbb24582.jpg",
-        "des":"四川大学",
-        "row":"院校排名：11",
-        "city":"四川",
+        "img":"https://pic.baike.soso.com/ugc/baikepic2/0/ori-20190525162808-1665237614_jpg_1010_758_290613.jpg/800",
+        "des":"北京大学",
+        "row":"院校排名：1",
+        "city":"北京",
         "one":"985",
-        "two":"211"
-    }],
+        "two":"211",
+    }
+  ],
       name:''
     };
   }
@@ -53,7 +57,7 @@ export default class ListShop extends React.Component {
     .then((res)=>res.json())
     .then((res)=>{
         var c = JSON.parse(res);
-        this.setState({schooldata:c.all.reverse()});
+        this.setState({schooldata:c.all.reverse(),loading:false});
     });
 
     console.log(this.props.uid);
@@ -2204,10 +2208,24 @@ export default class ListShop extends React.Component {
   render(){
     var uid = this.props.uid; //携带参数跳转 区别用户
     return(
-      <div>
+      <div style={{overflow:'scroll',height:'85vh'}}>
         {
+          this.state.loading?
+          <div >
+            <div style={{ display: '-webkit-box', display: 'flex', padding: '15px 15px',backgroundColor:'white'}}>
+             <img style={{ height: '64px', marginRight: '15px',width:'80px' }} src={"https://pic.baike.soso.com/ugc/baikepic2/0/ori-20190525162808-1665237614_jpg_1010_758_290613.jpg/800"} alt=""  />
+             <div style={{ lineHeight: 1.5 }}>
+                <div style={{ marginBottom: '8px', fontWeight: 'bold' }}>{"北京大学"}</div>
+                <div><span style={{ fontSize: '14px', color: 'black',float:'left' }}>{"院校排名：1"}</span><div style={{color:'green',marginLeft:'10px',float:'left'}}>{"北京"}</div></div>
+                <div><span style={{color:'blue'}}>{"985"}</span><span style={{color:'purple',marginLeft:'10px'}}>{"211"}</span></div>
+             </div>
+           </div>
+            <div style={{textAlign:'center'}}>
+             <Spin tip="Loading..." style={{color:'gray',marginTop:'10px'}}/>
+            </div>
+          </div>:
           this.state.schooldata.map((Item,Index)=>(
-            <Link to={`/schoolDetails?id=${Item.des||'四川大学'}&uid=${uid}`}><div style={{ padding: '0 15px',backgroundColor:'white'}}>
+            <Link to={`/schoolDetails?id=${Item.des||'北京大学'}&uid=${uid}`}><div style={{ padding: '0 15px',backgroundColor:'white'}}>
            <div
              style={{
                lineHeight: '50px',
@@ -2219,9 +2237,9 @@ export default class ListShop extends React.Component {
            <div style={{ display: '-webkit-box', display: 'flex', padding: '15px 0' }}>
              <img style={{ height: '64px', marginRight: '15px',width:'80px' }} src={Item.img} alt="" onError={()=>this.error(Index)} id={Index} />
              <div style={{ lineHeight: 1.5 }}>
-               <div style={{ marginBottom: '8px', fontWeight: 'bold' }}>{Item.des}</div>
-              <div><span style={{ fontSize: '14px', color: 'black',float:'left' }}>{Item.row}</span><div style={{color:'green',marginLeft:'10px',float:'left'}}>{Item.city}</div></div>
-           <div><span style={{color:'blue'}}>{Item.two}</span><span style={{color:'purple',marginLeft:'10px'}}>{Item.one}</span></div>
+                <div style={{ marginBottom: '8px', fontWeight: 'bold' }}>{Item.des}</div>
+                <div><span style={{ fontSize: '14px', color: 'black',float:'left' }}>{Item.row}</span><div style={{color:'green',marginLeft:'10px',float:'left'}}>{Item.city}</div></div>
+                <div><span style={{color:'blue'}}>{Item.two}</span><span style={{color:'purple',marginLeft:'10px'}}>{Item.one}</span></div>
              </div>
            </div>
          </div>

@@ -63,9 +63,8 @@ export default class AppHome extends Component {
             <div style={{background:'#fff',width:'100%',position:'absolute',top:'0',bottom:'0'}}>
                 <Link to={`/appTab?uid=${uid}&type=my`}>
                 <NavBar
-                    style={{backgroundColor:'#66CCCC',color:'white',height:'50px'}}
-                    
-                    icon={<Icon type="left" style={{ color:'white'}}/>}
+                    style={{backgroundColor:'#66CCCC',color:'white',height:'10vw',fontSize:'5vw'}}
+                    icon={<Icon type="left" style={{ color:'white',fontSize:'5vw'}}/>}
                     onLeftClick={() => console.log('onLeftClick')}
                 >我的研校</NavBar>
                 </Link>
@@ -80,23 +79,37 @@ export default class AppHome extends Component {
                 <div style={{backgroundColor:'white'}}> 
                     {
                         this.state.img.map((item,index)=>(                       
-                            <img className={this.state.school == item.des ? 'talk' : 'untalk'} src={item.img} style={{width:'90%',margin:'20px',marginTop:'0',paddingTop:'20px',height:'250px'}}/>
+                            <img className={this.state.school == item.des ? 'talk' : 'untalk'} src={item.img} style={{width:'90%',margin:'5%',marginTop:'0',paddingTop:'20px',height:'60vw'}}/>
                         ))
                     }
-                     <p style={{width:'90%',marginLeft:'20px',fontSize:'17px'}}>学校资讯</p>
-                    <p style={{width:'90%',margin:'20px',marginBottom:'0',paddingBottom:'20px',fontSize:'15px',color:'#726e6e'}}>
+                    <p style={{width:'90%',marginLeft:'40%',fontSize:'4vw'}}>学校资讯</p>
+                    <p style={{width:'82%',marginLeft:'5%',
+                        marginBottom:'0',paddingBottom:'20px',
+                        fontSize:'4vw',color:'#726e6e',borderStyle:'dotted',
+                        borderColor: '#DDDDDD',
+                        borderWidth:'1vw',
+                        paddingLeft:'3%',
+                        paddingRight:'3%',
+                        marginRight:'5%',
+                        borderRadius:'5vw'}}>
                     {
                         this.state.data.map((item,index)=>(                       
-                            <p className={this.state.school == item.name ? 'talk' : 'untalk'} style={{fontSize:'16px',color:'#726e6e'}}>{item.introduce}</p>
+                            <p className={this.state.school == item.name ? 'talk' : 'untalk'} style={{fontSize:'4vw',color:'#726e6e'}}>{item.introduce}</p>
                         ))
                     }
                     </p>
-                    {/**
-                    <p style={{width:'90%',marginLeft:'20px',fontSize:'15px'}}>{this.state.school}{this.state.profess}</p>
-                    <p style={{width:'90%',margin:'20px',fontSize:'15px',color:'#AAAAAA'}}>
-                        
+                    <p style={{width:'90%',marginLeft:'40%',fontSize:'4vw'}}>专业信息</p>
+                    <p style={{width:'82%',marginLeft:'5%',
+                        marginBottom:'0',paddingBottom:'20px',
+                        fontSize:'4vw',color:'#726e6e',borderStyle:'dotted',
+                        borderColor: '#DDDDDD',
+                        borderWidth:'1vw',
+                        paddingLeft:'3%',
+                        paddingRight:'3%',
+                        marginRight:'5%',
+                        borderRadius:'5vw'}}>
+                    专业详细信息
                     </p>
-                     */}
                 </div>
             </div>
         )
