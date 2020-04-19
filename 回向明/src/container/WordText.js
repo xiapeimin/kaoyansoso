@@ -117,59 +117,73 @@ console.log(ok)
                 style={{background:'#66cccc',color:'#fff'}} 
                 leftContent={<Link to={`/words`}><img src={require('../imgs/zjt.png')} /></Link>}
                 mode="light"
-                ><span style={{color:'#fff',fontSize:'22px'}}>背单词</span></NavBar>
-
-                <Flex.Item style={{position:'relative',height:'20vw',lineHeight:'20vw',width:'100%',
-                    }}>
-                        <Flex.Item style={{position:'absolute',width:'100%',fontSize:'5vw',
-                        textAlign:'center',color:'black'
-                    }}>
-                       单词测试    
-                    </Flex.Item>
-                    </Flex.Item>
+                ><span style={{color:'#fff',fontSize:'22px'}}>单词测试</span></NavBar>
                 
-                <Flex.Item style={{position:'relative',height:'80px',width:'100%',borderBottom:'1px solid black',
+                <Flex.Item style={{position:'relative',height:'150px',width:'100%',
                     fontSize:'20px',background:'#fff'}} >
-                        <Flex.Item style={{position:'relative',top:'25px',textAlign:'center'}}
+                        <Flex.Item style={{position:'relative',top:'50px',textAlign:'center',fontSize:'30px'}}
                         >{words[array[a]][b]}</Flex.Item>
                         </Flex.Item>
                     
-                        <Flex.Item style={{position:'relative',height:'80px',width:'100%',borderBottom:'1px solid black',
-                    fontSize:'20px',background:'#fff'}} id='a1'>
-                        <Flex.Item style={{position:'relative',top:'25px',textAlign:'center'}} onClick={this.judge1} id='a'
+                        <Flex.Item style={{position:'relative',height:'60px',width:'90%',left:'5%',marginTop:'15px',
+                    fontSize:'20px',background:'#cfcfcf'}} id='a1'>
+                        <Flex.Item style={{position:'relative',top:'20px',left:'10px',fontSize:'25px'}} onClick={this.judge1} id='a'
                         >{nb[ok[0]]}</Flex.Item>
                         </Flex.Item>
 
-                        <Flex.Item style={{position:'relative',height:'80px',width:'100%',borderBottom:'1px solid black',
-                    fontSize:'20px',background:'#fff'}} id='b1'>
-                        <Flex.Item style={{position:'relative',top:'25px',textAlign:'center'}} onClick={this.judge2} id='b'
+                        <Flex.Item style={{position:'relative',height:'60px',width:'90%',left:'5%',marginTop:'15px',
+                    fontSize:'20px',background:'#cfcfcf'}} id='b1'>
+                        <Flex.Item style={{position:'relative',top:'20px',left:'10px',fontSize:'25px'}} onClick={this.judge2} id='b'
                         >{nb[ok[1]]}</Flex.Item>
                         </Flex.Item>
 
-                        <Flex.Item style={{position:'relative',height:'80px',width:'100%',borderBottom:'1px solid black',
-                    fontSize:'20px',background:'#fff'}} id='c1'>
-                        <Flex.Item style={{position:'relative',top:'25px',textAlign:'center'}} onClick={this.judge3} id='c'
+                        <Flex.Item style={{position:'relative',height:'60px',width:'90%',left:'5%',marginTop:'15px',
+                    fontSize:'20px',background:'#cfcfcf'}} id='c1'>
+                        <Flex.Item style={{position:'relative',top:'20px',left:'10px',fontSize:'25px'}} onClick={this.judge3} id='c'
                         >{nb[ok[2]]}</Flex.Item>
                         </Flex.Item>
 
-                        <Flex.Item style={{position:'relative',height:'80px',width:'100%',borderBottom:'1px solid black',
-                    fontSize:'20px',background:'#fff'}} id='d1'>
-                        <Flex.Item style={{position:'relative',top:'25px',textAlign:'center'}} onClick={this.judge4} id='d'
+                        <Flex.Item style={{position:'relative',height:'60px',width:'90%',left:'5%',marginTop:'15px',
+                    fontSize:'20px',background:'#cfcfcf'}} id='d1'>
+                        <Flex.Item style={{position:'relative',top:'20px',left:'10px',fontSize:'25px'}} onClick={this.judge4} id='d'
                         >{nb[ok[3]]}</Flex.Item>
                         </Flex.Item>
 
-                        <Flex.Item style={{position:'relative',height:'80px',width:'50%',borderBottom:'1px solid black',
-                    fontSize:'20px',background:'#fff'}} >
-                        <Flex.Item style={{position:'relative',top:'25px',textAlign:'center'}} onClick={this.last}
-                        >上一个</Flex.Item>
+                        <Flex.Item style={{position:'absolute',height:'60px',width:'30%',bottom:'150px',left:'35%',marginTop:'15px',
+                    fontSize:'20px',background:'#cfcfcf',borderRadius:'15%',display:'none'}} id='no'>
+                        <Flex.Item style={{position:'relative',top:'15px',textAlign:'center',fontSize:'25px'}} 
+                        >错误</Flex.Item>
                         </Flex.Item>
 
-                        <Flex.Item style={{position:'relative',height:'80px',width:'50%',borderBottom:'1px solid black',
-                    fontSize:'20px',background:'#fff',top:'-81px',left:'50%',borderLeft:'1px solid black'}} >
-                        <Flex.Item style={{position:'relative',top:'25px',textAlign:'center'}} onClick={this.next}
-                        >下一个</Flex.Item>
+                        <Flex.Item style={{position:'absolute',height:'60px',width:'30%',bottom:'150px',left:'35%',marginTop:'15px',
+                    fontSize:'20px',background:'#cfcfcf',borderRadius:'15%',display:'none'}} id='yes'>
+                        <Flex.Item style={{position:'relative',top:'15px',textAlign:'center',fontSize:'25px'}}
+                        >正确</Flex.Item>
                         </Flex.Item>
 
+                        <Flex.Item style={{position:'relative',height:'50px',width:'20%',top:'220px',marginLeft:'3%',
+                    fontSize:'20px',background:'#66cccc',float:'left',borderRadius:'15%'}} >
+                        <Flex.Item style={{position:'relative',top:'15px',textAlign:'center',fontSize:'18px',color:'white'}}
+                        >添加生词</Flex.Item>
+                        </Flex.Item>
+
+                        <Flex.Item style={{position:'relative',height:'50px',width:'20%',top:'220px',marginLeft:'4%',
+                    fontSize:'20px',background:'#66cccc',float:'left',borderRadius:'15%'}} >
+                        <Flex.Item style={{position:'relative',top:'15px',textAlign:'center',fontSize:'18px',color:'white'}}
+                        >朗读</Flex.Item>
+                        </Flex.Item>
+
+                        <Flex.Item style={{position:'relative',height:'50px',width:'20%',top:'220px',marginLeft:'4%',
+                    fontSize:'20px',background:'#66cccc',float:'left',borderRadius:'15%'}} onClick={this.last}>
+                        <Flex.Item style={{position:'relative',top:'15px',textAlign:'center',fontSize:'18px',color:'white'}}
+                        >上一题</Flex.Item>
+                        </Flex.Item>
+
+                        <Flex.Item style={{position:'relative',height:'50px',width:'20%',top:'220px',marginLeft:'4%',
+                    fontSize:'20px',background:'#66cccc',float:'left',borderRadius:'15%'}} onClick={this.next}>
+                        <Flex.Item style={{position:'relative',top:'15px',textAlign:'center',fontSize:'18px',color:'white'}}
+                        >下一题</Flex.Item>
+                        </Flex.Item>
      </div> 
     );
   }
@@ -216,24 +230,32 @@ console.log(ok)
     console.log(z)
     if(words[array[a]][c]!=z){
         document.getElementById("a1").style.background='red'
-
+        document.getElementById("no").style.display='block'
         setTimeout(function(){
-            document.getElementById("a1").style.background='white'
+            document.getElementById("a1").style.background='#cfcfcf'
+            document.getElementById("no").style.display='none'
         },500);
     }else{
         document.getElementById("a1").style.background='green'
-
+        document.getElementById("yes").style.display='block'
         setTimeout(function(){
-            document.getElementById("a1").style.background='white'
+            document.getElementById("a1").style.background='#cfcfcf'
+            document.getElementById("yes").style.display='none'
         },500);
 
         setTimeout(()=>{
+            if(a==9){
+                this.setState({
+                    a:9
+                })
+            }else{
             this.setState({
                 a:a+1,
                 d:Math.floor(Math.random()*51),
                 e:Math.floor(Math.random()*51),
                 f:Math.floor(Math.random()*51)
             })
+        }
         },500);
     }
   }
@@ -248,24 +270,32 @@ console.log(ok)
     console.log(z)
     if(words[array[a]][c]!=z){
         document.getElementById("b1").style.background='red'
-
+        document.getElementById("no").style.display='block'
         setTimeout(function(){
-            document.getElementById("b1").style.background='white'
+            document.getElementById("b1").style.background='#cfcfcf'
+            document.getElementById("no").style.display='none'
         },500);
     }else{
         document.getElementById("b1").style.background='green'
-        
+        document.getElementById("yes").style.display='block'
         setTimeout(function(){
-            document.getElementById("b1").style.background='white'
+            document.getElementById("b1").style.background='#cfcfcf'
+            document.getElementById("yes").style.display='none'
         },500);
 
         setTimeout(()=>{
+            if(a==9){
+                this.setState({
+                    a:9
+                })
+            }else{
             this.setState({
                 a:a+1,
                 d:Math.floor(Math.random()*51),
                 e:Math.floor(Math.random()*51),
                 f:Math.floor(Math.random()*51)
             })
+        }
         },500);
     }
   }
@@ -280,24 +310,32 @@ console.log(ok)
     console.log(z)
     if(words[array[a]][c]!=z){
         document.getElementById("c1").style.background='red'
-
+        document.getElementById("no").style.display='block'
         setTimeout(function(){
-            document.getElementById("c1").style.background='white'
+            document.getElementById("c1").style.background='#cfcfcf'
+            document.getElementById("no").style.display='none'
         },500);
     }else{
         document.getElementById("c1").style.background='green'
-        
+        document.getElementById("yes").style.display='block'
         setTimeout(function(){
-            document.getElementById("c1").style.background='white'
+            document.getElementById("c1").style.background='#cfcfcf'
+            document.getElementById("yes").style.display='none'
         },500);
 
         setTimeout(()=>{
+            if(a==9){
+                this.setState({
+                    a:9
+                })
+            }else{
             this.setState({
                 a:a+1,
                 d:Math.floor(Math.random()*51),
                 e:Math.floor(Math.random()*51),
                 f:Math.floor(Math.random()*51)
             })
+        }
         },500);
     }
   }
@@ -312,24 +350,32 @@ console.log(ok)
     console.log(z)
     if(words[array[a]][c]!=z){
         document.getElementById("d1").style.background='red'
-
+        document.getElementById("no").style.display='block'
         setTimeout(function(){
-            document.getElementById("d1").style.background='white'
+            document.getElementById("d1").style.background='#cfcfcf'
+            document.getElementById("no").style.display='none'
         },500);
     }else{
         document.getElementById("d1").style.background='green'
-        
+        document.getElementById("yes").style.display='block'
         setTimeout(function(){
-            document.getElementById("d1").style.background='white'
+            document.getElementById("d1").style.background='#cfcfcf'
+            document.getElementById("yes").style.display='none'
         },500);
 
         setTimeout(()=>{
+            if(a==9){
+                this.setState({
+                    a:9
+                })
+            }else{
             this.setState({
                 a:a+1,
                 d:Math.floor(Math.random()*51),
                 e:Math.floor(Math.random()*51),
                 f:Math.floor(Math.random()*51)
             })
+        }
         },500);
     }
   }
