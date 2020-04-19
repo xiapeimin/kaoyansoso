@@ -48,6 +48,7 @@ import Start from './com_xpm/start/Start';
 import Robot from './com_xpm/robot/Contact';
 import Tuling from './com_xpm/robot/Tuling';
 
+
 export default class App extends Component{
     render(){
         return (

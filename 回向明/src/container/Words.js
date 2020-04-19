@@ -96,6 +96,20 @@ export default class Words extends Component {  //有bug 页面布局混乱
                     </Flex>
                     </Link>
                     </Flex.Item>
+
+                    <Flex.Item style={{position:'relative',height:'20vw',width:'100%',top:'-5vw'}}>
+                      <Link to={`/wordspell`}>
+                        <Flex.Item style={{position:"absolute",width:'10px',height:'10px',top:'20%',
+                        borderRadius:'50%',left:'1%',backgroundColor:'blue'}}></Flex.Item>
+                    <img style={{position:"absolute",width:'10vw',height:'10vw',borderRadius:'50%',left:'5%'}} src={require('../imgs/danci4.jpg')}/>
+                    <Flex.Item style={{position:"absolute",left:'20%',top:'2vw',fontSize:'5vw',color:'black'}}>
+                        拼写测试
+                    </Flex.Item>
+                    <Flex style={{position:"absolute",right:'5%',top:'1vw'}}>
+                    <Icon type={'right'} style={{height:'10vw',width:'10vw',color:'black'}}/>
+                    </Flex>
+                    </Link>
+                    </Flex.Item>
                 
                 {/**
                 <Flex.Item style={{position:'absolute',height:'60px',width:'70%',bottom:'10vw',left:'15%',

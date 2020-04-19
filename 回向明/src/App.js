@@ -40,7 +40,7 @@ import ChangeNote from './container/ChangeNote';
 import Pwdchange from './container/Pwdchange';
 import Contact from './container/Contact';
 import WordText from './container/WordText';
-
+import WordSpell from './container/WordSpell';
 import Sql from './components/spltest';
 
 /**启动页 */
@@ -106,6 +106,7 @@ export default class App extends Component{
                             <Route path='/carousel' component={Carousel} />
                             <Route path='/remFire' component={RemFire}/>
                             <Route path='/wordtext' component={WordText}/>
+                            <Route path='/wordspell' component={WordSpell}/>
                         </Switch>
 
                     </div>

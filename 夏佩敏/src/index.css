@@ -422,10 +422,12 @@ body {
     border: 1px solid rgb(211, 211, 208);
 }
 .gologin p{
-    height: 40%;
+    height: 70%;
     font-size: 20px;
-    align-items:center; display: -webkit-flex;/*垂直居中 盒子高度不固定*/
-    justify-content:center; display: -webkit-flex;/*水平居中*/
+    align-items:center; 
+    display: -webkit-flex;/*垂直居中 盒子高度不固定*/
+    justify-content:center; 
+    display: -webkit-flex;/*水平居中*/
 }
 .glin{
     width: 100%;
