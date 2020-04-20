@@ -158,25 +158,20 @@ class Test extends Component {
                 mode="light"
                 ><span style={{color:'#fff',fontSize:'22px'}}>日历表</span></NavBar> 
                 <>
-        <h2>
+        <h2 style={{paddingLeft:'35%',backgroundColor:'gray'}}>
           {year}年,{month}月
         </h2>
         <div>
-          <button onClick={this.handlePrevMonth}>上月</button>
-          <button onClick={this.handleNextMonth}>下月</button>
-          <button
-            onClick={() => {
-              this.initState();
-            }}
-          >
-            今天
-          </button>
+          <button style={{height:'30px',width:'80px'}} onClick={this.handlePrevMonth}>上月</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         <button  style={{height:'30px',width:'80px'}}onClick={this.handleNextMonth}>下月</button>
         </div>
         <table>
           <tbody>
             <tr>
               {weeks.map(el => (
-                <th key={el}>{el}</th>
+                <th style={{paddingLeft:22}} key={el}>{el}</th>
               ))}
             </tr>
             {this.state.hlist.map((el, i) => {
@@ -193,21 +188,22 @@ class Test extends Component {
                           color:
                             dayNum === nowadays && month === thisMonth && "red",
                           textAlign: "center",
-                          padding: 5,
+                          padding: 9,
+                          margin:2,
 
-                          border: "1px solid",
-                          borderColor: dateItem.isSignIn
-                            ? "red"
+                          border: "0 solid",
+                          backgroundColor: dateItem.isSignIn
+                            ? "gray"
                             : "transparent",
                           opacity: dayNum === 0 ? 0 : 1,
                         }}
                         onClick={this.handleDateItemClick(dateItem, i, j)}
                       >
-                        <div>{dayNum}</div>
+                        <div style={{}}>{dayNum}</div>
                         {!!isShowSignIn && (
                           <div
                             style={{
-                              whiteSpace: "nowrap",
+                              
                               fontSize: "12px",
                             }}
                           >
