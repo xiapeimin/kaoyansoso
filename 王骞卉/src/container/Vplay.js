@@ -12,6 +12,8 @@ import good from './images/zan2.jpg';
 import zan1 from './images/zan1.jpg';
 import count from './images/count.jpg';
 
+/**视频下载 video自带下载功能 没有指定路径 */
+
 export default class Vplay extends Component {
     constructor(){
         super();

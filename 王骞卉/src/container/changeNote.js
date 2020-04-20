@@ -1,15 +1,15 @@
 import React,{Component} from 'react';
 import {Link} from 'react-router-dom';
 import { Popover, NavBar, Icon } from 'antd-mobile';
-
-import cnote from '../imgs/cnoteimg.png';
 import Check from './Popover';
 
+//新增背景颜色记录功能
+
 var fg='';
-
+var savecll='';
 const Item = Popover.Item;
-
 const myImg = src => <img src={require(`../imgs/${src}.png`)} className="am-icon am-icon-xs" alt="" />;
+
 export default class ChangeNote extends Component{
     state = {
         visible: false,
@@ -20,20 +20,17 @@ export default class ChangeNote extends Component{
         nid:'',
         notename:'',
         flag:0,
-        cll:'#fadbea'
+        cll:'#fff',
+        storage:window.localStorage
     };
-    // constructor(){
-    //     super();
-    //     this.state = {
-    //         title:'',
-    //         text:'',
-    //         uid:0,
-    //         nid:'',
-    //         notename:'',
-    //         flag:0,
-    //         cll:'#fff'
-    //     }
-    // }
+    constructor(){
+        super();
+        var storage = this.state.storage;
+        if(storage.getItem('noteback')!=null){
+          console.log('xxxx');
+            savecll=storage.getItem('noteback');
+        }
+    }
     componentDidMount(){
         var str = this.props.location.search;    
         var uid = str.split('&')[0].split('=')[1];
@@ -75,30 +72,22 @@ export default class ChangeNote extends Component{
       };
 
       getChildrenMsg = (result, inputValue) => {
-        //console.log(cll);
-        console.log(inputValue,'uuuuuu');
-        //cll=inputValue[0];
-        //console.log(cll);
+        var storage = this.state.storage;
         this.setState({
             cll:inputValue[0]
         });
+        savecll=inputValue[0];
+        storage.setItem('noteback',savecll);
     }
     
     render(){
         var uid = this.state.uid;
         var text = this.state.text;
-        console.log(this.state.cll);
         var cll = this.state.cll;
         return (
-            <div className='testbox' style={{background:cll}}>
-                {/* <NavBar
-                style={{background:'#fff',color:'#000'}} 
-                rightContent={<div><span onClick={this.delnote} style={{color:'red',marginRight:'7px'}}>删除</span><span onClick={this.saveNote}>保存</span></div>}
-                leftContent={<Link to={`/note?uid=${uid}&typef=${fg}`}><img src={require('../imgs/zjt2.png')} /></Link>}
-                mode="light"
-                ><span style={{color:'#000',fontSize:'22px'}}>{this.state.notename}</span></NavBar> */}
-
-<NavBar
+            <div className='testbox' style={savecll!='' ? {background:savecll} : {background:cll}}>
+                
+                <NavBar
                 style={{background:'#fff',color:'#000'}} 
                 rightContent={
                     <Popover mask
@@ -106,10 +95,10 @@ export default class ChangeNote extends Component{
                       overlayStyle={{ color: 'currentColor' }}
                       visible={this.state.visible}
                       overlay={[
-                        (<Item key="4" value="scan" icon={myImg('baocun')} data-seed="logId"><span onClick={this.saveNote}>保存</span></Item>),
-                        (<Item key="5" value="special" icon={myImg('schu')} style={{ whiteSpace: 'nowrap' }}><span onClick={this.delnote}>删除</span></Item>),
+                        (<Item key="4" value="scan" icon={myImg('baocun')} data-seed="logId"><span onClick={this.saveNote}><div style={{marginTop:'4px'}}>保存</div></span></Item>),
+                        (<Item key="5" value="special" icon={myImg('schu')} style={{ whiteSpace: 'nowrap' }}><span onClick={this.delnote}><div style={{marginTop:'5px'}}>删除</div></span></Item>),
                         (<Item key="6" value="button ct" icon={myImg('cll')}>
-                          <span style={{ marginRight: 5 }}><div style={{marginTop:'15px'}}><Check parent={this}/></div></span>
+                          <span style={{ marginRight: 5 }}><div style={{marginTop:'28px'}}><Check parent={this}/></div></span>
                         </Item>),
                       ]}
                       align={{
@@ -135,9 +124,9 @@ export default class ChangeNote extends Component{
                 mode="light"
                 ><span style={{color:'#000',fontSize:'22px'}}>{this.state.notename}</span></NavBar>
 
-                <div style={{width:'85%',paddingTop:'4%',paddingRight:'8%',paddingLeft:'7%'}}>
+                <div style={{width:'90%',paddingTop:'4%',margin:'0 auto'}}>
                     
-                    <textarea value={this.state.text} onChange={this.changeText} style={{width:'98%',paddingTop:'2%',lineHeight:'10vw',height:'160vw',paddingRight:'1%',border:'none',paddingLeft:'1%',fontSize:'20px',background:'none'}}>
+                    <textarea value={this.state.text} onChange={this.changeText} style={{width:'100%',paddingTop:'2%',lineHeight:'10vw',height:'160vw',border:'none',fontSize:'20px',background:'none'}}>
                         
                     </textarea>
                 </div>
@@ -146,7 +135,7 @@ export default class ChangeNote extends Component{
             
             </div>
             <div className={this.state.flag == 1 ? 'showgolo gologin' : 'gologin'}>
-                <p>确认删除？</p>
+                <p style={{height:'70%'}}>确认删除？</p>
                 <div className='glin'>
                     <div style={{borderRight:'1px solid rgb(211, 211, 208)',width:'49%'}} onClick={this.quxiao}>取消</div>
                     <div onClick={this.sureit}>确认</div>

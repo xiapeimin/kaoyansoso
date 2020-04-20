@@ -59,8 +59,6 @@ export default class HostTopic extends Component {   //评论弹框bug 用组件
                 uid:uid
             });
             page=1;
-            console.log(str,'topicmu',uid);
-            console.log('pppppppppppppppppppp',this.state.page);
         }else{
             uid = str.split('=')[1];
             console.log(uid);
@@ -69,14 +67,11 @@ export default class HostTopic extends Component {   //评论弹框bug 用组件
             });
             page=0;
         }
-        console.log(str,'topicmu',uid);
-
         fetch(`http://xpm.xpmwqhzygy.top/timglist`,{
             method: 'GET'
             })
             .then((res)=>res.json())
             .then((res)=>{
-                console.log(res.data);
                 var tdata = res.data;
                 for(var i=0;i<tdata.length;i++){
                     if(uid==tdata[i].uid){
@@ -88,7 +83,6 @@ export default class HostTopic extends Component {   //评论弹框bug 用组件
                         i=tdata.length;
                     }else if(i==tdata.length-1 && uid != tdata[i].uid){
                         headflag2 =1;
-                        console.log(headflag2,'222222222222222');
                     }
                 }
                 if(tdata.length==0){
@@ -160,8 +154,6 @@ export default class HostTopic extends Component {   //评论弹框bug 用组件
               })
               .then((res)=>res.json())
               .then((res)=>{
-                  console.log(res.data);
-                  console.log(typeof(res.data));
                   var tt = [];
                   var txt='';
                   var arr = new Array();
@@ -186,7 +178,6 @@ export default class HostTopic extends Component {   //评论弹框bug 用组件
                       }else{
                           for(var z=0;z<talks[j].length;z++){
                             arr[z]=[];
-                            console.log(talks[j][z],'zzzzzzzzz');
                             arr[z].name=talks[j][z].split('&')[0];
                             arr[z].talk=talks[j][z].split('&')[1];
                             talks[j][z]=arr[z];
@@ -331,9 +322,10 @@ export default class HostTopic extends Component {   //评论弹框bug 用组件
         }
         var uid=this.state.all[index].uid;
         var pri=uid+this.state.all[index].topic;
-        console.log(pri);
+        var good1=this.state.good;
+        console.log(good1);
          const post ={
-             good:!this.state.good,
+             good:this.state.uid+!this.state.good,
          }
          fetch(`http://zy.xpmwqhzygy.top/something/${pri}`,{
              method:"PUT",
@@ -496,15 +488,29 @@ export default class HostTopic extends Component {   //评论弹框bug 用组件
         var imgs2=[];
         var imgsall=[];
         var imgsall2=[];
+        var goodall1=[];
+        var goodall2=[];
+        var uid1=[];
+        var uid2=[];
+        var all=[];
         for(var i=0;i<this.state.all.length;i++){
             imgsall[i]=this.state.all[i].imgsrc;
             imgsall2[i]=this.state.all[i].srcimg;
+            goodall1[i]=this.state.all[i].good;
+            all[i]=goodall1[i].split(this.state.uid)[1];
         }
+        for(var i=0;i<all.length;i++){
+            if(all[i]=='true'||all[i]=='false'){
+                goodall2[i]=all[i]
+            }else{
+                goodall2[i]='false'
+            }
+        }
+       console.log(goodall2);
         for(var i=0;i<rdata.length;i++){
             imgs[i]=rdata[i].imgsrc;
             imgs2[i]=rdata[i].srcimg;
         }
-
         console.log(rdata);
         return (
             <div>
@@ -524,8 +530,9 @@ export default class HostTopic extends Component {   //评论弹框bug 用组件
                                             <div className={index} style={{ width:'100%',padding:'4%',marginBottom:'1vh',backgroundColor:'#fff'}}>
                                                 <div>
                                                 <div style={{width:'20%',height:'60px',float:'left'}}>  
-                                                    <img className={`tx${item.uid}`}  style={{ borderRadius:'30px',width:'60px',height:'60px'}} src={headimg} alt="" />                 
+                                                    <Link to={`/personaldetail?uid=${uid}&pickid=${item.uid}`}><img className={`tx${item.uid}`}  style={{ borderRadius:'30px',width:'60px',height:'60px'}} src={headimg} alt="" /></Link>                 
                                                 </div>
+
                                                 
                                                 <div style={{width:'80%',float:'left',paddingTop:'18px'}}>
                                                     <span style={{fontSize:'18px',fontWeight:'bold'}}>{item.username}</span>
@@ -539,8 +546,8 @@ export default class HostTopic extends Component {   //评论弹框bug 用组件
                                                 </div>
                                                 </div>
 
-                                                <div style={{width:'100%',float:'left',textAlign:'right',paddingBottom:'2px'}}>         
-                                                    <img  id={`all${index}`} src={item.good ? zan1 : good} style={{width:'4.5vh',height:'4.5vh',marginRight:'2vh'}} onClick={this.goodall}/>     
+                                                <div style={{width:'100%',float:'left',textAlign:'right',paddingBottom:'2px'}}>       
+                                                    <img  id={`all${index}`} src={goodall2[index]=='true'? zan1 : good} style={{width:'4.5vh',height:'4.5vh',marginRight:'2vh'}} onClick={this.goodall}/>     
                                                     <img id={`a${index}`} src={talk} style={{width:'4vh',height:'4vh'}} onClick={this.alltalk}/>
                                                 </div>    
                                                 <div className='untalk' id={`al${index}`} style={{height:'30px',width:'100%',marginBottom:'2px',float:'left'}}>  

@@ -22,6 +22,7 @@ export default class Video extends Component{
         return(
             
             <div  className='testbox'>
+                
                 <NavBar
                 style={{background:'#66cccc',color:'#fff'}} 
                 leftContent={<Link to={`/appTab?uid=${uid}`}><img src={require('../imgs/zjt.png')} /></Link>}
@@ -49,7 +50,7 @@ export default class Video extends Component{
                                     <source src={vedio0} type='video/mp4' />
                                     您的浏览器不支持Video
                                 </video>
-                                <div style={{width:'90%',height:'20%',paddingRight:'5%',paddingLeft:'5%',background:'#dbdedd',alignItems:'center',display: '-webkit-flex',fontSize:'4.5vw',color:'#000'}}>老梁观世界：3分钟告诉迷茫的你...</div>
+                                <div style={{width:'100%',height:'20%',paddingRight:'5%',paddingLeft:'5%',background:'#dbdedd',alignItems:'center',display: '-webkit-flex',fontSize:'4.5vw',color:'#000'}}>老梁观世界：3分钟告诉迷茫的你...</div>
                             </div></Link>
                         ))
                     }
@@ -60,7 +61,7 @@ export default class Video extends Component{
                                     <source src={vedio1} type='video/mp4' />
                                     您的浏览器不支持Video
                                 </video>
-                                <div style={{width:'90%',height:'20%',paddingRight:'5%',paddingLeft:'5%',background:'#dbdedd',alignItems:'center',display: '-webkit-flex',fontSize:'4.5vw',color:'#000'}}>教你怎样问才能难倒神嘴张雪峰老师...</div>
+                                <div style={{width:'100%',height:'20%',paddingRight:'5%',paddingLeft:'5%',background:'#dbdedd',alignItems:'center',display: '-webkit-flex',fontSize:'4.5vw',color:'#000'}}>教你怎样问才能难倒神嘴张雪峰老师...</div>
                             </div></Link>
                         ))
                     }
@@ -71,7 +72,7 @@ export default class Video extends Component{
                                     <source src={vedio2} type='video/mp4' />
                                     您的浏览器不支持Video
                                 </video>
-                                <div style={{width:'90%',height:'20%',paddingRight:'5%',paddingLeft:'5%',background:'#dbdedd',alignItems:'center',display: '-webkit-flex',fontSize:'4.5vw',color:'#000'}}>超长剪辑版:爆笑张雪峰老师视频...</div>
+                                <div style={{width:'100%',height:'20%',paddingRight:'5%',paddingLeft:'5%',background:'#dbdedd',alignItems:'center',display: '-webkit-flex',fontSize:'4.5vw',color:'#000'}}>超长剪辑版:爆笑张雪峰老师视频...</div>
                             </div></Link>
                         ))
                     }
@@ -82,13 +83,21 @@ export default class Video extends Component{
                                     <source src={vedio3} type='video/mp4' />
                                     您的浏览器不支持Video
                                 </video>
-                                <div style={{width:'90%',height:'20%',paddingRight:'5%',paddingLeft:'5%',background:'#dbdedd',alignItems:'center',display: '-webkit-flex',fontSize:'4.5vw',color:'#000'}}>2018考研：张雪峰老师带你讲跨专...</div>
+                                <div style={{width:'100%',height:'20%',paddingRight:'5%',paddingLeft:'5%',background:'#dbdedd',alignItems:'center',display: '-webkit-flex',fontSize:'4.5vw',color:'#000'}}>2018考研：张雪峰老师带你讲跨专...</div>
                             </div></Link>
                         ))
                     }
                 </div>
                 
-            
+              
+                <NavBar
+                style={{background:'#66cccc',color:'#fff',position:'fixed',top:0,width:'100%'}} 
+                leftContent={<Link to={`/appTab?uid=${uid}`}><img src={require('../imgs/zjt.png')} /></Link>}
+                mode="light"
+                onLeftClick={() => console.log('onLeftClick')}
+                ><span style={{color:'#fff',fontSize:'22px'}}>更多视频</span></NavBar>
+              
+                          
 
             </div>
             

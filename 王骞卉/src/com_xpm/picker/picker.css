@@ -1,0 +1,10 @@
+.absu_xpm{
+    position: absolute;
+    width: 70%;
+    height: 30%;
+    top: 35%;
+    left: 15%;
+    background: #8dd6cc;
+    border-radius: 3%;
+    border: 1px solid #ddd;
+}

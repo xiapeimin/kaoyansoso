@@ -119,6 +119,7 @@ export default class Login extends Component {
                         }
 
                         window.location.hash=`/appTab?uid=${data[i].uid}`;
+                        storage.setItem('setisLogin',`/appTab?uid=${data[i].uid}`);  //设置已登录状态 用于自动登录
                         console.log('用户id',data[i].uid);
                         i = data.length;
                         console.log(i);

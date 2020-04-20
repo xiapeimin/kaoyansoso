@@ -192,7 +192,7 @@ export default class AppHome extends Component {
                     <p>确认退出？</p>
                     <div className='glin'>
                         <div style={{borderRight:'1px solid rgb(211, 211, 208)',width:'49%'}} onClick={this.quxiao}>取消</div>
-                        <div><Link to='/' style={{color:'#000'}}>退出</Link></div>
+                        <div onClick={this.setoutLogin}><Link to='/' style={{color:'#000'}}>退出</Link></div>
                     </div>
                 </div>
 
@@ -200,6 +200,15 @@ export default class AppHome extends Component {
             </div>
         )
     }
+
+    /**退出登录 设置退出标志0407 */
+    setoutLogin = () => {
+        console.log('退出登录');
+        var storage = window.localStorage;
+        storage.removeItem('setisLogin');
+    }
+    /**end */
+
     putMessage = () => {
         var uid = this.state.uid;
         console.log(this.state.name,this.state.xuanyan,this.state.school,this.state.profession);
@@ -244,12 +253,12 @@ export default class AppHome extends Component {
     unlogin = () => {
         this.setState({
             flag:1
-        })
+        });
     }
     quxiao = () => {
         this.setState({
             flag:0
-        })
+        });
     }
     
 }

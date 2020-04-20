@@ -36,11 +36,23 @@ import Publish from './container/Publish';
 import Forgetpwd from './container/Forgetpwd';
 import Findpwd from './container/Findpwd';
 import CreateNote from './container/CreateNote';
-// import ChangeNote from './container/ChangeNote';
+import ChangeNote from './container/ChangeNote';
 import Pwdchange from './container/Pwdchange';
 import Contact from './container/Contact';
+import PersonalDetail from './container/PersonalDetail';
+import WordText from './container/WordText';
+import WordSpell from './container/WordSpell';
+import Talking from './container/Talking';
+
 
 import Sql from './components/spltest';
+
+/**启动页 */
+import Start from './com_xpm/start/Start';
+/**机器人聊天 */
+import Robot from './com_xpm/robot/Contact';
+import Tuling from './com_xpm/robot/Tuling';
+
 
 export default class App extends Component{
     render(){
@@ -50,10 +62,20 @@ export default class App extends Component{
                     <div>
                         <Switch>
                             <Route path='/sql' component={Sql} />
-                            <Route path='/' exact component={Login} />
-                            <Route path='/contact' component={Contact} />
+                            
+                            {/**添加启动 引导组件 */}
+                            <Route path='/' exact component={Start} />
+                            <Route path='/login' exact component={Login} />
+                            {/**end */}
+
+                            {/**<Route path='/contact' component={Contact} /> */}
+                            {/**机器人 */}
+                            <Route path='/contact' component={Robot} />
+                            <Route path='/tuling' component={Tuling} />
+                            {/**end */}
+
                             <Route path='/pwdchange' component={Pwdchange} />
-                            <Route path='/changeNote' component={CreateNote} />
+                            <Route path='/changeNote' component={ChangeNote} />
                             <Route path='/myschool' component={MySchool} />
                             <Route path='/mysave' component={MySave} />
                             <Route path='/help' component={Help} />
@@ -88,6 +110,11 @@ export default class App extends Component{
                             <Route path='/register' component={Register}/>
                             <Route path='/carousel' component={Carousel} />
                             <Route path='/remFire' component={RemFire}/>
+                            <Route path='/personaldetail' component={PersonalDetail}/>
+                            <Route path='/wordtext' component={WordText}/>
+                            <Route path='/wordspell' component={WordSpell}/>
+                            <Route path='/talkto' component={Talking}/>
+
                         </Switch>
 
                     </div>

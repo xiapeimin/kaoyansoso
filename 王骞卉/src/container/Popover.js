@@ -1,8 +1,6 @@
-import { Picker, List, WhiteSpace } from 'antd-mobile';
+import { Picker } from 'antd-mobile';
 import { createForm } from 'rc-form';
 import React from 'react';
-
-import cll from '../imgs/cll.png';
 
 const colorStyle = {
   display: 'inline-block',
@@ -11,17 +9,8 @@ const colorStyle = {
   height: '16px',
   marginRight: '10px',
 };
+
 const colors = [
-  {
-    label:
-    (<div>
-      <span
-        style={{ ...colorStyle, backgroundColor: '#fadbea' }}
-      />
-      <span>粉色</span>
-    </div>),
-    value: '#fadbea',
-  },
   {
     label:
     (<div>
@@ -56,6 +45,16 @@ const colors = [
     label:
     (<div>
       <span
+        style={{ ...colorStyle, backgroundColor: '#fadbea' }}
+      />
+      <span>粉色</span>
+    </div>),
+    value: '#fadbea',
+  },
+  {
+    label:
+    (<div>
+      <span
         style={{ ...colorStyle, backgroundColor: '#dddddd' }}
       />
       <span>灰色</span>
@@ -74,10 +73,7 @@ class Test extends React.Component {   //根据选择 切换单词列表
 
   render() {
     var cc = this.state.colorValue;
-    return (<div>
-      
-      
-      
+    return (<div>    
         <Picker
           data={colors}
           value={this.state.colorValue}
@@ -86,9 +82,7 @@ class Test extends React.Component {   //根据选择 切换单词列表
         >
          <span>背景</span>
         </Picker>
-              
-     
-
+  
     </div>);
   }
 
