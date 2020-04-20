@@ -1,13 +1,13 @@
 import React,{Component} from 'react';
 import {NavBar} from 'antd-mobile';
 import {Link} from 'react-router-dom';
-
-import cnote from '../imgs/cnoteimg.png';
-
 import WordsCheck from '../container/WordsCheck';
+
+//新增背景颜色记录功能
 
 var fg='';
 var cl='#fff';
+var savecll='';
 export default class CreateNote extends Component{
     constructor(){
         super();
@@ -16,8 +16,14 @@ export default class CreateNote extends Component{
             text:'',
             uid:0,
             flag:0,
-            cll:'#fff'
+            cll:'#fff',
+            storage:window.localStorage
+        };
+        var storage = this.state.storage;
+        if(storage.getItem('noteback')!=null){
+            savecll=storage.getItem('noteback');
         }
+        
     }
     componentDidMount(){  // background:`url(${cnote}) no-repeat`,backgroundSize:'100% 100%'
         var str = this.props.location.search;
@@ -29,13 +35,13 @@ export default class CreateNote extends Component{
     }
 
     getChildrenMsg = (result, inputValue) => {
-        console.log(cl);
-        console.log(inputValue,'uuuuuu');
+        var storage = this.state.storage;
         cl=inputValue[0];
-        console.log(cl);
         this.setState({
             cll:inputValue[0]
         });
+        savecll=inputValue[0];
+        storage.setItem('noteback',cl);
     }
     
     render(){
@@ -43,17 +49,17 @@ export default class CreateNote extends Component{
         console.log(this.state.cll);
         var cll = this.state.cll;
         return (
-            <div className='testbox' style={{background:cll}}>
+            <div className='testbox' style={savecll!='' ? {background:savecll} : {background:cll}}>
                 <NavBar
                 style={{background:'#fff',color:'#000'}} 
-                rightContent={<div><span onClick={this.saveNote}>保存</span><div style={{float:'right',marginLeft:'5px'}}><WordsCheck parent={this} /></div></div>}
+                rightContent={<div><span onClick={this.saveNote}>保存</span><div style={{float:'right',marginLeft:'5px',marginTop:'2px'}}><WordsCheck parent={this} /></div></div>}
                 leftContent={<Link to={`/note?uid=${uid}&typef=${fg}`}><img src={require('../imgs/zjt2.png')} /></Link>}
                 mode="light"
                 ><span style={{color:'#000',fontSize:'22px'}}>笔记</span></NavBar>
 
-                <div style={{width:'85%',paddingTop:'4%',paddingRight:'8%',paddingLeft:'7%'}}>
-                    <input type='text' onChange={this.changeTitle} placeholder='笔记名称' style={{width:'98%',paddingLeft:'1%',paddingLeft:'1%',border:'none',borderBottom:'2px solid #66cccc',height:'11vw',fontSize:'20px',background:'none'}} />
-                    <textarea placeholder='请输入：' onChange={this.changeText} style={{width:'98%',lineHeight:'10vw',height:'160vw',marginTop:'-1vw',paddingRight:'1%',border:'none',paddingLeft:'1%',fontSize:'20px',background:'none'}}>
+                <div style={{width:'90%',paddingTop:'4%',margin:'0 auto'}}>
+                    <input type='text' onChange={this.changeTitle} placeholder='笔记名称' style={{width:'100%',border:'none',borderBottom:'2px solid #66cccc',height:'11vw',background:'none',fontSize:'20px'}} />
+                    <textarea placeholder='请输入：' onChange={this.changeText} style={{width:'100%',lineHeight:'10vw',height:'160vw',marginTop:'-1vw',border:'none',fontSize:'20px',background:'none'}}>
                         
                     </textarea>
                 </div>

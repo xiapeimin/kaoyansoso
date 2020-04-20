@@ -1,4 +1,4 @@
-import { Picker, List, WhiteSpace } from 'antd-mobile';
+import { Picker } from 'antd-mobile';
 import { createForm } from 'rc-form';
 import React from 'react';
 
@@ -76,8 +76,6 @@ class Test extends React.Component {   //根据选择 切换单词列表
     var cc = this.state.colorValue;
     return (<div>
       
-      
-      
         <Picker
           data={colors}
           value={this.state.colorValue}
@@ -99,10 +97,7 @@ class Test extends React.Component {   //根据选择 切换单词列表
     });
     console.log(color);
     cl=color;
-    // this.setState({
-    //   colorValue: color[0],
-    // });
-    // console.log(color[0]);   //选择改变 切换单词列表
+    
   };
 }
 

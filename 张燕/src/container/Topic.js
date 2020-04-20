@@ -530,8 +530,9 @@ export default class HostTopic extends Component {   //评论弹框bug 用组件
                                             <div className={index} style={{ width:'100%',padding:'4%',marginBottom:'1vh',backgroundColor:'#fff'}}>
                                                 <div>
                                                 <div style={{width:'20%',height:'60px',float:'left'}}>  
-                                                    <img className={`tx${item.uid}`}  style={{ borderRadius:'30px',width:'60px',height:'60px'}} src={headimg} alt="" />                 
+                                                    <Link to={`/personaldetail?uid=${uid}&pickid=${item.uid}`}><img className={`tx${item.uid}`}  style={{ borderRadius:'30px',width:'60px',height:'60px'}} src={headimg} alt="" /></Link>                 
                                                 </div>
+
                                                 
                                                 <div style={{width:'80%',float:'left',paddingTop:'18px'}}>
                                                     <span style={{fontSize:'18px',fontWeight:'bold'}}>{item.username}</span>

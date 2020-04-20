@@ -1,11 +1,41 @@
 import React,{Component} from 'react';
 import {Link} from 'react-router-dom';
-import {Carousel,Accordion,List,SearchBar,Grid} from 'antd-mobile';
+import {Carousel,Accordion,List,SearchBar,Grid,PickerView} from 'antd-mobile';
 import vedio2 from '../imgs/vedio2.mp4';
+
+/**引入年份选择器 代替select选择年份 
+ * 修改倒计时bug
+ * 找资源改为日历表
+*/
+import Pickeryear from '../com_xpm/picker/Pickeryear';
+import '../com_xpm/picker/picker.css';
+
+const testyear = [
+    {
+      label: '2021',
+      value: '2021',
+    },
+    {
+      label: '2022',
+      value: '2022',
+    },
+    {
+      label: '2023',
+      value: '2023',
+    },
+    {
+      label: '2024',
+      value: '2024',
+    },
+    {
+      label: '2025',
+      value: '2025',
+    }
+];
 
 var u=0;
 const gridArr = [
-    '信息库','研题库','找资源','背单词','笔记本','研百科'
+    '信息库','研题库','日历表','背单词','笔记本','研百科'
 ];
 const griddata = gridArr.map((_val, i) => ({
     icon: require(`../imgs/grid${i}.png`),
@@ -77,7 +107,7 @@ const PlaceHolder = ({ className = '', ...restProps }) => (
 );
   
 var data = new Date();
-var data2 = new Date('2019-12-21');
+var data2 = new Date('2020-12-21');
 
 var m = data.getMonth()+1;
 var d = data.getDate();
@@ -94,7 +124,9 @@ export default class Apphome extends Component{
             dkNum: 0,//后台数据 根据不同用户
             dkText:'',
             dKflag:0,
-            days: parseInt((data2.getTime()-data.getTime()) / (24*60*60*1000))+1
+            days: parseInt((data2.getTime()-data.getTime()) / (24*60*60*1000))+1,
+            picker:0, /**是否显示选择器 */
+            picker_value:null /**修改后的年份 */
         }
         console.log(this.props);
     }
@@ -169,14 +201,35 @@ export default class Apphome extends Component{
             })
         }
     }
-    changeSec = (e) => {
-        var year = e.target.value-1;
+    // changeSec = (e) => {
+    //     var year = e.target.value-1;
+    //     var d = new Date(year+'-12-21');
+    //     var days = parseInt((d.getTime()-data.getTime()) / (24*60*60*1000))+1;
+    //     this.setState({
+    //         days:days
+    //     });
+    // }
+    /**年份选择 倒计时优化 */
+    onChange = (value) => {
+        this.setState({
+            picker_value:value,
+            picker:0
+        });
+        var year = value[0]-1;
         var d = new Date(year+'-12-21');
         var days = parseInt((d.getTime()-data.getTime()) / (24*60*60*1000))+1;
         this.setState({
             days:days
-        })
+        });
     }
+
+    pickerchange = () => {
+        this.setState({
+            picker:1
+        });
+    }
+    /**end */
+    
     changeText = () => {
         var uid = this.state.uid;
         var num;
@@ -240,11 +293,16 @@ export default class Apphome extends Component{
 
                 <div className='daka'>
                     <div className='time'>
-                        <span><select className='tes' onClick={this.changeSec}>
-                            <option value ="2020">2020</option>
+                        <span className='tes' onClick={this.pickerchange}>
+                            {this.state.picker_value==null ? '2021' : this.state.picker_value}
+                            {/**
+                            <select className='tes' onClick={this.changeSec}>
                             <option value ="2021">2021</option>
-                            <option value="2022">2022</option>
-                        </select></span> 届考研倒计时
+                            <option value ="2022">2022</option>
+                            <option value="2023">2023</option>
+                            </select>
+                             */}
+                        </span> 届考研倒计时
                     </div>
                     <div className='dk'>
                         <div className='dk1'><span>{this.state.days}</span> 天</div>
@@ -284,6 +342,18 @@ export default class Apphome extends Component{
                 </div>
 
                 <div className='bom'>亲，我也是有底线的哦~</div>
+
+                {/**引入 */}
+                <div className='absu_xpm'  style={this.state.picker==1 ? {opacity:1} : {opacity:0,top:'-30%'}}>
+                    <PickerView
+                    data={testyear}
+                    cascade={false}
+                    value={this.state.picker_value}
+                    onChange={this.onChange}       
+                    />
+                    <div style={{display:'none'}}><Pickeryear /></div>
+                </div>
+                {/**end */}
              
             </div>
         )

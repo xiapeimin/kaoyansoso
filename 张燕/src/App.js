@@ -39,6 +39,11 @@ import CreateNote from './container/CreateNote';
 import ChangeNote from './container/ChangeNote';
 import Pwdchange from './container/Pwdchange';
 import Contact from './container/Contact';
+import PersonalDetail from './container/PersonalDetail';
+import WordText from './container/WordText';
+import WordSpell from './container/WordSpell';
+import Talking from './container/Talking';
+
 
 import Sql from './components/spltest';
 
@@ -47,6 +52,7 @@ import Start from './com_xpm/start/Start';
 /**机器人聊天 */
 import Robot from './com_xpm/robot/Contact';
 import Tuling from './com_xpm/robot/Tuling';
+
 
 export default class App extends Component{
     render(){
@@ -104,6 +110,11 @@ export default class App extends Component{
                             <Route path='/register' component={Register}/>
                             <Route path='/carousel' component={Carousel} />
                             <Route path='/remFire' component={RemFire}/>
+                            <Route path='/personaldetail' component={PersonalDetail}/>
+                            <Route path='/wordtext' component={WordText}/>
+                            <Route path='/wordspell' component={WordSpell}/>
+                            <Route path='/talkto' component={Talking}/>
+
                         </Switch>
 
                     </div>

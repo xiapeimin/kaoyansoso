@@ -10,6 +10,7 @@ import bangzhu from '../imgs/bangzhu.png'
 import jiantou from '../imgs/箭头.png'
 import beijing from '../imgs/yh.jpg'
 import headimg from '../imgs/usrhead.png';
+import lianxiren from '../imgs/user.png';
 
 var usertd;
 export default class My extends Component {
@@ -24,10 +25,28 @@ export default class My extends Component {
             storage:window.localStorage,
             planNum:0,
             topicNum:0,
+            visible: true,
+            selected: '',
             saveNum:0
         }
     
     }
+    // state = {
+    //     visible: true,
+    //     selected: '',
+    //   };
+    //   onSelect = (opt) => {
+    //     // console.log(opt.props.value);
+    //     this.setState({
+    //       visible: false,
+    //       selected: opt.props.value,
+    //     });
+    //   };
+    //   handleVisibleChange = (visible) => {
+    //     this.setState({
+    //       visible,
+    //     });
+    //   };
     componentDidMount(){
         var str = window.location.hash;
         var uid=1;
@@ -144,6 +163,7 @@ export default class My extends Component {
             <div className='testbox'>
                 <div style={{width:'100%',height:'70vw'}}>
                     <img src={beijing} style={{width:'100%',height:'70vw',position:'absolute',top:'0'}} />
+                    <img src={lianxiren} style={{position:'absolute',width:'10vw',height:'10vw',top:'3vw',right:'4vw',float:'right'}}/>
                     <Link to={`/myset?uid=${uid}`}><img src={shezhi} alt="" style={{position:'absolute',width:'10vw',height:'10vw',top:'3vw',right:'2vw',float:'right'}}></img></Link>
                     <img src={this.state.pre == 0 ? headimg : `${headimg2}`} alt="" style={{position:'absolute',width:'22vw',height:'22vw',top:'10vw',left:'39%',borderRadius:'11vw'}}/>
                     <div style={{width:'100%',height:'13vw',position:'absolute',top:'35vw',textAlign:'center',color:'#FFFFFF'}}>
