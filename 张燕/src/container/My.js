@@ -10,7 +10,8 @@ import bangzhu from '../imgs/bangzhu.png'
 import jiantou from '../imgs/箭头.png'
 import beijing from '../imgs/yh.jpg'
 import headimg from '../imgs/usrhead.png';
-import lianxiren from '../imgs/user.png';
+import lianxiren from '../imgs/lxr.jpg';
+import { NavBar} from 'antd-mobile';
 
 var usertd;
 export default class My extends Component {
@@ -25,28 +26,10 @@ export default class My extends Component {
             storage:window.localStorage,
             planNum:0,
             topicNum:0,
-            visible: true,
-            selected: '',
             saveNum:0
         }
     
     }
-    // state = {
-    //     visible: true,
-    //     selected: '',
-    //   };
-    //   onSelect = (opt) => {
-    //     // console.log(opt.props.value);
-    //     this.setState({
-    //       visible: false,
-    //       selected: opt.props.value,
-    //     });
-    //   };
-    //   handleVisibleChange = (visible) => {
-    //     this.setState({
-    //       visible,
-    //     });
-    //   };
     componentDidMount(){
         var str = window.location.hash;
         var uid=1;
@@ -163,7 +146,6 @@ export default class My extends Component {
             <div className='testbox'>
                 <div style={{width:'100%',height:'70vw'}}>
                     <img src={beijing} style={{width:'100%',height:'70vw',position:'absolute',top:'0'}} />
-                    <img src={lianxiren} style={{position:'absolute',width:'10vw',height:'10vw',top:'3vw',right:'4vw',float:'right'}}/>
                     <Link to={`/myset?uid=${uid}`}><img src={shezhi} alt="" style={{position:'absolute',width:'10vw',height:'10vw',top:'3vw',right:'2vw',float:'right'}}></img></Link>
                     <img src={this.state.pre == 0 ? headimg : `${headimg2}`} alt="" style={{position:'absolute',width:'22vw',height:'22vw',top:'10vw',left:'39%',borderRadius:'11vw'}}/>
                     <div style={{width:'100%',height:'13vw',position:'absolute',top:'35vw',textAlign:'center',color:'#FFFFFF'}}>
@@ -210,18 +192,17 @@ export default class My extends Component {
                         <span style={{width:'67%',paddingLeft:'4%',float:'left'}}>我的笔记</span>
                         <Link to={`/note?uid=${uid}&typef=my`}><img src={jiantou} alt="" style={{width:'15%',height:'100%',float:'right'}}/></Link>
                     </div>
-
+                    <div style={{width:'100%',height:'16vw',fontSize:'6vw',lineHeight:'16vw',marginBottom:'1vw'}}>
+                        <img src={lianxiren} alt="" style={{width:'12%',height:'90%',float:'left'}}/>
+                        <span style={{width:'67%',paddingLeft:'4%',float:'left'}}>我的好友</span>
+                        <Link to={`/say?uid=${uid}`}><img src={jiantou} alt="" style={{width:'15%',height:'100%',float:'right'}}/></Link>
+                    </div>
                     <div style={{width:'100%',height:'16vw',fontSize:'6vw',lineHeight:'16vw',marginBottom:'1vw'}}>
                         <img src={bangzhu} alt="" style={{width:'12%',height:'90%',float:'left'}}/>
                         <span style={{width:'67%',paddingLeft:'4%',float:'left'}}>帮助与反馈</span>
                         <Link to={`/help?uid=${uid}`}><img src={jiantou} alt="" style={{width:'15%',height:'100%',float:'right'}}/></Link>
                     </div>
-            
-                </div>
-
-            
-    
-                
+                </div>    
             </div>
         )
     }

@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import * as _ from "lodash";
-import {Link} from 'react-router-dom';
-import {NavBar,SearchBar} from 'antd-mobile';
+import {Link, Redirect} from 'react-router-dom';
+import {NavBar} from 'antd-mobile';
+import moment from 'moment'
 
 class DateItem {
   /**
@@ -18,12 +19,51 @@ class DateItem {
     });
   }
 }
-
 const l = console.log;
 const weeks = ["日", "一", "二", "三", "四", "五", "六"];
+var plans=[];
+var titles=[];
+var times=[];
 class Test extends Component {
+  constructor(){
+    super();
+    this.state={
+      plan:[],
+      title:[],
+      isSignIn:false
+    }
+  }
   state = {};
   componentWillMount() {
+    var str=window.location.hash;
+    var uid=str.split('=')[1];
+    console.log(uid)
+    var time = new Date(); // Tue Aug 28 2018 09:16:06 GMT+0800 (中国标准时间)；
+    var timestamp = Date.parse(time); // 1535419062000 （Date.parse() 默认不取毫秒，即后三位毫秒为0）
+    console.log(timestamp-126)
+    moment(time).valueOf(); // 1535419062126
+    var t=moment(timestamp).format().split('T')[0]; 
+    console.log(t);
+    fetch(`http://zy.xpmwqhzygy.top/plan/${uid}`,{
+      method: 'GET',        
+      headers:{
+          'Accept':'application/json,text/plain,*/*'
+      }
+      })
+      .then((res)=>res.json())
+      .then((res)=>{
+         for(var i=0;i<res.data.length;i++){
+           if(res.data[i].time.split('T')[0]==t){
+            plans[i]=res.data[i].plan.split('&')[1];
+            titles[i]=res.data[i].plan.split('&')[0];
+            times[i]=res.data[i].time.split('T')[0];
+           }
+         }
+              this.setState({
+                plan:plans,
+                title:titles
+              })   
+      })
     this.initState();
   }
   initState = ({ y, m } = {}) => {
@@ -150,28 +190,28 @@ class Test extends Component {
         const { year, month, nowadays, thisMonth } = this.state;
         var str = this.props.location.search;
         var uid = str.split('=')[1];
+        console.log(times)
         return (
             <div className='testbox'>
                  <NavBar
                 style={{background:'#66cccc',color:'#fff'}} 
                 leftContent={<Link to={`/appTab?uid=${uid}&type=home`}><img src={require('../imgs/zjt.png')} /></Link>}
                 mode="light"
+                rightContent={<Link to={`addPlan?uid=${uid}`}><span style={{fontSize:'30px',color:'gray'}}>+</span></Link>}
                 ><span style={{color:'#fff',fontSize:'22px'}}>日历表</span></NavBar> 
                 <>
-        <h2 style={{paddingLeft:'35%',backgroundColor:'gray'}}>
-          {year}年,{month}月
-        </h2>
-        <div>
-          <button style={{height:'30px',width:'80px'}} onClick={this.handlePrevMonth}>上月</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-         <button  style={{height:'30px',width:'80px'}}onClick={this.handleNextMonth}>下月</button>
+          <div style={{width:'100%',height:'50px'}}>
+          <span style={{textAlign:'center',fontSize:'23px',width:'80px',float:'left'}} onClick={this.handlePrevMonth}>&lt;</span>
+          <h2 style={{width:'60%',float:'left',textAlign:"center",marginTop:'4px'}}>
+              {year}年{month}月
+          </h2>
+         <span style={{textAlign:'center',fontSize:'23px',width:'50px',float:'left'}} onClick={this.handleNextMonth}>&gt;</span>
         </div>
         <table>
-          <tbody>
+          
             <tr>
               {weeks.map(el => (
-                <th style={{paddingLeft:22}} key={el}>{el}</th>
+                <th style={{paddingLeft:"5vw"}} key={el}>{el}</th>
               ))}
             </tr>
             {this.state.hlist.map((el, i) => {
@@ -188,8 +228,9 @@ class Test extends Component {
                           color:
                             dayNum === nowadays && month === thisMonth && "red",
                           textAlign: "center",
-                          padding: 9,
-                          margin:2,
+                          padding: "",
+                          paddingTop:20,
+                          width:"15%",
 
                           border: "0 solid",
                           backgroundColor: dateItem.isSignIn
@@ -216,8 +257,19 @@ class Test extends Component {
                 </tr>
               );
             })}
-          </tbody>
+          
         </table>
+        <div style={{padding:10}}>
+          <h1 style={{color:"#66cccc",fontSize:25,fontWeight:"bold",paddingTop:15}}>今日计划:</h1>
+          {
+            this.state.plan.map((item,index)=>(
+              <div style={{width:'100%',padding:'3%'}}>
+                <h2 style={{width:'90%',height:'15px'}}>{titles[index]}</h2>
+                <p style={{width:'90%',height:'15px',marginLeft:'10px'}}>{item}</p>
+              </div>  
+            ))
+          }
+        </div>
       </>
                 
                 {/* <Link to={`/search?uid=${uid}&type=resourse&his=yes`}><SearchBar value={'这里啥都有~'} placeholder="Search" cancelText={'搜索'} /></Link> */}
