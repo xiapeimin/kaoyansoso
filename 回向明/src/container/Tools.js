@@ -18,11 +18,13 @@ export default class SearchInfo extends Component {  //链接有几个不对
           ];
         return (
             <div className='testbox'>
+
                 <NavBar
                 style={{background:'#66cccc',color:'#fff'}} 
                 leftContent={<Link to={`/appTab?uid=${uid}&type=home`}><img src={require('../imgs/zjt.png')} /></Link>}
                 mode="light"
                 ><span style={{color:'#fff',fontSize:'21px'}}>研百科</span></NavBar>
+                
 
                 <div style={{background:'#fff',width:'100%'}}>
                 <div style={{width:'90%',height:'50px',marginTop:'3vw',marginLeft:'5%'}}>
@@ -162,6 +164,7 @@ export default class SearchInfo extends Component {  //链接有几个不对
 输入正确的准考证号和身份证号，系统判定是你本人，就可以看到自己成绩啦！
                         </div>
                     </Tabs>
+                    
                     </div>
                     </div>
 
@@ -191,11 +194,26 @@ export default class SearchInfo extends Component {  //链接有几个不对
                                 <img src={require('../imgs/tiaoji.png')} style={{width:'40%',height:'50%',borderRadius:'5vw',marginTop:'5%'}}/>
                                 <p style={{color:'#000'}}>网上调剂</p>
                             </div></a>
+                            
                         </div>
+                        
                     
                     </div>
 
+                    
+
                     </div>
+
+                {/**导航栏固定 */}
+                <NavBar
+                style={{background:'#66cccc',color:'#fff',position:'fixed',top:0,width:'100%',zIndex:9999}} 
+                leftContent={<Link to={`/appTab?uid=${uid}&type=home`}><img src={require('../imgs/zjt.png')} /></Link>}
+                mode="light"
+                ><span style={{color:'#fff',fontSize:'21px'}}>研百科</span></NavBar>
+                {/**end */}
+    
+
+
             </div>
         )
     }

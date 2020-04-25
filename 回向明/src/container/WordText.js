@@ -115,7 +115,7 @@ console.log(ok)
      <div className='testbox'>
        <NavBar
                 style={{background:'#66cccc',color:'#fff'}} 
-                leftContent={<Link to={`/words`}><img src={require('../imgs/zjt.png')} /></Link>}
+                leftContent={<Link to={`/words?uid=${uid}`}><img src={require('../imgs/zjt.png')} /></Link>}
                 mode="light"
                 ><span style={{color:'#fff',fontSize:'22px'}}>单词测试</span></NavBar>
                 
@@ -149,37 +149,37 @@ console.log(ok)
                         >{nb[ok[3]]}</Flex.Item>
                         </Flex.Item>
 
-                        <Flex.Item style={{position:'absolute',height:'60px',width:'30%',bottom:'150px',left:'35%',marginTop:'15px',
+                        <Flex.Item style={{position:'absolute',height:'60px',width:'30%',top:'550px',left:'35%',marginTop:'15px',
                     fontSize:'20px',background:'#cfcfcf',borderRadius:'15%',display:'none'}} id='no'>
                         <Flex.Item style={{position:'relative',top:'15px',textAlign:'center',fontSize:'25px'}} 
                         >错误</Flex.Item>
                         </Flex.Item>
 
-                        <Flex.Item style={{position:'absolute',height:'60px',width:'30%',bottom:'150px',left:'35%',marginTop:'15px',
+                        <Flex.Item style={{position:'absolute',height:'60px',width:'30%',top:'550px',left:'35%',marginTop:'15px',
                     fontSize:'20px',background:'#cfcfcf',borderRadius:'15%',display:'none'}} id='yes'>
                         <Flex.Item style={{position:'relative',top:'15px',textAlign:'center',fontSize:'25px'}}
                         >正确</Flex.Item>
                         </Flex.Item>
 
-                        <Flex.Item style={{position:'relative',height:'50px',width:'20%',top:'220px',marginLeft:'3%',
+                        <Flex.Item style={{position:'relative',height:'50px',width:'20%',top:'120px',marginLeft:'3%',
                     fontSize:'20px',background:'#66cccc',float:'left',borderRadius:'15%'}} >
                         <Flex.Item style={{position:'relative',top:'15px',textAlign:'center',fontSize:'18px',color:'white'}}
                         >添加生词</Flex.Item>
                         </Flex.Item>
 
-                        <Flex.Item style={{position:'relative',height:'50px',width:'20%',top:'220px',marginLeft:'4%',
+                        <Flex.Item style={{position:'relative',height:'50px',width:'20%',top:'120px',marginLeft:'4%',
                     fontSize:'20px',background:'#66cccc',float:'left',borderRadius:'15%'}} >
                         <Flex.Item style={{position:'relative',top:'15px',textAlign:'center',fontSize:'18px',color:'white'}}
                         >朗读</Flex.Item>
                         </Flex.Item>
 
-                        <Flex.Item style={{position:'relative',height:'50px',width:'20%',top:'220px',marginLeft:'4%',
+                        <Flex.Item style={{position:'relative',height:'50px',width:'20%',top:'120px',marginLeft:'4%',
                     fontSize:'20px',background:'#66cccc',float:'left',borderRadius:'15%'}} onClick={this.last}>
                         <Flex.Item style={{position:'relative',top:'15px',textAlign:'center',fontSize:'18px',color:'white'}}
                         >上一题</Flex.Item>
                         </Flex.Item>
 
-                        <Flex.Item style={{position:'relative',height:'50px',width:'20%',top:'220px',marginLeft:'4%',
+                        <Flex.Item style={{position:'relative',height:'50px',width:'20%',top:'120px',marginLeft:'4%',
                     fontSize:'20px',background:'#66cccc',float:'left',borderRadius:'15%'}} onClick={this.next}>
                         <Flex.Item style={{position:'relative',top:'15px',textAlign:'center',fontSize:'18px',color:'white'}}
                         >下一题</Flex.Item>

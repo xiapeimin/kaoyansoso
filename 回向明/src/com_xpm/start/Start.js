@@ -14,7 +14,10 @@ export default class Start extends Component {
             data: ['1', '2', '3'],
             storage:window.localStorage
         }
+        
+        	
     }	
+
     componentDidMount(){
         var that = this;
         var storage = this.state.storage;

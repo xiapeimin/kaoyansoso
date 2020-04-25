@@ -84,10 +84,10 @@ export default class Words extends Component {  //有bug 页面布局混乱
 
 
                     <Flex.Item style={{position:'relative',height:'20vw',width:'100%',top:'-5vw'}}>
-                      <Link to={`/wordtext`}>
+                      <Link to={`/wordtext?uid=${uid}`}>
                         <Flex.Item style={{position:"absolute",width:'10px',height:'10px',top:'20%',
                         borderRadius:'50%',left:'1%',backgroundColor:'blue'}}></Flex.Item>
-                    <img style={{position:"absolute",width:'10vw',height:'10vw',borderRadius:'50%',left:'5%'}} src={require('../imgs/danci4.jpg')}/>
+                    <img style={{position:"absolute",width:'10vw',height:'10vw',borderRadius:'50%',left:'5%'}} src={require('../imgs/1.jpg')}/>
                     <Flex.Item style={{position:"absolute",left:'20%',top:'2vw',fontSize:'5vw',color:'black'}}>
                         单词测试
                     </Flex.Item>
@@ -98,10 +98,10 @@ export default class Words extends Component {  //有bug 页面布局混乱
                     </Flex.Item>
 
                     <Flex.Item style={{position:'relative',height:'20vw',width:'100%',top:'-5vw'}}>
-                      <Link to={`/wordspell`}>
+                      <Link to={`/wordspell?uid=${uid}`}>
                         <Flex.Item style={{position:"absolute",width:'10px',height:'10px',top:'20%',
                         borderRadius:'50%',left:'1%',backgroundColor:'blue'}}></Flex.Item>
-                    <img style={{position:"absolute",width:'10vw',height:'10vw',borderRadius:'50%',left:'5%'}} src={require('../imgs/danci4.jpg')}/>
+                    <img style={{position:"absolute",width:'10vw',height:'10vw',borderRadius:'50%',left:'5%'}} src={require('../imgs/2.jpg')}/>
                     <Flex.Item style={{position:"absolute",left:'20%',top:'2vw',fontSize:'5vw',color:'black'}}>
                         拼写测试
                     </Flex.Item>
