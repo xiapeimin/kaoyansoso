@@ -1,0 +1,127 @@
+.all_nt{
+    width: 100%;
+    height: 80vw;
+    margin: 0 auto;
+    margin-top: 5vw;
+    margin-bottom: 3vw;
+}
+.all_nt div{
+    float: left;
+}
+.zh_nt{
+    width: 50%;
+    height: 40vw;
+    text-align: center;
+    line-height: 20vw;
+}
+.zhimg_nt{
+    width: 30%;
+    margin: 0 auto;
+}
+/*createnote*/
+.check_nt{
+    width: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+}
+.nock_nt{
+    display: none;
+}
+.ck_nt{
+    width: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    background: #ffffff;
+}
+.ch_nt{
+    width: 80%;
+    height: 20vw;
+    border: 1px solid red;
+    border-radius: 3vw;
+    margin: 0 auto;
+    border: 1px solid black;
+}
+.zhtool_nt{
+    width: 100%;
+    height: 15vw;
+    background: #f1f3f3;
+    position: fixed;
+    bottom: 0;
+}
+.zhtool_nt p{
+    float: left;
+    width: 20%;
+    height: 15vw;
+    line-height: 15vw;
+    font-size: 4vw;
+    text-align: center;
+}
+.tkpic_nt{
+    position: absolute;
+    width: 15vw;
+    margin: 0 auto;
+    height: 15vw;
+    bottom: 10vw;
+    left: 50%;
+    margin-left: -7.5vw;
+    border-radius: 7.5vw;
+    background: #ffffff;
+    border: 2vw solid rgb(219, 214, 214);
+}
+.qr_nt{
+    position: absolute;
+    bottom: 10vw;
+    width: 15vw;
+    height: 15vw;
+    right: 10%;
+    border: none;
+    background: url('./imgs/sure.png') no-repeat center center;
+}
+.qx_nt{
+    position: absolute;
+    bottom: 10vw;
+    width: 15vw;
+    height: 15vw;
+    left: 10%;
+    border: none;
+    background: url('./imgs/under.png') no-repeat center center;
+}
+.shift_nt{
+    position: absolute;
+    top: 5vw;
+    width: 6vw;
+    height: 6vw;
+    right: 5%;
+    border: none;
+    background: url('./imgs/shift.png') no-repeat center center;
+    background-size: 100% 100%;
+}
+.notesbox_nt{
+    float: left;
+    width: 20%; 
+    text-align: left;
+}
+.thebox_nt{
+    float: left;
+    width: 76%;
+    padding-top: 2%;
+    padding-left: 2%;
+    padding-right: 2%;
+    padding-bottom: 3%;
+    border-radius: 3vw;
+    min-height: 25vw;
+    background: #ffffff;
+    border: 1px solid #e1e4e4;
+}
+.tit_nt{
+    width: 100%;
+    height: 8vw;
+    line-height: 8vw;
+    font-size: 6vw;
+}
+.ntdetail_nt{
+    margin-bottom: 2vw;
+}
+

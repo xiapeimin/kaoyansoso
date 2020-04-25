@@ -1,0 +1,44 @@
+.video_page {
+    position: relative;
+    width: 100%;
+    padding: 15px 2%;
+    box-sizing: border-box;
+    >img{
+      display: block;
+      width: 300px;
+      height: 300px;
+    }
+    .video_model{
+        position: absolute;
+        z-index: 2;
+        // top: 20%;
+        // left: 20%;
+        box-shadow: 0 0 5px @color_cropper_box;
+        .video_box{
+            display: flex;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            >video{
+                border: 1px solid #ccc;
+                object-fit:fill;
+                margin-right: 10px;
+            }
+            >canvas{
+                border: 1px solid #ccc;
+            }
+        }
+        >button {
+            height: 30px;
+            line-height: 28px;
+            padding: 0 20px;
+            letter-spacing: 2px;
+            color: #333;
+            border: 1px solid #333;
+            border-radius: 5px;
+            margin-right: 14px;
+            font-size: 12px;
+            margin-bottom: 10px;
+            background-color: #fff;
+        }
+    }
+}
