@@ -2,6 +2,8 @@ import React,{Component} from 'react';
 import {NavBar} from 'antd-mobile';
 import {Link} from 'react-router-dom';
 
+import Share from './Share';
+
 export default class RemFire extends Component{
     constructor(){
         super();
@@ -9,14 +11,30 @@ export default class RemFire extends Component{
             id:0,           
             title:'',
             view:'109',
-            time:'2019-11-21'
+            time:'2019-11-21',
+            uid:0,
+            flag:0
         }
     }
     componentDidMount(){
-        var id = this.props.match.params.id;
-        this.setState({
-            id:id
-        })
+        var str = this.props.location.search;
+        if(str.indexOf('type')<0){
+            var uid = str.split('&')[0].split('=')[1];
+            var id = str.split('&')[1].split('=')[1];
+            this.setState({
+                id:id,
+                uid:uid
+            })
+        }else{
+            var uid = str.split('&')[0].split('=')[1];
+            var d = str.split('&')[1].split('=')[1];
+            var id = parseInt(d) +1;
+            this.setState({
+                id:id,
+                uid:uid,
+                flag:1
+            })
+        }
         if(id == 1){
             this.setState({
                 title:'2019年ESI中国大学综合排名'
@@ -39,13 +57,24 @@ export default class RemFire extends Component{
             })
         }
     }
+    goout = () => {
+        var uid = this.state.uid;
+        if(this.state.flag==1){
+            window.location.hash=`/search?uid=${uid}&type=home`;
+        }else{
+            window.location.hash=`/appTab?uid=${uid}&type=home`;
+        }
+    }
     
     render(){
+        var uid = this.state.uid;
+        console.log(uid,'eee');
         return (
             <div className='carouselBox' style={{paddingBottom:'20px'}}>
                 <NavBar
-                style={{background:'#66cccc',color:'#fff'}} 
-                leftContent={<Link to={'/appTab'}><img src={require('../imgs/zjt.png')} /></Link>}
+                style={{background:'#66cccc',color:'#fff',overflow:'hidden'}} 
+                rightContent={<Share />}
+                leftContent={<img src={require('../imgs/zjt.png')} onClick={this.goout} />}
                 mode="light"
                 onLeftClick={() => console.log('onLeftClick')}
                 ><span style={{color:'#fff',fontSize:'22px'}}>推荐热点</span></NavBar>

@@ -4,18 +4,21 @@ import {SearchBar} from 'antd-mobile';
 import {Link} from 'react-router-dom';
 
 export default class QuestionBank extends Component {
+    
     render() {
+        var str = this.props.location.search;
+        var uid = str.split('=')[1];
         return (
             <div className='testbox'>
                 <NavBar
                 style={{background:'#66cccc',color:'#fff'}} 
-                leftContent={<Link to={'/appTab'}><img src={require('../imgs/zjt.png')} /></Link>}
+                leftContent={<Link to={`/appTab?uid=${uid}`}><img src={require('../imgs/zjt.png')} /></Link>}
                 mode="light"
                 onLeftClick={() => console.log('onLeftClick')}
                 ><span style={{color:'#fff',fontSize:'22px'}}>研题库</span></NavBar>
-                <Link to={'/search'}><SearchBar value={'小可爱搜索一下想要的真题吧'} placeholder="Search" cancelText={'搜索'} /></Link>
+                <Link to={`/search?uid=${uid}&type=test&his=yes`}><SearchBar value={'小可爱搜索一下想要的真题吧'} placeholder="Search" cancelText={'搜索'} /></Link>
                 <div style={{height:'20vw',marginTop:'5vw',borderTop:'1px solid gray',borderBottom:'1px solid gray'}}>
-                    <Link to='/TestList/1'>
+                    <Link to={`/TestList?uid=${uid}&test=1`}>
                     <div style={{marginLeft:'5vw',marginTop:'2.5vw'}}>
                         <img style={{height:'12.5vw',width:'12.5vw'}} src={require('../imgs/timg1.jpg')}/>
                         <div style={{marginLeft:'20vw', marginTop:'-12.5vw'}}>
@@ -29,7 +32,7 @@ export default class QuestionBank extends Component {
                     </Link>
                 </div>
                 <div style={{height:'20vw',marginTop:'5vw',borderTop:'1px solid gray',borderBottom:'1px solid gray'}}>
-                <Link to='/testList/2'>
+                <Link to={`/TestList?uid=${uid}&test=2`}>
                     <div style={{marginLeft:'5vw',marginTop:'2.5vw'}}>
                         <img style={{height:'12.5vw',width:'12.5vw'}} src={require('../imgs/timg.jpg')}/>
                         <div style={{marginLeft:'20vw', marginTop:'-12.5vw'}}>
@@ -42,7 +45,7 @@ export default class QuestionBank extends Component {
                     </div>
                 </Link>
                 </div>
-                <Link to='/testList/3'>
+                <Link to={`/TestList?uid=${uid}&test=3`}>
                 <div style={{height:'20vw',marginTop:'5vw',borderTop:'1px solid gray',borderBottom:'1px solid gray'}}>
                     <div style={{marginLeft:'5vw',marginTop:'2.5vw'}}>
                         <img style={{height:'12.5vw',width:'12.5vw'}} src={require('../imgs/timg2.jpg')}/>
@@ -56,7 +59,7 @@ export default class QuestionBank extends Component {
                     </div>
                 </div>
                 </Link>
-                <Link to='/testList/4'>
+                <Link to={`/TestList?uid=${uid}&test=4`}>
                 <div style={{height:'20vw',marginTop:'5vw',borderTop:'1px solid gray',borderBottom:'1px solid gray'}}>
                     <div style={{marginLeft:'5vw',marginTop:'2.5vw'}}>
                         <img style={{height:'12.5vw',width:'12.5vw'}} src={require('../imgs/timg3.jpg')}/>
@@ -70,7 +73,7 @@ export default class QuestionBank extends Component {
                     </div>
                 </div>
                 </Link>
-                <Link to='/testList/5'>
+                <Link to={`/TestList?uid=${uid}&test=5`}>
                 <div style={{height:'20vw',marginTop:'5vw',borderTop:'1px solid gray',borderBottom:'1px solid gray'}}>
                     <div style={{marginLeft:'5vw',marginTop:'2.5vw'}}>
                         <img style={{height:'12.5vw',width:'12.5vw'}} src={require('../imgs/timg4.jpg')}/>
@@ -84,7 +87,7 @@ export default class QuestionBank extends Component {
                     </div>
                 </div>
                 </Link>
-                <Link to='/testList/6'>
+                <Link to={`/TestList?uid=${uid}&test=6`}>
                 <div style={{height:'20vw',marginTop:'5vw',borderTop:'1px solid gray',borderBottom:'1px solid gray'}}>
                     <div style={{marginLeft:'5vw',marginTop:'2.5vw'}}>
                         <img style={{height:'12.5vw',width:'12.5vw'}} src={require('../imgs/timg5.jpg')}/>

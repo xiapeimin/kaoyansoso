@@ -24,115 +24,138 @@ export default class Professional extends Component {
       this.state={
         id:1,
         proname:'',
-        data:[]
+        data:[],
+        uid:0
       }
     }
 
     componentDidMount(){
-      var id = this.props.match.params.id;
+      var str = this.props.location.search;
+      var uid = str.split('&')[0].split('=')[1];  //用户id
+      var id = str.split('&')[1].split('=')[1];  //区分专业id
+
       if(id == 1){
         this.setState({
           id:id,
+          uid:uid,
           proname:'哲学',
           data:arr1
         });
       }else if(id == 2){
         this.setState({
           id:id,
+          uid:uid,
           proname:'经济学',
           data:arr2
         });
       }else if(id == 3){
         this.setState({
           id:id,
+          uid:uid,
           proname:'法学',
           data:arr3
         });
       }else if(id == 4){
         this.setState({
           id:id,
+          uid:uid,
           proname:'教育学',
           data:arr4
         });
       }else if(id == 5){
         this.setState({
           id:id,
+          uid:uid,
           proname:'文学',
           data:arr5
         });
       }else if(id == 6){
         this.setState({
           id:id,
+          uid:uid,
           proname:'历史学',
           data:arr6
         });
       }else if(id == 7){
         this.setState({
           id:id,
+          uid:uid,
           proname:'理学',
           data:arr7
         });
       }else if(id == 8){
         this.setState({
           id:id,
+          uid:uid,
           proname:'工学',
           data:arr8
         });
       }else if(id == 9){
         this.setState({
           id:id,
+          uid:uid,
           proname:'农学',
           data:arr9
         });
       }else if(id == 10){
         this.setState({
           id:id,
+          uid:uid,
           proname:'医学',
           data:arr10
         });
       }else if(id == 11){
         this.setState({
           id:id,
+          uid:uid,
           proname:'军事学',
           data:arr11
         });
       }else if(id == 12){
         this.setState({
           id:id,
+          uid:uid,
           proname:'管理学',
           data:arr12
         });
       }else if(id == 13){
         this.setState({
           id:id,
+          uid:uid,
           proname:'艺术学',
           data:arr13
         });
       }
     }
     render(){
+        var id = this.state.id;//用id来区别专业分类
+        var uid = this.state.uid;
         return(
-            <div style={{width:'100vw',height:'130vh',backgroundColor:'white'}}>
+            <div style={{width:'100vw',height:'130vh'}} className='setimg_xpm'>
                 {/* 导航栏 */}
                 <NavBar
                 style={{background:'#21a3e0',color:'#fff',marginBottom:'15vw'}} 
-                leftContent={<Link to={'/checkPro'}><img src={require('./zjt.png')} /></Link>}
+                leftContent={<Link to={`/checkPro?uid=${uid}`}><img src={require('./zjt.png')} /></Link>}
                 mode="light"
                 ><span style={{color:'#fff',fontSize:'22px'}}>{this.state.proname}</span></NavBar>
+
                 
                   {/* 宫格 */}
                   <div style={{width:'88vw',borderBottom:'2px solid #21a3e0',borderTop:'2px solid #21a3e0',paddingBottom:'2vw',paddingTop:'1vw',margin:'0 auto',fontSize:'4vw',textAlign:'center',marginTop:'1vh'}}>
                     
                       {
-                          this.state.data.map((item)=>(
-                            <Link to={'/proCheck'}><div>
+                          this.state.data.map((item,index)=>(  //index作为参数传到专业详情页 代表每类专业的具体专业
+                            <Link to={`/proCheck?id=${id}&index=${index}&uid=${uid}`}><div>
                                <div style={{height:'7vh',width:'40vw',border:'1px solid #21a3e0',textAlign:'center',lineHeight:'7vh',float:'left',marginLeft:'2.2vw',borderRadius:'2vw',marginTop:'1vh'}}>{item}</div>
                             </div></Link>
                           ))
                       }
                       <div className='clear'></div>
+
+
                     
                   </div>
+                  
                   
             </div>
         )

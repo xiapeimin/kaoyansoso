@@ -1,92 +1,80 @@
-import { Picker, List, WhiteSpace } from 'antd-mobile';
+import { Picker } from 'antd-mobile';
 import { createForm } from 'rc-form';
 import React from 'react';
 
+import cll from '../imgs/cll.png';
 
+const colorStyle = {
+  display: 'inline-block',
+  verticalAlign: 'middle',
+  width: '16px',
+  height: '16px',
+  marginRight: '10px',
+};
 const colors = [
   {
     label:
-    (<div>     
-      <span>Word List01</span>
+    (<div>
+      <span
+        style={{ ...colorStyle, backgroundColor: '#ffffff' }}
+      />
+      <span>白色</span>
     </div>),
-    value: '1',
+    value: '#ffffff',
   },
   {
     label:
     (<div>
-      <span>Word List02</span>
+      <span
+        style={{ ...colorStyle, backgroundColor: '#fde8a9' }}
+      />
+      <span>黄色</span>
     </div>),
-    value: '2',
+    value: '#fde8a9',
   },
   {
     label:
-    (<div>    
-      <span>Word List03</span>
+    (<div>
+      <span
+        style={{ ...colorStyle, backgroundColor: '#bbe2e9' }}
+      />
+      <span>天蓝</span>
     </div>),
-    value: '3',
+    value: '#bbe2e9',
   },
   {
     label:
-    (<div>    
-      <span>Word List04</span>
+    (<div>
+      <span
+        style={{ ...colorStyle, backgroundColor: '#fadbea' }}
+      />
+      <span>粉色</span>
     </div>),
-    value: '4',
+    value: '#fadbea',
   },
   {
     label:
-    (<div>    
-      <span>Word List05</span>
+    (<div>
+      <span
+        style={{ ...colorStyle, backgroundColor: '#dddddd' }}
+      />
+      <span>灰色</span>
     </div>),
-    value: '5',
-  },
-  {
-    label:
-    (<div>    
-      <span>Word List06</span>
-    </div>),
-    value: '6',
-  },
-  {
-    label:
-    (<div>    
-      <span>Word List07</span>
-    </div>),
-    value: '7',
-  },
-  {
-    label:
-    (<div>    
-      <span>Word List08</span>
-    </div>),
-    value: '8',
-  },
-  {
-    label:
-    (<div>    
-      <span>Word List09</span>
-    </div>),
-    value: '9',
-  },
-  {
-    label:
-    (<div>    
-      <span>Word List10</span>
-    </div>),
-    value: '10',
+    value: '#dddddd',
   },
 ];
 
+var cl='#bfeaf2';
 class Test extends React.Component {   //根据选择 切换单词列表
   state = {
     cols: 1,
-    colorValue: 1,
+    colorValue: ['#00FF00'],
     name:'单词清单列表'
   };
 
   render() {
+    var cc = this.state.colorValue;
     return (<div>
-      <WhiteSpace size="lg" />
-      <List style={{ backgroundColor: 'white' }} className="picker-list">
       
         <Picker
           data={colors}
@@ -94,19 +82,22 @@ class Test extends React.Component {   //根据选择 切换单词列表
           cols={1}
           onChange={this.onChangeColor}
         >
-          <List.Item arrow="horizontal"><span style={{fontSize:'5vw',color:'#07533e'}}>{this.state.name}</span></List.Item>
+         <div style={{background:`url(${cll}) no-repeat`,backgroundSize:'100% 100%',width:'20px',height:'20px'}}></div>
         </Picker>
               
-      </List>
+     
 
     </div>);
   }
 
   onChangeColor = (color) => {
+    this.props.parent.getChildrenMsg(this, color);
     this.setState({
-      colorValue: color[0],
+      colorValue: color,
     });
-    console.log(color[0]);   //选择改变 切换单词列表
+    console.log(color);
+    cl=color;
+    
   };
 }
 

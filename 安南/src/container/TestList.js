@@ -9,11 +9,17 @@ export default class TestList extends Component {
         this.state={
             id:1,
             name:'题库',
-            data:[]
+            data:[],
+            uid:0
         }
     }
     componentDidMount(){
-        var id = this.props.match.params.id;
+        var str = this.props.location.search;
+        var uid = str.split('&')[0].split('=')[1]; 
+        var id = str.split('&')[1].split('=')[1];
+        this.setState({
+            uid:uid
+        })
         if(id == 1){
             this.setState({
                 id:1,
@@ -54,11 +60,12 @@ export default class TestList extends Component {
     }
     render() {
         var flag = this.state.id;
+        var uid = this.state.uid;
         return (
             <div className='testbox'>
                  <NavBar
-                style={{background:'#e8ad89',color:'#fff'}} 
-                leftContent={<Link to={'/questionBank'}><img src={require('../imgs/zjt.png')} /></Link>}
+                style={{background:'#66cccc',color:'#fff'}} 
+                leftContent={<Link to={`/questionBank?uid=${uid}`}><img src={require('../imgs/zjt.png')} /></Link>}
                 mode="light"
                 onLeftClick={() => console.log('onLeftClick')}
                 ><span style={{color:'#fff',fontSize:'22px'}}>{this.state.name}</span></NavBar>
@@ -67,10 +74,12 @@ export default class TestList extends Component {
                     this.state.data.map((item,index)=>(
                         <div className='testmore'>
                             <span>{item}</span>
-                            <Link to={`/test/?index=${index}&flag=${flag}`}><img src={require('../imgs/testright.png')}/></Link>
+                            <Link to={`/test/?index=${index}&flag=${flag}&uid=${uid}`}><img src={require('../imgs/testright.png')}/></Link>
                         </div>
                     ))
                 }
+          
+
             </div>
         )
     }

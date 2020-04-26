@@ -303,7 +303,7 @@ body {
   }
   
   .background-pic{
-    background: url(imgs/login0.jpg) no-repeat center center;
+    background: url(imgs/llogin.jpg) no-repeat center center;
     background-size:cover;
     background-attachment: fixed;
     width: 100%;
@@ -422,10 +422,12 @@ body {
     border: 1px solid rgb(211, 211, 208);
 }
 .gologin p{
-    height: 40%;
+    height: 70%;
     font-size: 20px;
-    align-items:center; display: -webkit-flex;/*垂直居中 盒子高度不固定*/
-    justify-content:center; display: -webkit-flex;/*水平居中*/
+    align-items:center; 
+    display: -webkit-flex;/*垂直居中 盒子高度不固定*/
+    justify-content:center; 
+    display: -webkit-flex;/*水平居中*/
 }
 .glin{
     width: 100%;
@@ -504,4 +506,36 @@ body {
     background: #66cccc;
 }
 
+/*张燕*/
+.talk{
+    display: block;
+}
+.untalk{
+    display: none;
+}
+.zybj{
+    background: url(imgs/pro.jpg) no-repeat center center;
+    background-size:cover;
+    background-attachment: fixed;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+}
+
+.setimg_xpm{
+    background: url(imgs/pro2.jpg) no-repeat center center;
+    background-size:cover;
+    background-attachment: fixed;
+    width: 100%;
+    height: 100%;
+    
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+}
 
