@@ -24,7 +24,9 @@ export default class My extends Component {
             storage:window.localStorage,
             planNum:0,
             topicNum:0,
-            saveNum:0
+            saveNum:0,
+            fans:0,
+            watch:0
         }
     
     }
@@ -123,7 +125,7 @@ export default class My extends Component {
                   }
                   console.log('kkkkkkkkkkk')
               });
-
+  
               fetch(`http://xpm.xpmwqhzygy.top/testsave/${uid}`,{
                 method: 'GET'
                 })
@@ -134,6 +136,43 @@ export default class My extends Component {
                         saveNum:res.data.length
                     });
                 });
+
+            fetch(`http://wqh.xpmwqhzygy.top/love1/${uid}`,{
+                method: 'GET'
+              })
+              .then((res)=>res.json())
+              .then((res)=>{
+                  console.log(res.data);
+                  var data = res.data;
+                  if(data.length == 0){
+                      this.setState({
+                          watch:0
+                      })
+                  }else if(data.length != 0){
+                      this.setState({
+                          watch:data.length
+                      })
+                  }
+              });
+
+              fetch(`http://wqh.xpmwqhzygy.top/love2/${uid}`,{
+                method: 'GET'
+              })
+              .then((res)=>res.json())
+              .then((res)=>{
+                  console.log(res.data);
+                  var data = res.data;
+                  if(data.length == 0){
+                      this.setState({
+                          fans:0
+                      })
+                  }else if(data.length != 0){
+                      this.setState({
+                          fans:data.length
+                      })
+                  }
+
+              });
         
     }
     render() {
@@ -151,18 +190,29 @@ export default class My extends Component {
                         <span name="qianming" style={{fontSize:'15px',display:'block',marginTop:'2vw'}}>{this.state.text}</span>
                     </div>
                     <div style={{position:'absolute',bottom:'0',width:'100%',height:'18vw',top:'52vw',fillOpacity:'50',opacity:'0.5',backgroundColor:'#FFFFFF'}}>
-                        <div style={{textAlign:'center',width:'33%',height:'18vw',float:'left',borderRightColor:'#AAAAAA',borderRightStyle:'solid',borderRightWidth:'1px'}}>
+                        <div style={{textAlign:'center',width:'25%',height:'18vw',float:'left',borderRightColor:'#AAAAAA',borderRightStyle:'solid',borderRightWidth:'1px'}}>
                             <span style={{margin:'0',fontSize:'8vw',height:'12vw',display:'block'}}>{this.state.topicNum}</span>
                             <span style={{margin:'0',fontSize:'4vw',display:'block',height:'6vw'}}>动态</span>
                         </div>
-                        <div style={{textAlign:'center',width:'33%',height:'18vw',float:'left',borderRightColor:'#AAAAAA',borderRightStyle:'solid',borderRightWidth:'1px'}}>
+                        <div style={{textAlign:'center',width:'25%',height:'18vw',float:'left',borderRightColor:'#AAAAAA',borderRightStyle:'solid',borderRightWidth:'1px'}}>
                             <span style={{margin:'0',fontSize:'8vw',display:'block',height:'12vw'}}>{this.state.saveNum}</span>
                             <span style={{margin:'0',fontSize:'4vw',display:'block',height:'6vw'}}>收藏</span>
                         </div>
-                        <div style={{textAlign:'center',width:'33%',height:'18vw',float:'left'}}>
+                        {/* <div style={{textAlign:'center',width:'25%',height:'18vw',float:'left',borderRightColor:'#AAAAAA',borderRightStyle:'solid',borderRightWidth:'1px'}}>
                             <span style={{margin:'0',fontSize:'8vw',display:'block',height:'12vw'}}>{this.state.planNum}</span>
                             <span style={{margin:'0',fontSize:'4vw',display:'block',height:'6vw'}}>计划</span>
+                        </div> */}
+                        <Link to={`/focuslist?uid=${uid}`}><div style={{textAlign:'center',width:'25%',height:'18vw',float:'left',borderRightColor:'#AAAAAA',borderRightStyle:'solid',borderRightWidth:'1px'}}>
+                            <span style={{margin:'0',fontSize:'8vw',display:'block',height:'12vw'}}>{this.state.watch}</span>
+                            <span style={{margin:'0',fontSize:'4vw',display:'block',height:'6vw'}}>关注</span>
                         </div>
+                        </Link>
+                        <Link to={`/fanslist?uid=${uid}`}>
+                        <div style={{textAlign:'center',width:'25%',height:'18vw',float:'left'}}>
+                            <span style={{margin:'0',fontSize:'8vw',display:'block',height:'12vw'}}>{this.state.fans}</span>
+                            <span style={{margin:'0',fontSize:'4vw',display:'block',height:'6vw'}}>粉丝</span>
+                        </div>
+                        </Link>
                     </div>
                 </div>
                 <div style={{height:'2vw',background:'#dedada',opacity:'0.8'}}></div>

@@ -23,7 +23,7 @@ export default class PersonalDetail extends Component {
         var str = this.props.location.search;
         var uid = str.split('&')[0].split('=')[1];
         var pickid = str.split('&')[1].split('=')[1];
-        var uidpickid = uid+'&'+pickid;
+        var uidpickid = uid+pickid;
         var touch = !this.state.touchState;
         const post ={
             uid:uid,
@@ -61,7 +61,7 @@ export default class PersonalDetail extends Component {
         var str = window.location.hash;
         var uid = str.split('&')[0].split('=')[1];
         var pickid = str.split('&')[1].split('=')[1];
-        var uidpickid = uid+'&'+pickid;
+        var uidpickid = uid+pickid;
         this.setState({
             uid:uid
         });
