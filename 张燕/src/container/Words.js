@@ -9,7 +9,7 @@ export default class Words extends Component {  //有bug 页面布局混乱
     return (
      <div className='testbox'>
        <NavBar
-                style={{background:'#66cccc',color:'#fff'}} 
+                style={{background:'#66cccc',color:'#fff',position:'fixed',width:'100%',top:'0'}} 
                 leftContent={<Link to={`/appTab?uid=${uid}`}><img src={require('../imgs/zjt.png')} /></Link>}
                 mode="light"
                 ><span style={{color:'#fff',fontSize:'22px'}}>背单词</span></NavBar>

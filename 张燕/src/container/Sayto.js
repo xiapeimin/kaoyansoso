@@ -71,9 +71,20 @@ export default class Sayto extends Component {
         }
         render() {
            var myid=this.state.myid
+        //    for(var i=0;i<usernames.length;i++){
+        //        for(var j=0;j<usernames.length;j++){
+        //            if(usernames[i]==usernames[j]){
+        //                usernames[i]=''
+        //            }else{
+        //                usernames[i]=usernames[i]
+        //            }
+        //        }
+        //    }
+           console.log(usernames)
         return (
             <div>
-                <NavBar style={{background:'#66cccc',color:'#fff',position:'fixed',width:'100%',top:'0'}}>
+                <NavBar style={{background:'#66cccc',color:'#fff',position:'fixed',width:'100%',top:'0'}}
+                 leftContent={<Link to={`/appTab?uid=${myid}&type=my`}><img src={require('../imgs/zjt.png')} /></Link>}>
                     <span style={{color:'#fff',fontSize:'22px'}}>消息</span>
                 </NavBar>
             <div style={{width:'100%',marginTop:'47px',float:'left'}}>

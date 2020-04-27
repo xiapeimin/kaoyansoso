@@ -162,21 +162,19 @@ export default class PersonalDetail extends Component {
         var uid = str.split('=')[1];
         var pickid = str.split('&')[1].split('=')[1];
         return (
-            <div style={{background:'#fff',width:'100%',position:'absolute',top:'0',bottom:'0'}}>
-                {/* <Link to={`/appTab?uid=${uid}&type=topic`}> */}
-                <NavBar
-                    style={{backgroundColor:'#66CCCC',color:'white',height:'10vw',fontSize:'5vw'}}
-                    icon={<Icon type="left" style={{ color:'white',fontSize:'5vw'}}/>}
-                    onLeftClick={() => window.location.hash = `/appTab?uid=${uid}&type=school`}
-                >个人资料</NavBar>
-                {/* </Link> */}
-                <div style={{width:'100%',height:'60vw'}}>
+            <div className='talk'>
+            <NavBar style={{background:'#66cccc',color:'#fff',position:'fixed',width:'100%',top:'0'}} 
+            leftContent={<Link to={`/appTab?uid=${uid}&type=my`}><img src={require('../imgs/zjt.png')} /></Link>}
+             mode="light"
+            onLeftClick={() => console.log('onLeftClick')}
+            ><span style={{color:'#fff',fontSize:'22px'}}>我的研校</span></NavBar>
+             <div style={{width:'100%',height:'60vw'}}>
                     <img src={beijing} style={{width:'100%',height:'60vw',top:'0'}} />
                     <img src={this.state.pre == 0 ? headimg : `${headimg2}`} alt="" 
                     style={{
                         width:'22vw',height:'22vw',
                         top:'20vw',left:'39%',
-                        borderRadius:'11vw',marginTop:'10vw',
+                        borderRadius:'11vw',
                         position:'absolute'}}/>
                 </div>
                 <div style={{
@@ -201,10 +199,8 @@ export default class PersonalDetail extends Component {
                 </div>
                 <p style={{
                     lineHeight:'20vw',marginLeft:'5vw',
-                    fontSize:'5vw',marginTop:'0',
-                    marginBottom:'0',
-                    width:'100%',
-                    height:'20vw',
+                    fontSize:'5vw',
+                    height:'15vw',
                     }}>他/她的目标</p>
                 <div style={{
                     width:'88%',
@@ -233,7 +229,7 @@ export default class PersonalDetail extends Component {
                     onClick={this.changespro}>{this.state.profess}</span>
                 </div>
                 </div>
-                <div style={{width:'100%',height:'15vw',marginTop:'15vw',fontSize:'6vw',color:'#FFFFFF'}}>
+                <div style={{width:'100%',height:'12vw',marginTop:'12vw',fontSize:'6vw',color:'#FFFFFF'}}>
                 <Link to={`/talkto?uid=${uid}&pickid=${pickid}`}><button 
                     style={{width:'40%',height:'15vw',
                     borderColor:'#66CCCC',
@@ -257,7 +253,6 @@ export default class PersonalDetail extends Component {
                     }
                 </div>
                 <div style={{height:'10vh'}}></div>
-
             </div>
             
         )

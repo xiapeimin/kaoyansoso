@@ -88,11 +88,11 @@ export default class ProCheck extends Component {
             <div style={{background:'#76b9f8',width:'100%',position:'absolute',top:'0',bottom:'0'}}>
                 
                <NavBar
-                style={{background:'#21a3e0',color:'#fff'}} 
+                style={{background:'#21a3e0',color:'#fff',position:"fixed",top:'0',width:'100%'}} 
                 leftContent={<Link to={`/professional?uid=${uid}&id=${id}`}><img src={require('../imgs/zjt.png')} /></Link>}
                 mode="light"
                 ><span style={{color:'#fff',fontSize:'22px'}}>专业详情</span></NavBar>
-                <div style={{background:'#76b9f8'}}>
+                <div style={{background:'#76b9f8',marginTop:'50px'}}>
                 <WhiteSpace size='lg'/>
                 <WingBlank>
                 

@@ -24,12 +24,13 @@ export default class FocusList extends Component {
               })
               .then((res)=>res.json())
               .then((res)=>{
-                  console.log(res.data[0].pickid);
                   var data = res.data;
                   var headimgs=[];
+                  if(res.data.length!=0){
                   this.setState({
                       user:res.data[0].pickid
                   })
+                }
                   for(var i=0;i<data.length;i++){
                     headimgs[i]=`http://xpm.xpmwqhzygy.top/head/${data[i].pickid}`;
                     fetch(`http://xpm.xpmwqhzygy.top/user/${data[i].pickid}`,{

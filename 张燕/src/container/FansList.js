@@ -27,9 +27,11 @@ export default class FansList extends Component {
                   console.log(res.data);
                   var data = res.data;
                   var headimgs=[];
+                  if(res.data.length!=0){
                   this.setState({
                       user:res.data[0].uid
                   })
+                }
                   for(var i=0;i<data.length;i++){
                     headimgs[i]=`http://xpm.xpmwqhzygy.top/head/${data[i].uid}`;
                     fetch(`http://xpm.xpmwqhzygy.top/user/${data[i].uid}`,{
@@ -71,7 +73,6 @@ export default class FansList extends Component {
                         width:'22vw',height:'12vh',
                         borderRadius:'11vw',marginLeft:'6vw',marginTop:'1.5vh',float:'left'}}/>
                     <div style={{float:'left',marginLeft:'10vw',marginTop:'5vh'}}>
-                        {console.log(this.state.headimg)}
                         <div>{this.state.username.split('&')[index+1]}</div>
                         <div>{this.state.text.split('&')[index+1]}</div>
                     </div>

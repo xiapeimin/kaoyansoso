@@ -134,14 +134,14 @@ export default class Professional extends Component {
             <div style={{width:'100vw',height:'130vh'}} className='setimg_xpm'>
                 {/* 导航栏 */}
                 <NavBar
-                style={{background:'#21a3e0',color:'#fff',marginBottom:'15vw'}} 
+                style={{background:'#21a3e0',color:'#fff',position:'fixed',top:"0",width:'100%',zIndex:9999}} 
                 leftContent={<Link to={`/checkPro?uid=${uid}`}><img src={require('./zjt.png')} /></Link>}
                 mode="light"
                 ><span style={{color:'#fff',fontSize:'22px'}}>{this.state.proname}</span></NavBar>
 
                 
                   {/* 宫格 */}
-                  <div style={{width:'88vw',borderBottom:'2px solid #21a3e0',borderTop:'2px solid #21a3e0',paddingBottom:'2vw',paddingTop:'1vw',margin:'0 auto',fontSize:'4vw',textAlign:'center',marginTop:'1vh'}}>
+                  <div style={{width:'88vw',borderBottom:'2px solid #21a3e0',borderTop:'2px solid #21a3e0',paddingBottom:'2vw',paddingTop:'1vw',margin:'0 auto',fontSize:'4vw',textAlign:'center',marginTop:'50px'}}>
                     
                       {
                           this.state.data.map((item,index)=>(  //index作为参数传到专业详情页 代表每类专业的具体专业

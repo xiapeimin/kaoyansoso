@@ -514,17 +514,14 @@ export default class HostTopic extends Component {   //评论弹框bug 用组件
         console.log(rdata);
         return (
             <div>
-                <NavBar style={{backgroundColor:'#66cccc',color:'white'}}
-                  mode="dark"
-               >动态</NavBar>
-               <div>
+                 <NavBar style={{background:'#66cccc',color:'#fff',position:'fixed',width:'100%',top:'0',zIndex:9999}} 
+                ><span style={{color:'#fff',fontSize:'22px'}}>动态</span></NavBar>
+               <div style={{marginTop:"50px"}}>
                  <Tabs tabs={tabs}
                     initialPage={page}
                     style={{fontSize:'40vw'}}
                     >
                 <div>
-                    
-                    
                     <div> 
                                 {   this.state.all.map((item,index)=>( 
                                             <div className={index} style={{ width:'100%',padding:'4%',marginBottom:'1vh',backgroundColor:'#fff'}}>

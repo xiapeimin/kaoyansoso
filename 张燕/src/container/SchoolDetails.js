@@ -130,14 +130,14 @@ export default class SchoolDetails extends Component {
         return (
             <div className="testbox">
                 <NavBar
-                style={{background:this.state.narcolor,color:'#fff'}} 
+                style={{background:this.state.narcolor,color:'#fff',position:'fixed',top:'0',zIndex:9999,width:'100%'}} 
                 rightContent={<img onClick={this.changgesrc} src={this.state.touchState ? imgsrc2 : imgsrc1} />}
                 leftContent={<img src={require('../imgs/zjt.png')} onClick={this.goout} />}
                 mode="light"
                 ><span style={{color:'#fff',fontSize:'22px'}}>{this.state.id}</span></NavBar>
                 {
                         this.state.img.map((item,index)=>(  
-                            <div>                     
+                            <div style={{marginTop:'50px'}}>                     
                                 <img className={this.state.id == item.des ? 'talk' : 'untalk'} src={item.img} style={{width:'100%',height:'50vw'}} onError={()=>this.error(index)} id={index}/>
                                 <div className={this.state.id == item.des ? 'talk' : 'untalk'} style={{marginTop:'3vh',paddingLeft:'3%'}}>
                                     

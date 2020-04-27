@@ -111,7 +111,7 @@ export default class Talking extends Component {
         return (   
             <div className='talk'>
                 <NavBar style={{background:'#66cccc',color:'#fff',position:'fixed',width:'100%',top:'0'}} 
-                leftContent={<Link to={`/appTab?uid=${uid}&type=my`}><img src={require('../imgs/zjt.png')} /></Link>}
+                leftContent={<Link to={`/say?uid=${uid}`}><img src={require('../imgs/zjt.png')} /></Link>}
                  mode="light"
                 onLeftClick={() => console.log('onLeftClick')}
                 ><span style={{color:'#fff',fontSize:'22px'}}>{this.state.username}</span></NavBar>

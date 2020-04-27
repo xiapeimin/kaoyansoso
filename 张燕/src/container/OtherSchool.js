@@ -31,7 +31,7 @@ export default class CheckSchool extends Component {
             <div>
                 {/* 导航栏 */}
                 <NavBar
-                style={{background:'#21a3e0',color:'#fff'}} 
+                style={{background:'#21a3e0',color:'#fff',position:'fixed',width:'100%',top:'0',zIndex:9999}} 
                 leftContent={<Link to={`/proCheck?id=${id}&index=${index}&uid=${uid}`}><img src={require('../imgs/zjt.png')} /></Link>}
                 mode="light"
                 ><span style={{color:'#fff',fontSize:'22px'}}>其他开设院校</span></NavBar>

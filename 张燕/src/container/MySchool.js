@@ -87,32 +87,30 @@ export default class AppHome extends Component {
             }],
             };
         return (
-            <div style={{background:'#fff',width:'100%',position:'absolute',top:'0',bottom:'0'}}>
-                <Link to={`/appTab?uid=${uid}&type=my`}>
-                <NavBar
-                    style={{backgroundColor:'#66CCCC',color:'white',height:'10vw',fontSize:'5vw'}}
-                    icon={<Icon type="left" style={{ color:'white',fontSize:'5vw'}}/>}
-                    onLeftClick={() => console.log('onLeftClick')}
-                >我的研校</NavBar>
-                </Link>
-                <div style={{width:'90',paddingRight:'5%',paddingLeft:'5%',height:'15vw',background:'#fff',marginTop:'2vw',fontSize:'5vw',lineHeight:'15vw'}}>
+            <div className='talk'>
+            <NavBar style={{background:'#66cccc',color:'#fff',position:'fixed',width:'100%',top:'0'}} 
+            leftContent={<Link to={`/appTab?uid=${uid}&type=my`}><img src={require('../imgs/zjt.png')} /></Link>}
+             mode="light"
+            onLeftClick={() => console.log('onLeftClick')}
+            ><span style={{color:'#fff',fontSize:'22px'}}>我的研校</span></NavBar>
+            <div style={{width:'90%',padding:'5%',height:'15vw',background:'#fff',marginTop:'50px',fontSize:'5vw',lineHeight:'15vw'}}>
                     <span>目标院校</span>
                     <span style={{float:'right',fontSize:'4vw'}} onClick={this.changeschool}>{this.state.school}</span>
-                </div>
-                <div style={{width:'90',paddingRight:'5%',paddingLeft:'5%',height:'15vw',background:'#fff',fontSize:'5vw',lineHeight:'15vw'}}>
+            </div>
+            <div style={{width:'90%',padding:'5%',height:'15vw',background:'#fff',fontSize:'5vw',lineHeight:'15vw'}}>
                     <span>考研专业</span>
                     <span style={{float:'right',fontSize:'4vw'}} onClick={this.changespro}>{this.state.profess}</span>
                 </div>
-                <div style={{backgroundColor:'white'}}> 
                     {
                         this.state.img.map((item,index)=>(                       
                             <img className={this.state.school == item.des ? 'talk' : 'untalk'} src={item.img} style={{width:'90%',margin:'5%',marginTop:'0',paddingTop:'20px',height:'60vw'}}/>
                         ))
                     }
-                    <div style={{width:'90%',marginLeft:'5%',height:'50vw',marginTop:'10vw',fontSize:'7vw'}}>
+                     
+                     <div style={{width:'90%',marginLeft:'5%',height:'50vw',marginTop:'10vw',fontSize:'7vw'}}>
                         <ReactHighcharts config={config} style={{fontSize:'7vw'}}/>
                     </div>
-                    <p style={{width:'90%',marginLeft:'40%',fontSize:'4vw'}}>学校资讯</p>
+                    <div style={{width:'100%',marginTop:'50vw'}}>
                     <p style={{width:'90%',marginLeft:'5%',
                         marginBottom:'0',paddingBottom:'20px',
                         fontSize:'4vw',color:'#726e6e',borderStyle:'dotted',
@@ -128,9 +126,8 @@ export default class AppHome extends Component {
                         ))
                     }
                     </p>
-                    
-                </div>
-            </div>
+                    </div> 
+            </div> 
         )
     }
     

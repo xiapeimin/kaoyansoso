@@ -197,7 +197,7 @@ class Test extends Component {
         return (
             <div className='testbox'>
                  <NavBar
-                style={{background:'#66cccc',color:'#fff'}} 
+                style={{background:'#66cccc',color:'#fff',position:'fixed',width:'100%',top:'0'}} 
                 leftContent={<Link to={`/appTab?uid=${uid}&type=home`}><img src={require('../imgs/zjt.png')} /></Link>}
                 mode="light"
                 rightContent={<Link to={`addPlan?uid=${uid}`}><span style={{fontSize:'30px',color:'gray'}}>+</span></Link>}
