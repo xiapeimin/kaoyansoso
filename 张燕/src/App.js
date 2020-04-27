@@ -42,6 +42,8 @@ import Contact from './container/Contact';
 import PersonalDetail from './container/PersonalDetail';
 import WordText from './container/WordText';
 import WordSpell from './container/WordSpell';
+import FocusList from './container/FocusList';
+import FansList from './container/FansList';
 
 //聊天
 import Talking from './container/Talking';
@@ -117,6 +119,8 @@ export default class App extends Component{
                             <Route path='/personaldetail' component={PersonalDetail}/>
                             <Route path='/wordtext' component={WordText}/>
                             <Route path='/wordspell' component={WordSpell}/>
+                            <Route path='/focuslist' component={FocusList}/>
+                            <Route path='/fanslist' component={FansList}></Route>
                             {/* 聊天 */}
                             <Route path='/talkto' component={Talking}/>
                             <Route path='/say' component={Sayto}/>

@@ -94,18 +94,12 @@ export default class WordSpell extends Component {
         var arr2=this.state.arr2;
         var arr1=this.state.arr1;
         var letter=this.state.letter
-function a(){
-    arr1 = words[array[a]][b].split('')
-    arr2 = arr1.concat(letter);
-
-    arr3 = arr2.sort(() => Math.random() - 0.5);
-}
        
 
         // var arr3=this.state.arr3
         // arr3=arr3.push(1)
-
 }
+
 
   render() {
     var url=this.props.location.search;
@@ -247,7 +241,7 @@ console.log(ok)
                 mode="light"
                 ><span style={{color:'#fff',fontSize:'22px'}}>拼写测试</span></NavBar>
 
-                        <div style={{position:'relative',height:'30px',width:'250px',left:k+'px',marginTop:'60px'}}>{
+                        <div style={{position:'relative',height:'30px',width:'70%',left:k+'px',marginTop:'10px'}}>{
                         arr.map(
                             (item)=>
                             <Flex.Item style={{position:'relative',height:'20px',width:'20px',
@@ -270,7 +264,7 @@ console.log(ok)
                         }</div>
 
                         <Flex.Item style={{position:'relative',height:'30px',width:'100px',border:'1px solid black',marginLeft:'100px',marginTop:'50px',
-                    fontSize:'20px',background:'#cfcfcf',borderRadius:'15%',color:'white'}} >
+                    fontSize:'20px',background:'#cfcfcf',color:'white'}} >
                         <Flex.Item style={{position:'relative',textAlign:'center',top:'2px'}} onClick={this.right}
                         >查看答案</Flex.Item>
                         </Flex.Item>
@@ -281,13 +275,13 @@ console.log(ok)
                         >X</Flex.Item>
                         </Flex.Item>
                 
-                <Flex.Item style={{position:'relative',height:'60px',width:'50%',left:'100px',marginTop:'50px',
+                <Flex.Item style={{position:'relative',height:'60px',width:'50%',left:'100px',marginTop:'30px',
                     fontSize:'20px',background:'#fff'}} >
                         <Flex.Item style={{position:'relative',top:'25px',textAlign:'center',fontSize:'25px'}}
                         >{words[array[a]][c]}</Flex.Item>
                         </Flex.Item>
                     
-                        <div style={{position:'relative',height:'30px',width:'95%',left:'2.5%',top:'80px'}}>{
+                        <div style={{position:'relative',height:'30px',width:'95%',left:'2.5%',top:'50px'}}>{
                 arr3.map(
                     (item)=>        
                 <Flex.Item style={{position:'relative',height:'50px',width:'50px',border:'1px solid black',
@@ -298,9 +292,9 @@ console.log(ok)
                         )
                         }</div>
 
-<Flex.Item style={{position:'absolute',height:'60px',width:'50%',bottom:'150px',left:'25%',marginTop:'15px',
-                    fontSize:'20px',background:'#cfcfcf',borderRadius:'15%',display:err}} >
-                        <Flex.Item style={{position:'relative',top:'15px',textAlign:'center',fontSize:'25px'}} 
+<Flex.Item style={{position:'absolute',height:'50px',width:'50%',bottom:'100px',left:'25%',marginTop:'5px',
+                    fontSize:'20px',background:'#cfcfcf',display:err}} >
+                        <Flex.Item style={{position:'relative',top:'15px',textAlign:'center',fontSize:'25px',top:'5px'}} 
                         >错误！重新输入</Flex.Item>
                         </Flex.Item>
 
@@ -310,7 +304,7 @@ console.log(ok)
                         >正确!</Flex.Item>
                         </Flex.Item>
 
-                        <Flex.Item style={{position:'absolute',bottom:'20px',width:'100%'}}>
+                        <Flex.Item style={{position:'absolute',bottom:'30px',width:'100%'}}>
                         <Flex.Item style={{position:'relative',height:'50px',width:'20%',marginLeft:'15px',
                     fontSize:'20px',background:'#66cccc',float:'left',borderRadius:'15%'}} >
                         <Flex.Item style={{position:'relative',top:'15px',textAlign:'center',fontSize:'18px',color:'white'}}
@@ -355,11 +349,15 @@ console.log(ok)
     console.log(item)
 
       var arr=this.state.arr
-
-      this.setState({
-        arr:arr.concat(item),
-      })
-
+      if(arr.slice(-1) =='!'){
+        this.setState({
+            arr:[].concat(item)
+          })
+      }else{
+        this.setState({
+            arr:arr.concat(item),
+          })
+      }
   }
 
   /** 封装随机字母键盘 */

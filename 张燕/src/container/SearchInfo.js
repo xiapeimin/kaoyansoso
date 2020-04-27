@@ -30,6 +30,7 @@ class Test extends Component {
     this.state={
       plan:[],
       title:[],
+      uid:0,
       isSignIn:false
     }
   }
@@ -37,11 +38,14 @@ class Test extends Component {
   componentWillMount() {
     var str=window.location.hash;
     var uid=str.split('=')[1];
+    this.setState({
+      uid:uid
+    })
     console.log(uid)
-    var time = new Date(); // Tue Aug 28 2018 09:16:06 GMT+0800 (中国标准时间)；
-    var timestamp = Date.parse(time); // 1535419062000 （Date.parse() 默认不取毫秒，即后三位毫秒为0）
+    var time = new Date(); 
+    var timestamp = Date.parse(time); 
     console.log(timestamp-126)
-    moment(time).valueOf(); // 1535419062126
+    moment(time).valueOf();
     var t=moment(timestamp).format().split('T')[0]; 
     console.log(t);
     fetch(`http://zy.xpmwqhzygy.top/plan/${uid}`,{
@@ -177,7 +181,6 @@ class Test extends Component {
     if (!isShowSignIn || isSignIn)
       // 不能签到的日期和已签到的日期直接返回
       return;
-
     this.setState(state => {
       const hlist = state.hlist.slice();
       hlist[i][j].isSignIn = true;
@@ -271,70 +274,6 @@ class Test extends Component {
           }
         </div>
       </>
-                
-                {/* <Link to={`/search?uid=${uid}&type=resourse&his=yes`}><SearchBar value={'这里啥都有~'} placeholder="Search" cancelText={'搜索'} /></Link> */}
-
-                {/**
-                <Link to={`/sear/?uid=${uid}&type=mus`}>
-                <Flex.Item style={{position:'relative',height:'20vw',width:'100%',top:'10vw'}}>                             
-                    <img style={{position:"absolute",width:'14vw',height:'14vw',borderRadius:'50%',left:'5%'}} src={require('../imgs/music.jpg')}/>
-                    
-                    <Flex.Item style={{position:"absolute",left:'25%',top:'20%',fontSize:'4vw',fontWeight:'bold',color:'black'}}>
-                        音视频
-                    </Flex.Item>
-                    <Flex style={{position:"absolute",right:'5%',top:'20%'}}>
-                    <Icon type={'right'} style={{height:'10vw',width:'10vw',color:'black'}}/>
-                    </Flex> 
-                    </Flex.Item>
-                    </Link> */}
-            
-                    {/* <Link to={`/sear/?uid=${uid}&type=text`}>
-                    <Flex.Item style={{position:'relative',height:'20vw',width:'100%',top:'15vw'}}>
-                    <img style={{position:"absolute",width:'14vw',height:'14vw',borderRadius:'50%',left:'5%'}} src={require('../imgs/music.jpg')}/>
-                    <Flex.Item style={{position:"absolute",left:'25%',top:'20%',fontSize:'4vw',fontWeight:'bold',color:'black'}}>
-                        考研文本资料
-                    </Flex.Item>
-                    <Flex style={{position:"absolute",right:'5%',top:'20%'}}>
-                    <Icon type={'right'} style={{height:'10vw',width:'10vw',color:'black'}}/>
-                    </Flex>
-                    </Flex.Item>
-                    </Link>
-                     
-                    <Link to={`/sear/?uid=${uid}&type=share`}>
-                    <Flex.Item style={{position:'relative',height:'20vw',width:'100%',top:'20vw'}}>
-                    <img style={{position:"absolute",width:'14vw',height:'14vw',borderRadius:'50%',left:'5%'}} src={require('../imgs/jingyan.jpg')}/>
-                    <Flex.Item style={{position:"absolute",left:'25%',top:'20%',fontSize:'4vw',fontWeight:'bold',color:'black'}}>
-                        经验分享
-                    </Flex.Item>
-                    <Flex style={{position:"absolute",right:'5%',top:'20%'}}>
-                    <Icon type={'right'} style={{height:'10vw',width:'10vw',color:'black'}}/>
-                    </Flex>  
-                    </Flex.Item>
-                    </Link>
-
-                    <Link to={`/sear/?uid=${uid}&type=laoliang`}>
-                    <Flex.Item style={{position:'relative',height:'20vw',width:'100%',top:'25vw'}}>             
-                    <img style={{position:"absolute",width:'14vw',height:'14vw',borderRadius:'50%',left:'5%'}} src={require('../imgs/laoliang.jpg')}/>
-                    <Flex.Item style={{position:"absolute",left:'25%',top:'20%',fontSize:'4vw',fontWeight:'bold',color:'black'}}>
-                        老梁考研汇
-                    </Flex.Item>
-                    <Flex style={{position:"absolute",right:'5%',top:'20%'}}>
-                    <Icon type={'right'} style={{height:'10vw',width:'10vw',color:'black'}}/>
-                    </Flex>
-                    </Flex.Item>
-                    </Link>
-
-                    <Link to={`/sear/?uid=${uid}&type=xuefeng`}>
-                    <Flex.Item style={{position:'relative',height:'20vw',width:'100%',top:'30vw'}}>
-                    <img style={{position:"absolute",width:'14vw',height:'14vw',borderRadius:'50%',left:'5%'}} src={require('../imgs/xuefeng.jpg')}/>
-                    <Flex.Item style={{position:"absolute",left:'25%',top:'20%',fontSize:'4vw',fontWeight:'bold',color:'black'}}>
-                        雪峰讲考研
-                    </Flex.Item>
-                    <Flex style={{position:"absolute",right:'5%',top:'20%'}}>
-                    <Icon type={'right'} style={{height:'10vw',width:'10vw',color:'black'}}/>
-                    </Flex>  
-                    </Flex.Item>
-                    </Link> */}
 
             </div>
 

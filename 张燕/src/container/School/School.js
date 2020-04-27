@@ -83,21 +83,33 @@ export default class School extends Component {
                 console.log(res.data);
                 if(res.data.length!=0){
                   myschool=res.data[0].school;
-                  fflag=1; 
+                  if(res.data[0].school==''){
+                    fflag=0;
+                    this.setState({
+                      idd:'中南大学'
+                    });
+                  }else if(res.data[0].school!=''){
+                    fflag=1;
+                    this.setState({
+                      idd:res.data[0].school
+                    });
+                  }
+                  // fflag=1; 
                 }else if(res.data.length==0){
                   fflag=0;
+                  return;
                 }
-                if(res.data[0].school==''){
-                  fflag=0;
-                  this.setState({
-                    idd:'中南大学'
-                  });
-                }else if(res.data[0].school!=''){
-                  fflag=1;
-                  this.setState({
-                    idd:res.data[0].school
-                  });
-                }
+                // if(res.data[0].school==''){
+                //   fflag=0;
+                //   this.setState({
+                //     idd:'中南大学'
+                //   });
+                // }else if(res.data[0].school!=''){
+                //   fflag=1;
+                //   this.setState({
+                //     idd:res.data[0].school
+                //   });
+                // }
             
       //console.log(myschool,'mmmmmmmm')
 

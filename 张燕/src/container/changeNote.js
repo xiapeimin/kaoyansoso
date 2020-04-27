@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 import {Link} from 'react-router-dom';
-import { Popover, NavBar, Icon } from 'antd-mobile';
+import { Popover, NavBar, Icon, Toast } from 'antd-mobile';
 import Check from './Popover';
 
 //新增背景颜色记录功能
@@ -8,6 +8,7 @@ import Check from './Popover';
 var fg='';
 var savecll='';
 const Item = Popover.Item;
+var timearr=[];
 const myImg = src => <img src={require(`../imgs/${src}.png`)} className="am-icon am-icon-xs" alt="" />;
 
 export default class ChangeNote extends Component{
@@ -21,7 +22,8 @@ export default class ChangeNote extends Component{
         notename:'',
         flag:0,
         cll:'#fff',
-        storage:window.localStorage
+        storage:window.localStorage,
+        imgsarr:[]
     };
     constructor(){
         super();
@@ -52,7 +54,20 @@ export default class ChangeNote extends Component{
                 console.log(typeof(res.data));
                 this.setState({
                     text:res.data[0].text
-                })
+                });
+                timearr = res.data[0].time.split('-');
+                var notetext = document.getElementById('notetext');
+                notetext.innerHTML=this.state.text;
+                if(res.data[0].nimgs!=null){
+                  var imgsarr = res.data[0].nimgs.split(';');
+                  this.setState({
+                    imgsarr:imgsarr
+                  });
+                }                
+                if(timearr[1].length==1){
+                  timearr[1] = '0'+timearr[1];
+                }
+              
             });
 
     }
@@ -88,7 +103,48 @@ export default class ChangeNote extends Component{
             <div className='testbox' style={savecll!='' ? {background:savecll} : {background:cll}}>
                 
                 <NavBar
-                style={{background:'#fff',color:'#000'}} 
+                style={{background:'transparent',color:'#000'}} 
+                mode="light"
+                ></NavBar>
+
+                <div style={savecll!='' ? {background:savecll,width:'100%'} : {background:cll,width:'100%'}}>
+                <div style={{height:'12vw',width:'90%',margin:'0 auto',borderBottom:'1px solid #66cccc',lineHeight:'12vw'}}>
+                  <span style={{fontSize:'6vw',marginRight:'1vw'}}>{timearr[2]}</span>{timearr[0]}年{timearr[1]}月/{timearr[3]}
+                </div>
+                <div style={{width:'90%',paddingTop:'1%',margin:'0 auto'}}>
+                    
+                    {/**
+                    <textarea value={this.state.text} onChange={this.changeText} style={{width:'100%',padding:'2%',lineHeight:'10vw',border:'none',fontSize:'4.5vw',background:'red'}}>
+                        
+                    </textarea>
+                     */}
+                     <div contenteditable="true" autoFocus id='notetext' innerHTML={this.state.text} style={{width:'100%',padding:'2%',lineHeight:'8vw',border:'none',fontSize:'4.5vw',overflowY:'auto'}}>
+                        
+                     </div>
+                    {
+                      this.state.imgsarr.map((item,index)=>{
+                        return (                                                    
+                          <div>
+                            <img src={`http://xpm.xpmwqhzygy.top/getntuimgs/${item}`} style={{width:'100%',height:window.innerHeight*0.7,marginBottom:'1%'}} />                                    
+                          </div>
+                        )
+                      })
+                    }
+                </div>
+
+                <div className={this.state.flag == 1 ? 'showgolo golo' : 'golo'}>
+            
+            </div>
+            <div className={this.state.flag == 1 ? 'showgolo gologin' : 'gologin'}>
+                <p style={{height:'70%'}}>确认删除？</p>
+                <div className='glin'>
+                    <div style={{borderRight:'1px solid rgb(211, 211, 208)',width:'49%'}} onClick={this.quxiao}>取消</div>
+                    <div onClick={this.sureit}>确认</div>
+                </div>
+            </div>  
+
+            <NavBar
+                style={{background:'transparent',color:'#000',width:'100%',position:'fixed',zIndex:'9999',top:0}} 
                 rightContent={
                     <Popover mask
                       overlayClassName="fortest"
@@ -124,25 +180,7 @@ export default class ChangeNote extends Component{
                 mode="light"
                 ><span style={{color:'#000',fontSize:'22px'}}>{this.state.notename}</span></NavBar>
 
-                <div style={{width:'90%',paddingTop:'4%',margin:'0 auto'}}>
-                    
-                    <textarea value={this.state.text} onChange={this.changeText} style={{width:'100%',paddingTop:'2%',lineHeight:'10vw',height:'160vw',border:'none',fontSize:'20px',background:'none'}}>
-                        
-                    </textarea>
                 </div>
-
-                <div className={this.state.flag == 1 ? 'showgolo golo' : 'golo'}>
-            
-            </div>
-            <div className={this.state.flag == 1 ? 'showgolo gologin' : 'gologin'}>
-                <p style={{height:'70%'}}>确认删除？</p>
-                <div className='glin'>
-                    <div style={{borderRight:'1px solid rgb(211, 211, 208)',width:'49%'}} onClick={this.quxiao}>取消</div>
-                    <div onClick={this.sureit}>确认</div>
-                </div>
-            </div>  
-
-
             </div>       
         )
     }
@@ -175,10 +213,14 @@ export default class ChangeNote extends Component{
         });
     }
     saveNote = () => {
-        console.log(this.state.text);
+        var ntexts = document.getElementById('notetext').innerHTML;
+        this.setState({
+          text:ntexts
+        });
+        console.log(ntexts);
         var nid = this.state.nid;
         const post = {
-            text:this.state.text
+            text:ntexts
         }
         fetch(`http://xpm.xpmwqhzygy.top/note/${nid}`,{
                 method:"PUT",
@@ -187,14 +229,14 @@ export default class ChangeNote extends Component{
             })
             .then(res =>res.json())
             .then(data =>{
-                console.log(data);
+                Toast.info('保存成功！');
             });
     }
     
-    changeText = (e) => {
-        console.log(e.target.value);
-        this.setState({
-            text:e.target.value
-        });
-    }
+    // changeText = (e) => {
+    //     console.log(e.target.value);
+    //     this.setState({
+    //         text:e.target.value
+    //     });
+    // }
 }

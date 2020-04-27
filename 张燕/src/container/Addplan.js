@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import {NavBar} from 'antd-mobile'
+import {Link, Redirect} from 'react-router-dom';
 import moment from 'moment'
 
 var t;
@@ -58,12 +59,12 @@ export default class Addplan extends Component {
         });
     }
     render() {
-        console.log(this.state.uid)
+    var uid=this.state.uid;
         return (
             <div>
                 <NavBar
                 style={{background:'#66cccc',color:'#fff'}} 
-                ><span style={{color:'#fff',fontSize:'22px'}}>添加计划</span></NavBar> 
+                leftContent={<Link to={`/searchInfo?uid=${uid}`}><img src={require('../imgs/zjt.png')} /></Link>}><span style={{color:'#fff',fontSize:'22px'}}>添加计划</span></NavBar> 
                 <div style={{width:'100%'}}>
                 <div style={{width:'100%',marginTop:'10px',float:"left"}}>
                    <div style={{textAlign:'center'}}>
