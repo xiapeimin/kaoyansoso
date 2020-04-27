@@ -10,6 +10,8 @@ import bangzhu from '../imgs/bangzhu.png'
 import jiantou from '../imgs/箭头.png'
 import beijing from '../imgs/yh.jpg'
 import headimg from '../imgs/usrhead.png';
+import lianxiren from '../imgs/lxr.jpg';
+import { NavBar} from 'antd-mobile';
 
 var usertd;
 export default class My extends Component {
@@ -233,6 +235,11 @@ export default class My extends Component {
                         <img src={shoucang} alt="" style={{width:'12%',height:'90%',float:'left'}}/>
                         <span style={{width:'67%',paddingLeft:'4%',float:'left'}}>我的收藏</span>
                         <Link to={`/mysave?uid=${uid}`}><img src={jiantou} alt="" style={{width:'15%',height:'100%',float:'right'}}/></Link>
+                    </div>
+<div style={{width:'100%',height:'16vw',fontSize:'6vw',lineHeight:'16vw',marginBottom:'1vw'}}>
+                        <img src={lianxiren} alt="" style={{width:'12%',height:'90%',float:'left'}}/>
+                        <span style={{width:'67%',paddingLeft:'4%',float:'left'}}>我的好友</span>
+                        <Link to={`/say?uid=${uid}`}><img src={jiantou} alt="" style={{width:'15%',height:'100%',float:'right'}}/></Link>
                     </div>
 
                     <div style={{width:'100%',height:'16vw',fontSize:'6vw',lineHeight:'16vw',marginBottom:'1vw'}}>
