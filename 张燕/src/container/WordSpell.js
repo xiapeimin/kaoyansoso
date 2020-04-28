@@ -7,6 +7,8 @@ var allarr=[];
 for(var i=0;i<26;i++){
     allarr.push(String.fromCharCode(97+i));//输出a-z 26个小写字母
 }
+var wordarr2 = [];
+var storagearr = [];
 
 
 export default class WordSpell extends Component {
@@ -59,7 +61,8 @@ export default class WordSpell extends Component {
             ],
             arr3:[],
             arr2:[],
-            arr1:[]
+            arr1:[],
+            storage:window.localStorage
         }
         
         //每次刷新页面，执行下列代码（从这到render()上面）
@@ -227,7 +230,7 @@ console.log(ok)
     // arr2 = arr1.concat(letter);
 
     //arr3 = arr2.sort(() => Math.random() - 0.5);
-    arr3 = this.outputArr(allarr,splitArray);  //调用outputArr
+    arr3 = this.outputArr(allarr,splitArray);
     console.log(arr3);
     console.log(splitArray.length,splitArray)
 
@@ -381,19 +384,28 @@ console.log(ok)
     return arr;
   }
   //输出最终混合数组（单词字母+其他5个随机字母）
-  outputArr = (arr1,arr2)=> {
+  
+  outputArr = (arr1,arr2)=> {  
     var arr = arr1;
     var keyarr = arr2;
-    for(var i = 0; i<arr2.length; i++){
-        arr = this.arrayRemove(arr,arr2[i]);
+    var storage = this.state.storage;
+    storage.setItem('dancixpm',JSON.stringify(arr2));
+    if(wordarr2==JSON.stringify(arr2)&&wordarr2.length!=0){
+        return storagearr;   
+    }else{
+        wordarr2=storage.getItem('dancixpm');
+        for(var i = 0; i<arr2.length; i++){
+            arr = this.arrayRemove(arr,arr2[i]);
+        }
+        arr=arr.sort(()=>0.5-Math.random()).slice(0,5);
+        for(var j=0;j<arr.length;j++){
+            keyarr.push(arr[j]);
+        }
+        keyarr = this.shuffle(keyarr);
+        storagearr = keyarr;
+        return keyarr;
+        }
     }
-    arr=arr.sort(()=>0.5-Math.random()).slice(0,5);
-    for(var j=0;j<arr.length;j++){
-        keyarr.push(arr[j]);
-    }
-    keyarr = this.shuffle(keyarr);
-    return keyarr;
-  }
   /**end */
 
   delete=()=>{

@@ -203,7 +203,7 @@ class Test extends Component {
                 rightContent={<Link to={`addPlan?uid=${uid}`}><span style={{fontSize:'30px',color:'gray'}}>+</span></Link>}
                 ><span style={{color:'#fff',fontSize:'22px'}}>日历表</span></NavBar> 
                 <>
-          <div style={{width:'100%',height:'50px'}}>
+          <div style={{width:'100%',height:'50px',marginTop:'50px'}}>
           <span style={{textAlign:'center',fontSize:'23px',width:'80px',float:'left'}} onClick={this.handlePrevMonth}>&lt;</span>
           <h2 style={{width:'60%',float:'left',textAlign:"center",marginTop:'4px'}}>
               {year}年{month}月
