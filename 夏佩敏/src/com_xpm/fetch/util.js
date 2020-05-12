@@ -22,6 +22,16 @@ let myFetch = {
             body:JSON.stringify(body)
         })
         .then(res=>res.json())
+    },
+    audiopost(url,body){
+        return fetch(rootUrl+url,{
+            method:'POST',
+            // headers:{
+            //     'Content-Type': 'application/x-www-form-urlencoded'
+            // },
+            body:body
+        })
+        .then(res=>res.json())
     }
 }
 

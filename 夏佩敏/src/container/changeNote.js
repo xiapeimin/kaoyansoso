@@ -67,6 +67,11 @@ export default class ChangeNote extends Component{
                 if(timearr[1].length==1){
                   timearr[1] = '0'+timearr[1];
                 }
+                if(res.data[0].audiosrc!=null){
+                  this.setState({
+                    audioSrc:res.data[0].audiosrc
+                  });
+                }
               
             });
 
@@ -112,6 +117,12 @@ export default class ChangeNote extends Component{
                   <span style={{fontSize:'6vw',marginRight:'1vw'}}>{timearr[2]}</span>{timearr[0]}年{timearr[1]}月/{timearr[3]}
                 </div>
                 <div style={{width:'90%',paddingTop:'1%',margin:'0 auto'}}>
+
+                    {
+                      this.state.audioSrc==undefined
+                      ?null
+                      :<audio controls src={`http://xpm.xpmwqhzygy.top/getaudio/${this.state.audioSrc}`} className='audio_nt' style={{marginTop:'2vw'}}/>
+                    }
                     
                     {/**
                     <textarea value={this.state.text} onChange={this.changeText} style={{width:'100%',padding:'2%',lineHeight:'10vw',border:'none',fontSize:'4.5vw',background:'red'}}>

@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import xuexiao from '../imgs/xuexiao.jpg'
 import { NavBar, Icon, Tabs } from 'antd-mobile'
 import {Link} from 'react-router-dom';
+import ReactHighcharts from'react-highcharts';
+
 export default class AppHome extends Component {
     constructor(){
         super();
@@ -10,7 +12,8 @@ export default class AppHome extends Component {
             school:'未填写',
             profess:'未填写',
             data:[],
-            img:[]
+            img:[],
+            major:[]
         }
     }
     componentDidMount(){
@@ -57,8 +60,32 @@ export default class AppHome extends Component {
                });  
            })
     }
+    
     render() {
         var uid = this.state.uid;
+        var config = {
+            title: {
+                text: '历年分数折线图'
+            },
+            subtitle: {
+                text: '数据来源：教育网'
+            },
+            yAxis: {
+                title: {
+                    text: '分数'
+                }
+            },
+            credits:{
+                enabled:false
+            },
+            xAxis:{
+                categories:['2015','2016','2017','2018','2019']
+            },
+            series: [{
+                name: '分数',
+                data: [230, 167, 187, 210, 196]
+            }],
+            };
         return (
             <div style={{background:'#fff',width:'100%',position:'absolute',top:'0',bottom:'0'}}>
                 <Link to={`/appTab?uid=${uid}&type=my`}>
@@ -82,14 +109,17 @@ export default class AppHome extends Component {
                             <img className={this.state.school == item.des ? 'talk' : 'untalk'} src={item.img} style={{width:'90%',margin:'5%',marginTop:'0',paddingTop:'20px',height:'60vw'}}/>
                         ))
                     }
+                    <div style={{width:'90%',marginLeft:'5%',height:'50vw',marginTop:'10vw',fontSize:'7vw'}}>
+                        <ReactHighcharts config={config} style={{fontSize:'7vw'}}/>
+                    </div>
                     <p style={{width:'90%',marginLeft:'40%',fontSize:'4vw'}}>学校资讯</p>
-                    <p style={{width:'82%',marginLeft:'5%',
+                    <p style={{width:'90%',marginLeft:'5%',
                         marginBottom:'0',paddingBottom:'20px',
                         fontSize:'4vw',color:'#726e6e',borderStyle:'dotted',
                         borderColor: '#DDDDDD',
                         borderWidth:'1vw',
                         paddingLeft:'3%',
-                        paddingRight:'3%',
+                        paddingRight:'2%',
                         marginRight:'5%',
                         borderRadius:'5vw'}}>
                     {
@@ -98,19 +128,13 @@ export default class AppHome extends Component {
                         ))
                     }
                     </p>
-                    <p style={{width:'90%',marginLeft:'40%',fontSize:'4vw'}}>专业信息</p>
-                    <p style={{width:'82%',marginLeft:'5%',
-                        marginBottom:'0',paddingBottom:'20px',
-                        fontSize:'4vw',color:'#726e6e',borderStyle:'dotted',
-                        borderColor: '#DDDDDD',
-                        borderWidth:'1vw',
-                        paddingLeft:'3%',
-                        paddingRight:'3%',
-                        marginRight:'5%',
-                        borderRadius:'5vw'}}>
-                    专业详细信息
-                    </p>
+                    
                 </div>
+                <NavBar
+                    style={{backgroundColor:'#66CCCC',color:'white',height:'10vw',fontSize:'5vw',position:'fixed',top:0,width:'100%',zIndex:9999}}
+                    icon={<Icon type="left" style={{ color:'white',fontSize:'5vw'}}/>}
+                    onLeftClick={() => console.log('onLeftClick')}
+                >我的研校</NavBar>
             </div>
         )
     }

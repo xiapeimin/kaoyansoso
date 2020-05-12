@@ -19,9 +19,9 @@ export default class Talking extends Component {
     }
     componentDidMount(){
         var str = window.location.hash;
-        var uid=str.split('=')[1].split('&')[0];
-        var pickid=str.split('=')[2].split('&')[0];
-       console.log(uid,pickid);
+        var uid=str.split('=')[2].split('&')[0];
+        var pickid=str.split('=')[1].split('&')[0];
+      //  console.log(uid,pickid);
         var itid=[];
         var myid=[];
         this.setState({
@@ -30,7 +30,7 @@ export default class Talking extends Component {
             headimg:`http://xpm.xpmwqhzygy.top/head/${pickid}`,
             myhead:`http://xpm.xpmwqhzygy.top/head/${uid}`
         })
-         fetch(`http://zy.xpmwqhzygy.top/talking`,{
+         fetch(`http://zy.xpmwqhzygy.top/talk`,{
                   method:'GET'
               })
               .then((res)=>res.json())
@@ -111,7 +111,7 @@ export default class Talking extends Component {
         return (   
             <div className='talk'>
                 <NavBar style={{background:'#66cccc',color:'#fff',position:'fixed',width:'100%',top:'0'}} 
-                leftContent={<Link to={`/appTab?uid=${uid}&type=my`}><img src={require('../imgs/zjt.png')} /></Link>}
+                leftContent={<Link to={`/personaldetail?pickid=${pickid}&uid=${uid}`}><img src={require('../imgs/zjt.png')} /></Link>}
                  mode="light"
                 onLeftClick={() => console.log('onLeftClick')}
                 ><span style={{color:'#fff',fontSize:'22px'}}>{this.state.username}</span></NavBar>
@@ -120,7 +120,7 @@ export default class Talking extends Component {
                         <img src={headimg} style={{width:'60px',heght:'60px',borderRadius:'50%'}}/>
                     </div>
                     <div style={{float:'left',maxWidth:'65%',paddingTop:'15px',paddingLeft:'10px',paddingRight:'10px',borderRadius:'20%',backgroundColor:'#cef',marginBottom:'20px'}}>
-                        <p>我是</p>
+                        <p>我是超级无敌小可爱</p>
                     </div>
                 </div>
                 {/* <div style={{width:'100%',float:'left'}}>

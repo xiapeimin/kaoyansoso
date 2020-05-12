@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
-import ReactDom from 'react-dom';
-import {NavBar,Toast} from 'antd-mobile';
+import AudioAnalyser from "react-audio-analyser";
+import {NavBar,Toast,Progress} from 'antd-mobile';
 import {Link} from 'react-router-dom';
 import WordsCheck from '../container/WordsCheck';
 import Canvas from '../com_xpm/canvas/Canvas';
@@ -15,6 +15,9 @@ var cl='#fff';
 var savecll='';
 var mediaStreamTrack; //拍照
 var delarr = [];
+var timer; //录音进度条定时器
+var rectimer; //录音计时
+var audioBlob='';
 export default class CreateNote extends Component{
     constructor(){
         super();
@@ -36,7 +39,12 @@ export default class CreateNote extends Component{
             savearr:[],
             //iscanvas:false, //画板
             del:false, //判断是否图片删除
-            allok:false
+            allok:false,
+            showrecord:false,//录音控件
+            percent: 0, //录音进度条
+            mtime:0,
+            stime:0,
+            status: '',
         };
         var storage = this.state.storage;
         if(storage.getItem('noteback')!=null){
@@ -66,7 +74,33 @@ export default class CreateNote extends Component{
     render(){
         var uid = this.state.uid;
         var cll = this.state.cll;
-        let { isShot, showMod ,img} = this.state;
+        let { isShot, showMod ,img, percent,status, audioSrc, audioType} = this.state;
+        const audioProps = {
+            audioType,
+            // audioOptions: {sampleRate: 30000}, // 设置输出音频采样率
+            status,
+            audioSrc,
+            timeslice: 1000, // timeslice（https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder/start#Parameters）
+            startCallback: (e) => {
+                console.log("succ start", e)
+            },
+            pauseCallback: (e) => {
+                console.log("succ pause", e)
+            },
+            stopCallback: (e) => {
+                this.setState({
+                    audioSrc: window.URL.createObjectURL(e)
+                })
+                console.log("succ stop", window.URL.createObjectURL(e));
+                audioBlob=e;
+            },
+            onRecordCallback: (e) => {
+                console.log("recording", e)
+            },
+            errorCallback: (err) => {
+                console.log("error", err)
+            }
+        }
         if(this.state.ischeck==1||this.state.ischeck==false){ //综合笔记
             if(this.state.istk!=2){
     
@@ -87,6 +121,11 @@ export default class CreateNote extends Component{
                             </textarea>
         
                             <div id='tags' style={{marginBottom:'16vw'}}>
+                                {
+                                    this.state.audioSrc==undefined
+                                    ?null
+                                    :<audio controls src={this.state.audioSrc} className='audio_nt'/>
+                                }
                                 {
                                     this.state.imgarr.map((item,index)=>{
                                         var dflag = 0;
@@ -147,14 +186,27 @@ export default class CreateNote extends Component{
                             <div className='ch_nt' style={{marginBottom:'10vw'}} id='n3' onClick={this.check}>涂鸦笔记</div>
                             <div className='ch_nt' style={{marginBottom:'10vw'}} id='n4' onClick={this.check}>录音笔记</div>
                         </div>
+
+                        <div className={this.state.showrecord==true ? 'record_nt' : 'nock_nt'}><AudioAnalyser {...audioProps}></AudioAnalyser></div>
         
                         <div className={this.state.ischeck==false&&this.state.istk==1 ? 'zhtool_nt' : 'nock_nt'}>
                             <p onClick={this.readyVideo}>拍照</p>
                             <p onClick={this.drawpic}>涂鸦</p>
-                            <p>录音</p>
+                            <p onClick={this.recording}>录音</p>
                             <p>语音转文字</p>
                             <p>其他</p>
                         </div>
+
+                        <div className={this.state.showrecord==true ? 'record_nt' : 'nock_nt'}>
+                            <div className="show-info">
+                                <div className="progress"><Progress percent={percent} position="normal" /></div>
+                                <div aria-hidden="true" className="redtime_nt">{this.state.mtime==0?'00':this.state.mtime}:{this.state.stime==0?'00':this.state.stime}</div>
+                            </div>     
+                            <p onClick={() => this.controlAudio("inactive")}>停止</p>                                           
+                            {status !== "recording" && <p onClick={() => this.controlAudio("recording")}>开始</p>}
+                            {status === "recording" && <p onClick={() => this.controlAudio("paused")}>暂停</p>}                            
+                        </div>
+                        
         
                         {/**导航栏固定 */}
                         <NavBar
@@ -218,6 +270,95 @@ export default class CreateNote extends Component{
             )
         }
         
+    }
+
+    /**录音 */
+    recording = ()=> {
+        this.setState({
+            showrecord:true
+        });
+    }
+    controlAudio(status) {
+        this.setState({
+            status
+        });
+        if(status=='inactive'){
+            this.setState({
+                showrecord:false,
+                percent:0,
+                mtime:0,
+                stime:0
+            });
+            clearInterval(timer);
+            clearInterval(rectimer);
+        }else if(status=='recording'){
+            timer=setInterval(() => {
+                this.add();
+            }, 100);
+            rectimer=setInterval(() => {
+                var m = Number(this.state.mtime);
+                var s = Number(this.state.stime);
+                console.log(m,s,'lll');
+                s=s+1;
+                s=s+'';
+                console.log(m,s,'ppp');
+                if(s.length==1){
+                    s='0'+s;
+                    this.setState({
+                        stime:s
+                    });
+                }else if(s.length==2){
+                    if(Number(s)<60){
+                        this.setState({
+                            stime:s
+                        });        
+                    }else{
+                        m=m+1;
+                        m=m+'';
+                        this.setState({
+                            stime:0
+                        });
+                        if(m.length==1){
+                            m='0'+m;
+                            this.setState({
+                                mtime:m
+                            });
+                        }else if(m.length==2){
+                            this.setState({
+                                mtime:m
+                            });
+                        }
+                    }
+                }
+            }, 1000);
+        }else if(status=='paused'){
+            clearInterval(timer);
+            clearInterval(rectimer);
+        }
+    }
+
+    changeScheme(e) {
+        this.setState({
+            audioType: e.target.value
+        });
+    }
+    add = () => {
+        let p = this.state.percent + 0.1;
+        if (this.state.percent >= 100) {
+          p = 0;
+        }
+        this.setState({ percent: p });
+    }
+    //音频Blob对象封装成FormData对象
+    getAudioblob = (e,nid)=> {
+        let formData = new FormData();
+        formData.append('audiofile', e);//,'file.webm'
+        console.log(formData);
+        myFetch.audiopost(`/audionote/${nid}`,formData)
+        .then(res=>{
+            console.log(res,'语音存储');
+        });
+        console.log('录音blob存储');
     }
     /**涂鸦 */
     getCavsMsg = (result, value)=> {  //获取子组件canvas的值
@@ -452,6 +593,12 @@ export default class CreateNote extends Component{
                                     });
                                 }
                             }
+
+                            //存储录音笔记
+                            if(audioBlob!=''){
+                                this.getAudioblob(audioBlob,nid);
+                                audioBlob='';
+                            }
                             
                             Toast.info('保存成功！',2);
                         });
@@ -492,6 +639,11 @@ export default class CreateNote extends Component{
                             }
                             
                                 
+                        }
+
+                        //存储录音笔记
+                        if(audioBlob!=''){
+                            this.getAudioblob(audioBlob,nid);
                         }
                         Toast.info('保存成功！',2);
                     });

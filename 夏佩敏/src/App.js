@@ -42,16 +42,22 @@ import Contact from './container/Contact';
 import PersonalDetail from './container/PersonalDetail';
 import WordText from './container/WordText';
 import WordSpell from './container/WordSpell';
+import FocusList from './container/FocusList';
+import FansList from './container/FansList';
+
+//聊天
 import Talking from './container/Talking';
+import Sayto from './container/Sayto';
 
 
-//import Sql from './components/Color';
+import Sql from './components/spltest';
 
 /**启动页 */
 import Start from './com_xpm/start/Start';
 /**机器人聊天 */
 import Robot from './com_xpm/robot/Contact';
 import Tuling from './com_xpm/robot/Tuling';
+import Addplan from './container/Addplan';
 
 
 export default class App extends Component{
@@ -113,7 +119,15 @@ export default class App extends Component{
                             <Route path='/personaldetail' component={PersonalDetail}/>
                             <Route path='/wordtext' component={WordText}/>
                             <Route path='/wordspell' component={WordSpell}/>
+                            <Route path='/focuslist' component={FocusList}/>
+                            <Route path='/fanslist' component={FansList}></Route>
+                            {/* 聊天 */}
                             <Route path='/talkto' component={Talking}/>
+                            <Route path='/say' component={Sayto}/>
+                            {/* 添加计划 */}
+                            <Route path='/addPlan' component={Addplan}/>
+
+
 
                         </Switch>
 
