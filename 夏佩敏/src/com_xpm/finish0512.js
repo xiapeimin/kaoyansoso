@@ -23,10 +23,12 @@
  * 实训第四周：录音
  * 安装：npm install react-audio-analyser --save
  * 
- * 实训第五周：语音识别
+ * 实训第五周：语音识别：笔记本语音转文字；首页语音检索
  * 后台安装中间件：npm install multiparty --save
  * 语音识别后台依赖：npm install request --save；npm install @alicloud/pop-core --save
  * 语音识别前端安装：npm i js-audio-recorder (纯js实现录音)
  * 安装：plugin-ifly-ext-ios
  * 
  */
+
+
