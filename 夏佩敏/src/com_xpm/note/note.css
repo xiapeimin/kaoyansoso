@@ -52,7 +52,7 @@
 }
 .zhtool_nt p{
     float: left;
-    width: 20%;
+    width: 25%;
     height: 15vw;
     line-height: 15vw;
     font-size: 4vw;
@@ -156,4 +156,16 @@
 }
 .audio_nt{
     width: 100%;
+}
+
+/*语音识别*/
+.hhh_nt{
+    width: 50%;
+    height: 48vw;
+    overflow: hidden;
+    border-radius: 5vw;
+    position: fixed;
+    left: 25%;
+    top: 30%;
+    justify-content: center;
 }

@@ -20,10 +20,13 @@
  * 启动页图片4个；轮播1个需换
  * 
  * 第二次迭代周期：
- * 实训第四周：
+ * 实训第四周：录音
  * 安装：npm install react-audio-analyser --save
  * 
- * 实训第五周：
+ * 实训第五周：语音识别
  * 后台安装中间件：npm install multiparty --save
+ * 语音识别后台依赖：npm install request --save；npm install @alicloud/pop-core --save
+ * 语音识别前端安装：npm i js-audio-recorder (纯js实现录音)
+ * 安装：plugin-ifly-ext-ios
  * 
  */

@@ -9,6 +9,8 @@ import {myFetch} from '../com_xpm/fetch/util';
 import '../com_xpm/note/tkpic.less';
 import '../com_xpm/note/note.css';
 
+import Textaudio from '../com_xpm/recorder/Recorder';
+
 
 var fg='';
 var cl='#fff';
@@ -18,6 +20,8 @@ var delarr = [];
 var timer; //录音进度条定时器
 var rectimer; //录音计时
 var audioBlob='';
+var textBlob='';
+var timeOutEvent;//语音识别定时器
 export default class CreateNote extends Component{
     constructor(){
         super();
@@ -45,6 +49,7 @@ export default class CreateNote extends Component{
             mtime:0,
             stime:0,
             status: '',
+            istext:false,//是否进行语音识别
         };
         var storage = this.state.storage;
         if(storage.getItem('noteback')!=null){
@@ -77,7 +82,7 @@ export default class CreateNote extends Component{
         let { isShot, showMod ,img, percent,status, audioSrc, audioType} = this.state;
         const audioProps = {
             audioType,
-            // audioOptions: {sampleRate: 30000}, // 设置输出音频采样率
+            audioOptions: {sampleRate: 16000}, // 设置输出音频采样率
             status,
             audioSrc,
             timeslice: 1000, // timeslice（https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder/start#Parameters）
@@ -101,6 +106,7 @@ export default class CreateNote extends Component{
                 console.log("error", err)
             }
         }
+       
         if(this.state.ischeck==1||this.state.ischeck==false){ //综合笔记
             if(this.state.istk!=2){
     
@@ -115,8 +121,8 @@ export default class CreateNote extends Component{
         
                         <div style={savecll!='' ? {background:savecll,width:'100%'} : {background:cll,width:'100%'}}>
                         <div style={{width:'90%',paddingTop:'4%',margin:'0 auto'}}>
-                            <input type='text' onChange={this.changeTitle} placeholder={this.state.title=='' ? '笔记名称' : null} value={this.state.title!='' ? this.state.title : null} style={{width:'100%',border:'none',borderBottom:'2px solid #66cccc',height:'11vw',marginBottom:'3vw',background:'none',fontSize:'20px'}} />
-                            <textarea placeholder={this.state.text=='' ? '开始记录你的学习笔记吧...' : null} value={this.state.text!='' ? this.state.text : null} onChange={this.changeText} style={{width:'100%',lineHeight:'6vw',height:'100vw',marginTop:'-1vw',border:'none',fontSize:'18px',background:'none'}}>
+                            <input type='text' id='fonux1' onClick={this.onfonux} onChange={this.changeTitle} placeholder={this.state.title=='' ? '笔记名称' : null} value={this.state.title!='' ? this.state.title : null} style={{width:'100%',border:'none',borderBottom:'2px solid #66cccc',height:'11vw',marginBottom:'3vw',background:'none',fontSize:'20px'}} />
+                            <textarea placeholder={this.state.text=='' ? '开始记录你的学习笔记吧...' : null} value={this.state.text!='' ? this.state.text : null} id='fonux2' onClick={this.onfonux} onChange={this.changeText} style={{width:'100%',lineHeight:'6vw',height:'100vw',marginTop:'-1vw',border:'none',fontSize:'18px',background:'none'}}>
                                 
                             </textarea>
         
@@ -125,7 +131,8 @@ export default class CreateNote extends Component{
                                     this.state.audioSrc==undefined
                                     ?null
                                     :<audio controls src={this.state.audioSrc} className='audio_nt'/>
-                                }
+                                }                            
+                                
                                 {
                                     this.state.imgarr.map((item,index)=>{
                                         var dflag = 0;
@@ -188,13 +195,13 @@ export default class CreateNote extends Component{
                         </div>
 
                         <div className={this.state.showrecord==true ? 'record_nt' : 'nock_nt'}><AudioAnalyser {...audioProps}></AudioAnalyser></div>
+                        <div className={this.state.istext==true ? 'hhh_nt' : 'nock_nt'}><img src={require('../com_xpm/recorder/imgs/hear.gif')} style={{width:'100%',height:'60vw'}} /></div>
         
                         <div className={this.state.ischeck==false&&this.state.istk==1 ? 'zhtool_nt' : 'nock_nt'}>
                             <p onClick={this.readyVideo}>拍照</p>
                             <p onClick={this.drawpic}>涂鸦</p>
                             <p onClick={this.recording}>录音</p>
-                            <p>语音转文字</p>
-                            <p>其他</p>
+                            <p onClick={this.toText} onTouchStart={this.touchstart} onTouchEnd={this.touchend}><Textaudio parent={this} /></p>
                         </div>
 
                         <div className={this.state.showrecord==true ? 'record_nt' : 'nock_nt'}>
@@ -336,7 +343,6 @@ export default class CreateNote extends Component{
             clearInterval(rectimer);
         }
     }
-
     changeScheme(e) {
         this.setState({
             audioType: e.target.value
@@ -360,6 +366,51 @@ export default class CreateNote extends Component{
         });
         console.log('录音blob存储');
     }
+    /**语音识别 */
+    getAudioMsg = (result, value) => {
+        var fonux = this.state.fonux;
+        var txt;
+        if(fonux==0){
+            txt = this.state.title+value;
+            this.setState({
+                title:txt
+            });
+        }else{
+            txt = this.state.text+value;
+            this.setState({
+                text:txt
+            });
+        }
+    }
+    toText = ()=> {
+        Toast.info('长按进行语音识别',2);
+    }
+    touchstart = ()=> {
+        timeOutEvent = setTimeout(()=>{
+            this.setState({
+                istext:true
+            });
+        },500)
+    }
+    touchend = ()=> {
+        clearTimeout(timeOutEvent);
+        this.setState({
+            istext:false
+        });
+    }
+    onfonux = (e)=> {
+        var fid = e.target.id;
+        if(fid=='fonux1'){
+            this.setState({
+                fonux:0
+            });
+        }else{
+            this.setState({
+                fonux:1
+            });
+        }
+    }
+
     /**涂鸦 */
     getCavsMsg = (result, value)=> {  //获取子组件canvas的值
         if(!value){
