@@ -23,7 +23,7 @@ export default class PersonalDetail extends Component {
         var str = this.props.location.search;
         var uid = str.split('&')[0].split('=')[1];
         var pickid = str.split('&')[1].split('=')[1];
-        var uidpickid = uid+pickid;
+        var uidpickid = uid+'&'+pickid;
         var touch = !this.state.touchState;
         const post ={
             uid:uid,
@@ -61,12 +61,12 @@ export default class PersonalDetail extends Component {
         var str = window.location.hash;
         var uid = str.split('&')[0].split('=')[1];
         var pickid = str.split('&')[1].split('=')[1];
-        var uidpickid = uid+pickid;
+        var uidpickid = uid+'&'+pickid;
         this.setState({
             uid:uid
         });
         if(uid != 'undefined'){
-            fetch(`http://xpm.xpmwqhzygy.top/user/${uid}`,{
+            fetch(`http://xpm.xpmwqhzygy.top/user/${pickid}`,{
             method: 'GET',        
             headers:{
                 'Accept':'application/json,text/plain,*/*'
@@ -98,7 +98,7 @@ export default class PersonalDetail extends Component {
                 for(var i=0;i<data.length;i++){
                     if(uid==data[i].uid){
                         this.setState({
-                            headimg2:`http://xpm.xpmwqhzygy.top/head/${uid}`,
+                            headimg2:`http://xpm.xpmwqhzygy.top/head/${pickid}`,
                             pre:1
                         });
                         i=data.length;
@@ -110,7 +110,7 @@ export default class PersonalDetail extends Component {
                 }
             });
 
-        fetch(`http://xpm.xpmwqhzygy.top/user/${uid}`,{
+        fetch(`http://xpm.xpmwqhzygy.top/user/${pickid}`,{
             method: 'GET',        
             headers:{
                 'Accept':'application/json,text/plain,*/*'
@@ -197,7 +197,7 @@ export default class PersonalDetail extends Component {
                         fontSize:'5vw',marginTop:'0',
                         marginBottom:'0',float:'left',
                         width:'45vw'}}>考研宣言：</span>
-                    <p style={{fontSize:'4vw',lineHeight:'20vw'}}>{this.state.text}</p>
+                    <p style={{fontSize:'4vw',lineHeight:'20vw',float:'right',marginRight:'13vw'}}>{this.state.text}</p>
                 </div>
                 <p style={{
                     lineHeight:'20vw',marginLeft:'5vw',

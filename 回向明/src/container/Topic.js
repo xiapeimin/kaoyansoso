@@ -541,8 +541,8 @@ export default class HostTopic extends Component {   //评论弹框bug 用组件
                                                     <div style={{height:'5px'}}></div>
                                                     <span style={{fontSize:'16px'}}>{item.topic}</span>
                                                     <div style={{clear:'both',height:'10px'}}></div>
-                                                    <img src={`http://zy.xpmwqhzygy.top/timg/${item.pri}`} style={{width:'100px',float:'left',height:'100px',display:imgsall[index]==null ? 'none' :'block'}} /> 
-                                                    <img src={`http://zy.xpmwqhzygy.top/tsrc/${item.pri}`} style={{width:'100px',float:'left',height:'100px',display:imgsall2[index]==null ? 'none' :'block'}} />         
+                                                    {/* <img src={`http://zy.xpmwqhzygy.top/timg/${item.pri}`} style={{width:'100px',float:'left',height:'100px',display:imgsall[index]==null ? 'none' :'block'}} />  */}
+                                                    {/* <img src={`http://zy.xpmwqhzygy.top/tsrc/${item.pri}`} style={{width:'100px',float:'left',height:'100px',display:imgsall2[index]==null ? 'none' :'block'}} />          */}
                                                 </div>
                                                 </div>
 
@@ -611,8 +611,8 @@ export default class HostTopic extends Component {   //评论弹框bug 用组件
                                                     <span style={{fontSize:'16px'}}>{item.topic}</span>
                                                     <br />
                                                     <div style={{clear:'both',height:'10px'}}></div>
-                                                    <img src={`http://zy.xpmwqhzygy.top/timg/${item.pri}`} style={{width:'100px',float:'left',height:'100px',display:imgs[index]==null ? 'none' :'block'}} />
-                                                    <img src={`http://zy.xpmwqhzygy.top/tsrc/${item.pri}`} style={{width:'100px',float:'left',height:'100px',display:imgs2[index]==null ? 'none' :'block'}} />  
+                                                    {/* <img src={`http://zy.xpmwqhzygy.top/timg/${item.pri}`} style={{width:'100px',float:'left',height:'100px',display:imgs[index]==null ? 'none' :'block'}} />
+                                                    <img src={`http://zy.xpmwqhzygy.top/tsrc/${item.pri}`} style={{width:'100px',float:'left',height:'100px',display:imgs2[index]==null ? 'none' :'block'}} />   */}
                                                 </div>
                                                 </div>
                                                 
