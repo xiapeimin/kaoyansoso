@@ -87,6 +87,7 @@ export default class WordSpell extends Component {
         this.state = {
             a:0,
             b:0,
+            c:0,
             z:'a',
             k:'100',
             d:Math.floor(Math.random()*51),
@@ -152,18 +153,10 @@ export default class WordSpell extends Component {
      array.push(rand); 
 } 
 
-        var words=this.state.words;
-        var a=this.state.a;
-        var b=this.state.b;
-        var arr3=this.state.arr3;
-        var arr2=this.state.arr2;
-        var arr1=this.state.arr1;
-        var letter=this.state.letter
-       
-
         // var arr3=this.state.arr3
         // arr3=arr3.push(1)
 }
+
 
 
   render() {
@@ -306,10 +299,10 @@ console.log(ok)
                 mode="light"
                 ><span style={{color:'#fff',fontSize:'22px'}}>拼写测试</span></NavBar>
 
-                        <div style={{position:'relative',height:'30px',width:'70%',left:k+'px',marginTop:'10px'}}>{
+                        <div style={{position:'relative',height:'30px',width:'280px',left:k+'px',marginTop:'10px'}}>{
                         arr.map(
                             (item)=>
-                            <Flex.Item style={{position:'relative',height:'20px',width:'20px',
+                            <Flex.Item style={{position:'relative',height:'280px',width:'20px',
                     marginLeft:'10px',float:'left'}} >
                         <Flex.Item style={{position:'relative',top:'25px',textAlign:'center',fontSize:'25px'}}
                         >{item}</Flex.Item>
@@ -317,7 +310,7 @@ console.log(ok)
                         )
                         }</div>
 
-                        <div style={{position:'relative',height:'30px',width:'250px',left:k+'px',marginTop:'12px'}}>{
+                        <div style={{position:'relative',height:'30px',width:'280px',left:k+'px',marginTop:'12px'}}>{
                 l.map(
                     ()=>        
                 <Flex.Item style={{position:'relative',height:'20px',width:'20px',borderBottom:'2px solid black',
@@ -496,12 +489,14 @@ console.log(ok)
     this.setState({
       arr:[]
     })
-    var a = this.state.a;
+    var a=this.state.a;
+    var c=this.state.c;
     var d=this.state.d;
     var e=this.state.e;
     var f=this.state.f;
     this.setState({
         a:a+1,
+        c:c+1
         // d:Math.floor(Math.random()*51),
         // e:Math.floor(Math.random()*51),
         // f:Math.floor(Math.random()*51)
