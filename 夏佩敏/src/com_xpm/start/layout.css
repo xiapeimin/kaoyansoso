@@ -7,12 +7,13 @@
 }
 .butt_xpm{
     position: absolute;
-    top: 80%;
-    left: 40%;
+    bottom: 20vw;
+    left: 50%;
+    margin-left: -12.5vw;
     width: 25vw;
     height: 10vw;
     color: #ffffff;
-    background: green;
+    background: rgb(82, 179, 235);
     font-size: 4vw;
     border-radius: 2vw;
     border: none;

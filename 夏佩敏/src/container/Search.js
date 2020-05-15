@@ -1,6 +1,8 @@
 import React,{Component} from 'react';
 import {Link} from 'react-router-dom';
-import {NavBar,SearchBar} from 'antd-mobile';
+import {NavBar,SearchBar, Toast} from 'antd-mobile';
+import Searchaudio from '../com_xpm/recorder/Searchaudio';
+import '../com_xpm/note/note.css';
 
 import ship from '../imgs/ship.png';
 import ship2 from '../imgs/ship2.png';
@@ -41,6 +43,7 @@ var firearr2=[];
 var all=[];
 var cvedio2=[];
 var tiku2=[];
+var timeOutEvent;
 export default class Search extends Component{
     constructor(){
         super();
@@ -88,7 +91,9 @@ export default class Search extends Component{
             xinjiang:[],
             xizang:[],
             yunnan:[],
-            zhejiang:[]
+            zhejiang:[],
+            istext:false,
+            stexts:''
         };
 
         var s = window.location.hash;
@@ -1234,6 +1239,37 @@ export default class Search extends Component{
             window.location.hash=`/searchInfo?uid=${uid}`
         }
     }
+
+    isrecord = ()=> {
+        Toast.info('长按可进行语音搜索',2);
+    }
+    getSearchMsg = (result,value)=>{
+        this.submitText(value);
+        this.setState({
+            stexts:value
+        });
+    }
+    touchstart = ()=> {
+        console.log('sss')
+        timeOutEvent = setTimeout(()=>{
+            this.setState({
+                istext:true
+            });
+        },500)
+    }
+    touchend = ()=> {
+        console.log('eee')
+        clearTimeout(timeOutEvent);
+        this.setState({
+            istext:false
+        });
+    }
+    changetxt = (e)=> {
+        console.log(e);
+        this.setState({
+            stexts:e
+        });
+    }
     
     render(){
         var uid = this.state.uid;
@@ -1243,13 +1279,15 @@ export default class Search extends Component{
                 <NavBar
                 style={{background:'#66cccc',color:'#fff'}} 
                 leftContent={<img src={require('../imgs/zjt.png')} onClick={this.goout} />}
+                rightContent={<span onClick={this.isrecord} onTouchStart={this.touchstart} onTouchEnd={this.touchend}><Searchaudio parent={this} /></span>}
                 mode="light"
                 onLeftClick={() => console.log('onLeftClick')}
                 ><span style={{color:'#fff'}}>搜索</span></NavBar>
 
                 {/** value={this.state.vstr} onChange={this.changevalue} */}
+                <div className={this.state.istext==true ? 'hhh_nt' : 'nock_nt'}><img src={require('../com_xpm/recorder/imgs/hear.gif')} style={{width:'100%',height:'60vw'}} /></div>
 
-                <SearchBar placeholder="请输入" ref={ref => this.autoFocusInst = ref} onSubmit={this.submitText}/>
+                <SearchBar placeholder="请输入" ref={ref => this.autoFocusInst = ref} value={this.state.stexts} onChange={this.changetxt} onSubmit={this.submitText}/>
                 
                 <div className='searchbox_xpm'>
                     <div className={this.state.flag == 0 ? 'change_xpm' : 'old_xpm'} onClick={this.changeCol0}>全部</div>
@@ -1446,6 +1484,14 @@ export default class Search extends Component{
                 </div>
 
                 <div className='tt'></div>
+
+                <NavBar
+                style={{background:'#66cccc',color:'#fff',position:'fixed',width:'100%',top:0,zIndex:9999}} 
+                leftContent={<img src={require('../imgs/zjt.png')} onClick={this.goout} />}
+                rightContent={<span onClick={this.isrecord} onTouchStart={this.touchstart} onTouchEnd={this.touchend}><Searchaudio parent={this} /></span>}
+                mode="light"
+                onLeftClick={() => console.log('onLeftClick')}
+                ><span style={{color:'#fff'}}>搜索</span></NavBar>
 
             </div>       
         )

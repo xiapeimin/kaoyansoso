@@ -156,7 +156,7 @@ export default class Note extends Component {
                                     <Link to={`/changeNote?uid=${uid}&nid=${item.notename}&fg=${fg}`}>
                                         <div className='thebox_nt' style={{marginBottom:'3vw'}}>
                                             <div className='tit_nt' style={{color:'#000'}}>{item.notename}</div>
-                                            <div className='ntdetail_nt' style={{color:'#616060'}}>{item.text=='' ? '这个笔记还什么内容没有哦！' : item.text}</div>
+                                            <div className='ntdetail_nt' style={{color:'#616060'}}>{item.text=='' ? '这个笔记还没有什么文本内容哦！' : item.text}</div>
                                             {
                                                 ntimgarr.map((item,index)=>(                                                    
                                                     <img src={`http://xpm.xpmwqhzygy.top/getntuimgs/${item}`} style={{width:'32%',height:'25vw',borderRadius:'2vw',marginRight:'1%',marginBottom:'1%'}} />                                    

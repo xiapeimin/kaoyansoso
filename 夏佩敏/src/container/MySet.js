@@ -105,6 +105,7 @@ export default class AppHome extends Component {
 
           var formData = new FormData();
           formData.append('image', f);
+          console.log(formData,'ffffffffffff',f);
 
           if(headflag == 1){
               console.log('第一次上传');
