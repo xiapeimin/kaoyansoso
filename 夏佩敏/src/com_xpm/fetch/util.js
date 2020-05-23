@@ -23,6 +23,20 @@ let myFetch = {
         })
         .then(res=>res.json())
     },
+    chatpost(url,body){
+        return fetch(rootUrl+url,{
+            method:'POST',
+            body:body
+        })
+        .then(res=>res.json())
+    },
+    chatput(url,body){
+        return fetch(rootUrl+url,{
+            method:'PUT',
+            body:body
+        })
+        .then(res=>res.json())
+    },
     audiopost(url,body){
         return fetch(rootUrl+url,{
             method:'POST',
@@ -30,6 +44,26 @@ let myFetch = {
             //     'Content-Type': 'application/x-www-form-urlencoded'
             // },
             body:body
+        })
+        .then(res=>res.json())
+    },
+    audioput(url,body){
+        return fetch(rootUrl+url,{
+            method:'PUT',
+            // headers:{
+            //     'Content-Type': 'application/x-www-form-urlencoded'
+            // },
+            body:body
+        })
+        .then(res=>res.json())
+    },
+    put(url,body){
+        return fetch(rootUrl+url,{
+            method:'PUT',
+            headers:{
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body:JSON.stringify(body)
         })
         .then(res=>res.json())
     }

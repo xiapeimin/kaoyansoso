@@ -1,0 +1,281 @@
+/*对话框内容*/
+.chat-contain {
+    overflow-y: auto;
+    padding: 10px;
+    height: 380px;
+    word-wrap: break-word;
+    background-color: #f9f9f9;
+}
+.inptxt_ct{
+    position:fixed;
+    bottom:8vw;
+    width:100%;
+    background:rgb(245, 246, 247);
+    overflow-y:auto;
+}
+.input_ct{
+    float:left;
+    width:80%;
+    font-size:4.5vw;
+    padding-top:2.5vw;
+    padding-bottom:2.5vw;
+    min-height:12vw;
+    padding-left:3%;
+    padding-right:3%;
+    margin-left:2%;
+    border-radius:5vw;
+    overflow-y:auto;
+    max-height: 36vw;
+    background:#ccebf5;
+}
+.send_ct{
+    float:left;
+    width:16%;
+    line-height:12vw;
+    position:absolute;
+    right:0;
+    bottom:0;
+    text-align:center;
+    margin-right:2%;
+}
+.tool_ct{
+    width:100%;
+    position:fixed;
+    bottom:0;
+    height:8vw;
+    background: rgb(245, 246, 247);
+}
+.tool_ct div{
+    float: left;
+    width: 16.6%;
+    height: 100%;
+    text-align: center;
+    line-height: 8vw;
+}
+.outbox_ct{
+    width:100%;
+    position:absolute;
+    top:0;
+    bottom:0;
+    background:#fff;
+}
+.chatbox_ct{
+    padding-left:8px;
+    padding-right:8px;
+    background:#fff;
+    padding-top:12vw;
+    position:none;
+    bottom:0
+}
+.cbox_ct{
+    margin-left:0px;
+    margin-right:0px;
+    position:relative;
+}
+.ptxt_ct{
+    float:left;
+    border-radius:30px;
+    width:60px;
+    height:60px;
+}
+.rtxt_ct{
+    max-width:60%;
+    word-break:break-all;
+    padding:10px;
+    background:#93b6f0;
+    float:left;
+    margin-left:10px;
+    position:relative;
+    margin-top:30px;
+}
+.mybox_ct{
+    text-align:right;
+    margin-left:0px;
+    margin-right:0px;
+    position:relative;
+}
+.uhead_ct{
+    float:right;
+    border-radius:30px;
+    width:60px;
+    height:60px;
+}
+.utxtbox_ct{
+    max-width:60%;
+    word-break:break-all;
+    padding:10px;
+    background:#f4ecb5;
+    float:right;
+    text-align:left;
+    margin-right:10px;
+    position:relative;
+    margin-top:30px;
+}
+.nav_ct{
+    background:#ffffff;
+    color:#fff;
+    width:100%;
+    height:12vw;
+    position:fixed;
+    top:0;
+    left:0;
+}
+.uname_ct{
+    color:#000000;
+    font-size:20px;
+}
+.toolimg_ct{
+    height: 80%;
+}
+.detail_ct{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 50vw;
+    overflow: hidden;
+    background: #ccebf5;
+}
+.speak_ct{
+    text-align: center;
+}
+.audioimg_ct{
+    width: 20vw;
+    height: 20vw;
+    background: #fff;
+    border-radius: 10vw;
+    line-height: 20vw;
+    margin: 0 auto;
+    margin-bottom: 2.5vw;
+    margin-top: 2.5vw;
+    box-shadow:5px 5px 10px gray;
+}
+.spealtxt_ct{
+    height: 10vw;
+    line-height: 10vw;
+    margin-bottom: 0;
+    margin-top: 2.5vw;
+    font-size: 4.5vw;
+}
+.speaktool_ct{
+    height: 10vw;
+    line-height: 10vw;
+    font-size: 3vw;
+    margin-bottom: 2.5vw;
+}
+.useraudio_ct{
+    float: right;
+    width: 25vw;
+    height: 6vw;
+    opacity: 0;
+    margin-left: 10vw;
+    margin-right: -18vw;
+}
+.utxtbox_ct img{ 
+    float: left;
+    width: 8vw;
+    height: 6vw;
+    position: absolute;
+    left: 12vw;
+}
+.utxtbox_ct p{
+    float: left;
+    position: absolute;
+    line-height: 6vw;
+    left: 5vw;
+}
+.picfile_ct{
+    opacity:0;
+    width:80%;
+    height:8vw;
+    margin-top: -8vw;
+    margin-left: 10%;
+    float: left;
+}
+.utxtbox2_ct{
+    max-width:60%;
+    word-break:break-all;
+    padding-left:1vw;
+    padding-right: 1vw;
+    background: #f4ecb5;
+    float:right;
+    text-align:left;
+    margin-right:10px;
+    position:relative;
+    margin-top:30px;
+}
+.utxtbox2_ct img{
+    margin-top: 1vw;
+    margin-bottom: 1vw;
+}
+.fsmime_ct{
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    overflow: auto;
+    padding: 2%;
+}
+.sutxtbox_ct{
+    max-width:60%;
+    word-break:break-all;
+    padding:10px;
+    background:#f4ecb5;
+    float:right;
+    text-align:left;
+    margin-right:10px;
+    position:relative;
+    margin-top:30px;
+}
+.picuseraudio_ct{
+    float: right;
+    width: 25vw;
+    height: 6vw;
+    opacity: 1;
+    margin-left: 10vw;
+    margin-right: -18vw;
+}
+.pidrtxt_ct{
+    max-width:60%;
+    word-break:break-all;
+    padding:10px;
+    background:#93b6f0;
+    float:left;
+    margin-left:10px;
+    position:relative;
+    margin-top:30px;
+}
+.pidrtxt_ct p{
+    float: right;
+    position: absolute;
+    line-height: 6vw;
+    right: 5vw;
+    left: 13vw;
+}
+.pidrtxt_ct img{
+    float: left;
+    width: 8vw;
+    height: 6vw;
+    position: absolute;
+    left: 2vw;
+}
+.picuseraudio_ct{
+    float: left;
+    width: 25vw;
+    height: 6vw;
+    opacity: 0;
+    margin-left: 1vw;
+}
+.ptrtxt_ct{
+    max-width:60%;
+    word-break:break-all;
+    padding-left:1vw;
+    padding-right: 1vw;
+    background:#93b6f0;
+    float:left;
+    margin-left:10px;
+    position:relative;
+    margin-top:30px;   
+}
+.ptrtxt_ct img{
+    margin-top: 1vw;
+    margin-bottom: 1vw;
+}
