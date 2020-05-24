@@ -66,9 +66,7 @@ export default class App extends Component{
             <div>
                 <Router>
                     <div>
-                        <Switch>
-                            <Route path='/sql' component={Sql} />
-                            
+                        <Switch>                                                    
                             {/**添加启动 引导组件 */}
                             <Route path='/' exact component={Start} />
                             <Route path='/login' exact component={Login} />

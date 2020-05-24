@@ -1,12 +1,55 @@
 import React,{Component} from 'react';
 import {NavBar} from 'antd-mobile';
 import {Link} from 'react-router-dom';
+import io from 'socket.io-client';
 import headimg from './imgs/usrhead.png';
 import {myFetch} from '../fetch/util';
 import Speak from './Speak';
 import './userchat.css';
 import '../note/tkpic.less';
 import '../note/note.css';
+
+
+
+// 连接服务器, 得到与服务器的连接对象
+const socket = io('http://xpm.xpmwqhzygy.top:3000')
+var sock_uid=0;
+var sock_pickid=0;
+socket.on('news', function (data) {
+    console.log(data,'共享消息');  
+    var cdata = data.hello;         
+    var chat = document.getElementById('chat');    
+    var rskbox = document.getElementById('rskbox');
+    var paudtime = document.getElementById('paudtime');
+    var puaudio = document.getElementById('puaudio'); 
+    var rbox = document.getElementById('rbox');
+    var rtxt = document.getElementById('rtxt');
+    var rpicbox = document.getElementById('rpicbox');
+    var ptrtxt = document.getElementById('ptrtxt');    
+    if((sock_uid==cdata.uid&&sock_pickid==cdata.pickid) || (sock_uid==cdata.pickid&&sock_pickid==cdata.uid)){
+        if(sock_pickid==cdata.sid){
+            if(cdata.flag==1){
+                rtxt.innerHTML=cdata.content;
+                chat.innerHTML+=rbox.innerHTML;                  
+            }else if(cdata.flag==2){
+                puaudio.src=`http://xpm.xpmwqhzygy.top/uchattalk/${cdata.content[1]}`;
+                paudtime.innerHTML=cdata.content[0];
+                chat.innerHTML+=rskbox.innerHTML; 
+            }else if(cdata.flag==3){
+                var theimg = "<img src="+`http://xpm.xpmwqhzygy.top/getchatimg/${cdata.content}`+" style='width:35vw;height:35vw;borderRadius:3vw;display:block;' />";
+                ptrtxt.innerHTML=theimg;
+                chat.innerHTML+=rpicbox.innerHTML;         
+            }
+            document.documentElement.scrollTop = chat.scrollHeight;
+        }
+    }
+});
+socket.on('message', function (data) {
+    // let html = document.createElement('p')
+    // html.innerHTML = `系统消息：<span>${data.hello}</span>`
+    // document.getElementById('content').appendChild(html)
+    console.log(data,'系统消息uukkk');
+});
 
 
 var mediaStreamTrack; //拍照
@@ -50,6 +93,8 @@ export default class Contact extends Component{
             uid:uid,
             pickid:pickid
         });
+        sock_uid=uid;
+        sock_pickid=pickid;
         window.addEventListener('scroll', this.scrollHandler);
         myFetch.get(`/user/${pickid}`)
         .then(res=>{
@@ -290,6 +335,9 @@ export default class Contact extends Component{
             </div>       
         )
     }
+    changeimg = ()=> {
+        console.log('gggggggggggg')
+    }
     //表情包
     gettsmid = (e)=> {
         var utxtid = document.getElementById('utext');
@@ -379,17 +427,41 @@ export default class Contact extends Component{
         });
         this.chatscroll();
         that.cancel(e);
-        //console.log(img);
+        //存储数据库
         myFetch.get(`/chattext/${this.state.uid}&${this.state.pickid}`)
         .then(res=>{
             if(res.msg=='1'){
                 myFetch.put(`/chatphoto/${this.state.uid}&${this.state.pickid}`,{
                     imgData:img
                 })
+                .then(res=>{
+                    //实时发送
+                    console.log(res,'lllllll')
+                    socket.emit('say', { my: {
+                        uid:this.state.uid,
+                        pickid:this.state.pickid,
+                        sid:this.state.uid,  //用于判断哪方在发消息
+                        flag:3,
+                        content:res.data
+                    }});
+
+                });
             }else if(res.msg=='2'){
                 myFetch.post(`/chatphoto/${this.state.uid}&${this.state.pickid}`,{
                     imgData:img
                 })
+                .then(res=>{
+                    //实时发送
+                    console.log(res,'lllllll')
+                    socket.emit('say', { my: {
+                        uid:this.state.uid,
+                        pickid:this.state.pickid,
+                        sid:this.state.uid,  //用于判断哪方在发消息
+                        flag:3,
+                        content:res.data
+                    }});
+
+                });
             }
         });
     }
@@ -411,8 +483,6 @@ export default class Contact extends Component{
 
     /**图片 multiple*/  
     getfile = (e) => {
-        // var myhead=this.state.myhead;
-        // var uidall=this.state.uid+'&'+this.state.pickid;
         var chat = document.getElementById('chat');
         var r= new FileReader();
         var arrfile = document.getElementById('uphoto').files;
@@ -442,12 +512,37 @@ export default class Contact extends Component{
             .then(res=>{
                 if(res.msg=='1'){
                     myFetch.chatput(`/picchat/${this.state.uid}&${this.state.pickid}`,formData)
+                    .then(res=>{
+                        //实时发送
+                        console.log(res,'lllllll')
+                        socket.emit('say', { my: {
+                            uid:this.state.uid,
+                            pickid:this.state.pickid,
+                            sid:this.state.uid,  //用于判断哪方在发消息
+                            flag:3,
+                            content:res.data
+                        }});
+
+                    });
                 }else if(res.msg=='2'){
                     myFetch.chatpost(`/picchat/${this.state.uid}&${this.state.pickid}`,formData)
+                    .then(res=>{
+                        //实时发送
+                        console.log(res,'lllllll')
+                        socket.emit('say', { my: {
+                            uid:this.state.uid,
+                            pickid:this.state.pickid,
+                            sid:this.state.uid,  //用于判断哪方在发消息
+                            flag:3,
+                            content:res.data
+                        }});
+
+                    });
                 }
             });
             uthepic.innerHTML=allpic;
             chat.innerHTML+=mybox.innerHTML;  
+            
         }
         chat.style.paddingBottom='25vw'; 
         this.chatscroll();
@@ -485,17 +580,34 @@ export default class Contact extends Component{
 
         myFetch.get(`/chattext/${this.state.uid}&${this.state.pickid}`)
         .then(res=>{
-            if(res.msg=='1'){
-                console.log('111111')
+            if(res.msg=='1'){            
                 myFetch.audioput(`/uchattalk/${this.state.uid}&${this.state.pickid}&${obj.time}`,formdata)
-                // .then(res=>{
-                //     console.log('对讲返回',res); 
-                // });
+                .then(res=>{
+                    //实时发送
+                    console.log(res,'lllllll')
+                    socket.emit('say', { my: {
+                        uid:this.state.uid,
+                        pickid:this.state.pickid,
+                        sid:this.state.uid,  //用于判断哪方在发消息
+                        flag:2,
+                        content:res.data
+                    }});
+
+                });
             }else if(res.msg=='2'){
-                myFetch.audiopost(`/uchattalk/${this.state.uid}&${this.state.pickid}&${obj.time}`,formdata)
-                // .then(res=>{
-                //     console.log('对讲返回',res); 
-                // });
+                myFetch.audiopost(`/uchattalk/${this.state.uid}&${this.state.pickid}&${obj.time}`,formdata)  
+                .then(res=>{
+                    //实时发送
+                    console.log(res,'lllllll')
+                    socket.emit('say', { my: {
+                        uid:this.state.uid,
+                        pickid:this.state.pickid,
+                        sid:this.state.uid,  //用于判断哪方在发消息
+                        flag:2,
+                        content:res.data
+                    }});
+
+                });
             }
         })
     }
@@ -548,6 +660,8 @@ export default class Contact extends Component{
         }
         return positions1;        
     }
+
+    //发送文本+表情包
     sendmsg = () => {
         var uid = this.state.uid;
         var pickid = this.state.pickid;
@@ -596,6 +710,15 @@ export default class Contact extends Component{
                 text:''
             });
             utxtid.innerHTML='';
+
+            //实时发送
+            socket.emit('say', { my: {
+                uid:this.state.uid,
+                pickid:this.state.pickid,
+                sid:this.state.uid,  //用于判断哪方在发消息
+                flag:1,
+                content:text
+            }});
 
             //存储到数据库
             var postbody = {
