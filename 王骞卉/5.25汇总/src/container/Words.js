@@ -31,7 +31,7 @@ export default class Words extends Component {  //有bug 页面布局混乱
                         borderRadius:'50%',left:'1%',backgroundColor:'blue'}}></Flex.Item>
                     <img style={{position:"absolute",width:'10vw',height:'10vw',borderRadius:'50%',left:'5%'}} src={require('../imgs/danci.jpg')}/>
                     <Flex.Item style={{position:"absolute",left:'20%',top:'2vw',fontSize:'5vw',color:'black'}}>
-                        我的收藏单词(可增删)
+                        我的收藏单词
                     </Flex.Item>
                     <Flex style={{position:"absolute",right:'5%',top:'1vw'}}>
                     <Icon type={'right'} style={{height:'10vw',width:'10vw',color:'black'}}/>

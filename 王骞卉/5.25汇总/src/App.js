@@ -51,7 +51,6 @@ import Talking from './container/Talking';
 import Sayto from './container/Sayto';
 import Userchat from './com_xpm/userchat/Userchat';
 
-
 import Sql from './components/spltest';
 
 /**启动页 */
@@ -128,6 +127,7 @@ export default class App extends Component{
                             {/* <Route path='/talkto' component={Talking}/> */}
                             <Route path='/say' component={Sayto}/>
                             <Route path='/talkto' component={Userchat}/>
+                            
                             {/* 添加计划 */}
                             <Route path='/addPlan' component={Addplan}/>
 
