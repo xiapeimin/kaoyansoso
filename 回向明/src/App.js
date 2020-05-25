@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
 import {HashRouter as Router,Route,Switch} from 'react-router-dom';
 
+
 import Login from './container/Login';
 import AppTab from './container/AppTab';
 import Search from './container/Search';
@@ -44,7 +45,7 @@ import WordText from './container/WordText';
 import WordSpell from './container/WordSpell';
 import FocusList from './container/FocusList';
 import FansList from './container/FansList';
-
+import Contrast from './container/Contrast';
 
 //聊天
 import Talking from './container/Talking';
@@ -59,6 +60,9 @@ import Start from './com_xpm/start/Start';
 import Robot from './com_xpm/robot/Contact';
 import Tuling from './com_xpm/robot/Tuling';
 import Addplan from './container/Addplan';
+
+import createHashHistory from 'history/createHashHistory';
+const hashHistory = createHashHistory();
 
 
 export default class App extends Component{
@@ -80,7 +84,9 @@ export default class App extends Component{
                             <Route path='/contact' component={Robot} />
                             <Route path='/tuling' component={Tuling} />
                             {/**end */}
-
+                            
+                            
+                            <Route path='/contrast' component={Contrast}></Route>
                             <Route path='/pwdchange' component={Pwdchange} />
                             <Route path='/changeNote' component={ChangeNote} />
                             <Route path='/myschool' component={MySchool} />
@@ -134,7 +140,9 @@ export default class App extends Component{
 
                     </div>
                 </Router>
-                
+            {/* <Router history={hashHistory}>
+            
+            </Router> */}
             </div>
         )
     }

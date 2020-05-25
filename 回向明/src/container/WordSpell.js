@@ -70,8 +70,8 @@ import audio59 from './src/59.mp3';
 import audio60 from './src/60.mp3';
 import audio61 from './src/61.mp3';
 import audio62 from './src/62.mp3';
-import audio63 from './src/62.mp3';
-import audio64 from './src/62.mp3';
+import audio63 from './src/63.mp3';
+import audio64 from './src/64.mp3';
 
 var allarr=[];
 for(var i=0;i<26;i++){
@@ -87,7 +87,7 @@ export default class WordSpell extends Component {
         this.state = {
             a:0,
             b:0,
-            c:0,
+            c:1,
             z:'a',
             k:'100',
             d:Math.floor(Math.random()*51),
@@ -125,6 +125,13 @@ export default class WordSpell extends Component {
                 ['yellow','黄色',audio59],['yes','好的',audio60],
                 ['zoo','动物园',audio61],['zero','零',audio62]
             ],
+            letter:[
+                'a','b','c','d','e','f','g','h','i','j',
+                'k','l','m','n','o','p','q','r','s','t'
+            ],
+            arr3:[],
+            arr2:[],
+            arr1:[],
             storage:window.localStorage
         }
         
@@ -153,10 +160,18 @@ export default class WordSpell extends Component {
      array.push(rand); 
 } 
 
+        var words=this.state.words;
+        var a=this.state.a;
+        var b=this.state.b;
+        var arr3=this.state.arr3;
+        var arr2=this.state.arr2;
+        var arr1=this.state.arr1;
+        var letter=this.state.letter
+       
+
         // var arr3=this.state.arr3
         // arr3=arr3.push(1)
 }
-
 
 
   render() {
@@ -294,15 +309,15 @@ console.log(ok)
     return (
      <div className='testbox'>
        <NavBar
-                style={{background:'#66cccc',color:'#fff',width:'100%'}} 
+                style={{background:'#66cccc',color:'#fff'}} 
                 leftContent={<Link to={`/words?uid=${uid}`}><img src={require('../imgs/zjt.png')} /></Link>}
                 mode="light"
                 ><span style={{color:'#fff',fontSize:'22px'}}>拼写测试</span></NavBar>
 
-                        <div style={{position:'relative',height:'30px',width:'280px',left:k+'px',marginTop:'10px'}}>{
+                        <div style={{position:'relative',height:'30px',width:'70%',left:k+'px',marginTop:'10px'}}>{
                         arr.map(
                             (item)=>
-                            <Flex.Item style={{position:'relative',height:'280px',width:'20px',
+                            <Flex.Item style={{position:'relative',height:'20px',width:'20px',
                     marginLeft:'10px',float:'left'}} >
                         <Flex.Item style={{position:'relative',top:'25px',textAlign:'center',fontSize:'25px'}}
                         >{item}</Flex.Item>
@@ -310,7 +325,7 @@ console.log(ok)
                         )
                         }</div>
 
-                        <div style={{position:'relative',height:'30px',width:'280px',left:k+'px',marginTop:'12px'}}>{
+                        <div style={{position:'relative',height:'30px',width:'250px',left:k+'px',marginTop:'10px'}}>{
                 l.map(
                     ()=>        
                 <Flex.Item style={{position:'relative',height:'20px',width:'20px',borderBottom:'2px solid black',
@@ -321,13 +336,13 @@ console.log(ok)
                         )
                         }</div>
 
-                        <Flex.Item style={{position:'relative',height:'30px',width:'100px',border:'1px solid black',marginLeft:'38%',marginTop:'50px',
+                        <Flex.Item style={{position:'relative',height:'30px',width:'100px',border:'1px solid black',marginLeft:'100px',marginTop:'50px',
                     fontSize:'20px',background:'#cfcfcf',color:'white'}} >
                         <Flex.Item style={{position:'relative',textAlign:'center',top:'2px'}} onClick={this.right}
                         >查看答案</Flex.Item>
                         </Flex.Item>
 
-                        <Flex.Item style={{position:'relative',height:'30px',width:'30px',border:'1px solid black',marginLeft:'80%',marginTop:'-30px',
+                        <Flex.Item style={{position:'relative',height:'30px',width:'30px',border:'1px solid black',marginLeft:'250px',marginTop:'-30px',
                     fontSize:'20px',background:'#cfcfcf',borderRadius:'50%',color:'white'}} >
                         <Flex.Item style={{position:'relative',textAlign:'center',top:'2px'}} onClick={this.delete}
                         >X</Flex.Item>
@@ -336,7 +351,7 @@ console.log(ok)
                 <Flex.Item style={{position:'relative',height:'60px',width:'50%',left:'100px',marginTop:'30px',
                     fontSize:'20px',background:'#fff'}} >
                         <Flex.Item style={{position:'relative',top:'25px',textAlign:'center',fontSize:'25px'}}
-                        >{words[array[a]][1]}</Flex.Item>
+                        >{words[array[a]][c]}</Flex.Item>
                         </Flex.Item>
                     
                         <div style={{position:'relative',height:'30px',width:'95%',left:'2.5%',top:'50px'}}>{
@@ -362,22 +377,21 @@ console.log(ok)
                         >正确!</Flex.Item>
                         </Flex.Item>
 
-                                 <Flex.Item style={{position:'absolute',bottom:'100px',width:'100%'}}>
+                        <Flex.Item style={{position:'absolute',bottom:'100px',width:'100%'}}>
                                  <Flex.Item style={{position:'relative',height:'50px',width:'43%',marginLeft:'15px',
                              fontSize:'20px',background:'#66cccc',float:'left'}} >
                                  <Flex.Item style={{position:'relative',top:'15px',textAlign:'center',fontSize:'18px',color:'white'}}
                                  >添加生词</Flex.Item>
                                  </Flex.Item>
          
-                            
+                                
                                  <video width='100%' controls='controls' style={{position:'relative',height:'50px',width:'43%',marginLeft:'15px',
                              fontSize:'20px',float:'left'}}>
                                     <source src={words[array[a]][2]} type='video/mp4' />
                                 </video>
-
                                 
-                                </Flex.Item>
-                              
+                                 
+                                 </Flex.Item>
 
                                  <Flex.Item style={{position:'absolute',bottom:'30px',width:'100%'}}>
                                  <Flex.Item style={{position:'relative',height:'50px',width:'43%',marginLeft:'15px',
@@ -449,11 +463,6 @@ console.log(ok)
     var arr = arr1;
     var keyarr = arr2;
     var storage = this.state.storage;
-    var words=this.state.words
-    var b=this.state.b;
-    var a=this.state.a;
-    var array=this.state.array;
-    var d=words[array[a]][b].length;
     storage.setItem('dancixpm',JSON.stringify(arr2));
     if(wordarr2==JSON.stringify(arr2)&&wordarr2.length!=0){
         return storagearr;   
@@ -462,7 +471,7 @@ console.log(ok)
         for(var i = 0; i<arr2.length; i++){
             arr = this.arrayRemove(arr,arr2[i]);
         }
-        arr=arr.sort(()=>0.5-Math.random()).slice(0,15-d);
+        arr=arr.sort(()=>0.5-Math.random()).slice(0,5);
         for(var j=0;j<arr.length;j++){
             keyarr.push(arr[j]);
         }
@@ -489,17 +498,15 @@ console.log(ok)
     this.setState({
       arr:[]
     })
-    var a=this.state.a;
-    var c=this.state.c;
+    var a = this.state.a;
     var d=this.state.d;
     var e=this.state.e;
     var f=this.state.f;
     this.setState({
         a:a+1,
-        c:c+1
-        // d:Math.floor(Math.random()*51),
-        // e:Math.floor(Math.random()*51),
-        // f:Math.floor(Math.random()*51)
+        d:Math.floor(Math.random()*51),
+        e:Math.floor(Math.random()*51),
+        f:Math.floor(Math.random()*51)
     })
     console.log(d,e,f)
     if(a==9){
@@ -515,9 +522,9 @@ console.log(ok)
       var a = this.state.a;
       this.setState({
         a:a-1,
-        // d:Math.floor(Math.random()*51),
-        // e:Math.floor(Math.random()*51),
-        // f:Math.floor(Math.random()*51)
+        d:Math.floor(Math.random()*51),
+        e:Math.floor(Math.random()*51),
+        f:Math.floor(Math.random()*51)
     })
     if(a==0){
         this.setState({

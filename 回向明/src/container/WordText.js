@@ -70,8 +70,8 @@ import audio59 from './src/59.mp3';
 import audio60 from './src/60.mp3';
 import audio61 from './src/61.mp3';
 import audio62 from './src/62.mp3';
-import audio63 from './src/62.mp3';
-import audio64 from './src/62.mp3';
+import audio63 from './src/63.mp3';
+import audio64 from './src/64.mp3';
 export default class Words extends Component {
     constructor(){
         
