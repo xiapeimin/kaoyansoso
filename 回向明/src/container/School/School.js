@@ -23,6 +23,7 @@ export default class School extends Component {
       this.state={
         a:0,
         b:0,
+        c:0,
         img:[],
         data:[],
         idd:'',
@@ -200,6 +201,7 @@ export default class School extends Component {
       var str = window.location.hash;
       var a= this.state.a;
       var b= this.state.b;
+      var c= this.state.c;
       if(str.indexOf('&')>=0){
           uid = str.split('&')[0].split('=')[1];
       }else{
@@ -209,7 +211,7 @@ export default class School extends Component {
       console.log(fflag,'lll')
       
       /* 结束 */
-      let data = {a:a,b:b};
+      let data = {a:a,b:b,c:c};
     let path = {
         pathname: '/contrast',
         query: data,
@@ -232,7 +234,17 @@ export default class School extends Component {
               backgroundColor:'white',fontSize:'4vw',
               borderRadius:'3vw',border:'2px solid #DDDDDD'}}>
               <p style={{fontSize:'4vw',marginTop:'3vw',marginLeft:'5vw'}}>目标专业</p>
-              <p style={{fontSize:'4vw',marginLeft:'35vw'}}>{this.state.profess}</p>
+              <div 
+                style={{width:'25vw',height:'10vw',
+                border:'2px solid #DDDDDD',marginLeft:'3vw',
+                float:'left',paddingTop:'1vw',paddingLeft:'1vw'}}>
+                <form onSubmit={this.handleSubmit}>
+                  <select id='c' onChange={this.c} style={{width:'22vw'}}>
+                    <option>软件工程</option>
+                    <option>临床医学</option>
+                  </select>
+                </form>
+              </div>
             </div>
             <div style={{
               width:'90vw',marginLeft:'5vw',
@@ -380,5 +392,19 @@ export default class School extends Component {
       })
       }
     }
-    
+    c=()=>{
+      var c=this.state.c;
+      var myselect=document.getElementById("c"); 
+      var index=myselect.selectedIndex;
+      var z=myselect.options[index].text; 
+      if(z=='软件工程'){
+        this.setState({
+          c:0
+      })
+      }else{
+        this.setState({
+          c:1
+      })
+      }
+    }
 }

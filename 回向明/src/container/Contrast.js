@@ -7,11 +7,15 @@ export default class Contrast extends Component {
     constructor(props){
         super(props);
         let data = this.props.location.query;
-        let {a,b} = data;
+        let {a,b,c} = data;
         this.state = {
-            
             a:a,
             b:b,
+            c:c,
+            major:[
+                ['软件工程','政治','英语','数学或专业基础','专业课','软件架构 软件设计方法 软件领域建模 软件工程决策支持 软件工程教育 软件测试技术 自动化的软件设计和合成 基于组件的软件工程 计算机支持的协同工作 编程语言和软件工程计算机网络 信息与通信安全 计算机图形学与人机交互 多媒体技术应用 人工智能与识别 嵌入式软件与应用 自动控制 分布式计算与网格计算 云计算技术 存储技术 数据库技术研究 计算机辅助设计与应用技术 大数据分析与处理'],
+                ['临床医学','政治','英语','西医综合','专业课','临床医学学科包含了临床医学、内科学、儿科学、老年医学、神经病学、精神病与精神卫生学、皮肤病与性病学、影像医学与核医学、临床检验诊断学、外科学、妇产科学、眼科学、耳鼻咽喉科学、肿瘤学、康复医学与理疗学、运动医学、麻醉学、急诊医学。']
+            ],
             data:[
                 ['北大','北京','一线城市','一区','-','2','985|211','自划线','教育部直属','北京大学'],
                 ['清华','北京','一线城市','一区','-','1','985|211','自划线','教育部直属','清华大学'],
@@ -40,6 +44,13 @@ export default class Contrast extends Component {
                 [85,85,85,85,85],
                 [75,70,75,70,75]
             ],
+            line3:[
+                [431,434,427,422],
+                [406,403,402,398],
+                [301,300,300,303],
+                [319,316,314,314],
+                [119,120,119,119]
+            ]
         }
     }
     render(){
@@ -48,12 +59,18 @@ export default class Contrast extends Component {
         var data=this.state.data;
         var a=this.state.a;
         var b=this.state.b;
+        var c=this.state.c;
+        var major=this.state.major;
         var line=this.state.line;
         var line1=this.state.line1;
         var line2=this.state.line2;
+        var line3=this.state.line3;
         const tabs = [
-            { title: <p style={{fontSize:'5vw'}}>院校实力</p> },
-            { title: <p style={{fontSize:'5vw'}}>分数线</p> },
+            { title: <div style={{fontSize:'5vw'}}>院校实力</div> },
+            { title: <div style={{fontSize:'5vw'}}>分数线</div> },
+            { title: <div style={{fontSize:'5vw'}}>竞争力</div> },
+            { title: <div style={{fontSize:'5vw'}}>考试科目</div> },
+            { title: <div style={{fontSize:'5vw'}}>研究方向</div> },
           ];
           var config = {
             title: {
@@ -124,13 +141,36 @@ export default class Contrast extends Component {
                         data: line2[b]
                     }],
                     };
+                    var config3 = {
+                        title: {
+                            text: ''
+                        },
+                        yAxis: {
+                            title: {
+                                text: ''
+                            }
+                        },
+                        credits:{
+                            enabled:false
+                        },
+                        xAxis:{
+                            categories:['2020-02','2020-03','2020-04','2020-05']
+                        },
+                        series: [{
+                            name: data[a][0],
+                            data: line3[a]
+                        },{
+                            name: data[b][0],
+                            data: line3[b]
+                        }],
+                        };
         return(
             <div>
                 <NavBar
         style={{background:'#66cccc',color:'#fff'}} leftContent={<Link to={`/appTab?uid=${uid}`}><img src={require('../imgs/zjt.png')} /></Link>}
         mode="light"><span style={{color:'#fff',fontSize:'22px'}}>院校对比</span></NavBar>
                 <div style={{backgroundColor:'#5599FF',color:'white',width:'100%',height:'50vw',paddingTop:'5vw'}}>
-              <p style={{height:'5vw',fontSize:'7vw',width:'100%',paddingLeft:'37%'}}>软件工程</p>
+              <p style={{height:'5vw',fontSize:'7vw',width:'100%',paddingLeft:'37%'}}>{major[c][0]}</p>
         <p style={{height:'5vw',fontSize:'6vw',width:'100%',paddingLeft:'25%'}}>{data[a][9]}|{data[b][9]}</p>
               <Link to={`/appTab?uid=${uid}`}>
               <p style={{height:'9vw',fontSize:'5vw',width:'30%',background:'white',color:'#5599FF',marginLeft:'35%',paddingTop:'0.1vw',paddingLeft:'5vw',marginTop:'10vw'}}>
@@ -138,7 +178,7 @@ export default class Contrast extends Component {
               </p>
               </Link>
             </div>
-            <Tabs tabs={tabs} initialPage={0}>
+            <Tabs tabs={tabs} initialPage={0} renderTabBar={props => <Tabs.DefaultTabBar {...props} page={4} />}>
             <div>
                 <div style={{width:'90%',height:'150vw',border:'2px solid #5599FF',marginLeft:'5%',marginTop:'5vw'}}>
                     <div style={{width:'100%',borderBottom:'2px dashed #000',height:'10%'}}>
@@ -190,12 +230,25 @@ export default class Contrast extends Component {
                         <ReactHighcharts config={config2} style={{fontSize:'7vw'}}/>
                 </div>
             </div>
-            </Tabs>
-            
+            <div>
+            <h1 style={{margin:'5vw'}}>专业关注人数</h1>
+            <div style={{width:'90%',marginLeft:'5%',marginTop:'10vw',fontSize:'7vw'}}>
+                        <ReactHighcharts config={config3} style={{fontSize:'7vw'}}/>
+                </div>
             </div>
-        
-        
-
+            <div>
+            <h1 style={{margin:'5vw'}}>考试科目</h1>
+        <h2 style={{margin:'5vw'}}>{major[c][1]}</h2>
+            <h2 style={{margin:'5vw'}}>{major[c][2]}</h2>
+            <h2 style={{margin:'5vw'}}>{major[c][3]}</h2>
+            <h2 style={{margin:'5vw'}}>{major[c][4]}</h2>
+            </div>
+            <div>
+            <h1 style={{margin:'5vw'}}>研究方向</h1>
+            <h2 style={{margin:'5vw'}}>{major[c][5]}</h2>
+            </div>
+            </Tabs>
+            </div>
         )
     }
 }
