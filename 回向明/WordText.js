@@ -250,7 +250,7 @@ export default class Words extends Component {
                                  </Flex.Item>
          
                                  <Flex.Item style={{position:'absolute',bottom:'100px',width:'100%'}}>
-                                 <Flex.Item style={{position:'relative',height:'50px',width:'43%',marginLeft:'15px',
+                                 <Flex.Item style={{position:'relative',height:'60px',width:'43%',marginLeft:'15px',
                              fontSize:'20px',background:'#66cccc',float:'left'}} >
                                  {console.log(words[array[a]][0],words[array[a]][1])}
                                  <Flex.Item 
@@ -283,32 +283,36 @@ export default class Words extends Component {
                               
                                  }
                                  }
-                                 style={{position:'relative',top:'15px',textAlign:'center',fontSize:'18px',color:'white'}}
+                                 style={{position:'relative',top:'15px',textAlign:'center',fontSize:'20px',color:'white'}}
                                  >
                                      添加生词
                                      {/* {this.state.pick?'已添加':'添加生词'} */}
                                      </Flex.Item>
                                  </Flex.Item>
          
-                                
-                                 <video class="video" controls style={{position:'relative',height:'50px',width:'43%',marginLeft:'15px',
-                             fontSize:'20px',float:'left',objectFit:'cover'}}>
+                                 <Flex.Item style={{position:'relative',height:'60px',width:'43%',marginLeft:'15px',
+                             fontSize:'20px',background:'#66cccc',float:'left',zIndex:'1'}}>
+                                 <video class="video" controls style={{position:'relative',height:'60px',opacity:'0',left:'50px',zIndex:'2'}}>
                                     <source src={words[array[a]][2]} type='video/mp4' />
                                 </video>
+                                <Flex.Item style={{position:'absolute',textAlign:'center',fontSize:'20px',color:'white',left:'16vw',top:'4vw',zIndex:'1'}}
+                                 >朗读</Flex.Item>
+                                 </Flex.Item>
+                                 
                                 
                                  
                                  </Flex.Item>
 
                                  <Flex.Item style={{position:'absolute',bottom:'30px',width:'100%'}}>
-                                 <Flex.Item style={{position:'relative',height:'50px',width:'43%',marginLeft:'15px',
+                                 <Flex.Item style={{position:'relative',height:'60px',width:'43%',marginLeft:'15px',
                              fontSize:'20px',background:'#66cccc',float:'left'}} onClick={this.last}>
-                                 <Flex.Item style={{position:'relative',top:'15px',textAlign:'center',fontSize:'18px',color:'white'}}
+                                 <Flex.Item style={{position:'relative',top:'15px',textAlign:'center',fontSize:'20px',color:'white'}}
                                  >上一题</Flex.Item>
                                  </Flex.Item>
          
-                                 <Flex.Item style={{position:'relative',height:'50px',width:'43%',marginLeft:'15px',
+                                 <Flex.Item style={{position:'relative',height:'60px',width:'43%',marginLeft:'15px',
                              fontSize:'20px',background:'#66cccc',float:'left'}} onClick={this.next}>
-                                 <Flex.Item style={{position:'relative',top:'15px',textAlign:'center',fontSize:'18px',color:'white'}}
+                                 <Flex.Item style={{position:'relative',top:'15px',textAlign:'center',fontSize:'20px',color:'white'}}
                                  >下一题</Flex.Item>
                                  </Flex.Item>
                                  </Flex.Item>
