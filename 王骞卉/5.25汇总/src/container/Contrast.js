@@ -7,9 +7,9 @@ export default class Contrast extends Component {
     constructor(props){
         super(props);
         let data = this.props.location.query;
-        let {a,b} = data;
+        let {a,b,uid} = data;
         this.state = {
-            
+            uid:uid,
             a:a,
             b:b,
             data:[
@@ -44,7 +44,7 @@ export default class Contrast extends Component {
     }
     render(){
         var str = this.props.location.search;
-        var uid = str.split('=')[1];
+       var uid=this.state.uid;
         var data=this.state.data;
         var a=this.state.a;
         var b=this.state.b;
@@ -126,8 +126,8 @@ export default class Contrast extends Component {
                     };
         return(
             <div>
-                <NavBar
-        style={{background:'#66cccc',color:'#fff'}} leftContent={<Link to={`/appTab?uid=${uid}`}><img src={require('../imgs/zjt.png')} /></Link>}
+                <NavBar style={{background:'#66cccc',color:'#fff',position:'fixed',width:'100%',top:'0'}} 
+                 leftContent={<Link to={`/appTab?uid=${uid}`}><img src={require('../imgs/zjt.png')} /></Link>}
         mode="light"><span style={{color:'#fff',fontSize:'22px'}}>院校对比</span></NavBar>
                 <div style={{backgroundColor:'#5599FF',color:'white',width:'100%',height:'50vw',paddingTop:'5vw'}}>
               <p style={{height:'5vw',fontSize:'7vw',width:'100%',paddingLeft:'37%'}}>软件工程</p>

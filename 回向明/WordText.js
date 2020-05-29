@@ -70,8 +70,8 @@ import audio59 from './src/59.mp3';
 import audio60 from './src/60.mp3';
 import audio61 from './src/61.mp3';
 import audio62 from './src/62.mp3';
-import audio63 from './src/62.mp3';
-import audio64 from './src/62.mp3';
+import audio63 from './src/63.mp3';
+import audio64 from './src/64.mp3';
 export default class Words extends Component {
     constructor(){
         
@@ -92,7 +92,7 @@ export default class Words extends Component {
                 ['green','绿色',audio18],['google','谷歌',audio19],['girl','女孩',audio20],
                 ['hello','你好',audio21],['help','帮助',audio22],['hard','硬',audio23],
                 ['ipad','平板',audio24],['item','项目',audio25],['iron','铁',audio26],
-                ['java','java语言',audio27],['javascript','javascript语言',audio28],['just','仅仅',audio29],
+                ['java','java语言',audio27],['script','剧本',audio28],['just','仅仅',audio29],
                 ['key','钥匙',audio30],['king','国王',audio63],['kink','种类',audio64],
                 ['listen','听',audio31],['love','爱',audio32],['learn','学习',audio33],
                 ['monkey','猴子',audio34],['member','成员',audio35],['mark','标记',audio36],
@@ -111,7 +111,9 @@ export default class Words extends Component {
                 ['zoo','动物园',audio61],['zero','零',audio62]
             ],
             nb:[],
-            updata:0
+            pick:false,
+            updata:0,
+            pick:false,
         }
 
         var array=this.state.array
@@ -204,9 +206,9 @@ export default class Words extends Component {
                 
                          <Flex.Item style={{position:'relative',height:'150px',width:'100%',
                              fontSize:'20px',background:'#fff'}} >
-                                 
                                  <Flex.Item style={{position:'relative',top:'50px',textAlign:'center',fontSize:'30px'}}
                                  >{words[array[a]][0]}</Flex.Item>
+                                 {/* {console.log(words[array[a]][0],words[array[a]][1])} */}
                                  </Flex.Item>
                              
                                  <Flex.Item style={{position:'relative',height:'60px',width:'90%',left:'5%',marginTop:'15px',
@@ -248,31 +250,69 @@ export default class Words extends Component {
                                  </Flex.Item>
          
                                  <Flex.Item style={{position:'absolute',bottom:'100px',width:'100%'}}>
-                                 <Flex.Item style={{position:'relative',height:'50px',width:'43%',marginLeft:'15px',
+                                 <Flex.Item style={{position:'relative',height:'60px',width:'43%',marginLeft:'15px',
                              fontSize:'20px',background:'#66cccc',float:'left'}} >
-                                 <Flex.Item style={{position:'relative',top:'15px',textAlign:'center',fontSize:'18px',color:'white'}}
-                                 >添加生词</Flex.Item>
+                                 {console.log(words[array[a]][0],words[array[a]][1])}
+                                 <Flex.Item 
+                                 onClick={()=>{
+                                    this.setState({
+                                        pick:!this.state.pick
+                                    });
+                                    var str = window.location.hash;
+                                    var uid = str.split('&')[0].split('=')[1].split('#')[0];
+                                    var word = words[array[a]][0];
+                                    var wordc = words[array[a]][1];
+                                    var wordf =uid+'&'+word;
+                                    console.log(str.split('&')[0].split('=')[1].split('#')[0],words[array[a]][0],words[array[a]][1]);
+                                    const post ={
+                                      uid:uid,
+                                      word:word,
+                                      wordc:wordc,
+                                      wordf:wordf
+                                     };
+                                      fetch(`http://wqh.xpmwqhzygy.top/wordin`,{
+                                      // post提交
+                                      method:"POST",
+                                      headers:{'Content-Type': 'application/x-www-form-urlencoded'},
+                                      body:JSON.stringify(post)//把提交的内容转字符串
+                                      })
+                                      .then(res =>res.json())
+                                      .then(data =>{
+                                          console.log(data);
+                                      });
+                              
+                                 }
+                                 }
+                                 style={{position:'relative',top:'15px',textAlign:'center',fontSize:'20px',color:'white'}}
+                                 >
+                                     添加生词
+                                     {/* {this.state.pick?'已添加':'添加生词'} */}
+                                     </Flex.Item>
                                  </Flex.Item>
          
-                                
-                                 <video width='100%' controls='controls' style={{position:'relative',height:'50px',width:'43%',marginLeft:'15px',
-                             fontSize:'20px',float:'left'}}>
+                                 <Flex.Item style={{position:'relative',height:'60px',width:'43%',marginLeft:'15px',
+                             fontSize:'20px',background:'#66cccc',float:'left',zIndex:'1'}}>
+                                 <video class="video" controls style={{position:'relative',height:'60px',opacity:'0',left:'50px',zIndex:'2'}}>
                                     <source src={words[array[a]][2]} type='video/mp4' />
                                 </video>
+                                <Flex.Item style={{position:'absolute',textAlign:'center',fontSize:'20px',color:'white',left:'16vw',top:'4vw',zIndex:'1'}}
+                                 >朗读</Flex.Item>
+                                 </Flex.Item>
+                                 
                                 
                                  
                                  </Flex.Item>
 
                                  <Flex.Item style={{position:'absolute',bottom:'30px',width:'100%'}}>
-                                 <Flex.Item style={{position:'relative',height:'50px',width:'43%',marginLeft:'15px',
+                                 <Flex.Item style={{position:'relative',height:'60px',width:'43%',marginLeft:'15px',
                              fontSize:'20px',background:'#66cccc',float:'left'}} onClick={this.last}>
-                                 <Flex.Item style={{position:'relative',top:'15px',textAlign:'center',fontSize:'18px',color:'white'}}
+                                 <Flex.Item style={{position:'relative',top:'15px',textAlign:'center',fontSize:'20px',color:'white'}}
                                  >上一题</Flex.Item>
                                  </Flex.Item>
          
-                                 <Flex.Item style={{position:'relative',height:'50px',width:'43%',marginLeft:'15px',
+                                 <Flex.Item style={{position:'relative',height:'60px',width:'43%',marginLeft:'15px',
                              fontSize:'20px',background:'#66cccc',float:'left'}} onClick={this.next}>
-                                 <Flex.Item style={{position:'relative',top:'15px',textAlign:'center',fontSize:'18px',color:'white'}}
+                                 <Flex.Item style={{position:'relative',top:'15px',textAlign:'center',fontSize:'20px',color:'white'}}
                                  >下一题</Flex.Item>
                                  </Flex.Item>
                                  </Flex.Item>

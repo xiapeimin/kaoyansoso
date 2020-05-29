@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 import {Flex,NavBar, Icon } from 'antd-mobile';
+import jinbi from '../imgs/jifen.jpg';
+
 import audio0 from './src/0.mp3';
 import audio1 from './src/1.mp3';
 import audio2 from './src/2.mp3';
@@ -74,6 +76,7 @@ import audio63 from './src/63.mp3';
 import audio64 from './src/64.mp3';
 
 var allarr=[];
+var wordss=[];
 for(var i=0;i<26;i++){
     allarr.push(String.fromCharCode(97+i));//输出a-z 26个小写字母
 }
@@ -94,9 +97,12 @@ export default class WordSpell extends Component {
             e:Math.floor(Math.random()*51),
             f:Math.floor(Math.random()*51),
             array:[],
+            wordss:[],
             arr:[],//字母
             correct:'none',
             err:'none',
+            money:0,
+            flag:0,
             words:[
                 ['about','关于',audio0],['apple','苹果',audio1],['alone','孤独',audio2],
                 ['ball','球',audio3],['back','返回',audio4],['behind','后面',audio5],
@@ -107,7 +113,7 @@ export default class WordSpell extends Component {
                 ['green','绿色',audio18],['google','谷歌',audio19],['girl','女孩',audio20],
                 ['hello','你好',audio21],['help','帮助',audio22],['hard','硬',audio23],
                 ['ipad','平板',audio24],['item','项目',audio25],['iron','铁',audio26],
-                ['java','java语言',audio27],['javascript','javascript语言',audio28],['just','仅仅',audio29],
+                ['java','java语言',audio27],['script','剧本',audio28],['just','仅仅',audio29],
                 ['key','钥匙',audio30],['king','国王',audio63],['kink','种类',audio64],
                 ['listen','听',audio31],['love','爱',audio32],['learn','学习',audio33],
                 ['monkey','猴子',audio34],['member','成员',audio35],['mark','标记',audio36],
@@ -132,7 +138,8 @@ export default class WordSpell extends Component {
             arr3:[],
             arr2:[],
             arr1:[],
-            storage:window.localStorage
+            storage:window.localStorage,
+            pick:false
         }
         
         //每次刷新页面，执行下列代码（从这到render()上面）
@@ -159,27 +166,57 @@ export default class WordSpell extends Component {
            }            } 
      array.push(rand); 
 } 
-
-        var words=this.state.words;
-        var a=this.state.a;
-        var b=this.state.b;
-        var arr3=this.state.arr3;
-        var arr2=this.state.arr2;
-        var arr1=this.state.arr1;
-        var letter=this.state.letter
-       
-
-        // var arr3=this.state.arr3
-        // arr3=arr3.push(1)
+}
+componentDidMount(){
+    var str=window.location.hash;
+    var uid=str.split('=')[1];
+    fetch(`http://wqh.xpmwqhzygy.top/wordcheck/${uid}`,{
+                 method: 'GET'
+        })
+      .then((res)=>res.json())
+      .then((res)=>{
+                for(var i=0;i<res.data.length;i++){
+                        wordss[i]=res.data[i].word;
+                }
+                this.setState({
+                    wordss:wordss
+                })
+        })
+     fetch(`http://zy.xpmwqhzygy.top/moneys/${uid}`,{
+                method: 'GET'
+        })
+        .then((res)=>res.json())
+        .then((res)=>{
+            if(res.data.length==0){
+                this.setState({
+                    money:0
+                })
+            }else{
+            this.setState({
+                money:res.data[0].money
+            })
+        }
+        })
 }
 
 
   render() {
     var url=this.props.location.search;
-    var uid=url.split('=')[1];
-      
-    var ok=[]
-    
+    var uid=url.split('=')[1];      
+    var ok=[];
+    var array=this.state.array;
+    var arr=this.state.arr;
+    var a=this.state.a;
+    var b=this.state.b;
+    var c=this.state.c;
+    var k=this.state.k;
+    var correct=this.state.correct;
+    var err=this.state.err;
+    var arr3=this.state.arr3;
+    var words=this.state.words;
+    var splitArray = words[array[a]][b].split('');
+    var l=words[array[a]][b].split('');
+    var isadd;
   // 循环N次生成随机数
   for(var i = 0 ; ; i++){ 
       // 只生成10个随机数
@@ -193,6 +230,22 @@ export default class WordSpell extends Component {
  for(var i = 0 ; i < ok.length; i++){ 
       console.log(ok[i]); 
  } 
+ var wordarr=[];
+ for(var i=0;i<this.state.wordss.length;i++){
+    wordarr[i]=this.state.wordss[i];
+ }
+ console.log(wordarr);
+ for(var j=0;j<wordarr.length;j++){
+   console.log(wordarr[j],words[array[a]][0]);
+    if(words[array[a]][0]==wordarr[j]){
+       isadd=true
+       break;   
+    }else{
+        isadd=false
+    }
+}
+console.log(isadd)
+    // var splitArray
  // 生成随机数的方法
  function generateRandom1(count){ 
       var rand1 = parseInt(Math.random()*count); 
@@ -202,34 +255,6 @@ export default class WordSpell extends Component {
            }            } 
      ok.push(rand1); 
 } 
-console.log(ok)
-    var array=this.state.array;
-    var arr=this.state.arr;
-    var arr1=this.state.arr1;
-    var arr2=this.state.arr2;
-    console.log(arr1)
-    var a=this.state.a;
-    var b=this.state.b;
-    var c=this.state.c;
-    var d=this.state.d;
-    var e=this.state.e;
-    var f=this.state.f;
-    var k=this.state.k;
-    var letter=this.state.letter;
-    var correct=this.state.correct;
-    var err=this.state.err;
-    var arr3=this.state.arr3;
-    // var nb=this.state.nb;
-    // var nb=[words[array[a]][c],words[d][c],words[e][c],words[f][c]]
-    var str = this.props.location.search;
-    var uid = str.split('=')[1];
-
-    var words=this.state.words;
-        var a=this.state.a;
-        var b=this.state.b;
-        var splitArray = words[array[a]][b].split('');
-        var l=words[array[a]][b].split('');
-        // var splitArray = this.state.splitArray;
         if(splitArray.length<=3){
             k='150'
         }
@@ -293,33 +318,29 @@ console.log(ok)
             }
         }
 
-        console.log(splitArray.length,splitArray)
-        console.log(arr.toString())
+        // console.log(splitArray.length,splitArray)
+        // console.log(arr.toString())
 
     //     arr1 = words[array[a]][b].split('')
     // arr2 = arr1.concat(letter);
 
     //arr3 = arr2.sort(() => Math.random() - 0.5);
     arr3 = this.outputArr(allarr,splitArray);
-    console.log(arr3);
-    console.log(splitArray.length,splitArray)
-
-        
-
+     console.log(arr3);
+    // console.log(splitArray.length,splitArray)
     return (
      <div className='testbox'>
-       <NavBar
-                style={{background:'#66cccc',color:'#fff'}} 
+      <NavBar style={{background:'#66cccc',color:'#fff',position:'fixed',width:'100%',top:'0'}} 
                 leftContent={<Link to={`/words?uid=${uid}`}><img src={require('../imgs/zjt.png')} /></Link>}
+                rightContent={<div><img src={jinbi} style={{width:'25px',height:"25px",borderRadius:"50%"}}/><span style={{fontSize:'13px'}}>&nbsp;{this.state.money}</span></div>}
                 mode="light"
                 ><span style={{color:'#fff',fontSize:'22px'}}>拼写测试</span></NavBar>
-
-                        <div style={{position:'relative',height:'30px',width:'70%',left:k+'px',marginTop:'10px'}}>{
+                        <div style={{position:'relative',height:'70px',width:'70%',left:k+'px',marginTop:'10px'}}>{
                         arr.map(
                             (item)=>
-                            <Flex.Item style={{position:'relative',height:'20px',width:'20px',
+                            <Flex.Item style={{height:'20px',width:'20px',
                     marginLeft:'10px',float:'left'}} >
-                        <Flex.Item style={{position:'relative',top:'25px',textAlign:'center',fontSize:'25px'}}
+                        <Flex.Item style={{position:'relative',top:'60px',textAlign:'center',fontSize:'25px'}}
                         >{item}</Flex.Item>
                         </Flex.Item>
                         )
@@ -352,6 +373,7 @@ console.log(ok)
                     fontSize:'20px',background:'#fff'}} >
                         <Flex.Item style={{position:'relative',top:'25px',textAlign:'center',fontSize:'25px'}}
                         >{words[array[a]][c]}</Flex.Item>
+                        {console.log(words[array[a]][c],words[array[a]][1])}
                         </Flex.Item>
                     
                         <div style={{position:'relative',height:'30px',width:'95%',left:'2.5%',top:'50px'}}>{
@@ -365,47 +387,125 @@ console.log(ok)
                         )
                         }</div>
 
-<Flex.Item style={{position:'absolute',height:'50px',width:'50%',bottom:'100px',left:'25%',marginTop:'5px',
-                    fontSize:'20px',background:'#cfcfcf',display:err}} >
-                        <Flex.Item style={{position:'relative',top:'15px',textAlign:'center',fontSize:'25px',top:'5px'}} 
-                        >错误！重新输入</Flex.Item>
+<Flex.Item style={{position:'absolute',height:'60px',width:'50%',bottom:'155px',left:'25%',marginTop:'15px',
+                    fontSize:'20px',background:'#cfcfcf',borderRadius:'15%',display:err}} >
+                        <Flex.Item style={{position:'relative',top:'15px',textAlign:'center',fontSize:'25px'}}
+                        >错误！请重新输入</Flex.Item>
                         </Flex.Item>
 
-                        <Flex.Item style={{position:'absolute',height:'60px',width:'50%',bottom:'150px',left:'25%',marginTop:'15px',
+                        <Flex.Item style={{position:'absolute',height:'60px',width:'50%',bottom:'155px',left:'25%',marginTop:'15px',
                     fontSize:'20px',background:'#cfcfcf',borderRadius:'15%',display:correct}} >
                         <Flex.Item style={{position:'relative',top:'15px',textAlign:'center',fontSize:'25px'}}
                         >正确!</Flex.Item>
                         </Flex.Item>
 
-                        <Flex.Item style={{position:'absolute',bottom:'100px',width:'100%'}}>
-                                 <Flex.Item style={{position:'relative',height:'50px',width:'43%',marginLeft:'15px',
+                        <Flex.Item 
+                        style={{position:'absolute',bottom:'100px',width:'100%'}}>
+                                 <Flex.Item style={{position:'relative',height:'60px',width:'43%',marginLeft:'15px',
                              fontSize:'20px',background:'#66cccc',float:'left'}} >
-                                 <Flex.Item style={{position:'relative',top:'15px',textAlign:'center',fontSize:'18px',color:'white'}}
-                                 >添加生词</Flex.Item>
+                                 {isadd
+                                 ?
+                                 <Flex.Item
+                                 onClick={()=>{
+                                     this.setState({
+                                         pick:false
+                                     })
+                                    var str = window.location.hash;
+                                    var uid = str.split('&')[0].split('=')[1].split('#')[0];
+                                    var word = words[array[a]][c-1];
+                                    var wordc = words[array[a]][c];
+                                    var wordf =uid+'&'+word;
+                                    console.log(str.split('&')[0].split('=')[1].split('#')[0],words[array[a]][0],words[array[a]][1]);
+                                    const post ={
+                                      uid:uid,
+                                      word:word,
+                                      wordc:wordc,
+                                      wordf:wordf
+                                     };
+                                     fetch(`http://wqh.xpmwqhzygy.top/wordcancel/${wordf}`,{
+                                        method:"DELETE",
+                                        headers:{'Content-Type': 'application/x-www-form-urlencoded'}
+                                    })
+                                    .then(res =>res.json())
+                                    .then(data =>{
+                                        console.log(data);
+                                    });
+                              
+                                 }
+                                 }
+                                  style={{position:'relative',top:'15px',textAlign:'center',fontSize:'18px',color:'white'}}
+                                >已添加</Flex.Item>
+                                 :
+                                 <Flex.Item
+                                 onClick={()=>{
+                                    this.setState({
+                                        pick:true
+                                    })
+                                    var str = window.location.hash;
+                                    var uid = str.split('&')[0].split('=')[1].split('#')[0];
+                                    var word = words[array[a]][c-1];
+                                    var wordc = words[array[a]][c];
+                                    var wordf =uid+'&'+word;
+                                    console.log(str.split('&')[0].split('=')[1].split('#')[0],words[array[a]][0],words[array[a]][1]);
+                                    const post ={
+                                      uid:uid,
+                                      word:word,
+                                      wordc:wordc,
+                                      wordf:wordf
+                                     };
+                                      fetch(`http://wqh.xpmwqhzygy.top/wordin`,{
+                                      // post提交
+                                      method:"POST",
+                                      headers:{'Content-Type': 'application/x-www-form-urlencoded'},
+                                      body:JSON.stringify(post)//把提交的内容转字符串
+                                      })
+                                      .then(res =>res.json())
+                                      .then(data =>{
+                                          console.log(data);
+                                      });
+                              
+                                 }
+                                 }
+                                  style={{position:'relative',top:'15px',textAlign:'center',fontSize:'20px',color:'white'}}
+                                 >{this.state.pick?'已添加':'添加生词'}</Flex.Item>
+                                }
                                  </Flex.Item>
+                                
          
                                 
-                                 <video width='100%' controls='controls' style={{position:'relative',height:'50px',width:'43%',marginLeft:'15px',
-                             fontSize:'20px',float:'left'}}>
+                                 <Flex.Item style={{position:'relative',height:'60px',width:'43%',marginLeft:'15px',
+                             fontSize:'20px',background:'#66cccc',float:'left',zIndex:'1'}}>
+                                 <video class="video" controls style={{position:'relative',height:'60px',opacity:'0',left:'50px',zIndex:'2'}}>
                                     <source src={words[array[a]][2]} type='video/mp4' />
                                 </video>
+                                <Flex.Item style={{position:'absolute',textAlign:'center',fontSize:'20px',color:'white',left:'16vw',top:'4vw',zIndex:'1'}}
+                                 >朗读</Flex.Item>
+                                 </Flex.Item>
                                 
                                  
                                  </Flex.Item>
 
                                  <Flex.Item style={{position:'absolute',bottom:'30px',width:'100%'}}>
-                                 <Flex.Item style={{position:'relative',height:'50px',width:'43%',marginLeft:'15px',
+                                 <Flex.Item style={{position:'relative',height:'60px',width:'43%',marginLeft:'15px',
                              fontSize:'20px',background:'#66cccc',float:'left'}} onClick={this.last}>
-                                 <Flex.Item style={{position:'relative',top:'15px',textAlign:'center',fontSize:'18px',color:'white'}}
+                                 <Flex.Item style={{position:'relative',top:'15px',textAlign:'center',fontSize:'20px',color:'white'}}
                                  >上一题</Flex.Item>
                                  </Flex.Item>
          
-                                 <Flex.Item style={{position:'relative',height:'50px',width:'43%',marginLeft:'15px',
+                                 <Flex.Item style={{position:'relative',height:'60px',width:'43%',marginLeft:'15px',
                              fontSize:'20px',background:'#66cccc',float:'left'}} onClick={this.next}>
-                                 <Flex.Item style={{position:'relative',top:'15px',textAlign:'center',fontSize:'18px',color:'white'}}
+                                 <Flex.Item style={{position:'relative',top:'15px',textAlign:'center',fontSize:'20px',color:'white'}}
                                  >下一题</Flex.Item>
                                  </Flex.Item>
                                  </Flex.Item>
+                 <div className={this.state.flag == 1 ? 'showgolo golo' : 'golo'}></div>
+                 <div className={this.state.flag == 1 ? 'showgolo gologin' : 'gologin'}>
+                 <p>签到领金币哦~~</p>
+                    <div className='glin'>
+                        <div style={{borderRight:'1px solid rgb(211, 211, 208)',width:'49%'}} onClick={this.quxiao}>取消</div>
+                        <div onClick={this.setoutLogin}><Link to={`/searchInfo?uid=${uid}`} style={{color:'gray'}}>去签到</Link></div>
+                    </div>
+                </div>
 
      </div> 
     );
@@ -463,6 +563,11 @@ console.log(ok)
     var arr = arr1;
     var keyarr = arr2;
     var storage = this.state.storage;
+    var words=this.state.words
+    var b=this.state.b;
+    var a=this.state.a;
+    var array=this.state.array;
+    var d=words[array[a]][b].length;
     storage.setItem('dancixpm',JSON.stringify(arr2));
     if(wordarr2==JSON.stringify(arr2)&&wordarr2.length!=0){
         return storagearr;   
@@ -471,7 +576,7 @@ console.log(ok)
         for(var i = 0; i<arr2.length; i++){
             arr = this.arrayRemove(arr,arr2[i]);
         }
-        arr=arr.sort(()=>0.5-Math.random()).slice(0,5);
+        arr=arr.sort(()=>0.5-Math.random()).slice(0,15-d);
         for(var j=0;j<arr.length;j++){
             keyarr.push(arr[j]);
         }
@@ -494,9 +599,20 @@ console.log(ok)
           })
     }
   }
-  next=()=>{
+  quxiao = () => {
     this.setState({
-      arr:[]
+        flag:0
+    });
+}
+  next=()=>{ 
+      var money=this.state.money;
+    if(money<20){
+        this.setState({
+            flag:1
+        })
+    }else{
+    this.setState({
+      arr:[],
     })
     var a = this.state.a;
     var d=this.state.d;
@@ -514,6 +630,7 @@ console.log(ok)
             a:9
         })
     }
+}
 }
   last=()=>{
     this.setState({
