@@ -33,10 +33,11 @@
  * 实现：语音对讲，发图，拍照(限浏览器)，表情包
  * bug: 发送文本中不能为空换行（不会报错），不能有&特殊字符（可能报错）
  * 
- * 实训第七周：实时聊天
+ * 实训第七周：实时聊天+文件传输
  * 构建：nodejs + websocket 搭建即时通讯,使用 socket.io.js 实现 websocket 实时通讯
  * 后台安装：npm install --save socket.io
  * 前端安装：npm install socket.io-client  
+ * 文件传输注意：文件大小有限制(单位为kb)，预览未实现
  * //react怎么引用socket.io.js  https://blog.csdn.net/weixin_42614080/article/details/106295330?fps=1&locationNum=2
  */
 

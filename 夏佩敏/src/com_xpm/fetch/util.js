@@ -66,6 +66,26 @@ let myFetch = {
             body:JSON.stringify(body)
         })
         .then(res=>res.json())
+    },
+    fileput(url,body){
+        return fetch(rootUrl+url,{
+            method:'PUT',
+            // headers:{
+            //     "Content-Type": "multipart/form-data"
+            // },
+            body:body
+        })
+        .then(res=>res.json())
+    },
+    filepost(url,body){
+        return fetch(rootUrl+url,{
+            method:'POST',
+            // headers:{
+            //     "Content-Type": "multipart/form-data"
+            // },
+            body:body
+        })
+        .then(res=>res.json())
     }
 }
 

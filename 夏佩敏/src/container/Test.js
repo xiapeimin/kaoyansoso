@@ -17,7 +17,9 @@ export default class Test extends Component{
             id:1,
             flag:1,
             todo1:[],
-            touchState: false
+            touchState: false,
+            uid:1,
+            sf:0
         }
     }
     componentDidMount(){  //跳转方法不好 用search 或者 context传值
@@ -25,11 +27,19 @@ export default class Test extends Component{
         var arr = str.split('&');
         var arr1 = arr[0];
         var arr2 = arr[1];
+        var arr3 = arr[2];
         var id = arr1.split('=')[1];
         var flag = arr2.split('=')[1];
+        var uid = arr3.split('=')[1];
+        if(arr.length==4){
+            this.setState({
+                sf:1
+            });
+        }
         this.setState({
             id:id,
             flag:flag,
+            uid:uid
         })
         if(flag == 1){
             this.setState({
@@ -64,14 +74,16 @@ export default class Test extends Component{
     }
     
     render(){
+        var uid = this.state.uid;
         var flag = this.state.flag;
         var id = this.state.id;
+        console.log(this.state.uid)
         return (
             <div>
                 <NavBar
                 style={{background:'#b17ccc',color:'#fff'}} 
                 rightContent={<img onClick={this.changgesrc} src={this.state.touchState ? imgsrc2 : imgsrc1} />}
-                leftContent={<Link to={`/testList/${flag}`}><img src={require('../imgs/zjt.png')} /></Link>}
+                leftContent={<Link to={this.state.sf?`/search?uid=${uid}&type=home`:`/testList?uid=${uid}&flag=${flag}`}><img src={require('../imgs/zjt.png')} /></Link>}
                 mode="light"
                 ><span style={{color:'#fff',fontSize:'22px'}}>历年真题</span></NavBar>
 

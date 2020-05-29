@@ -1,10 +1,11 @@
 import React,{Component} from 'react';
-import {NavBar} from 'antd-mobile';
+import {NavBar,Card} from 'antd-mobile';
 import {Link} from 'react-router-dom';
 import io from 'socket.io-client';
 import headimg from './imgs/usrhead.png';
 import {myFetch} from '../fetch/util';
 import Speak from './Speak';
+import Canvas from './canvas/Canvas';
 import './userchat.css';
 import '../note/tkpic.less';
 import '../note/note.css';
@@ -26,6 +27,10 @@ socket.on('news', function (data) {
     var rtxt = document.getElementById('rtxt');
     var rpicbox = document.getElementById('rpicbox');
     var ptrtxt = document.getElementById('ptrtxt');    
+    var rfilebox = document.getElementById('rfilebox');
+    var rfname = document.getElementById('rfname');
+    var rfsize = document.getElementById('rfsize');
+    var ahref = document.getElementById('ahref');   
     if((sock_uid==cdata.uid&&sock_pickid==cdata.pickid) || (sock_uid==cdata.pickid&&sock_pickid==cdata.uid)){
         if(sock_pickid==cdata.sid){
             if(cdata.flag==1){
@@ -39,6 +44,11 @@ socket.on('news', function (data) {
                 var theimg = "<img src="+`http://xpm.xpmwqhzygy.top/getchatimg/${cdata.content}`+" style='width:35vw;height:35vw;borderRadius:3vw;display:block;' />";
                 ptrtxt.innerHTML=theimg;
                 chat.innerHTML+=rpicbox.innerHTML;         
+            }else if(cdata.flag==4){
+                rfname.innerHTML=cdata.content[0];
+                rfsize.innerHTML=cdata.content[1];
+                ahref.href=`http://xpm.xpmwqhzygy.top/filechat/${cdata.content[0]}`;
+                chat.innerHTML+=rfilebox.innerHTML;            
             }
             document.documentElement.scrollTop = chat.scrollHeight;
         }
@@ -78,7 +88,8 @@ export default class Contact extends Component{
             istk:false,
             isvedio:true,
             allok:false,
-            pickid:1
+            pickid:1,
+            closedraw:0 //手画图
         };
         
     }
@@ -146,6 +157,14 @@ export default class Contact extends Component{
                 var mypics = document.getElementById('mypics');
                 var ptrtxt = document.getElementById('ptrtxt');
                 var uthepic = document.getElementById('uthepic');
+                var myfilebox = document.getElementById('myfilebox');
+                var pfname = document.getElementById('pfname');
+                var dfsize = document.getElementById('dfsize');
+                var rfilebox = document.getElementById('rfilebox');
+                var rfname = document.getElementById('rfname');
+                var rfsize = document.getElementById('rfsize');
+                var ahref = document.getElementById('ahref');
+                var mysee = document.getElementById('mysee');
 
                 for(var i=0;i<resdata.length;i++){
                     if(resdata[i].flag==1){
@@ -204,6 +223,18 @@ export default class Contact extends Component{
                             ptrtxt.innerHTML=theimg;
                             chat.innerHTML+=rpicbox.innerHTML;      
                         }                                        
+                    }else if(resdata[i].flag==4){                          
+                        if(resdata[i].sid==uid){                  
+                            pfname.innerHTML=resdata[i].content[0];
+                            dfsize.innerHTML=resdata[i].content[1]+'/已发送';
+                            //mysee.href=`http://xpm.xpmwqhzygy.top/filechat/${resdata[i].content[0]}`;
+                            chat.innerHTML+=myfilebox.innerHTML;            
+                        }else if(resdata[i].sid==pickid){         
+                            rfname.innerHTML=resdata[i].content[0];
+                            rfsize.innerHTML=resdata[i].content[1];
+                            ahref.href=`http://xpm.xpmwqhzygy.top/filechat/${resdata[i].content[0]}`;
+                            chat.innerHTML+=rfilebox.innerHTML;      
+                        }                                        
                     }
                     
                     this.chatscroll();
@@ -219,6 +250,7 @@ export default class Contact extends Component{
         var uid = this.state.uid; 
         let { isShot, showMod,pickid } = this.state;
         console.log(`http://xpm.xpmwqhzygy.top/head/${pickid}`);
+        if(this.state.closedraw==0){
         return (
             <div className='outbox_ct' onClick={this.istool}>
                 
@@ -246,6 +278,21 @@ export default class Contact extends Component{
                             <img src={this.state.pickimg==1?headimg:`http://xpm.xpmwqhzygy.top/head/${pickid}`} className='ptxt_ct' /> 
                             <div id='ptrtxt' className='ptrtxt_ct'>
                                 <img id='mpid1' src={''} style={{width:'35vw',height:'35vw',borderRadius:'3vw',display:'block'}} />                                   
+                            </div>
+                            <div style={{clear:'both'}}></div>                    
+                        </div>
+                    </div>
+                    <div id='rfilebox' style={{display:'none'}}>
+                        <div className='cbox_ct'>
+                            <img src={this.state.pickimg==1?headimg:`http://xpm.xpmwqhzygy.top/head/${pickid}`} className='ptxt_ct' /> 
+                            <div id='rfile' className='filetrtxt_ct'>
+                            <Card style={{width:window.innerWidth*0.7}}>
+                                <Card.Header                
+                                title={<div id='rfname'></div>}                
+                                thumb={require('./imgs/wfile.png')}                    
+                                />                
+                                <Card.Footer content={<div id='rfsize'></div>} extra={<div><a id='ahref' href='https://www.baidu.com/'>下载</a></div>} />
+                            </Card>                                  
                             </div>
                             <div style={{clear:'both'}}></div>                    
                         </div>
@@ -280,6 +327,22 @@ export default class Contact extends Component{
                             <div style={{clear:'both'}}></div>                    
                         </div>
                     </div>
+
+                    <div id='myfilebox' style={{display:'none'}}>
+                        <div className='mybox_ct'>
+                            <img src={this.state.pre==1?headimg:`http://xpm.xpmwqhzygy.top/head/${uid}`} className='uhead_ct' /> 
+                            <div className='wfilebox_ct' id='uthefile'>
+                            <Card style={{width:window.innerWidth*0.7}}>
+                                <Card.Header                
+                                title={<div id='pfname'></div>}                 
+                                thumb={require('./imgs/wfile.png')}                    
+                                />                
+                                <Card.Footer content={<div id='dfsize'></div>} extra={<div><a id='mysee'>预览</a></div>} />
+                            </Card>
+                            </div>
+                            <div style={{clear:'both'}}></div>                    
+                        </div>
+                    </div>
                 </div>
 
 
@@ -302,7 +365,11 @@ export default class Contact extends Component{
                     <div onClick={this.showtool}><img onClick={this.readyVideo} src={require('./imgs/tkphoto.png')}  className='toolimg_ct' id='tool3'/></div>
                     <div onClick={this.showtool}><img src={require('./imgs/draw2.png')} className='toolimg_ct' id='tool4'/></div>
                     <div onClick={this.showtool}><img src={require('./imgs/smile.png')} className='toolimg_ct' id='tool5'/></div>
-                    <div onClick={this.showtool}><img src={require('./imgs/file.png')} className='toolimg_ct' id='tool6'/></div>
+                    {/**<div onClick={this.showtool}><img src={require('./imgs/file.png')} className='toolimg_ct' id='tool6'/></div> */}
+                    <div onClick={this.showtool} style={{overflow:'hidden'}}>
+                        <img src={require('./imgs/file.png')}  className='toolimg_ct picph_ct'  id='tool6'/>
+                        <input type='file' onChange={this.sendfile} id='ufile' className='picfile_ct'/>
+                    </div> 
                 </div>
                 <div style={{display:this.state.toolflag?'block':'none'}} onClick={this.stopclick} className='detail_ct'>
                     <div style={{display:this.state.toolflag==1?'block':'none'}} className='speak_ct'>
@@ -332,11 +399,119 @@ export default class Contact extends Component{
                     </div>)
                     : null}
                 </div>
+                
             </div>       
         )
+        }else if(this.state.closedraw==1){
+            return (
+                <div>
+                    <Canvas parent={this} />
+                </div>
+            )
+        }
     }
-    changeimg = ()=> {
-        console.log('gggggggggggg')
+    /**涂鸦 */
+    getCavsMsg = (result, value)=> {  //获取子组件canvas的值        
+        this.setState({
+            closedraw:0
+        });       
+        if(value=='close') {
+            this.componentDidMount();
+        }
+        if(value!='close'){                       
+            //存储数据库
+            myFetch.get(`/chattext/${this.state.uid}&${this.state.pickid}`)
+            .then(res=>{
+                if(res.msg=='1'){
+                    myFetch.put(`/chatphoto/${this.state.uid}&${this.state.pickid}`,{
+                        imgData:value
+                    })
+                    .then(res=>{
+                        this.componentDidMount();
+                        //实时发送       
+                        socket.emit('say', { my: {
+                            uid:this.state.uid,
+                            pickid:this.state.pickid,
+                            sid:this.state.uid,  //用于判断哪方在发消息
+                            flag:3,
+                            content:res.data
+                        }});
+
+                    });
+                }else if(res.msg=='2'){
+                    myFetch.post(`/chatphoto/${this.state.uid}&${this.state.pickid}`,{
+                        imgData:value
+                    })
+                    .then(res=>{
+                        this.componentDidMount();
+                        //实时发送                  
+                        socket.emit('say', { my: {
+                            uid:this.state.uid,
+                            pickid:this.state.pickid,
+                            sid:this.state.uid,  //用于判断哪方在发消息
+                            flag:3,
+                            content:res.data
+                        }});
+
+                    });
+                }
+            });
+        }
+        
+    }
+    //文件传输    
+    sendfile = ()=> {
+        var chat = document.getElementById('chat');       
+        var arrfile = document.getElementById('ufile').files;
+        this.setState({
+            toolflag:0
+        });
+
+        if(arrfile.length!=0){         
+            var mybox = document.getElementById('myfilebox');
+            var pfname = document.getElementById('pfname');
+            var dfsize = document.getElementById('dfsize');
+            var f=arrfile[0];
+            
+            pfname.innerHTML=f.name;
+            dfsize.innerHTML=Math.floor(f.size/1000)+'KB/已发送';
+       
+            var formData = new FormData(); 
+            formData.append('userfile', f); 
+                 
+            myFetch.get(`/chattext/${this.state.uid}&${this.state.pickid}`)
+            .then(res=>{
+                if(res.msg=='1'){
+                    myFetch.fileput(`/filechat/${this.state.uid}&${this.state.pickid}`,formData)
+                    .then(res=>{
+                        //实时发送                   
+                        socket.emit('say', { my: {
+                            uid:this.state.uid,
+                            pickid:this.state.pickid,
+                            sid:this.state.uid,  //用于判断哪方在发消息
+                            flag:4,
+                            content:res.data
+                        }});
+                    });
+                }else if(res.msg=='2'){
+                    myFetch.filepost(`/filechat/${this.state.uid}&${this.state.pickid}`,formData)
+                    .then(res=>{
+                        //实时发送            
+                        socket.emit('say', { my: {
+                            uid:this.state.uid,
+                            pickid:this.state.pickid,
+                            sid:this.state.uid,  //用于判断哪方在发消息
+                            flag:4,
+                            content:res.data
+                        }});
+
+                    });
+                }
+            });     
+            chat.innerHTML+=mybox.innerHTML;                   
+        }
+        chat.style.paddingBottom='25vw'; 
+        this.chatscroll();        
     }
     //表情包
     gettsmid = (e)=> {
@@ -485,13 +660,13 @@ export default class Contact extends Component{
     getfile = (e) => {
         var chat = document.getElementById('chat');
         var r= new FileReader();
-        var arrfile = document.getElementById('uphoto').files;
+        var arrfile = document.getElementById('ufile').files;
         this.setState({
             toolflag:0
         });
 
         if(arrfile.length!=0){         
-            var mybox = document.getElementById('mypics');
+            var mybox = document.getElementById('myfilebox');
             var uthepic = document.getElementById('uthepic'); 
             var formData = new FormData();
             var allpic='';
@@ -637,7 +812,13 @@ export default class Contact extends Component{
             });
             console.log('tttttttt5',this.state.toolflag);
             chat.style.paddingBottom='75vw';
-        }else if(toolid=='tool2' || toolid=='tool3' || toolid=='tool4' || toolid=='tool6'){
+        }else if(toolid=='tool4'){
+            this.setState({
+                closedraw:1,
+                toolflag:0
+            });
+            chat.style.paddingBottom='25vw';
+        }else if(toolid=='tool2' || toolid=='tool3' || toolid=='tool6'){
             this.setState({
                 toolflag:0
             });

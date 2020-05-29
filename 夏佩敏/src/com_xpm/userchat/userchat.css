@@ -279,10 +279,26 @@
     margin-top: 1vw;
     margin-bottom: 1vw;
 }
+.wfilebox_ct{
+    word-break:break-all;
+    float:right;
+    text-align:left;
+    margin-right:10px;
+    position:relative;
+    margin-top:30px;
+}
+.filetrtxt_ct{
+    word-break:break-all;
+    float:left;
+    margin-left:10px;
+    position:relative;
+    margin-top:30px;   
+}
 
 
 
-/*test chat*/
+
+/*test chat
 input {
     background-color: #fff;
     background-image: none;
@@ -315,3 +331,5 @@ input {
     outline: 0;
     text-align: center;
   }
+
+*/
