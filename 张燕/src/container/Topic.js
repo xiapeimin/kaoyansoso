@@ -538,8 +538,8 @@ export default class HostTopic extends Component {   //评论弹框bug 用组件
                                                     <div style={{height:'5px'}}></div>
                                                     <span style={{fontSize:'16px'}}>{item.topic}</span>
                                                     <div style={{clear:'both',height:'10px'}}></div>
-                                                    {/* <img src={`http://zy.xpmwqhzygy.top/timg/${item.pri}`} style={{width:'100px',float:'left',height:'100px',display:imgsall[index]==null ? 'none' :'block'}} />  */}
-                                                    {/* <img src={`http://zy.xpmwqhzygy.top/tsrc/${item.pri}`} style={{width:'100px',float:'left',height:'100px',display:imgsall2[index]==null ? 'none' :'block'}} />          */}
+                                                    <img src={`http://zy.xpmwqhzygy.top/timg/${item.pri}`} style={{width:'100px',float:'left',height:'100px',display:imgsall[index]==null ? 'none' :'block'}} /> 
+                                                    <img src={`http://zy.xpmwqhzygy.top/tsrc/${item.pri}`} style={{width:'100px',float:'left',height:'100px',display:imgsall2[index]==null ? 'none' :'block'}} />         
                                                 </div>
                                                 </div>
 
@@ -608,14 +608,14 @@ export default class HostTopic extends Component {   //评论弹框bug 用组件
                                                     <span style={{fontSize:'16px'}}>{item.topic}</span>
                                                     <br />
                                                     <div style={{clear:'both',height:'10px'}}></div>
-                                                    {/* <img src={`http://zy.xpmwqhzygy.top/timg/${item.pri}`} style={{width:'100px',float:'left',height:'100px',display:imgs[index]==null ? 'none' :'block'}} />
-                                                    <img src={`http://zy.xpmwqhzygy.top/tsrc/${item.pri}`} style={{width:'100px',float:'left',height:'100px',display:imgs2[index]==null ? 'none' :'block'}} />   */}
+                                                    <img src={`http://zy.xpmwqhzygy.top/timg/${item.pri}`} style={{width:'100px',float:'left',height:'100px',display:imgs[index]==null ? 'none' :'block'}} />
+                                                    <img src={`http://zy.xpmwqhzygy.top/tsrc/${item.pri}`} style={{width:'100px',float:'left',height:'100px',display:imgs2[index]==null ? 'none' :'block'}} />  
                                                 </div>
                                                 </div>
                                                 
 
                                                 <div style={{width:'100%',float:'left',textAlign:'right',paddingTop:'3px',paddingBottom:'2px',borderBottom:'1px solid #ddd',marginBottom:'8px'}}>
-                                                    <img  src={item.good ? zan1 : good} style={{width:'4.5vh',height:'4.5vh',marginRight:'1vh'}} id={`img${index}`} onClick={this.good}/>                                         
+                                                    <img  src={item.good ? good : zan1} style={{width:'4.5vh',height:'4.5vh',marginRight:'1vh'}} id={`img${index}`} onClick={this.good}/>                                         
                                                     <img id={`p${index}`} src={talk} style={{width:'4vh',height:'4vh',marginRight:'1vh'}} onClick={this.unlogin}/>
                                                     <img id={`del${index}`} src={delete1} style={{width:'4vh',height:'4vh'}} onClick={this.delItem}/> 
                                                </div>    

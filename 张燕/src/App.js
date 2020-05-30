@@ -44,11 +44,12 @@ import WordText from './container/WordText';
 import WordSpell from './container/WordSpell';
 import FocusList from './container/FocusList';
 import FansList from './container/FansList';
+import Contrast from './container/Contrast';
 
 //聊天
 import Talking from './container/Talking';
 import Sayto from './container/Sayto';
-
+import Userchat from './com_xpm/userchat/Userchat';
 
 import Sql from './components/spltest';
 
@@ -121,9 +122,12 @@ export default class App extends Component{
                             <Route path='/wordspell' component={WordSpell}/>
                             <Route path='/focuslist' component={FocusList}/>
                             <Route path='/fanslist' component={FansList}></Route>
+                            <Route path='/contrast' component={Contrast}></Route>
                             {/* 聊天 */}
-                            <Route path='/talkto' component={Talking}/>
+                            {/* <Route path='/talkto' component={Talking}/> */}
                             <Route path='/say' component={Sayto}/>
+                            <Route path='/talkto' component={Userchat}/>
+                            
                             {/* 添加计划 */}
                             <Route path='/addPlan' component={Addplan}/>
 

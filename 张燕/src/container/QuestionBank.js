@@ -27,7 +27,7 @@ export default class QuestionBank extends Component {
                             <span style={{fontSize:'3.5vw',marginTop:'3vw',color:"gray"}}>2008年-2018年</span>
                             </Flex>
                         </div>
-                        <img style={{width:'5vw',float:"right",marginTop:'-6vw',marginRight:'4%'}} src={require('../imgs/jiantou.jpg')}/>
+                        <h1 style={{width:'5vw',float:"right",marginTop:'-13vw',marginRight:'4%'}}>></h1>
                     </div>
                     </Link>
                 </div>
@@ -41,7 +41,7 @@ export default class QuestionBank extends Component {
                             <span style={{fontSize:'3.5vw',marginTop:'3vw',color:"gray"}}>2008年-2018年</span>
                             </Flex>
                         </div>
-                        <img style={{width:'5vw',float:"right",marginTop:'-6vw',marginRight:'4%'}} src={require('../imgs/jiantou.jpg')}/>
+                        <h1 style={{width:'5vw',float:"right",marginTop:'-13vw',marginRight:'4%'}}>></h1>
                     </div>
                 </Link>
                 </div>
@@ -55,7 +55,7 @@ export default class QuestionBank extends Component {
                             <span style={{fontSize:'3.5vw',marginTop:'3vw',color:"gray"}}>2008年-2018年</span>
                             </Flex>
                         </div>
-                        <img style={{width:'5vw',float:"right",marginTop:'-6vw',marginRight:'4%'}} src={require('../imgs/jiantou.jpg')}/>
+                        <h1 style={{width:'5vw',float:"right",marginTop:'-13vw',marginRight:'4%'}}>></h1>
                     </div>
                 </div>
                 </Link>
@@ -69,7 +69,7 @@ export default class QuestionBank extends Component {
                             <span style={{fontSize:'3.5vw',marginTop:'3vw',color:"gray"}}>2008年-2018年</span>
                             </Flex>
                         </div>
-                        <img style={{width:'5vw',float:"right",marginTop:'-6vw',marginRight:'4%'}} src={require('../imgs/jiantou.jpg')}/>
+                        <h1 style={{width:'5vw',float:"right",marginTop:'-13vw',marginRight:'4%'}}>></h1>
                     </div>
                 </div>
                 </Link>
@@ -83,7 +83,7 @@ export default class QuestionBank extends Component {
                             <span style={{fontSize:'3.5vw',marginTop:'3vw',color:"gray"}}>2008年-2018年</span>
                             </Flex>
                         </div>
-                        <img style={{width:'5vw',float:"right",marginTop:'-6vw',marginRight:'4%'}} src={require('../imgs/jiantou.jpg')}/>
+                        <h1 style={{width:'5vw',float:"right",marginTop:'-13vw',marginRight:'4%'}}>></h1>
                     </div>
                 </div>
                 </Link>
@@ -97,7 +97,7 @@ export default class QuestionBank extends Component {
                             <span style={{fontSize:'3.5vw',marginTop:'3vw',color:"gray"}}>2008年-2018年</span>
                             </Flex>
                         </div>
-                        <img style={{width:'5vw',float:"right",marginTop:'-6vw',marginRight:'4%'}} src={require('../imgs/jiantou.jpg')}/>
+                        <h1 style={{width:'5vw',float:"right",marginTop:'-13vw',marginRight:'4%'}}>></h1>
                     </div>
                 </div> 
                 </Link>              

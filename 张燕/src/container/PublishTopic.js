@@ -116,7 +116,7 @@ export default class PublishTopic extends Component{  //左箭头返回有bug �
                     <textarea className='texta' style={{height:'140px',border:'none'}} cols="3" rows="3" placeholder='分享新鲜事...' onChange={this.changeValue}></textarea>
                     <WingBlank>
                     <ImagePicker
-                        files={files}
+                        files={files} 
                         onChange={this.onChange}
                         onImageClick={(index, fs) => console.log(index, fs)}
                         selectable={files.length < 7}
@@ -200,27 +200,27 @@ export default class PublishTopic extends Component{  //左箭头返回有bug �
             })
         }
 
-        // if(f.length==2){
-        //     var ff2=f[1].file;
-        // var windowURL2 = window.URL || window.webkitURL;
-        // var dataURL2;
-        // dataURL2 = windowURL2.createObjectURL(ff2);
-        // r2.readAsDataURL(ff2);
-        // r2.onload=function(e){
-        //     var formData2=new FormData();
-        //     formData2.append('image2',ff2);
-        //     console.log(ff2);
-        //     fetch(`http://zy.xpmwqhzygy.top/topsrc/${pri}`,{
-        //         method:'POST',
-        //        //  headers:{'Content-Type': 'application/x-www-form-urlencoded'},
-        //         body:formData2
-        //     })
-        //     .then(res=>res.json())
-        //     .then(data=>{
-        //         console.log(data);
-        //     })
-        // }
-        // }
+        if(f.length==2){
+            var ff2=f[1].file;
+        var windowURL2 = window.URL || window.webkitURL;
+        var dataURL2;
+        dataURL2 = windowURL2.createObjectURL(ff2);
+        r2.readAsDataURL(ff2);
+        r2.onload=function(e){
+            var formData2=new FormData();
+            formData2.append('image2',ff2);
+            console.log(ff2);
+            fetch(`http://zy.xpmwqhzygy.top/topsrc/${pri}`,{
+                method:'POST',
+               //  headers:{'Content-Type': 'application/x-www-form-urlencoded'},
+                body:formData2
+            })
+            .then(res=>res.json())
+            .then(data=>{
+                console.log(data);
+            })
+        }
+        }
     }
         
 

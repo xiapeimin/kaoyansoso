@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import {Link} from 'react-router-dom';
-import touxiang from '../imgs/头像.jpg'
+import touxiang from '../imgs/touxiang.jpg'
 import yanxiao from '../imgs/yanxiao.png'
 import jihua from '../imgs/jihua.png'
 import shoucang from '../imgs/shoucang.png'
 import wenjian from '../imgs/wenjian.png'
-import shezhi from '../imgs/设置.png'
+import shezhi from '../imgs/shezhi.png'
 import bangzhu from '../imgs/bangzhu.png'
-import jiantou from '../imgs/箭头.png'
+import jiantou from '../imgs/jiantou.png'
 import beijing from '../imgs/yh.jpg'
 import headimg from '../imgs/usrhead.png';
 import lianxiren from '../imgs/lxr.jpg';

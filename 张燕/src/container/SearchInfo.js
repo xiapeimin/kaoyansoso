@@ -3,7 +3,13 @@ import * as _ from "lodash";
 import {Link, Redirect} from 'react-router-dom';
 import {NavBar} from 'antd-mobile';
 import moment from 'moment'
+import jifen from '../imgs/jifen.jpg'
 
+var time = new Date(); // Tue Aug 28 2018 09:16:06 GMT+0800 (中国标准时间)；
+var timestamp = Date.parse(time); // 1535419062000 （Date.parse() 默认不取毫秒，即后三位毫秒为0）
+console.log(timestamp-126)
+moment(time).valueOf(); // 1535419062126
+var t=moment(timestamp).format().split('T')[0].split('-')[2]; 
 class DateItem {
   /**
    *
@@ -31,11 +37,19 @@ class Test extends Component {
       plan:[],
       title:[],
       uid:0,
-      isSignIn:false
+      isSignIn:false,
+      money:0,
+      flag:0,
+      nextday:Number(t)
     }
   }
   state = {};
   componentWillMount() {
+    var str=window.location.hash;
+    var uid=str.split('=')[1];
+    this.initState();
+  }
+  componentDidMount(){
     var str=window.location.hash;
     var uid=str.split('=')[1];
     this.setState({
@@ -44,7 +58,6 @@ class Test extends Component {
     console.log(uid)
     var time = new Date(); 
     var timestamp = Date.parse(time); 
-    console.log(timestamp-126)
     moment(time).valueOf();
     var t=moment(timestamp).format().split('T')[0]; 
     console.log(t);
@@ -56,6 +69,7 @@ class Test extends Component {
       })
       .then((res)=>res.json())
       .then((res)=>{
+        console.log(res.data)
          for(var i=0;i<res.data.length;i++){
            if(res.data[i].time.split('T')[0]==t){
             plans[i]=res.data[i].plan.split('&')[1];
@@ -68,7 +82,57 @@ class Test extends Component {
                 title:titles
               })   
       })
-    this.initState();
+    fetch(`http://wqh.xpmwqhzygy.top/querysign/${uid}`,{
+            method: 'GET'
+            })
+            .then((res)=>res.json())
+            .then((res)=>{
+              // this.setState({
+              //   money:5*res.data.length
+              // })
+                console.log(res.data,'查询成功');
+                for(var a=0;a<res.data.length;a++){
+                  var y = res.data[a].pridate.split('/')[0]
+                  var m = res.data[a].pridate.split('/')[1]
+                  if(this.state.year==y&&this.state.month==m){
+                  this.setState(state => {
+                    const hlist = state.hlist.slice();
+                    l(hlist,'111')
+                    hlist[res.data[a].i][res.data[a].j].isSignIn = true;
+                    return {
+                      hlist,
+                    };
+                  });
+                }
+                }
+            });
+  }
+  componentWillUpdate(prevProps,prevState){
+    var str=window.location.hash;
+    var uid=str.split('=')[1];
+    if(prevState.year!==this.state.year||prevState.month!==this.state.month){
+      fetch(`http://wqh.xpmwqhzygy.top/querysign/${uid}`,{
+        method: 'GET'
+        })
+        .then((res)=>res.json())
+        .then((res)=>{
+            console.log(res.data,'查询成功');
+            for(var a=0;a<res.data.length;a++){
+              var y = res.data[a].pridate.split('/')[0]
+              var m = res.data[a].pridate.split('/')[1]
+              if(this.state.year==y&&this.state.month==m){
+              this.setState(state => {
+                const hlist = state.hlist.slice();
+                l(hlist,'111')
+                hlist[res.data[a].i][res.data[a].j].isSignIn = true;
+                return {
+                  hlist,
+                };
+              });
+            }
+            }
+        });
+    }
   }
   initState = ({ y, m } = {}) => {
     const date = new Date();
@@ -173,37 +237,137 @@ class Test extends Component {
     if (dayNum === 0) return;
     const selectDate = new Date(`${year}-${month}-${dayNum}`);
     if (nowadays === dayNum) {
-      l("签到");
-    } else if (selectDate < date) {
-      l("补签");
-    }
+      l(selectDate.toLocaleDateString());
+      var str = window.location.hash;
+      var uid = str.split('&')[0].split('=')[1];
+      var pridate = selectDate.toLocaleDateString();
+      var sign = uid+'&'+pridate;
+      this.setState({
+        flag:1
+      })
+      const post ={
+        uid:uid,
+        pridate:pridate,
+        i:i,
+        j:j,
+        sign:sign
+       };
+        console.log(dayNum,this.state.month,this.state.year,dateItem);
+        fetch(`http://wqh.xpmwqhzygy.top/signin`,{
+        // post提交
+        method:"POST",
+        headers:{'Content-Type': 'application/x-www-form-urlencoded'},
+        body:JSON.stringify(post)//把提交的内容转字符串
+        })
+        .then(res =>res.json())
+        .then(data =>{
+            console.log(data);
+        });
+        fetch(`http://zy.xpmwqhzygy.top/moneys/${uid}`,{
+          method: 'GET'
+          })
+          .then((res)=>res.json())
+          .then((res)=>{
+            if(res.data.length==0){
+              const post3={
+                uid:uid,
+                money:5
+              }
+              fetch(`http://zy.xpmwqhzygy.top/money`,{
+                // post提交
+                method:"POST",
+                headers:{'Content-Type': 'application/x-www-form-urlencoded'},
+                body:JSON.stringify(post3)//把提交的内容转字符串
+                })
+                .then(res =>res.json())
+                .then(data =>{
+                    console.log(data);
+                });
+            }else{
+              const mon=res.data[0].money;
+              console.log(mon);
+            const post3={
+              money:mon+5
+            }
+            fetch(`http://zy.xpmwqhzygy.top/money/${uid}`,{
+              // post提交
+              method:"POST",
+              headers:{'Content-Type': 'application/x-www-form-urlencoded'},
+              body:JSON.stringify(post3)//把提交的内容转字符串
+              })
+              .then(res =>res.json())
+              .then(data =>{
+                  console.log(data);
+              });
+            }
+          })
 
+    } else if (selectDate < date) {
+      l(selectDate.toLocaleDateString());
+      var str = window.location.hash;
+      var uid = str.split('&')[0].split('=')[1];
+      var pridate = selectDate.toLocaleDateString();
+      var sign = uid+'&'+pridate;
+      const post2 ={
+        uid:uid,
+        pridate:pridate,
+        i:i,
+        j:j,
+        sign:sign
+       };
+       console.log(dayNum,i,j,this.state.month);
+        fetch(`http://wqh.xpmwqhzygy.top/signin`,{
+        // post提交
+        method:"POST",
+        headers:{'Content-Type': 'application/x-www-form-urlencoded'},
+        body:JSON.stringify(post2)//把提交的内容转字符串
+        })
+        .then(res =>res.json())
+        .then(data =>{
+            console.log(data);
+        });
+    }
+    if(dayNum>nowadays){
+      this.setState({
+        nextday:dayNum
+      })
+    }
     if (!isShowSignIn || isSignIn)
       // 不能签到的日期和已签到的日期直接返回
       return;
     this.setState(state => {
       const hlist = state.hlist.slice();
+      l(hlist,'111')
       hlist[i][j].isSignIn = true;
       return {
         hlist,
       };
     });
   };
+  quxiao = () => {
+    this.setState({
+        flag:0
+    });
+}
     render() {
         const { year, month, nowadays, thisMonth } = this.state;
         var str = this.props.location.search;
         var uid = str.split('=')[1];
-        console.log(times)
+        var day=this.state.nextday;
+        let data={day:day,uid:uid}
+        let path = {
+            pathname: `/addplan`,
+            query: data,
+        }
         return (
             <div className='testbox'>
-                 <NavBar
-                style={{background:'#66cccc',color:'#fff',position:'fixed',width:'100%',top:'0'}} 
+                <NavBar style={{background:'#66cccc',color:'#fff',position:'fixed',width:'100%',top:'0'}} 
                 leftContent={<Link to={`/appTab?uid=${uid}&type=home`}><img src={require('../imgs/zjt.png')} /></Link>}
                 mode="light"
-                rightContent={<Link to={`addPlan?uid=${uid}`}><span style={{fontSize:'30px',color:'gray'}}>+</span></Link>}
+                rightContent={<Link to={path}><span style={{fontSize:'30px',color:'gray'}}>+</span></Link>}
                 ><span style={{color:'#fff',fontSize:'22px'}}>日历表</span></NavBar> 
                 <>
-          <div style={{width:'100%',height:'50px',marginTop:'50px'}}>
+          <div style={{width:'100%',height:'50px'}}>
           <span style={{textAlign:'center',fontSize:'23px',width:'80px',float:'left'}} onClick={this.handlePrevMonth}>&lt;</span>
           <h2 style={{width:'60%',float:'left',textAlign:"center",marginTop:'4px'}}>
               {year}年{month}月
@@ -228,17 +392,17 @@ class Test extends Component {
                       <td
                         key={j}
                         style={{
-                          color:
-                            dayNum === nowadays && month === thisMonth && "red",
+                          fontWeight:
+                            dayNum === nowadays && month === thisMonth && "bold",
                           textAlign: "center",
                           padding: "",
                           paddingTop:20,
                           width:"15%",
 
                           border: "0 solid",
-                          backgroundColor: dateItem.isSignIn
-                            ? "gray"
-                            : "transparent",
+                          color: dateItem.isSignIn
+                            ? "red"
+                            : "black",
                           opacity: dayNum === 0 ? 0 : 1,
                         }}
                         onClick={this.handleDateItemClick(dateItem, i, j)}
@@ -262,6 +426,14 @@ class Test extends Component {
             })}
           
         </table>
+        <div className={this.state.flag == 1 ? 'showgolo golo' : 'golo'}></div>
+        <div className={this.state.flag == 1 ? 'showgolo gologin' : 'gologin'}>
+                    <img src={jifen} style={{width:"30%",height:'30%',marginTop:"10px"}}/>
+                    <h1>+5</h1>
+                    <div className='glin'>
+                        <div style={{borderRight:'1px solid rgb(211, 211, 208)',width:'100%'}} onClick={this.quxiao}>确定</div>
+                    </div>
+                </div>
         <div style={{padding:10}}>
           <h1 style={{color:"#66cccc",fontSize:25,fontWeight:"bold",paddingTop:15}}>今日计划:</h1>
           {

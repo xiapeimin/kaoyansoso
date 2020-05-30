@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import touxiang from '../imgs/头像.jpg'
+import touxiang from '../imgs/touxiang.jpg'
 import { NavBar, Icon, Tabs } from 'antd-mobile'
 import {Link} from 'react-router-dom';
 import headimg from '../imgs/usrhead.png';
@@ -167,7 +167,7 @@ export default class PersonalDetail extends Component {
             leftContent={<Link to={`/appTab?uid=${uid}&type=my`}><img src={require('../imgs/zjt.png')} /></Link>}
              mode="light"
             onLeftClick={() => console.log('onLeftClick')}
-            ><span style={{color:'#fff',fontSize:'22px'}}>我的研校</span></NavBar>
+            ><span style={{color:'#fff',fontSize:'22px'}}>个人资料</span></NavBar>
              <div style={{width:'100%',height:'60vw'}}>
                     <img src={beijing} style={{width:'100%',height:'60vw',top:'0'}} />
                     <img src={this.state.pre == 0 ? headimg : `${headimg2}`} alt="" 
